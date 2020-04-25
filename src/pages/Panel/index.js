@@ -58,7 +58,7 @@ export default function Panel() {
             </Header>
             <Divider />
             <Container>
-                {/* conatiner */}
+                {/* teste */}
                 <PaymentInformations />
             </Container>
         </>
