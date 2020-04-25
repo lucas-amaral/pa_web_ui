@@ -33,14 +33,14 @@ export const Title = styled.h1`
 `;
 
 export const Container = styled.div`
-    max-width: 880px;
+    position: fixed;
+    max-width: 380px;
     background: ${GRAY};
     opacity: 0.7;
     border-radius: 4px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 120px auto;
-    position: fixed;
-    right: 17%;
+    margin: 150px auto;
+    right: 35%;
     padding: 20px;
 `;
 
@@ -50,7 +50,7 @@ export const ContainerRoot = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-    width: 400px;
+    width: 305px;
 `;
 
 export const StyledLink = styled(Link)``;
