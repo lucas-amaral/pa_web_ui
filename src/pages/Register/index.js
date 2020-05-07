@@ -84,13 +84,15 @@ export default function Register() {
                             </Grid>
                             <Grid item={12}>
                                 <Box p={1}>
-                                    <StyledButton
-                                        size="large"
-                                        variant="contained"
-                                        color="primary"
-                                    >
-                                        Logar
-                                    </StyledButton>
+                                    <StyledLink to="/dashboard">
+                                        <StyledButton
+                                            size="large"
+                                            variant="contained"
+                                            color="primary"
+                                        >
+                                            Logar
+                                        </StyledButton>
+                                    </StyledLink>
                                 </Box>
                             </Grid>
                             <Grid item={12}>

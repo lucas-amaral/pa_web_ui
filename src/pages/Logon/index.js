@@ -46,9 +46,14 @@ export default function Home() {
                     </Grid>
                     <Grid item={12}>
                         <Box p={1}>
-                            <StyledButton variant="contained" color="primary">
-                                Logar
-                            </StyledButton>
+                            <StyledLink to="/dashboard">
+                                <StyledButton
+                                    variant="contained"
+                                    color="primary"
+                                >
+                                    Logar
+                                </StyledButton>
+                            </StyledLink>
                         </Box>
                     </Grid>
 

@@ -25,7 +25,7 @@ export default createGlobalStyle`
 
     body {
         /* background: linear-gradient(-180deg, ${GRAY}, ${PURPLE_2}); */
-        background: linear-gradient(180deg, ${GRAY}, #FFF);
+        /* background: linear-gradient(180deg, ${GRAY}, #FFF); */
         -webkit-font-smoothing: antialiased !important;
     }
 
