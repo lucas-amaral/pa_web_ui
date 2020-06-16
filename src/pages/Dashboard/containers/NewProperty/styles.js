@@ -13,17 +13,10 @@ import {
     PURPLE_1,
     PURPLE_2,
     PURPLE_3,
-} from '../../constants/Colors';
-
-import BackgroundImage from '../../assets/background_1.png';
+} from '../../../../constants/Colors';
 
 export const BackGround = styled.div`
-    background-image: url(${BackgroundImage});
-    background-size: cover;
-    background-repeat: cover;
-    width: 100vw;
-    height: 150vh;
-    position: absolute;
+    background: #fff;
 `;
 
 export const Title = styled.h1`
@@ -32,21 +25,10 @@ export const Title = styled.h1`
     font-family: Arial, Helvetica, sans-serif;
 `;
 
-export const Container = styled.div`
-    max-width: 880px;
-    background: ${GRAY};
-    opacity: 0.9;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 120px auto;
-    position: fixed;
-    right: 17%;
-    padding: 20px;
-`;
+export const Container = styled.div``;
 
 export const ContainerRoot = styled.div`
     width: 100%;
-    background-image: url(${BackgroundImage});
 `;
 
 export const StyledButton = styled(Button)`

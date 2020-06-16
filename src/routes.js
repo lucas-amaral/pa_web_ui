@@ -1,14 +1,37 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Logon from './pages/Logon';
-import Panel from './pages/Panel';
-// import Proposal from './pages/Proposal';
+
+import Dashboard from './pages/Dashboard';
 
 import AuthLayout from './pages/_layouts/auth';
 import DefaultLayout from './pages/_layouts/default';
+
+import { isAuthenticated } from './auth';
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    console.log('log', isAuthenticated());
+    return (
+        <Route
+            {...rest}
+            render={(props) =>
+                isAuthenticated() ? (
+                    <Component {...props} />
+                ) : (
+                    <Redirect
+                        to={{
+                            pathname: '/',
+                            state: { from: props.location },
+                        }}
+                    />
+                )
+            }
+        />
+    );
+};
 
 export default function Routes() {
     const signed = false;
@@ -18,11 +41,10 @@ export default function Routes() {
     return (
         <BrowserRouter>
             <Switch>
-                <Route path="/" exact component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route path="/register" component={Register} />
                 <Route path="/logon" component={Logon} />
-                <Route path="/panel" component={Panel} />
-                {/* <Route path="/proposal" component={Proposal} /> */}
+                <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
         </BrowserRouter>
     );

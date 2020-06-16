@@ -6,6 +6,7 @@ import Logo from '../../../assets/marca.png';
 
 export const HeaderContainer = styled.div`
     position: fixed;
+    top: 0;
     width: 100vw;
 `;
 
@@ -63,6 +64,12 @@ export default function Header() {
         window.onscroll = () => handleScroll();
     });
 
+    const isLogged = () => {
+        return localStorage.getItem('token') !== 'undefined'
+            ? '/dashboard'
+            : '/logon';
+    };
+
     return (
         <HeaderContainer>
             <SecondHeader topPage={topPage}>
@@ -72,7 +79,7 @@ export default function Header() {
                 <HeaderLinksContainer>
                     <HeaderLinks> Fale Conosco </HeaderLinks>
                     <HeaderLinks> Sobre Nós </HeaderLinks>
-                    <HeaderLinks to="/logon">Acessar Sistema</HeaderLinks>
+                    <HeaderLinks to={isLogged()}>Acessar Sistema</HeaderLinks>
                 </HeaderLinksContainer>
             </SecondHeader>
         </HeaderContainer>

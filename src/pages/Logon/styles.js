@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Button } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
 
@@ -39,7 +39,7 @@ export const Container = styled.div`
     opacity: 0.7;
     border-radius: 4px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 150px auto;
+    margin: 200px auto;
     right: 35%;
     padding: 20px;
 `;
@@ -50,7 +50,14 @@ export const ContainerRoot = styled.div`
 `;
 
 export const StyledButton = styled(Button)`
-    width: 305px;
+    width: 322px;
 `;
 
-export const StyledLink = styled(Link)``;
+export const StyledLink = styled(Link)`
+    color: ${(props) => (props.color ? props.color : 'black')};
+    font-size: ${(props) => (props.size ? props.size : '18px')};
+`;
+
+export const StyledTextField = styled(TextField)`
+    width: 322px;
+`;
