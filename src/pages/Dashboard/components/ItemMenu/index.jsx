@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function ItemMenu({ textValue, icon }) {
+function ItemMenu({ textValue, icon, to }) {
     const classes = useStyles();
 
     return (

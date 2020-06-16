@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function MirrorCard({ valueTotal, initialInputValue }) {
+function MirrorCard({ valueTotal, initialInputValue, headerTitle }) {
     const classes = useStyles();
 
     return (
         <>
-            <div className={classes.paperHeader}>Proposta</div>
+            <div className={classes.paperHeader}>{headerTitle}</div>
             <div className={classes.paperBody}>
                 {valueTotal && (
                     <MirrorInfo>

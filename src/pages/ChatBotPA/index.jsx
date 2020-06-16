@@ -57,6 +57,7 @@ export default function ChatBotPA({
     setValueTotal,
     setInitialInputValue,
     handleItem,
+    headerTitle,
 }) {
     const [totalValue, setTotalValue] = useState(null);
     const [churrasqueira, setChurrasqueira] = useState(false);
@@ -82,7 +83,7 @@ export default function ChatBotPA({
     return (
         // <ThemeProvider theme={theme}>
         <ChatBot
-            headerTitle="Cadastrar nova proposta"
+            headerTitle={headerTitle}
             width="100%"
             height="400px"
             steps={[

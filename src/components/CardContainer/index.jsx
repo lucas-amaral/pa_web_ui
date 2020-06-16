@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { OCEAN, PURPLE_0, BLACK } from '../../constants/Colors';
-
 import { Card, CardContent, CardActions, Button } from '@material-ui/core/';
+
+import { OCEAN, PURPLE_0, BLACK } from '../../constants/Colors';
 
 export const StyledCard = styled(Card)`
     width: 90%;
