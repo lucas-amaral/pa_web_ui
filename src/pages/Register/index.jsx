@@ -1,6 +1,8 @@
 import React from 'react';
+import { useForm } from 'react-hook-form';
 
 import { Grid, Box, TextField, Typography } from '@material-ui/core';
+import { doRegister } from '../../services/register';
 
 import {
     Title,
@@ -13,6 +15,10 @@ import {
 import Header from '../Home/Header';
 
 export default function Register() {
+    const { register, errors, handleSubmit, reset } = useForm();
+
+    const onSubmit = async (data) => doRegister(data);
+
     return (
         <BackGround>
             <Header />
@@ -33,55 +39,64 @@ export default function Register() {
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid item md={12}>
-                        <Box p={1}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="Nome e Sobrenome"
-                            />
-                        </Box>
-                    </Grid>
-                    <Grid item md={12}>
-                        <Box p={1}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="E-Mail"
-                            />
-                        </Box>
-                    </Grid>
-                    <Grid item md={6}>
-                        <Box p={1}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="Senha"
-                            />
-                        </Box>
-                    </Grid>
-                    <Grid item md={6}>
-                        <Box p={1}>
-                            <TextField
-                                fullWidth
-                                variant="outlined"
-                                label="Digite novamente a senha"
-                            />
-                        </Box>
-                    </Grid>
-                    <Grid item md={12}>
-                        <Box p={1}>
-                            <StyledLink to="/dashboard">
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <Grid item md={12}>
+                            <Box p={1}>
+                                <TextField
+                                    fullWidth
+                                    variant="outlined"
+                                    label="Nome e Sobrenome"
+                                    name="name"
+                                    inputRef={register()}
+                                />
+                            </Box>
+                        </Grid>
+                        <Grid item md={12}>
+                            <Box p={1}>
+                                <TextField
+                                    fullWidth
+                                    variant="outlined"
+                                    label="E-Mail"
+                                    name="username"
+                                    inputRef={register()}
+                                />
+                            </Box>
+                        </Grid>
+                        <Grid item md={6}>
+                            <Box p={1}>
+                                <TextField
+                                    fullWidth
+                                    variant="outlined"
+                                    label="Senha"
+                                    type="password"
+                                    name="password"
+                                    inputRef={register()}
+                                />
+                            </Box>
+                        </Grid>
+                        <Grid item md={6}>
+                            <Box p={1}>
+                                <TextField
+                                    fullWidth
+                                    variant="outlined"
+                                    label="Digite novamente a senha"
+                                    type="password"
+                                />
+                            </Box>
+                        </Grid>
+                        <Grid item md={12}>
+                            <Box p={1}>
                                 <StyledButton
                                     size="large"
                                     variant="contained"
                                     color="primary"
+                                    type="submit"
                                 >
-                                    Logar
+                                    Cadastrar
                                 </StyledButton>
-                            </StyledLink>
-                        </Box>
-                    </Grid>
+                            </Box>
+                        </Grid>
+                    </form>
                     <Grid item={12}>
                         <Box p={1}>
                             <StyledLink to="/">
