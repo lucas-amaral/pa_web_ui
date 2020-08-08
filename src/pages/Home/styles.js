@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 import { Button, Grid } from '@material-ui/core';
 
+import { Link } from 'react-router-dom';
 import {
     SKYBLUE,
     OCEAN,
@@ -16,8 +17,6 @@ import {
 import BackgroundImage from '../../assets/background_1.png';
 import BackgroundImage_2 from '../../assets/background_2.png';
 import BackgroundImage_3 from '../../assets/agente.jpg';
-
-import { Link } from 'react-router-dom';
 
 export const BackGround = styled.div`
     background-image: url(${BackgroundImage});
@@ -74,7 +73,7 @@ export const Header = styled(Grid)`
 export const FirstBody = styled.div`
     width: 100vw;
     height: 110vh;
-    padding-top: 13vh;
+    padding-top: 8vh;
 `;
 
 export const BackgroundBody = styled.div`
@@ -92,7 +91,7 @@ export const BackgroundBody = styled.div`
 
 export const SecondBody = styled.div`
     width: 100vw;
-    height: 30vw;
+    height: 30px;
     background: linear-gradient(-180deg, #fff, ${GRAY});
     display: flex;
     align-items: center;
@@ -105,7 +104,7 @@ export const SecondBody = styled.div`
 
 export const Footer = styled(Grid)`
     width: 100vw;
-    height: 30vh;
+    height: 20vh;
 
     /* background: ${BLACK}; */
     background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0});

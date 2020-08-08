@@ -17,18 +17,17 @@ function NewAnnouncementBot() {
     const classes = useStyles();
 
     const [initialInputValue, setInitialInputValue] = useState();
-    const handleItem = () => {};
     const [valueTotal, setValueTotal] = useState();
+    const [values, setValues] = useState([]);
 
     return (
         <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
                 <ChatBotPA
                     userName="Augusto"
-                    setValueTotal={setValueTotal}
-                    setInitialInputValue={setInitialInputValue}
-                    handleItem={handleItem}
-                    headerTitle="Criar Novo Anúncio"
+                    headerTitle="Cadastrar novo interesse"
+                    values={values}
+                    setValues={setValues}
                 />
             </Grid>
             <Grid item xs={12} md={6}>
@@ -36,7 +35,8 @@ function NewAnnouncementBot() {
                     <MirrorCard
                         valueTotal={valueTotal}
                         initialInputValue={initialInputValue}
-                        headerTitle="Novo Anúncio"
+                        headerTitle="Interesse"
+                        values={values}
                     />
                 </Paper>
             </Grid>

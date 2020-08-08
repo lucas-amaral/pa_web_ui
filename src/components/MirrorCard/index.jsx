@@ -21,8 +21,10 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function MirrorCard({ valueTotal, initialInputValue, headerTitle }) {
+function MirrorCard({ valueTotal, initialInputValue, headerTitle, values }) {
     const classes = useStyles();
+
+    console.log('values sss', values.propertyType);
 
     return (
         <>
@@ -42,6 +44,11 @@ function MirrorCard({ valueTotal, initialInputValue, headerTitle }) {
                             Valor de entrada: R$
                             {initialInputValue}
                         </span>
+                    </MirrorInfo>
+                )}
+                {values && values.propertyType && (
+                    <MirrorInfo>
+                        <span>{values.propertyType}</span>
                     </MirrorInfo>
                 )}
             </div>

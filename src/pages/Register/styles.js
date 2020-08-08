@@ -22,7 +22,7 @@ export const BackGround = styled.div`
     background-size: cover;
     background-repeat: cover;
     width: 100vw;
-    height: 150vh;
+    height: 100vh;
     position: absolute;
 `;
 
@@ -38,9 +38,7 @@ export const Container = styled.div`
     opacity: 0.9;
     border-radius: 4px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    margin: 120px auto;
-    position: fixed;
-    right: 17%;
+    margin: 150px auto;
     padding: 20px;
 `;
 
