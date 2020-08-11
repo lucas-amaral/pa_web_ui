@@ -18,7 +18,6 @@ function NewAnnouncementBot() {
 
     const [initialInputValue, setInitialInputValue] = useState();
     const [valueTotal, setValueTotal] = useState();
-    const [values, setValues] = useState([]);
 
     return (
         <Grid container spacing={3}>
@@ -26,18 +25,11 @@ function NewAnnouncementBot() {
                 <ChatBotPA
                     userName="Augusto"
                     headerTitle="Cadastrar novo interesse"
-                    values={values}
-                    setValues={setValues}
                 />
             </Grid>
             <Grid item xs={12} md={6}>
                 <Paper className={classes.fixedHeight}>
-                    <MirrorCard
-                        valueTotal={valueTotal}
-                        initialInputValue={initialInputValue}
-                        headerTitle="Interesse"
-                        values={values}
-                    />
+                    <MirrorCard headerTitle="Interesse" />
                 </Paper>
             </Grid>
         </Grid>

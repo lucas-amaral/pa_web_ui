@@ -30,13 +30,17 @@ const theme = {
     // userFontColor: '#4a4a4a',
 };
 
-export default function ChatBotPA({
-    userName,
-    headerTitle,
-    values,
-    setValues,
-}) {
+export default function ChatBotPA({ userName, headerTitle }) {
     // const [values, setValues] = useState([]);
+
+    const dispatch = useDispatch();
+    const announcement = useSelector((state) => state.announcement);
+    const message = useSelector((state) => state.message);
+    const [values, setValues] = useState([]);
+
+    const testeState = useSelector((state) => state.announcement);
+
+    useEffect(() => console.log('testeState', testeState), [testeState]);
 
     useEffect(() => console.log('values', values), [values]);
 
@@ -59,6 +63,11 @@ export default function ChatBotPA({
 
         console.log('values', values);
 
+        dispatch({
+            type: AnnouncementTypes.UPDATE_ANNOUNCEMENT,
+            announcement: { ...values },
+        });
+
         return nextStep;
     };
 
@@ -72,10 +81,7 @@ export default function ChatBotPA({
         }
         return stringValue;
     };
-
-    const dispatch = useDispatch();
-    const announcement = useSelector((state) => state.announcement);
-    const message = useSelector((state) => state.message);
+    // );
 
     return (
         // <div>
@@ -451,7 +457,7 @@ export default function ChatBotPA({
                         if (isNaN(value)) {
                             return 'Informe somente números, por exemplo 50.000';
                         }
-                        updateValue(value, 'creditCardValue', 'results');
+                        updateValue(value, 'exchangeValue', 'results');
                         return true;
                     },
                     trigger: 'results',

@@ -5,6 +5,7 @@ import { createActions, createReducer } from 'reduxsauce';
 */
 export const { Types, Creators } = createActions({
     addAnnouncement: ['announcement'],
+    updateAnnouncement: ['announcement'],
 });
 
 /*
@@ -12,6 +13,7 @@ export const { Types, Creators } = createActions({
 */
 const INITIAL_STATE = {
     announcements: [],
+    announcement: {},
 };
 
 /*
@@ -19,7 +21,13 @@ const INITIAL_STATE = {
 */
 const newAnnoucement = (state = INITIAL_STATE, action) => {
     return {
-        announcements: [...state, action.announcement],
+        announcements: [...state.announcements, action.announcement],
+    };
+};
+
+const changeAnnoucement = (state = INITIAL_STATE, action) => {
+    return {
+        announcement: action.announcement,
     };
 };
 
@@ -28,4 +36,5 @@ const newAnnoucement = (state = INITIAL_STATE, action) => {
 */
 export default createReducer(INITIAL_STATE, {
     [Types.ADD_ANNOUNCEMENT]: newAnnoucement,
+    [Types.UPDATE_ANNOUNCEMENT]: changeAnnoucement,
 });
