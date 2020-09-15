@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function NewAnnouncementBot() {
+function NewInterestBot() {
     const classes = useStyles();
 
     const [initialInputValue, setInitialInputValue] = useState();
@@ -36,4 +36,4 @@ function NewAnnouncementBot() {
     );
 }
 
-export default NewAnnouncementBot;
+export default NewInterestBot;

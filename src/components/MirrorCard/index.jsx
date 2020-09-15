@@ -1,9 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Button, Typography } from '@material-ui/core';
 
-import { OCEAN } from '../../constants/Colors';
+import { OCEAN, PURPLE_0 } from '../../constants/Colors';
 import MirrorInfo from '../MirrorInfos';
+import {
+    Creators as InterestActions,
+    Types as InterestTypes,
+} from '../../store/ducks/interest';
 
 const useStyles = makeStyles((theme) => ({
     paperHeader: {
@@ -16,91 +21,131 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 700,
     },
     paperBody: {
-        boxSizing: 'border-box',
-        height: '345px',
+        height: '290px',
         background: '#f5f8fb',
+    },
+    sendButton: {
+        background: PURPLE_0,
+        height: '45px',
+        borderRadius: '10px',
+    },
+    textButton: {
+        color: 'white',
+        fontWeight: 700,
+    },
+    contentButton: {
+        margin: '5px',
+    },
+    contentBody: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        flexDirection: 'column',
     },
 }));
 
 function MirrorCard({ headerTitle }) {
     const classes = useStyles();
-    const announcement = useSelector(
-        (state) => state.announcement.announcement
-    );
+    const interest = useSelector((state) => state.interest.interest);
 
-    console.log('values sss', announcement);
+    // const announcement = useSelector(
+    //     (state) => state.announcement.announcement
+    // );
+    const dispatch = useDispatch();
+
+    const sendInterest = () => {
+        dispatch({
+            type: InterestTypes.SEND_INTEREST,
+            interest,
+        });
+    };
+
+    console.log('values sss', interest);
 
     return (
         <>
             <div className={classes.paperHeader}>{headerTitle}</div>
-            <div className={classes.paperBody}>
-                {announcement.propertyType && (
-                    <MirrorInfo>
-                        <span>{announcement.propertyType}</span>
-                    </MirrorInfo>
-                )}
-                {announcement.roomsNumber && (
-                    <MirrorInfo>
-                        <span>
-                            Número mínimo de quartos ={' '}
-                            {announcement.roomsNumber}
-                        </span>
-                    </MirrorInfo>
-                )}
-                {announcement.bathroomsNumber && (
-                    <MirrorInfo>
-                        <span>
-                            Número mínimo de banheiros ={' '}
-                            {announcement.bathroomsNumber}
-                        </span>
-                    </MirrorInfo>
-                )}
-                {announcement.garageNumber && (
-                    <MirrorInfo>
-                        <span>
-                            Número mínimo de garagens ={' '}
-                            {announcement.garageNumber}
-                        </span>
-                    </MirrorInfo>
-                )}
-                {announcement.convenience && (
-                    <MirrorInfo>
-                        <span>
-                            Conveniencias desejadas ={' '}
-                            {Object.values(
-                                announcement.convenience
-                            ).map((value, index) =>
-                                value.value ? <h6>{value.name}</h6> : null
-                            )}
-                        </span>
-                    </MirrorInfo>
-                )}
-                {announcement.neighborhood && (
-                    <MirrorInfo>
-                        <span>
-                            Bairros de interesse = {announcement.neighborhood}
-                        </span>
-                    </MirrorInfo>
-                )}
-                {announcement.cashValue && (
-                    <MirrorInfo>
-                        <span>Valor à vista = {announcement.cashValue}</span>
-                    </MirrorInfo>
-                )}
-                {announcement.creditCardValue && (
-                    <MirrorInfo>
-                        <span>
-                            Valor financiado = {announcement.creditCardValue}
-                        </span>
-                    </MirrorInfo>
-                )}
-                {announcement.exchangeValue && (
-                    <MirrorInfo>
-                        <span>
-                            Valor permuta = {announcement.exchangeValue}
-                        </span>
-                    </MirrorInfo>
-                )}
+            <div className={classes.contentBody}>
+                <div className={classes.paperBody}>
+                    {interest.propertyType && (
+                        <MirrorInfo>
+                            <span>{interest.propertyType}</span>
+                        </MirrorInfo>
+                    )}
+                    {interest.roomsNumber && (
+                        <MirrorInfo>
+                            <span>
+                                Número mínimo de quartos ={' '}
+                                {interest.roomsNumber}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                    {interest.bathroomsNumber && (
+                        <MirrorInfo>
+                            <span>
+                                Número mínimo de banheiros ={' '}
+                                {interest.bathroomsNumber}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                    {interest.garageNumber && (
+                        <MirrorInfo>
+                            <span>
+                                Número mínimo de garagens ={' '}
+                                {interest.garageNumber}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                    {interest.convenience && (
+                        <MirrorInfo>
+                            <span>
+                                Conveniencias desejadas ={' '}
+                                {Object.values(
+                                    interest.convenience
+                                ).map((value, index) =>
+                                    value.value ? <h6>{value.name}</h6> : null
+                                )}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                    {interest.neighborhood && (
+                        <MirrorInfo>
+                            <span>
+                                Bairros de interesse = {interest.neighborhood}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                    {interest.cashValue && (
+                        <MirrorInfo>
+                            <span>Valor à vista = {interest.cashValue}</span>
+                        </MirrorInfo>
+                    )}
+                    {interest.creditCardValue && (
+                        <MirrorInfo>
+                            <span>
+                                Valor financiado = {interest.creditCardValue}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                    {interest.exchangeValue && (
+                        <MirrorInfo>
+                            <span>
+                                Valor permuta = {interest.exchangeValue}
+                            </span>
+                        </MirrorInfo>
+                    )}
+                </div>
+                <div className={classes.contentButton}>
+                    <Button
+                        onClick={sendInterest}
+                        variant="contained"
+                        className={classes.sendButton}
+                        fullWidth
+                    >
+                        <Typography className={classes.textButton}>
+                            Cadastrar Interesse
+                        </Typography>
+                    </Button>
+                </div>
             </div>
         </>
     );

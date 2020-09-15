@@ -3,7 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 
 import ducks from './ducks';
 
-import mySaga from './saga/message';
+import mySaga from './saga';
 
 const sagaMiddleware = createSagaMiddleware();
 

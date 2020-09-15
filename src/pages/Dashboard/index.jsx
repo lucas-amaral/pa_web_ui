@@ -23,12 +23,12 @@ import {
 } from '@material-ui/core';
 import StarBorder from '@material-ui/icons/StarBorder';
 
-import NewAnnouncementBot from './containers/NewAnnouncementBot';
+import { useHistory } from 'react-router-dom';
+import NewInterestBot from './containers/NewInterestBot';
 import PewProperty from './containers/NewProperty';
 import PropertyList from './containers/PropertyList';
 import PerfilSettings from './containers/PerfilSettings';
 import NewProposeBot from './containers/NewProposeBot';
-import { useHistory } from 'react-router-dom';
 
 import Logo from '../../assets/marca.png';
 
@@ -242,7 +242,7 @@ export default function Dashboard() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    {contentBody === 'announcement' && <NewAnnouncementBot />}
+                    {contentBody === 'interest' && <NewInterestBot />}
                     {contentBody === 'newProperty' && <PewProperty />}
                     {contentBody === 'propertyList' && <PropertyList />}
                     {contentBody === 'perfilSettings' && <PerfilSettings />}

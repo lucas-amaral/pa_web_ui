@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 
-import { Grid, Box, TextField } from '@material-ui/core';
-import { doLogin } from '../../services/login';
+import { Grid, Box } from '@material-ui/core';
 
 import {
     Title,
@@ -14,19 +12,10 @@ import {
     StyledTextField,
 } from './styles';
 
-import Header from '../Home/Header';
+import Header from '../../Home/Header';
 
-export default function Home() {
-    const history = useHistory();
-    const [loginInvalid, setLoginInvalid] = useState(false);
-    const { register, errors, handleSubmit, reset } = useForm();
-
-    const setLoginValid = () => {
-        history.push('/dashboard');
-    };
-
-    const onSubmit = async (data) =>
-        doLogin(data.username, data.password, setLoginInvalid, setLoginValid);
+function LoginComponent({ onSubmit }) {
+    const { register, handleSubmit } = useForm();
 
     return (
         <BackGround>
@@ -87,17 +76,17 @@ export default function Home() {
                                                     Clique aqui e faça já o seu
                                                 </StyledLink>
                                             </Box>
-                                            {loginInvalid && (
-                                                <Box p={1}>
-                                                    <StyledLink
-                                                        to="/register"
-                                                        color="red"
-                                                    >
-                                                        Login inválido, tente
-                                                        novamente
-                                                    </StyledLink>
-                                                </Box>
-                                            )}
+                                            {/* {loginInvalid && (
+                                        <Box p={1}>
+                                            <StyledLink
+                                                to="/register"
+                                                color="red"
+                                            >
+                                                Login inválido,
+                                                tente novamente
+                                            </StyledLink>
+                                        </Box>
+                                    )} */}
                                         </Grid>
                                     </Grid>
                                 </Grid>
@@ -109,3 +98,5 @@ export default function Home() {
         </BackGround>
     );
 }
+
+export default LoginComponent;

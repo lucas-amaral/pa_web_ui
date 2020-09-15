@@ -13,9 +13,9 @@ import {
     PURPLE_1,
     PURPLE_2,
     PURPLE_3,
-} from '../../constants/Colors';
+} from '../../../constants/Colors';
 
-import BackgroundImage from '../../assets/background_1.png';
+import BackgroundImage from '../../../assets/background_1.png';
 
 export const BackGround = styled.div`
     background-image: url(${BackgroundImage});

@@ -1,20 +1,14 @@
 import axios from 'axios';
 
-export const doLogin = (username, password, setLoginInvalid, setLoginValid) => {
-    axios
-        .post(
-            `https://crm-service.herokuapp.com/login`,
-            {},
-            {
-                auth: { username, password },
-            }
-        )
-        .then((response) => {
-            const token = response.headers['x-auth-token'];
-            localStorage.setItem('token', token);
-            setLoginValid();
-        })
-        .catch((err) => {
-            setLoginInvalid(err);
-        });
+const HOST = 'https://crm-service.herokuapp.com';
+// const HOST = 'http://localhost:8080';
+
+export const doLogin = (username, password) => {
+    return axios.post(`${HOST}/login`, {}, { auth: { username, password } });
+    // .then((response) => {
+    //     return response;
+    // })
+    // .catch((error) => {
+    //     return error;
+    // });
 };

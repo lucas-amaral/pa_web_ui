@@ -6,9 +6,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import CustomSelectComponent from './customSelectComponent';
 
 import {
-    Creators as AnnouncementActions,
-    Types as AnnouncementTypes,
-} from '../../store/ducks/announcement';
+    Creators as InterestActions,
+    Types as InterestTypes,
+} from '../../store/ducks/interest';
+
+// import {
+//     Creators as AnnouncementActions,
+//     Types as AnnouncementTypes,
+// } from '../../store/ducks/announcement';
 
 import {
     Creators as MessageActions,
@@ -61,11 +66,9 @@ export default function ChatBotPA({ userName, headerTitle }) {
         values[valueName] = value;
         setValues(values);
 
-        console.log('values', values);
-
         dispatch({
-            type: AnnouncementTypes.UPDATE_ANNOUNCEMENT,
-            announcement: { ...values },
+            type: InterestTypes.UPDATE_INTEREST,
+            interest: { ...values },
         });
 
         return nextStep;
