@@ -29,7 +29,7 @@ function LoginComponent({ onSubmit }) {
                                     <Grid container>
                                         <Grid item md={12}>
                                             <Box pl={1} pb={2}>
-                                                <Title>Logon</Title>
+                                                <Title>Login</Title>
                                             </Box>
                                         </Grid>
                                     </Grid>

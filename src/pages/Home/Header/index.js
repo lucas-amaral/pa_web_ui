@@ -67,7 +67,7 @@ export default function Header() {
     const isLogged = () => {
         return localStorage.getItem('token') !== 'undefined'
             ? '/dashboard'
-            : '/logon';
+            : '/login';
     };
 
     return (

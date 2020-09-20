@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
 import Home from './pages/Home';
 import Register from './pages/Register';
-import Logon from './pages/Logon';
+import Login from './pages/Login';
 
 import Dashboard from './pages/Dashboard';
 
@@ -43,7 +43,7 @@ export default function Routes() {
             <Switch>
                 <Route exact path="/" component={Home} />
                 <Route path="/register" component={Register} />
-                <Route path="/logon" component={Logon} />
+                <Route path="/login" component={Login} />
                 <PrivateRoute path="/dashboard" component={Dashboard} />
             </Switch>
         </BrowserRouter>
