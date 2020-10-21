@@ -4,16 +4,7 @@ import { Button } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
 
-import {
-    SKYBLUE,
-    OCEAN,
-    BLACK,
-    GRAY,
-    PURPLE_0,
-    PURPLE_1,
-    PURPLE_2,
-    PURPLE_3,
-} from '../../constants/Colors';
+import { SKYBLUE, GRAY } from '../../constants/Colors';
 
 import BackgroundImage from '../../assets/background_1.png';
 
@@ -22,7 +13,7 @@ export const BackGround = styled.div`
     background-size: cover;
     background-repeat: cover;
     width: 100vw;
-    height: 100vh;
+    height: 120vh;
     position: absolute;
 `;
 

@@ -49,6 +49,12 @@ function SideMenu({ action }) {
                 </ListItemIcon>
                 <ListItemText primary="Novo Interesse" />
             </ListItem>
+            <ListItem button onClick={() => action('myInterest')}>
+                <ListItemIcon>
+                    <SendIcon />
+                </ListItemIcon>
+                <ListItemText primary="Meu Interesse" />
+            </ListItem>
             <ListItem button onClick={() => action('propouse')}>
                 <ListItemIcon>
                     <DraftsIcon />

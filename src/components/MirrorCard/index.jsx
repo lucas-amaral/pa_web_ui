@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
+import { sumValues } from '../../utils/interestUtils';
 
 import { OCEAN, PURPLE_0 } from '../../constants/Colors';
 import MirrorInfo from '../MirrorInfos';
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 function MirrorCard({ headerTitle }) {
     const classes = useStyles();
-    const interest = useSelector((state) => state.interest.interest);
+    let interest = useSelector((state) => state.interest.interest);
 
     // const announcement = useSelector(
     //     (state) => state.announcement.announcement
@@ -53,11 +54,42 @@ function MirrorCard({ headerTitle }) {
     const dispatch = useDispatch();
 
     const sendInterest = () => {
+        const dataInterest = {
+            username: localStorage.getItem('username'),
+            value: sumValues({
+                cashValue: interest.cashValue,
+                creditCardValue: interest.creditCardValue,
+                exchangeValue: interest.exchangeValue,
+            }),
+            financing: Boolean(interest.creditCardValue),
+            financingValue: parseFloat(interest.creditCardValue),
+            types: ['HOUSE', 'APARTMENT'],
+            neighborhoodIds: [4, 5],
+            dorms: interest.roomsNumber,
+            suites: 1,
+            bathrooms: interest.bathroomsNumber,
+            garages: interest.garageNumber,
+            pool: false,
+            balcony: false,
+            elevator: false,
+            barbecueGrill: true,
+            barters: [
+                {
+                    type: 'VEHICLE',
+                    value: 52.25,
+                },
+            ],
+        };
+
         dispatch({
             type: InterestTypes.SEND_INTEREST,
-            interest,
+            dataInterest,
         });
     };
+
+    if (interest.interest) {
+        interest = interest.interest;
+    }
 
     console.log('values sss', interest);
 

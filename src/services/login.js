@@ -5,10 +5,4 @@ const HOST = 'https://crm-service.herokuapp.com';
 
 export const doLogin = (username, password) => {
     return axios.post(`${HOST}/login`, {}, { auth: { username, password } });
-    // .then((response) => {
-    //     return response;
-    // })
-    // .catch((error) => {
-    //     return error;
-    // });
 };

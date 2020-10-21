@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -25,6 +27,7 @@ import StarBorder from '@material-ui/icons/StarBorder';
 
 import { useHistory } from 'react-router-dom';
 import NewInterestBot from './containers/NewInterestBot';
+import MyInterest from './containers/MyInterest';
 import PewProperty from './containers/NewProperty';
 import PropertyList from './containers/PropertyList';
 import PerfilSettings from './containers/PerfilSettings';
@@ -149,6 +152,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Dashboard() {
+    const dispatch = useDispatch();
     const history = useHistory();
     const classes = useStyles();
     const [open, setOpen] = useState(true);
@@ -164,6 +168,9 @@ export default function Dashboard() {
     };
 
     const exit = () => {
+        dispatch({
+            type: 'LOGOFF',
+        });
         localStorage.setItem('token', undefined);
         history.push('/');
     };
@@ -243,6 +250,7 @@ export default function Dashboard() {
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
                     {contentBody === 'interest' && <NewInterestBot />}
+                    {contentBody === 'myInterest' && <MyInterest />}
                     {contentBody === 'newProperty' && <PewProperty />}
                     {contentBody === 'propertyList' && <PropertyList />}
                     {contentBody === 'perfilSettings' && <PerfilSettings />}

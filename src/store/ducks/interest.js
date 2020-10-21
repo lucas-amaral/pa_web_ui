@@ -5,9 +5,12 @@ import { createActions, createReducer } from 'reduxsauce';
 */
 export const { Types, Creators } = createActions({
     addInterest: ['interest'],
-    updateInterest: ['interest'],
+    updateInterest: ['payload'],
     sendInterest: [],
     interestSucceeded: ['payload'],
+    loadInterest: ['username'],
+    removeInterest: [],
+    setInitialState: [],
 });
 
 /*
@@ -27,13 +30,17 @@ const newInterest = (state = INITIAL_STATE, action) => {
     };
 };
 
-const changeInterest = (state = INITIAL_STATE, action) => {
+const updateInterest = (state = INITIAL_STATE, payload) => {
     return {
-        interest: action.interest,
+        interest: payload,
     };
 };
 
 const interestSucceeded = (state = INITIAL_STATE, action) => {
+    return state;
+};
+
+const setInitialState = (state = INITIAL_STATE) => {
     return state;
 };
 
@@ -42,6 +49,7 @@ const interestSucceeded = (state = INITIAL_STATE, action) => {
 */
 export default createReducer(INITIAL_STATE, {
     [Types.ADD_INTEREST]: newInterest,
-    [Types.UPDATE_INTEREST]: changeInterest,
+    [Types.UPDATE_INTEREST]: updateInterest,
     [Types.INTEREST_SUCCEEDED]: interestSucceeded,
+    [Types.SET_INITIAL_STATE]: setInitialState,
 });

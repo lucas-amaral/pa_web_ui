@@ -3,20 +3,10 @@ import styled from 'styled-components';
 import { Button, Grid } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
-import {
-    SKYBLUE,
-    OCEAN,
-    BLACK,
-    GRAY,
-    PURPLE_0,
-    PURPLE_1,
-    PURPLE_2,
-    PURPLE_3,
-} from '../../constants/Colors';
+import { SKYBLUE, OCEAN, BLACK, GRAY, PURPLE_0 } from '../../constants/Colors';
 
 import BackgroundImage from '../../assets/background_1.png';
-import BackgroundImage_2 from '../../assets/background_2.png';
-import BackgroundImage_3 from '../../assets/agente.jpg';
+import BackgroundImage2 from '../../assets/background_2.png';
 
 export const BackGround = styled.div`
     background-image: url(${BackgroundImage});
@@ -78,7 +68,7 @@ export const FirstBody = styled.div`
 
 export const BackgroundBody = styled.div`
     /* background: linear-gradient(-180deg, ${OCEAN}, ${GRAY}); */
-    background: url(${BackgroundImage_2});
+    background: url(${BackgroundImage2});
     background-size: cover;
     background-repeat: cover;
     width: 100vw;

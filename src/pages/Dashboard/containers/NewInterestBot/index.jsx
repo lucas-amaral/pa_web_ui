@@ -23,7 +23,7 @@ function NewInterestBot() {
         <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
                 <ChatBotPA
-                    userName="Augusto"
+                    userName={localStorage.getItem('username')}
                     headerTitle="Cadastrar novo interesse"
                 />
             </Grid>
