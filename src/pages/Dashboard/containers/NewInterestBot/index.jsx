@@ -13,35 +13,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function NewAnnouncementBot() {
+function NewInterestBot() {
     const classes = useStyles();
 
     const [initialInputValue, setInitialInputValue] = useState();
-    const handleItem = () => {};
     const [valueTotal, setValueTotal] = useState();
 
     return (
         <Grid container spacing={3}>
             <Grid item xs={12} md={6}>
                 <ChatBotPA
-                    userName="Augusto"
-                    setValueTotal={setValueTotal}
-                    setInitialInputValue={setInitialInputValue}
-                    handleItem={handleItem}
-                    headerTitle="Criar Novo Anúncio"
+                    userName={localStorage.getItem('username')}
+                    headerTitle="Cadastrar novo interesse"
                 />
             </Grid>
             <Grid item xs={12} md={6}>
                 <Paper className={classes.fixedHeight}>
-                    <MirrorCard
-                        valueTotal={valueTotal}
-                        initialInputValue={initialInputValue}
-                        headerTitle="Novo Anúncio"
-                    />
+                    <MirrorCard headerTitle="Interesse" />
                 </Paper>
             </Grid>
         </Grid>
     );
 }
 
-export default NewAnnouncementBot;
+export default NewInterestBot;

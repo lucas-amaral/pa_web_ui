@@ -18,7 +18,7 @@ export const SecondHeader = styled.div`
 
     box-shadow: 0 0 5em rgba(0, 0, 0, 0.9);
 
-    height: ${(props) => (props.topPage ? '18vh' : '12vh')};
+    height: ${(props) => (props.topPage ? '12vh' : '8vh')};
     transition: height 0.5s;
     opacity: 1;
 `;
@@ -67,7 +67,7 @@ export default function Header() {
     const isLogged = () => {
         return localStorage.getItem('token') !== 'undefined'
             ? '/dashboard'
-            : '/logon';
+            : '/login';
     };
 
     return (

@@ -43,11 +43,17 @@ function SideMenu({ action }) {
                 </ListItemIcon>
                 <ListItemText primary="Meu Perfil" />
             </ListItem>
-            <ListItem button onClick={() => action('announcement')}>
+            <ListItem button onClick={() => action('interest')}>
                 <ListItemIcon>
                     <SendIcon />
                 </ListItemIcon>
-                <ListItemText primary="Novo Anúncio" />
+                <ListItemText primary="Novo Interesse" />
+            </ListItem>
+            <ListItem button onClick={() => action('myInterest')}>
+                <ListItemIcon>
+                    <SendIcon />
+                </ListItemIcon>
+                <ListItemText primary="Meu Interesse" />
             </ListItem>
             <ListItem button onClick={() => action('propouse')}>
                 <ListItemIcon>

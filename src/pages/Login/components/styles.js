@@ -13,16 +13,16 @@ import {
     PURPLE_1,
     PURPLE_2,
     PURPLE_3,
-} from '../../constants/Colors';
+} from '../../../constants/Colors';
 
-import BackgroundImage from '../../assets/background_1.png';
+import BackgroundImage from '../../../assets/background_1.png';
 
 export const BackGround = styled.div`
     background-image: url(${BackgroundImage});
     background-size: cover;
     background-repeat: cover;
     width: 100vw;
-    height: 150vh;
+    height: 100vh;
     position: absolute;
 `;
 
@@ -33,14 +33,12 @@ export const Title = styled.h1`
 `;
 
 export const Container = styled.div`
-    position: fixed;
     max-width: 380px;
     background: ${GRAY};
     opacity: 0.7;
     border-radius: 4px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin: 200px auto;
-    right: 35%;
     padding: 20px;
 `;
 

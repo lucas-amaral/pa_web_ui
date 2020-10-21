@@ -18,7 +18,6 @@ const useStyles = makeStyles((theme) => ({
     },
     container: {
         background: GRAY,
-        height: '30px',
         fontSize: '18px',
         padding: '0 5px',
         opacity: 0.75,

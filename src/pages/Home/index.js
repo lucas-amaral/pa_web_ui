@@ -26,8 +26,6 @@ export default function Home() {
                         Você no controle do negócio o tempo todo!
                     </BodyPhraseOne>
                 </BodyOnePhraseContent>
-            </FirstBody>
-            <SecondBody>
                 <Grid container>
                     <Grid item md={6}>
                         <CardContainer
@@ -57,7 +55,8 @@ export default function Home() {
                         />
                     </Grid>
                 </Grid>
-            </SecondBody>
+            </FirstBody>
+            <SecondBody />
             <Footer container />
         </Grid>
     );
