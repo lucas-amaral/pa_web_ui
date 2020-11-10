@@ -44,6 +44,37 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const getListValuesProperties = (list) => {
+    const filteredList = [];
+    if (list[0].value) {
+        filteredList.push(list[0].postName);
+    }
+    if (list[1].value) {
+        filteredList.push(list[1].postName);
+    }
+
+    return filteredList;
+};
+
+const getConvenience = (conveniences, convenienceName) => {
+    if (conveniences) {
+        if (conveniences[0].name === convenienceName && conveniences[0].value) {
+            return true;
+        }
+        if (conveniences[1].name === convenienceName && conveniences[1].value) {
+            return true;
+        }
+        if (conveniences[2].name === convenienceName && conveniences[2].value) {
+            return true;
+        }
+        if (conveniences[3].name === convenienceName && conveniences[3].value) {
+            return true;
+        }
+    }
+
+    return false;
+};
+
 function MirrorCard({ headerTitle }) {
     const classes = useStyles();
     let interest = useSelector((state) => state.interest.interest);
@@ -63,16 +94,19 @@ function MirrorCard({ headerTitle }) {
             }),
             financing: Boolean(interest.creditCardValue),
             financingValue: parseFloat(interest.creditCardValue),
-            types: ['HOUSE', 'APARTMENT'],
+            types: getListValuesProperties(interest.properties),
             neighborhoodIds: [4, 5],
             dorms: interest.roomsNumber,
             suites: 1,
             bathrooms: interest.bathroomsNumber,
             garages: interest.garageNumber,
-            pool: false,
-            balcony: false,
-            elevator: false,
-            barbecueGrill: true,
+            pool: getConvenience(interest.convenience, 'PISCINA'),
+            balcony: getConvenience(interest.convenience, 'SACADA'),
+            elevator: getConvenience(interest.convenience, 'ELEVADOR'),
+            barbecueGrill: getConvenience(
+                interest.conveniences,
+                'CHURRASQUEIRA'
+            ),
             barters: [
                 {
                     type: 'VEHICLE',
@@ -98,9 +132,16 @@ function MirrorCard({ headerTitle }) {
             <div className={classes.paperHeader}>{headerTitle}</div>
             <div className={classes.contentBody}>
                 <div className={classes.paperBody}>
-                    {interest.propertyType && (
+                    {interest.properties && (
                         <MirrorInfo>
-                            <span>{interest.propertyType}</span>
+                            <span>
+                                Typos de propriedades desejadas ={' '}
+                                {Object.values(
+                                    interest.properties
+                                ).map((value, index) =>
+                                    value.value ? <h6>{value.name}</h6> : null
+                                )}
+                            </span>
                         </MirrorInfo>
                     )}
                     {interest.roomsNumber && (

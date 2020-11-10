@@ -49,6 +49,11 @@ export default function ChatBotPA({ userName, headerTitle }) {
 
     useEffect(() => console.log('values', values), [values]);
 
+    const [selectedPropertyTypes, setPropertyType] = useState({
+        0: { name: 'CASA', postName: 'HOUSE', value: false },
+        1: { name: 'APTO', postName: 'APARTMENT', value: false },
+    });
+
     const [selectedConvenience, setConvenience] = useState({
         0: { name: 'CHURRASQUEIRA', value: false },
         1: { name: 'SACADA', value: false },
@@ -84,35 +89,8 @@ export default function ChatBotPA({ userName, headerTitle }) {
         }
         return stringValue;
     };
-    // );
 
     return (
-        // <div>
-        //     <div>
-        //         <h3>{counter}</h3>
-        //         <button
-        //             type="button"
-        //             onClick={() =>
-        //                 dispatch({ type: CounterTypes.INCREMENT, value: 1 })
-        //             }
-        //         >
-        //             incrmentar
-        //         </button>
-        //     </div>
-        //     <div>
-        //         <h3>The message is: {message}</h3>
-        //         <button
-        //             type="button"
-        //             onClick={() =>
-        //                 dispatch({
-        //                     type: MessageTypes.MESSAGE_FETCH_REQUESTED,
-        //                 })
-        //             }
-        //         >
-        //             message
-        //         </button>
-        //     </div>
-        // </div>
         <ChatBot
             headerTitle={headerTitle}
             width="100%"
@@ -131,43 +109,57 @@ export default function ChatBotPA({ userName, headerTitle }) {
                 {
                     id: 'infoMessage3',
                     message: `Vamos começar com o tipo de imóvel, selecione os tipos que você aceitaria morar:`,
-                    trigger: 'property',
+                    trigger: 'properties',
                 },
                 {
-                    id: 'property',
-                    options: [
-                        {
-                            value: 'CASA',
-                            label: 'CASA',
-                            trigger: (value) =>
-                                updateValue(
-                                    value.value,
-                                    'propertyType',
-                                    'roomsLabel'
-                                ),
-                        },
-                        {
-                            value: 'APTO',
-                            label: 'APTO',
-                            trigger: (value) =>
-                                updateValue(
-                                    value.value,
-                                    'propertyType',
-                                    'roomsLabel'
-                                ),
-                        },
-                        {
-                            value: 'CHACARA',
-                            label: 'CHÁCARA',
-                            trigger: (value) =>
-                                updateValue(
-                                    value.value,
-                                    'propertyType',
-                                    'roomsLabel'
-                                ),
-                        },
-                    ],
+                    id: 'properties',
+                    previousStep: 'infoMessage3',
+                    component: (
+                        <CustomSelectComponent
+                            updateValue={updateValue}
+                            selectedOptions={selectedPropertyTypes}
+                            setSelectedOptions={setPropertyType}
+                            componentName="properties"
+                        />
+                    ),
+                    trigger: 'roomsLabel',
+                    waitAction: true,
                 },
+                // {
+                //     id: 'property',
+                //     options: [
+                //         {
+                //             value: 'CASA',
+                //             label: 'CASA',
+                //             trigger: (value) =>
+                //                 updateValue(
+                //                     value.value,
+                //                     'propertyType',
+                //                     'roomsLabel'
+                //                 ),
+                //         },
+                //         {
+                //             value: 'APTO',
+                //             label: 'APTO',
+                //             trigger: (value) =>
+                //                 updateValue(
+                //                     value.value,
+                //                     'propertyType',
+                //                     'roomsLabel'
+                //                 ),
+                //         },
+                //         {
+                //             value: 'CHACARA',
+                //             label: 'CHÁCARA',
+                //             trigger: (value) =>
+                //                 updateValue(
+                //                     value.value,
+                //                     'propertyType',
+                //                     'roomsLabel'
+                //                 ),
+                //         },
+                //     ],
+                // },
                 {
                     id: 'roomsLabel',
                     message: `Qual o MÍNIMO de nº de dormitórios?`,
