@@ -7,9 +7,6 @@ import Login from './pages/Login';
 
 import Dashboard from './pages/Dashboard';
 
-import AuthLayout from './pages/_layouts/auth';
-import DefaultLayout from './pages/_layouts/default';
-
 import { isAuthenticated } from './auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
@@ -34,10 +31,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 export default function Routes() {
-    const signed = false;
-
-    const Layout = signed ? DefaultLayout : AuthLayout;
-
     return (
         <BrowserRouter>
             <Switch>
