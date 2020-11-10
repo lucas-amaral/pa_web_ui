@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { OCEAN } from '../../constants/Colors';
+import { OCEAN } from '../../../../../constants/Colors';
 
 const useStyles = makeStyles((theme) => ({
     ItemCardOptions: {

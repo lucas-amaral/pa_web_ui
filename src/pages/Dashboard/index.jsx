@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import clsx from 'clsx';
@@ -10,7 +10,6 @@ import {
     Link,
     Container,
     Badge,
-    Button,
     IconButton,
     CssBaseline,
     Drawer,
@@ -19,35 +18,19 @@ import {
     Toolbar,
     Typography,
     Divider,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
 } from '@material-ui/core';
-import StarBorder from '@material-ui/icons/StarBorder';
 
 import { useHistory } from 'react-router-dom';
-import NewInterestBot from './containers/NewInterestBot';
-import MyInterest from './containers/MyInterest';
-import PewProperty from './containers/NewProperty';
-import PropertyList from './containers/PropertyList';
-import PerfilSettings from './containers/PerfilSettings';
-import NewProposeBot from './containers/NewProposeBot';
+import NewInterest from './internalPages/NewInterest';
+import MyInterest from './internalPages/Interest';
+import PropertyList from './internalPages/PropertyList';
+import PerfilSettings from './internalPages/PerfilSettings';
 
 import Logo from '../../assets/marca.png';
 
-import ItemMenu from './components/ItemMenu';
-import SideMenu from './components/SideMenu';
+import SideMenu from './SideMenu';
 
-import {
-    SKYBLUE,
-    OCEAN,
-    BLACK,
-    GRAY,
-    PURPLE_0,
-    PURPLE_1,
-    PURPLE_2,
-    PURPLE_3,
-} from '../../constants/Colors';
+import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
 import {
     StyledFooterMenuWrapper,
@@ -249,12 +232,10 @@ export default function Dashboard() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    {contentBody === 'interest' && <NewInterestBot />}
+                    {contentBody === 'interest' && <NewInterest />}
                     {contentBody === 'myInterest' && <MyInterest />}
-                    {contentBody === 'newProperty' && <PewProperty />}
                     {contentBody === 'propertyList' && <PropertyList />}
                     {contentBody === 'perfilSettings' && <PerfilSettings />}
-                    {contentBody === 'propouse' && <NewProposeBot />}
                 </Container>
                 <footer>
                     <Box pt={4}>

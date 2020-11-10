@@ -1,46 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import ChatBot from 'react-simple-chatbot';
-import { Typography } from '@material-ui/core';
-import { ThemeProvider } from 'styled-components';
 import { useSelector, useDispatch } from 'react-redux';
 import CustomSelectComponent from './customSelectComponent';
 
-import {
-    Creators as InterestActions,
-    Types as InterestTypes,
-} from '../../store/ducks/interest';
-
-// import {
-//     Creators as AnnouncementActions,
-//     Types as AnnouncementTypes,
-// } from '../../store/ducks/announcement';
-
-import {
-    Creators as MessageActions,
-    Types as MessageTypes,
-} from '../../store/ducks/message';
-
-import { PURPLE_0 } from '../../constants/Colors';
-
-const theme = {
-    background: '#fff',
-    // background: '#f5f8fb',
-    // fontFamily: 'Helvetica Neue',
-    headerBgColor: PURPLE_0,
-    headerFontColor: '#fff',
-    // headerFontSize: '15px',
-    botBubbleColor: '#f5f8fb',
-    // botFontColor: '#fff',
-    // userBubbleColor: '#fff',
-    // userFontColor: '#4a4a4a',
-};
+import { Types as InterestTypes } from '../../../../../store/ducks/interest';
 
 export default function ChatBotPA({ userName, headerTitle }) {
-    // const [values, setValues] = useState([]);
-
     const dispatch = useDispatch();
-    const announcement = useSelector((state) => state.announcement);
-    const message = useSelector((state) => state.message);
     const [values, setValues] = useState([]);
 
     const testeState = useSelector((state) => state.announcement);
@@ -125,41 +91,6 @@ export default function ChatBotPA({ userName, headerTitle }) {
                     trigger: 'roomsLabel',
                     waitAction: true,
                 },
-                // {
-                //     id: 'property',
-                //     options: [
-                //         {
-                //             value: 'CASA',
-                //             label: 'CASA',
-                //             trigger: (value) =>
-                //                 updateValue(
-                //                     value.value,
-                //                     'propertyType',
-                //                     'roomsLabel'
-                //                 ),
-                //         },
-                //         {
-                //             value: 'APTO',
-                //             label: 'APTO',
-                //             trigger: (value) =>
-                //                 updateValue(
-                //                     value.value,
-                //                     'propertyType',
-                //                     'roomsLabel'
-                //                 ),
-                //         },
-                //         {
-                //             value: 'CHACARA',
-                //             label: 'CHÁCARA',
-                //             trigger: (value) =>
-                //                 updateValue(
-                //                     value.value,
-                //                     'propertyType',
-                //                     'roomsLabel'
-                //                 ),
-                //         },
-                //     ],
-                // },
                 {
                     id: 'roomsLabel',
                     message: `Qual o MÍNIMO de nº de dormitórios?`,

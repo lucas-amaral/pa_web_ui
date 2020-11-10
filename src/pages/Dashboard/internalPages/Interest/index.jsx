@@ -127,7 +127,7 @@ function MyInterest() {
                         control={
                             <Checkbox
                                 id="elevator"
-                                checked={interest.balcony}
+                                checked={interest.elevator}
                             />
                         }
                         className={classes.elevator}
@@ -137,7 +137,7 @@ function MyInterest() {
                         control={
                             <Checkbox
                                 id="barbecueGrill"
-                                checked={interest.balcony}
+                                checked={interest.barbecueGrill}
                             />
                         }
                         className={classes.barbecueGrill}

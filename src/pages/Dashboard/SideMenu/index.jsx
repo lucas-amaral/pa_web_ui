@@ -73,16 +73,6 @@ function SideMenu({ action }) {
                     <ListItem
                         button
                         className={classes.nested}
-                        onClick={() => action('newProperty')}
-                    >
-                        <ListItemIcon>
-                            <StarBorder />
-                        </ListItemIcon>
-                        <ListItemText primary="Cadastrar Novo" />
-                    </ListItem>
-                    <ListItem
-                        button
-                        className={classes.nested}
                         onClick={() => action('propertyList')}
                     >
                         <ListItemIcon>

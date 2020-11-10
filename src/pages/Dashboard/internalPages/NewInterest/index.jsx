@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Grid, Paper } from '@material-ui/core';
-import ChatBotPA from '../../../ChatBotPA';
+import ChatBotPA from './ChatBotPA';
 import MirrorCard from '../../../../components/MirrorCard';
 
 const useStyles = makeStyles((theme) => ({
