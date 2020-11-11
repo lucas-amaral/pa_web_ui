@@ -45,17 +45,6 @@ export default function ChatBotPA({ userName, headerTitle }) {
         return nextStep;
     };
 
-    const getValues = () => {
-        let stringValue = '';
-        if (values) {
-            values.forEach((value) => {
-                console.log('value', value);
-                stringValue = `${stringValue}, ${value}`;
-            });
-        }
-        return stringValue;
-    };
-
     return (
         <ChatBot
             headerTitle={headerTitle}

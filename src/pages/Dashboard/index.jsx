@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import {
@@ -21,10 +22,10 @@ import {
 } from '@material-ui/core';
 
 import { useHistory } from 'react-router-dom';
-import NewInterest from './internalPages/NewInterest';
-import MyInterest from './internalPages/Interest';
-import PropertyList from './internalPages/PropertyList';
-import PerfilSettings from './internalPages/PerfilSettings';
+import NewInterest from './InternalPages/NewInterest';
+import MyInterest from './InternalPages/Interest';
+import PropertyList from './InternalPages/PropertyList';
+import ProfileSettings from './InternalPages/ProfileSettings';
 
 import Logo from '../../assets/marca.png';
 
@@ -32,11 +33,10 @@ import SideMenu from './SideMenu';
 
 import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
-import {
-    StyledFooterMenuWrapper,
-    StyledFooterExit,
-    ButtonExit,
-} from './styles';
+import { StyledFooterMenuWrapper, StyledFooterExit } from './styles';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
 
 function Copyright() {
     return (
@@ -70,6 +70,7 @@ const useStyles = makeStyles((theme) => ({
         ...theme.mixins.toolbar,
     },
     appBar: {
+        boxShadow: 'none',
         zIndex: theme.zIndex.drawer + 1,
         transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
@@ -139,7 +140,7 @@ export default function Dashboard() {
     const history = useHistory();
     const classes = useStyles();
     const [open, setOpen] = useState(true);
-    const [titleOfAction, setTitleOfAction] = useState('');
+    const [titleOfAction] = useState('');
 
     const [contentBody, setContentBody] = useState('announcement');
 
@@ -205,14 +206,14 @@ export default function Dashboard() {
                 open={open}
             >
                 <div className={classes.toolbarIcon}>
-                    <box>
+                    <Box>
                         <img
                             src={Logo}
                             alt="Proposta Aceita"
                             height="50"
                             width="180"
                         />
-                    </box>
+                    </Box>
                     <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
                     </IconButton>
@@ -222,9 +223,12 @@ export default function Dashboard() {
                 <StyledFooterMenuWrapper>
                     <StyledFooterExit>
                         <Box m="auto">
-                            <ButtonExit onClick={exit} fullWidth>
-                                Sair
-                            </ButtonExit>
+                            <ListItem button onClick={exit}>
+                                <ListItemIcon>
+                                    <ExitToAppIcon style={{color: 'white'}}/>
+                                </ListItemIcon>
+                                <ListItemText primary="Sair" style={{color: 'white'}} />
+                            </ListItem>
                         </Box>
                     </StyledFooterExit>
                 </StyledFooterMenuWrapper>
@@ -235,7 +239,7 @@ export default function Dashboard() {
                     {contentBody === 'interest' && <NewInterest />}
                     {contentBody === 'myInterest' && <MyInterest />}
                     {contentBody === 'propertyList' && <PropertyList />}
-                    {contentBody === 'perfilSettings' && <PerfilSettings />}
+                    {contentBody === 'profileSettings' && <ProfileSettings />}
                 </Container>
                 <footer>
                     <Box pt={4}>

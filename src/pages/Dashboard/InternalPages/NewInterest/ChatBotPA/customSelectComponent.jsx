@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         borderRadius: '10px',
     },
     buttonEnable: {
-        color: 'white',
+        color: 'black',
         background: OCEAN,
         outline: 'none',
         margin: '2px',

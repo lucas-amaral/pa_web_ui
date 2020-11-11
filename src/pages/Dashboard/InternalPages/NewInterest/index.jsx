@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import { Grid, Paper } from '@material-ui/core';
@@ -15,9 +15,6 @@ const useStyles = makeStyles((theme) => ({
 
 function NewInterestBot() {
     const classes = useStyles();
-
-    const [initialInputValue, setInitialInputValue] = useState();
-    const [valueTotal, setValueTotal] = useState();
 
     return (
         <Grid container spacing={3}>

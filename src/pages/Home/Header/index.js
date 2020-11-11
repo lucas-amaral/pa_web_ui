@@ -77,8 +77,8 @@ export default function Header() {
                     <img src={Logo} alt="Logo" height="100" width="380" />
                 </HeaderLogo>
                 <HeaderLinksContainer>
-                    <HeaderLinks> Fale Conosco </HeaderLinks>
-                    <HeaderLinks> Sobre Nós </HeaderLinks>
+                    <HeaderLinks to="/"> Fale Conosco </HeaderLinks>
+                    <HeaderLinks to="/"> Sobre Nós </HeaderLinks>
                     <HeaderLinks to={isLogged()}>Acessar Sistema</HeaderLinks>
                 </HeaderLinksContainer>
             </SecondHeader>

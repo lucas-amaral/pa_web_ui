@@ -5,9 +5,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Collapse from '@material-ui/core/Collapse';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import DraftsIcon from '@material-ui/icons/Drafts';
-import SendIcon from '@material-ui/icons/Send';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import HomeIcon from '@material-ui/icons/Home';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import ForumIcon from '@material-ui/icons/Forum';
+import FindInPageIcon from '@material-ui/icons/FindInPage';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import StarBorder from '@material-ui/icons/StarBorder';
@@ -37,33 +40,39 @@ function SideMenu({ action }) {
             aria-labelledby="nested-list-subheader"
             className={classes.root}
         >
-            <ListItem button onClick={() => action('perfilSettings')}>
+            <ListItem button onClick={() => action('profileSettings')}>
                 <ListItemIcon>
-                    <SendIcon />
+                    <AccountBoxIcon />
                 </ListItemIcon>
                 <ListItemText primary="Meu Perfil" />
             </ListItem>
             <ListItem button onClick={() => action('interest')}>
                 <ListItemIcon>
-                    <SendIcon />
+                    <FindInPageIcon />
                 </ListItemIcon>
                 <ListItemText primary="Novo Interesse" />
             </ListItem>
             <ListItem button onClick={() => action('myInterest')}>
                 <ListItemIcon>
-                    <SendIcon />
+                    <AssignmentIcon />
                 </ListItemIcon>
                 <ListItemText primary="Meu Interesse" />
             </ListItem>
             <ListItem button onClick={() => action('propouse')}>
                 <ListItemIcon>
-                    <DraftsIcon />
+                    <HomeWorkIcon />
                 </ListItemIcon>
-                <ListItemText primary="Nova Proposta" />
+                <ListItemText primary="Novo Anúncio" />
+            </ListItem>
+            <ListItem button onClick={() => action('negotiations')}>
+                <ListItemIcon>
+                    <ForumIcon />
+                </ListItemIcon>
+                <ListItemText primary="Negociações" />
             </ListItem>
             <ListItem button onClick={handleClick}>
                 <ListItemIcon>
-                    <InboxIcon />
+                    <HomeIcon />
                 </ListItemIcon>
                 <ListItemText primary="Cadastro Imóveis" />
                 {open ? <ExpandLess /> : <ExpandMore />}

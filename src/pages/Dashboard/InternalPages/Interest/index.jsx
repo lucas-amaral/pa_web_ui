@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { Checkbox } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import {
-    Creators as InterestActions,
-    Types as InterestTypes,
-} from '../../../../store/ducks/interest';
+import { Types as InterestTypes } from '../../../../store/ducks/interest';
 
 const useStyles = makeStyles((theme) => ({
     root: {
