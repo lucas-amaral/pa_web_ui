@@ -6,13 +6,7 @@ import { Link } from 'react-router-dom';
 
 import {
     SKYBLUE,
-    OCEAN,
-    BLACK,
     GRAY,
-    PURPLE_0,
-    PURPLE_1,
-    PURPLE_2,
-    PURPLE_3,
 } from '../../../constants/Colors';
 
 import BackgroundImage from '../../../assets/background_1.png';
@@ -52,8 +46,9 @@ export const StyledButton = styled(Button)`
 `;
 
 export const StyledLink = styled(Link)`
-    color: ${(props) => (props.color ? props.color : 'black')};
-    font-size: ${(props) => (props.size ? props.size : '18px')};
+    color: ${(props) => (props.color ? props.color : SKYBLUE)};
+    font-size: ${(props) => (props.size ? props.size : '16px')};
+    text-decoration: none;
 `;
 
 export const StyledTextField = styled(TextField)`

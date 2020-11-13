@@ -1,5 +1,3 @@
-import React from 'react';
-
 export const sumValues = ({
     cashValue = '0',
     creditCardValue = '0',

@@ -14,7 +14,7 @@ export const BackGround = styled.div`
     background-repeat: cover;
     width: 100vw;
     height: 120vh;
-    position: absolute;
+    position: fixed;
 `;
 
 export const Title = styled.h1`
@@ -42,4 +42,8 @@ export const StyledButton = styled(Button)`
     width: 400px;
 `;
 
-export const StyledLink = styled(Link)``;
+export const StyledLink = styled(Link)`
+    color: ${(props) => (props.color ? props.color : SKYBLUE)};
+    font-size: ${(props) => (props.size ? props.size : '16px')};
+    text-decoration: none;
+`;

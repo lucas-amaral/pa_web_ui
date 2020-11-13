@@ -3,7 +3,7 @@ import { createActions, createReducer } from 'reduxsauce';
 /*
     Criando action types e creators
 */
-export const { Types, Creators } = createActions({
+export const { Types } = createActions({
     loginSucceeded: ['payload'],
     loginFailed: ['message'],
     loginRequested: ['payload'],

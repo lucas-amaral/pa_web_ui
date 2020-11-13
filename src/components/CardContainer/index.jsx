@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Card, CardContent, CardActions, Button } from '@material-ui/core/';
+import { Card, CardContent } from '@material-ui/core/';
 
 import { OCEAN, PURPLE_0, BLACK } from '../../constants/Colors';
 
@@ -53,26 +53,13 @@ export const StyledAction = styled.a`
     background: ${OCEAN};
 `;
 
-// export const ActionsContent = styled.div`
-//     display: flex;
-//     align-items: center;
-//     align-content: center;
-//     margin: auto;
-//     padding-bottom: 10px;
-// `;
-
-export default function CardContainer({ title, subtitle, titleAction }) {
+export default function CardContainer({ title, subtitle }) {
     return (
         <StyledCard>
             <CardContent>
                 <CardTitle>{title}</CardTitle>
                 <CardSubTitle>{subtitle}</CardSubTitle>
             </CardContent>
-            {/* <CardActions>
-                <ActionsContent>
-                    <StyledAction>{titleAction}</StyledAction>
-                </ActionsContent>
-            </CardActions> */}
         </StyledCard>
     );
 }

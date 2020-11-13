@@ -22,7 +22,7 @@ function LoginComponent({ onSubmit }) {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Header />
                 <Grid container justify="center" alignItems="center">
-                    <Grid item md="12">
+                    <Grid item md={12}>
                         <Container>
                             <Grid container>
                                 <Grid item>
@@ -57,7 +57,7 @@ function LoginComponent({ onSubmit }) {
                                                 />
                                             </Box>
                                         </Grid>
-                                        <Grid item={12}>
+                                        <Grid>
                                             <Box p={1}>
                                                 <StyledButton
                                                     variant="contained"
@@ -69,7 +69,7 @@ function LoginComponent({ onSubmit }) {
                                             </Box>
                                         </Grid>
 
-                                        <Grid item={12}>
+                                        <Grid>
                                             <Box p={1}>
                                                 <StyledLink to="/register">
                                                     Ainda não possuí cadastro?

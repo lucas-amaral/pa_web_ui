@@ -5,7 +5,6 @@ import {
     Grid,
     Box,
     TextField,
-    Typography,
     Select,
     MenuItem,
 } from '@material-ui/core';
@@ -22,7 +21,11 @@ import {
 import Header from '../Home/Header';
 
 export default function Register() {
-    const { register, errors, handleSubmit, reset, control } = useForm();
+    const defaultValues = {
+        type: "FISICAL",
+    };
+
+    const { register, handleSubmit, control } = useForm({ defaultValues });
 
     const onSubmit = async (data) => doRegister(data);
 
@@ -30,23 +33,12 @@ export default function Register() {
         <BackGround>
             <Header />
             <Grid container justify="center" alignItems="center">
-                <Grid item md="12">
+                <Grid item md={12}>
                     <Container>
                         <Grid container>
-                            <Grid item md={3}>
+                            <Grid item md={12}>
                                 <Box pl={1} pb={2}>
                                     <Title>Novo Usuário</Title>
-                                </Box>
-                            </Grid>
-                            <Grid item md={9}>
-                                <Box pl={2} pr={2} pt={0}>
-                                    <Typography variant="body2" align="justify">
-                                        Você está a um passo de ter acesso a
-                                        diversas propostas do mercado
-                                        imobiliário e vender seu imóvel. Por
-                                        favor, faça seu cadastro para ter acesso
-                                        a todas nossas ferramentas.
-                                    </Typography>
                                 </Box>
                             </Grid>
                         </Grid>
@@ -138,10 +130,10 @@ export default function Register() {
                                         </StyledButton>
                                     </Box>
                                 </Grid>
-                                <Grid item xs="12">
+                                <Grid item xs={12}>
                                     <Box p={1}>
                                         <StyledLink to="/">
-                                            Clique aqui para voltar para Home
+                                            Voltar para Home
                                         </StyledLink>
                                     </Box>
                                 </Grid>

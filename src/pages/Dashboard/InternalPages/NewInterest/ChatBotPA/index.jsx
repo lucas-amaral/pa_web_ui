@@ -45,17 +45,6 @@ export default function ChatBotPA({ userName, headerTitle }) {
         return nextStep;
     };
 
-    const getValues = () => {
-        let stringValue = '';
-        if (values) {
-            values.forEach((value) => {
-                console.log('value', value);
-                stringValue = `${stringValue}, ${value}`;
-            });
-        }
-        return stringValue;
-    };
-
     return (
         <ChatBot
             headerTitle={headerTitle}
@@ -278,7 +267,7 @@ export default function ChatBotPA({ userName, headerTitle }) {
                 },
                 {
                     id: 'infoMessage5',
-                    message: `- Você teria mais alguma exigência para se mudar, como Elevadou ou Churrasqueira?`,
+                    message: `- Você teria mais alguma exigência, como Elevador ou Churrasqueira?`,
                     trigger: 'comodityesQuestion',
                 },
                 {

@@ -6,10 +6,7 @@ import { sumValues } from '../../utils/interestUtils';
 
 import { OCEAN, PURPLE_0 } from '../../constants/Colors';
 import MirrorInfo from '../MirrorInfos';
-import {
-    Creators as InterestActions,
-    Types as InterestTypes,
-} from '../../store/ducks/interest';
+import { Types as InterestTypes } from '../../store/ducks/interest';
 
 const useStyles = makeStyles((theme) => ({
     paperHeader: {
@@ -135,7 +132,7 @@ function MirrorCard({ headerTitle }) {
                     {interest.properties && (
                         <MirrorInfo>
                             <span>
-                                Typos de propriedades desejadas ={' '}
+                                Tipos de propriedades desejadas ={' '}
                                 {Object.values(
                                     interest.properties
                                 ).map((value, index) =>

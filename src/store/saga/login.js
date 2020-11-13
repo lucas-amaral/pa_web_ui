@@ -10,7 +10,6 @@ function* requestLogin(action) {
             action.data.password
         );
         if (payload) {
-            console.log('work', payload.headers['x-auth-token']);
             yield put({ type: 'LOGIN_SUCCEEDED', payload });
         }
     } catch (e) {
