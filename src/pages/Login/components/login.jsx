@@ -14,13 +14,14 @@ import {
 
 import Header from '../../Home/Header';
 
-function LoginComponent({ onSubmit }) {
-    const { register, handleSubmit } = useForm();
+function LoginComponent({ onSubmit, loginInvalid }) {
+    const { register, handleSubmit, errors } = useForm();
 
     return (
         <BackGround>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <Header />
+                {/*{error && <Message content={error?.detail} negative />}*/}
+                <Header/>
                 <Grid container justify="center" alignItems="center">
                     <Grid item md={12}>
                         <Container>
@@ -40,9 +41,16 @@ function LoginComponent({ onSubmit }) {
                                                     variant="outlined"
                                                     label="E-Mail"
                                                     name="username"
-                                                    inputRef={register()}
+                                                    inputRef={register({
+                                                        required: 'Digite o seu e-mail',
+                                                        pattern: {
+                                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                                            message: 'Digite um e-mail válido',
+                                                        },
+                                                    })}
                                                     required
                                                 />
+                                                {errors.email && <p className="error">{errors.email.message}</p>}
                                             </Box>
                                         </Grid>
                                         <Grid item md={12}>
@@ -72,21 +80,16 @@ function LoginComponent({ onSubmit }) {
                                         <Grid>
                                             <Box p={1}>
                                                 <StyledLink to="/register">
-                                                    Ainda não possuí cadastro?
-                                                    Clique aqui e faça já o seu
+                                                    Ainda não possuí cadastro? Clique aqui e faça já o seu
                                                 </StyledLink>
                                             </Box>
-                                            {/* {loginInvalid && (
-                                        <Box p={1}>
-                                            <StyledLink
-                                                to="/register"
-                                                color="red"
-                                            >
-                                                Login inválido,
-                                                tente novamente
-                                            </StyledLink>
-                                        </Box>
-                                    )} */}
+                                            {loginInvalid && (
+                                                <Box p={1}>
+                                                    <StyledLink to="/login" color="red">
+                                                        Login inválido, tente novamente
+                                                    </StyledLink>
+                                                </Box>
+                                            )}
                                         </Grid>
                                     </Grid>
                                 </Grid>
