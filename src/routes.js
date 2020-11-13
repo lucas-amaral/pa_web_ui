@@ -7,7 +7,7 @@ import Login from './pages/Login';
 
 import Dashboard from './pages/Dashboard';
 
-import { isAuthenticated } from './auth';
+import { isAuthenticated } from './utils/auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     console.log('log', isAuthenticated());

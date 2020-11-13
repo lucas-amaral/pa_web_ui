@@ -5,10 +5,8 @@ import {
     Grid,
     Box,
     TextField,
-    Typography,
     Select,
     MenuItem,
-    FormControl,
 } from '@material-ui/core';
 import { doRegister } from '../../services/register';
 
@@ -44,7 +42,7 @@ export default function Register() {
                                 </Box>
                             </Grid>
                         </Grid>
-                        <FormControl onSubmit={handleSubmit(onSubmit)}>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <Grid container>
                                 <Grid item xs={12}>
                                     <Box p={1}>
@@ -140,7 +138,7 @@ export default function Register() {
                                     </Box>
                                 </Grid>
                             </Grid>
-                        </FormControl>
+                        </form>
                     </Container>
                 </Grid>
             </Grid>

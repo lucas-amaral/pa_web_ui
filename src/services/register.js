@@ -1,9 +1,8 @@
-import axios from 'axios';
+import axiosInstance from './axiosInstance';
+import URLS from '../constants/Urls'
 
 export const doRegister = (data) => {
-    console.log('data', data);
-    axios
-        .post(`https://crm-service.herokuapp.com/users`, data)
+    axiosInstance().post(URLS.USER.ADD, data)
         .then((response) => {
             console.log('response', response);
         })

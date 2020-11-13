@@ -267,7 +267,7 @@ export default function ChatBotPA({ userName, headerTitle }) {
                 },
                 {
                     id: 'infoMessage5',
-                    message: `- Você teria mais alguma exigência para se mudar, como Elevadou ou Churrasqueira?`,
+                    message: `- Você teria mais alguma exigência, como Elevador ou Churrasqueira?`,
                     trigger: 'comodityesQuestion',
                 },
                 {

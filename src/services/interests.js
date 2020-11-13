@@ -1,12 +1,8 @@
-import axios from 'axios';
+import URLS from '../constants/Urls';
+import axiosInstance from './axiosInstance';
 
 export const save = (data) => {
-    const config = {
-        headers: { 'X-Auth-Token': `${localStorage.getItem('token')}` },
-    };
-
-    axios
-        .post(`https://crm-service.herokuapp.com/interests`, data, config)
+    axiosInstance().post(URLS.INTEREST.ADD, data)
         .then((response) => {
             console.log('response', response);
         })
@@ -16,23 +12,9 @@ export const save = (data) => {
 };
 
 export const load = (username) => {
-    const config = {
-        headers: { 'X-Auth-Token': `${localStorage.getItem('token')}` },
-    };
-
-    return axios.get(
-        `https://crm-service.herokuapp.com/interests?username=${username}`,
-        config
-    );
+    return axiosInstance().get(URLS.INTEREST.GET_BY_USERNAME, { params: { username }});
 };
 
 export const remove = (interest) => {
-    const config = {
-        headers: { 'X-Auth-Token': `${localStorage.getItem('token')}` },
-    };
-
-    return axios.delete(
-        `https://crm-service.herokuapp.com/interests/${interest}`,
-        config
-    );
+    return axiosInstance().delete(URLS.INTEREST.DELETE.replace(':id', interest));
 };
