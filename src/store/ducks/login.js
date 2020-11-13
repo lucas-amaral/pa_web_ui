@@ -1,4 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
+import { AUTH_TOKEN } from '../../constants/Headers';
 
 /*
     Criando action types e creators
@@ -14,10 +15,13 @@ export const { Types } = createActions({
     Estado inicial
 */
 const INITIAL_STATE = {
-    logged: false,
-    expirationTime: 0,
-    token: '',
-    tokenExpired: false,
+    state: {
+        logged: false,
+        expirationTime: 0,
+        token: '',
+        tokenExpired: false,
+    },
+    loginFailed: false,
 };
 
 /*
@@ -26,27 +30,40 @@ const INITIAL_STATE = {
 const loginSucceeded = (state = INITIAL_STATE, payload) => {
     const response = payload.payload;
     if (response.status === 200) {
-        const token = response.headers['x-auth-token'];
+        const token = response.headers[AUTH_TOKEN];
         localStorage.setItem('token', token);
         localStorage.setItem('username', response.config.auth.username);
         return {
-            logged: true,
-            expirationTime: 500,
-            token,
-            tokenExpired: false,
+            state: {
+                logged: true,
+                expirationTime: 500,
+                token,
+                tokenExpired: false
+            },
+            loginFailed: false
         };
     }
     return {
-        logged: false,
-        expirationTime: 0,
-        token: '',
-        tokenExpired: false,
+        state: {
+            logged: false,
+            expirationTime: 0,
+            token: '',
+            tokenExpired: false,
+        },
+        loginFailed: true
     };
 };
 
 const loginFailed = (state = INITIAL_STATE, message) => {
-    console.log('failed', message);
-    return state;
+    return {
+        state: {
+            logged: false,
+            expirationTime: 0,
+            token: '',
+            tokenExpired: false,
+        },
+        loginFailed: true
+    };
 };
 
 const doLogoff = () => {

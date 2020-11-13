@@ -64,12 +64,6 @@ export default function Header() {
         window.onscroll = () => handleScroll();
     });
 
-    const isLogged = () => {
-        return localStorage.getItem('token') !== 'undefined'
-            ? '/dashboard'
-            : '/login';
-    };
-
     return (
         <HeaderContainer>
             <SecondHeader topPage={topPage}>
@@ -79,7 +73,7 @@ export default function Header() {
                 <HeaderLinksContainer>
                     <HeaderLinks to="/"> Fale Conosco </HeaderLinks>
                     <HeaderLinks to="/"> Sobre Nós </HeaderLinks>
-                    <HeaderLinks to={isLogged()}>Acessar Sistema</HeaderLinks>
+                    <HeaderLinks to="/login">Acessar Sistema</HeaderLinks>
                 </HeaderLinksContainer>
             </SecondHeader>
         </HeaderContainer>

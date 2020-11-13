@@ -1,16 +1,16 @@
 import axios from 'axios';
 import URLS from '../constants/Urls'
+import { AUTH_TOKEN } from '../constants/Headers';
 
 export default (history = null) => {
-    let headers = {};
-
-    if (localStorage.token) {
-        headers.common['x-auth-token'] = `${localStorage.token}`;
-    }
 
     const axiosInstance = axios.create({
-        baseURL: 'https://crm-service.herokuapp.com'
+        baseURL: 'https://crm-service.herokuapp.com',
     });
+
+    if (localStorage.token !== 'undefined') {
+        axiosInstance.defaults.headers.common[AUTH_TOKEN] = `${localStorage.token}`;
+    }
 
     axiosInstance.interceptors.response.use((response) =>
 
