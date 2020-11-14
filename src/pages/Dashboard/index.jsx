@@ -22,8 +22,7 @@ import {
 } from '@material-ui/core';
 
 import { useHistory } from 'react-router-dom';
-import NewInterest from './InternalPages/NewInterest';
-import MyInterest from './InternalPages/Interest';
+import Interest from './InternalPages/Interest';
 import PropertyList from './InternalPages/PropertyList';
 import ProfileSettings from './InternalPages/ProfileSettings';
 
@@ -236,8 +235,7 @@ export default function Dashboard() {
             <main className={classes.content}>
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
-                    {contentBody === 'interest' && <NewInterest />}
-                    {contentBody === 'myInterest' && <MyInterest />}
+                    {contentBody === 'interest' && <Interest />}
                     {contentBody === 'propertyList' && <PropertyList />}
                     {contentBody === 'profileSettings' && <ProfileSettings />}
                 </Container>

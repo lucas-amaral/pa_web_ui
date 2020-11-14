@@ -76,9 +76,6 @@ function MirrorCard({ headerTitle }) {
     const classes = useStyles();
     let interest = useSelector((state) => state.interest.interest);
 
-    // const announcement = useSelector(
-    //     (state) => state.announcement.announcement
-    // );
     const dispatch = useDispatch();
 
     const sendInterest = () => {
