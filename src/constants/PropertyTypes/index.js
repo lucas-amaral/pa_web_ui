@@ -1,7 +1,7 @@
 export const types = [
-    { apiName: "HOUSE", name: "Casa" },
-    { apiName: "APARTMENT", name: "Apartamento" },
-    { apiName: "COMERCIAL", name: "Comercial" },
-    { apiName: "FARM", name: "Chácara" },
-    { apiName: "GROUND", name:  "Terreno" }
+    { id: "HOUSE", value: "Casa" },
+    { id: "APARTMENT", value: "Apartamento" },
+    { id: "COMERCIAL", value: "Comercial" },
+    { id: "FARM", value: "Chácara" },
+    { id: "GROUND", value:  "Terreno" }
 ];
