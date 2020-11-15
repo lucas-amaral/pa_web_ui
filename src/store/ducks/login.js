@@ -24,6 +24,22 @@ const INITIAL_STATE = {
     loginFailed: false,
 };
 
+const LOGIN_SUCCESS = (token) => {
+    return {
+        state: {
+            logged: true,
+            expirationTime: 500,
+            token,
+            tokenExpired: false
+        },
+        loginFailed: false
+    };
+};
+
+const LOGIN_FAILED = (state = INITIAL_STATE) => {
+    return { ...state, loginFailed: true }
+};
+
 /*
     Criando os reducer handlers
 */
@@ -33,37 +49,14 @@ const loginSucceeded = (state = INITIAL_STATE, payload) => {
         const token = response.headers[AUTH_TOKEN];
         localStorage.setItem('token', token);
         localStorage.setItem('username', response.config.auth.username);
-        return {
-            state: {
-                logged: true,
-                expirationTime: 500,
-                token,
-                tokenExpired: false
-            },
-            loginFailed: false
-        };
+
+        return LOGIN_SUCCESS(token);
     }
-    return {
-        state: {
-            logged: false,
-            expirationTime: 0,
-            token: '',
-            tokenExpired: false,
-        },
-        loginFailed: true
-    };
+    return LOGIN_FAILED(state);
 };
 
 const loginFailed = (state = INITIAL_STATE, message) => {
-    return {
-        state: {
-            logged: false,
-            expirationTime: 0,
-            token: '',
-            tokenExpired: false,
-        },
-        loginFailed: true
-    };
+    return LOGIN_FAILED(state);
 };
 
 const doLogoff = () => {

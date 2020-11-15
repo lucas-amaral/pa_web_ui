@@ -10,10 +10,9 @@ import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ForumIcon from '@material-ui/icons/Forum';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
+import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
-import StarBorder from '@material-ui/icons/StarBorder';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,25 +43,19 @@ function SideMenu({ action }) {
                 <ListItemIcon>
                     <AccountBoxIcon />
                 </ListItemIcon>
-                <ListItemText primary="Meu Perfil" />
+                <ListItemText primary="Perfil" />
             </ListItem>
             <ListItem button onClick={() => action('interest')}>
                 <ListItemIcon>
-                    <FindInPageIcon />
-                </ListItemIcon>
-                <ListItemText primary="Novo Interesse" />
-            </ListItem>
-            <ListItem button onClick={() => action('myInterest')}>
-                <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Meu Interesse" />
+                <ListItemText primary="Interesse" />
             </ListItem>
             <ListItem button onClick={() => action('propouse')}>
                 <ListItemIcon>
                     <HomeWorkIcon />
                 </ListItemIcon>
-                <ListItemText primary="Novo Anúncio" />
+                <ListItemText primary="Anúncio" />
             </ListItem>
             <ListItem button onClick={() => action('negotiations')}>
                 <ListItemIcon>
@@ -74,7 +67,7 @@ function SideMenu({ action }) {
                 <ListItemIcon>
                     <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary="Cadastro Imóveis" />
+                <ListItemText primary="Imóveis" />
                 {open ? <ExpandLess /> : <ExpandMore />}
             </ListItem>
             <Collapse in={open} timeout="auto" unmountOnExit>
@@ -85,7 +78,7 @@ function SideMenu({ action }) {
                         onClick={() => action('propertyList')}
                     >
                         <ListItemIcon>
-                            <StarBorder />
+                            <EmojiTransportationIcon />
                         </ListItemIcon>
                         <ListItemText primary="Lista de Bens" />
                     </ListItem>
