@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -12,14 +12,10 @@ import { Types as InterestTypes } from '../../../../store/ducks/interest';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import InputLabel from '@material-ui/core/InputLabel';
-import Select from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import { types } from '../../../../constants/PropertyTypes';
-import Input from '@material-ui/core/Input';
-import Chip from '@material-ui/core/Chip';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import OutlinedInput from '@material-ui/core/OutlinedInput';
-import FormControl from '@material-ui/core/FormControl';
+import MultilineSelect from '../../../../components/MultilineSelect';
+import MonetaryInput from '../../../../components/MonetaryInput';
+import GridBox from '../../../../components/GridBox';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,29 +38,7 @@ const useStyles = makeStyles((theme) => ({
     bottomButton: {
         margin: 5,
     },
-    select: {
-        minWidth: 120,
-        width: '100%',
-    },
-    chips: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    chip: {
-        margin: 2,
-    },
 }));
-
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-    PaperProps: {
-        style: {
-            maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-            width: 250,
-        },
-    },
-};
 
 function Interest() {
     const theme = useTheme();
@@ -72,8 +46,6 @@ function Interest() {
     const dataInterest = { username: localStorage.getItem('username') };
     const dispatch = useDispatch();
     let interest = useSelector((state) => state.interest.interest);
-
-    const [selectedTypes, setSelectedTypes] = useState([]);
 
     useEffect(() => {
         dispatch({
@@ -93,29 +65,14 @@ function Interest() {
         interest = interest.payload;
     }
 
-    function getStyles(name, personName, theme) {
-        return {
-            fontWeight:
-                personName.indexOf(name) === -1
-                    ? theme.typography.fontWeightRegular
-                    : theme.typography.fontWeightMedium,
-        };
+    function getPropertyTypes(apiTypes) {
+        return types
+            .filter((type) => apiTypes.includes(type.id))
+            .map((type => type.value));
     }
 
-    // function getPropertyTypes(apiTypes) {
-    //     return types
-    //         .filter((type) => apiTypes.includes(type.apiName))
-    //         .map((type => type.name));
-    // }
-
-    const handleTypeChange = (event) => {
-        console.log(selectedTypes);
-        console.log(event.target.value);
-        setSelectedTypes(event.target.value);
-    };
-
     return (
-        interest.value ?
+        interest.id ?
             <Grid container>
                 <Grid item md={12}>
                     <Container>
@@ -129,175 +86,108 @@ function Interest() {
                         {interest.value && (
                         <form>
                             <Grid container>
-                                <Grid item xs={2.2}>
-                                    <Box p={1}>
-                                        <FormControl className={classes.margin} variant="outlined">
-                                            <InputLabel htmlFor="title">Valor máximo</InputLabel>
-                                            <OutlinedInput
-                                                id="title"
-                                                value={interest.value}
-                                                startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-                                                labelWidth={100}
+                                <GridBox>
+                                    <MonetaryInput label="Valor máximo" labelWidth={100} value={interest.value}/>
+                                </GridBox>
+                                <GridBox>
+                                    <TextField
+                                        id="dorms"
+                                        defaultValue={interest.dorms}
+                                        type="number"
+                                        label="Número de dormitórios"
+                                        variant="outlined"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <TextField
+                                        id="suites"
+                                        defaultValue={interest.suites}
+                                        type="number"
+                                        label="Número de Suites"
+                                        variant="outlined"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <TextField
+                                        id="bathrooms"
+                                        defaultValue={interest.bathrooms}
+                                        type="number"
+                                        label="Número de banheiros"
+                                        variant="outlined"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <TextField
+                                        id="garages"
+                                        defaultValue={interest.garages}
+                                        type="number"
+                                        label="Número de garagens"
+                                        variant="outlined"
+                                    />
+                                </GridBox>
+                                <GridBox xs={11}>
+                                    <InputLabel id="types">Tipos</InputLabel>
+                                    <MultilineSelect initialState={getPropertyTypes(['HOME'])} items={types} />
+                                </GridBox>
+                                <GridBox xs={11}>
+                                    <InputLabel id="types">Bairros</InputLabel>
+                                    <MultilineSelect initialState={[{ id: 1, value: 'CENTRO' }]}
+                                                     items={[ { id: 1, value: 'CENTRO' },
+                                                                { id: 2, value: 'BOI MORTO' },
+                                                                { id: 3, value: 'CAMOBI' }, ]} />
+                                </GridBox>
+                                <GridBox>
+                                    <FormControlLabel
+                                        control={<Checkbox id="pool" color="primary" defaultValue={interest.pool} />}
+                                        label="Com piscina"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <FormControlLabel
+                                        control={<Checkbox id="balcony" color="primary" defaultValue={interest.balcony} />}
+                                        label="Com sacada"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <FormControlLabel
+                                        control={<Checkbox id="elevator" color="primary" defaultValue={interest.elevator} />}
+                                        label="Com elevador"
+                                    />
+                                </GridBox>
+                                <GridBox xs={5}>
+                                    <FormControlLabel
+                                        control={<Checkbox id="barbecueGrill" color="primary" defaultValue={interest.barbecueGrill} />}
+                                        label="Com churrasqueira"
+                                    />
+                                </GridBox>
+                                <Grid container style={{ marginTop: '20px'}}>
+                                    <Grid item md={12}>
+                                        <Box pl={1} pb={2}>
+                                            <Title style={{ fontSize: '15px'}}>Financiamento</Title>
+                                        </Box>
+                                    </Grid>
+                                </Grid>
+                                <GridBox>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                id="financing"
+                                                color="primary"
+                                                defaultValue={interest.financing}
                                             />
-                                        </FormControl>
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2.2}>
-                                    <Box p={1}>
-                                        <TextField
-                                            id="dorms"
-                                            value={interest.dorms}
-                                            label="Número de dormitórios"
-                                            variant="outlined"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <TextField
-                                            id="suites"
-                                            value={interest.suites}
-                                            label="Número de Suites"
-                                            variant="outlined"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <TextField
-                                            id="bathrooms"
-                                            value={interest.bathrooms}
-                                            label="Número de banheiros"
-                                            variant="outlined"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <TextField
-                                            id="garages"
-                                            value={interest.garages}
-                                            label="Número de garagens"
-                                            variant="outlined"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={11}>
-                                    <Box p={1}>
-                                        <InputLabel id="types">Tipos</InputLabel>
-                                        <Select
-                                            className={classes.select}
-                                            labelId="types-label"
-                                            id="types"
-                                            multiple
-                                            value={selectedTypes}
-                                            onChange={handleTypeChange}
-                                            input={<Input id="select-multiple-chip" />}
-                                            renderValue={(selected) => (
-                                                <div className={classes.chips}>
-                                                    {selected.map((value) => (
-                                                        <Chip key={value} label={value} className={classes.chip} />
-                                                    ))}
-                                                </div>
-                                            )}
-                                            MenuProps={MenuProps}
-                                        >
-                                            {types.map((type) => (
-                                                <MenuItem key={type.apiName} value={type.name} style={getStyles(type, selectedTypes, theme)}>
-                                                    {type.name}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={11}>
-                                    <Box p={1}>
-                                        <InputLabel id="types">Bairros</InputLabel>
-                                        <Select
-                                            className={classes.select}
-                                            labelId="types-label"
-                                            id="types"
-                                            multiple
-                                            value={selectedTypes}
-                                            onChange={handleTypeChange}
-                                            input={<Input id="select-multiple-chip" />}
-                                            renderValue={(selected) => (
-                                                <div className={classes.chips}>
-                                                    {selected.map((value) => (
-                                                        <Chip key={value} label={value} className={classes.chip} />
-                                                    ))}
-                                                </div>
-                                            )}
-                                            MenuProps={MenuProps}
-                                        >
-                                            {types.map((type) => (
-                                                <MenuItem key={type.apiName} value={type.name} style={getStyles(type, selectedTypes, theme)}>
-                                                    {type.name}
-                                                </MenuItem>
-                                            ))}
-                                        </Select>
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <FormControlLabel
-                                            control={<Checkbox id="pool" checked={interest.pool} />}
-                                            label="Com piscina"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox id="balcony" checked={interest.balcony} />
-                                            }
-                                            label="Com sacada"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <FormControlLabel
-                                            control={<Checkbox id="elevator" checked={interest.elevator} />}
-                                            label="Com elevador"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={5}>
-                                    <Box p={1}>
-                                        <FormControlLabel
-                                            control={<Checkbox id="barbecueGrill" checked={interest.barbecueGrill} />}
-                                            label="Com churrasqueira"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={2}>
-                                    <Box p={1}>
-                                        <FormControlLabel
-                                            control={
-                                                <Checkbox
-                                                    id="financing"
-                                                    color="primary"
-                                                    checked={interest.financing}
-                                                />
-                                            }
-                                            label="Financiável"
-                                        />
-                                    </Box>
-                                </Grid>
-                                <Grid item xs={10}>
-                                    <Box p={1}>
-                                        <FormControl className={classes.margin} variant="outlined">
-                                            <InputLabel htmlFor="fincValue">Valor Financiado</InputLabel>
-                                            <OutlinedInput
-                                                id="fincValue"
-                                                value={interest.financingValue}
-                                                startAdornment={<InputAdornment position="start">R$</InputAdornment>}
-                                                labelWidth={125}
-                                            />
-                                        </FormControl>
-                                    </Box>
+                                        }
+                                        label="Financiável"
+                                    />
+                                </GridBox>
+                                <GridBox xs={10}>
+                                    <MonetaryInput label="Valor financiado" labelWidth={125} value={interest.financingValue}/>
+                                </GridBox>
+                                <Grid container style={{ marginTop: '20px'}}>
+                                    <Grid item md={12}>
+                                        <Box pl={1} pb={2}>
+                                            <Title style={{ fontSize: '15px'}}>Permutas</Title>
+                                        </Box>
+                                    </Grid>
                                 </Grid>
                                 <CardActions>
                                     <div className={classes.bottomBoxButtons}>
