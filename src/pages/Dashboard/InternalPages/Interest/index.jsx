@@ -16,6 +16,7 @@ import { types } from '../../../../constants/PropertyTypes';
 import MultilineSelect from '../../../../components/MultilineSelect';
 import MonetaryInput from '../../../../components/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
+import Barters from '../Barters';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -173,14 +174,14 @@ function Interest() {
                                             <Checkbox
                                                 id="financing"
                                                 color="primary"
-                                                defaultValue={interest.financing}
+                                                defaultChecked={interest.financing}
                                             />
                                         }
                                         label="Financiável"
                                     />
                                 </GridBox>
                                 <GridBox xs={10}>
-                                    <MonetaryInput label="Valor financiado" labelWidth={125} value={interest.financingValue}/>
+                                    {interest.financing && <MonetaryInput label="Valor financiado" labelWidth={125} value={interest.financingValue}/>}
                                 </GridBox>
                                 <Grid container style={{ marginTop: '20px'}}>
                                     <Grid item md={12}>
@@ -189,7 +190,8 @@ function Interest() {
                                         </Box>
                                     </Grid>
                                 </Grid>
-                                <CardActions>
+                                <Barters/>
+                                <CardActions style={{marginTop: '10px'}}>
                                     <div className={classes.bottomBoxButtons}>
                                         <Button
                                             className={classes.bottomButton}
