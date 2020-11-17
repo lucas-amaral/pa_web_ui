@@ -39,7 +39,7 @@ function SideMenu({ action }) {
             aria-labelledby="nested-list-subheader"
             className={classes.root}
         >
-            <ListItem button onClick={() => action('profileSettings')}>
+            <ListItem button onClick={() => action('user')}>
                 <ListItemIcon>
                     <AccountBoxIcon />
                 </ListItemIcon>

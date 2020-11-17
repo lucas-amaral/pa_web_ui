@@ -61,7 +61,7 @@ export default function MultilineSelect({initialState, items}) {
             renderValue={(selected) => (
                 <div className={classes.chips}>
                     {selected.map((item) => (
-                        <Chip key={item.id} label={item.value} className={classes.chip} />
+                        <Chip key={item.id} label={item.value} className={classes.chip} color="primary"/>
                     ))}
                 </div>
             )}

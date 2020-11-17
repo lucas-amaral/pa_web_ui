@@ -11,6 +11,14 @@ export const save = (data) => {
         });
 };
 
+export const update = (data) => {
+    axiosInstance().put(URLS.INTEREST.EDIT, data).then((response) => {
+        console.log("response", response);
+    }).catch((err) => {
+        console.log("err", err);
+    });
+};
+
 export const load = (username) => {
     return axiosInstance().get(URLS.INTEREST.GET_BY_USERNAME, { params: { username }});
 };

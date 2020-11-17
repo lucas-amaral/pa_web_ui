@@ -8,7 +8,7 @@ import {
     Select,
     MenuItem,
 } from '@material-ui/core';
-import { doRegister } from '../../services/register';
+import { save } from '../../services/users';
 
 import {
     Title,
@@ -27,7 +27,7 @@ export default function Register() {
 
     const { register, handleSubmit, control } = useForm({ defaultValues });
 
-    const onSubmit = async (data) => doRegister(data);
+    const onSubmit = async (data) => save(data);
 
     return (
         <BackGround>
