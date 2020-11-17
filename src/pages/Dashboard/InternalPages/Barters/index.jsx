@@ -17,16 +17,6 @@ const useStyles = makeStyles({
     },
 });
 
-function createData(type, value) {
-    return { type, value };
-}
-
-const rows = [
-    createData('Carro', 159.0),
-    createData('Moto', 237.3),
-    createData('Apartamento', 262.0),
-];
-
 export default function Barters() {
     const classes = useStyles();
     const dataInterest = { username: localStorage.getItem('username') };

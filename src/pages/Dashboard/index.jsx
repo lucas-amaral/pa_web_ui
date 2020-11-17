@@ -24,7 +24,7 @@ import {
 import { useHistory } from 'react-router-dom';
 import Interest from './InternalPages/Interest';
 import PropertyList from './InternalPages/PropertyList';
-import ProfileSettings from './InternalPages/ProfileSettings';
+import User from './InternalPages/User';
 
 import Logo from '../../assets/marca.png';
 
@@ -237,7 +237,7 @@ export default function Dashboard() {
                 <Container maxWidth="lg" className={classes.container}>
                     {contentBody === 'interest' && <Interest />}
                     {contentBody === 'propertyList' && <PropertyList />}
-                    {contentBody === 'profileSettings' && <ProfileSettings />}
+                    {contentBody === 'user' && <User />}
                 </Container>
                 <footer>
                     <Box pt={4}>
