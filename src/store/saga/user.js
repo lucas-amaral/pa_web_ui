@@ -4,7 +4,8 @@ import {
     USER_SUCCEEDED,
     LOAD_USER,
     SEND_USER,
-    UPDATE_USER, CHANGE_USER,
+    UPDATE_USER,
+    CHANGE_USER,
 } from '../../constants/ActionTypes';
 
 function* sendUser(action) {

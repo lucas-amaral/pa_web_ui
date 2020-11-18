@@ -6,7 +6,7 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import { Box, Grid } from '@material-ui/core';
 
-import { Types as UserTypes } from "../../../../store/ducks/users";
+import { Types as UserTypes } from "../../../../store/ducks/user";
 import { Container } from "./styles";
 import { Title } from "../../../Register/styles";
 import GridBox from "../../../../components/GridBox";
@@ -39,14 +39,6 @@ function User() {
     const dataUser = { username: localStorage.getItem("username") };
     const dispatch = useDispatch();
     let user = useSelector((state) => state.user.user);
-
-    const [values, setValues] = React.useState({
-        amount: '',
-        password: '',
-        weight: '',
-        weightRange: '',
-        showPassword: false,
-    });
 
     useEffect(() => {
         dispatch({
@@ -88,34 +80,17 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            {/*<GridBox xs={5}>*/}
-                            {/*    <TextField*/}
-                            {/*        id="password"*/}
-                            {/*        defaultValue={user.password}*/}
-                            {/*        type="password"*/}
-                            {/*        label="Senha"*/}
-                            {/*        variant="outlined"*/}
-                            {/*        endAdornment={*/}
-                            {/*            <InputAdornment position="end">*/}
-                            {/*                <IconButton*/}
-                            {/*                    aria-label="toggle password visibility"*/}
-                            {/*                    onClick={handleClickShowPassword}*/}
-                            {/*                    onMouseDown={handleMouseDownPassword}*/}
-                            {/*                >*/}
-                            {/*                    {values.showPassword ? <Visibility /> : <VisibilityOff />}*/}
-                            {/*                </IconButton>*/}
-                            {/*            </InputAdornment>*/}
-                            {/*        }*/}
-
-                            {/*    />*/}
-                            {/*</GridBox>*/}
                             <GridBox xs={3}>
                                 <TextField style={{width: '90%'}}
                                     id="dateOfBirth"
+                                    format="dd/MM/yyyy"
                                     defaultValue={user.dateOfBirth}
                                     type="date"
                                     label="Data de nascimento"
                                     variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
                                 />
                             </GridBox>
                             <GridBox xs={3}>
