@@ -1,4 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
+import { types } from '../../constants/PropertyTypes';
 
 /*
     Criando action types e creators
@@ -31,8 +32,15 @@ const newInterest = (state = INITIAL_STATE, action) => {
 };
 
 const updateInterest = (state = INITIAL_STATE, payload) => {
+    function getPropertyTypes(apiTypes) {
+        return types
+            .filter((type) => apiTypes.includes(type.id));
+    }
+
     return {
-        interest: payload,
+        interest: {
+            ...payload.payload, uiTypes : getPropertyTypes(payload.payload.types)
+        },
     };
 };
 

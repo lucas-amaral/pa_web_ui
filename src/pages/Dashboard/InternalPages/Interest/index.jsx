@@ -6,12 +6,12 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { Box, Checkbox, Grid } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import InputLabel from '@material-ui/core/InputLabel';
 import NewInterest from '../NewInterest/index'
 
 import { Types as InterestTypes } from '../../../../store/ducks/interest';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
-import InputLabel from '@material-ui/core/InputLabel';
 import { types } from '../../../../constants/PropertyTypes';
 import MultilineSelect from '../../../../components/MultilineSelect';
 import MonetaryInput from '../../../../components/MonetaryInput';
@@ -64,12 +64,6 @@ function Interest() {
 
     if (interest.payload) {
         interest = interest.payload;
-    }
-
-    function getPropertyTypes(apiTypes) {
-        return types
-            .filter((type) => apiTypes.includes(type.id))
-            .map((type => type.value));
     }
 
     return (
@@ -128,7 +122,7 @@ function Interest() {
                                 </GridBox>
                                 <GridBox xs={11}>
                                     <InputLabel id="types">Tipos</InputLabel>
-                                    <MultilineSelect initialState={getPropertyTypes(['HOME'])} items={types} />
+                                    <MultilineSelect initialState={interest.uiTypes} items={types} />
                                 </GridBox>
                                 <GridBox xs={11}>
                                     <InputLabel id="types">Bairros</InputLabel>
