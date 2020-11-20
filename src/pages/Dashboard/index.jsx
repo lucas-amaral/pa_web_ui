@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import clsx from 'clsx';
@@ -20,6 +20,9 @@ import {
     Typography,
     Divider,
 } from '@material-ui/core';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItem from '@material-ui/core/ListItem';
 
 import { useHistory } from 'react-router-dom';
 import Interest from './InternalPages/Interest';
@@ -30,12 +33,11 @@ import Logo from '../../assets/marca.png';
 
 import SideMenu from './SideMenu';
 
+import { LOAD_INTEREST } from '../../constants/ActionTypes';
+
 import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
 import { StyledFooterMenuWrapper, StyledFooterExit } from './styles';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItem from '@material-ui/core/ListItem';
 
 function Copyright() {
     return (
@@ -141,6 +143,15 @@ export default function Dashboard() {
     const [open, setOpen] = useState(true);
     const [titleOfAction] = useState('');
 
+    const dataInterest = { username: localStorage.getItem('username') };
+
+    useEffect(() => {
+        dispatch({
+            type: LOAD_INTEREST,
+            dataInterest,
+        });
+    }, []);
+
     const [contentBody, setContentBody] = useState('announcement');
 
     const handleDrawerOpen = () => {
@@ -153,6 +164,9 @@ export default function Dashboard() {
     const exit = () => {
         dispatch({
             type: 'LOGOFF',
+        });
+        dispatch({
+            type: 'INTEREST_SET_INITIAL_STATE',
         });
         localStorage.setItem('token', undefined);
         history.push('/');
@@ -224,9 +238,12 @@ export default function Dashboard() {
                         <Box m="auto">
                             <ListItem button onClick={exit}>
                                 <ListItemIcon>
-                                    <ExitToAppIcon style={{color: 'white'}}/>
+                                    <ExitToAppIcon style={{ color: 'white' }} />
                                 </ListItemIcon>
-                                <ListItemText primary="Sair" style={{color: 'white'}} />
+                                <ListItemText
+                                    primary="Sair"
+                                    style={{ color: 'white' }}
+                                />
                             </ListItem>
                         </Box>
                     </StyledFooterExit>

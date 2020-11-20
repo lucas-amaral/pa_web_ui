@@ -30,14 +30,14 @@ const LOGIN_SUCCESS = (token) => {
             logged: true,
             expirationTime: 500,
             token,
-            tokenExpired: false
+            tokenExpired: false,
         },
-        loginFailed: false
+        loginFailed: false,
     };
 };
 
 const LOGIN_FAILED = (state = INITIAL_STATE) => {
-    return { ...state, loginFailed: true }
+    return { ...state, loginFailed: true };
 };
 
 /*

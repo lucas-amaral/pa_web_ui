@@ -1,6 +1,10 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { doLogin } from '../../services/login';
-import { LOGIN_FAILED, LOGIN_REQUESTED, LOGIN_SUCCEEDED } from '../../constants/ActionTypes';
+import {
+    LOGIN_FAILED,
+    LOGIN_REQUESTED,
+    LOGIN_SUCCEEDED,
+} from '../../constants/ActionTypes';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* requestLogin(action) {

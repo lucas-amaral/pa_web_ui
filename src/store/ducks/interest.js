@@ -14,6 +14,11 @@ export const { Types } = createActions({
     setInitialState: [],
 });
 
+const CURRENT_STATE = {
+    interests: [],
+    interest: {},
+};
+
 /*
     Estado inicial
 */
@@ -33,19 +38,15 @@ const newInterest = (state = INITIAL_STATE, action) => {
 
 const updateInterest = (state = INITIAL_STATE, payload) => {
     function getPropertyTypes(apiTypes) {
-        return types
-            .filter((type) => apiTypes.includes(type.id));
+        return types.filter((type) => apiTypes.name === type.id);
     }
 
     return {
         interest: {
-            ...payload.payload, uiTypes : getPropertyTypes(payload.payload.types)
+            ...payload.payload,
+            uiTypes: getPropertyTypes(payload.interest.properties),
         },
     };
-};
-
-const interestSucceeded = (state = INITIAL_STATE, action) => {
-    return state;
 };
 
 const setInitialState = (state = INITIAL_STATE) => {
@@ -58,6 +59,5 @@ const setInitialState = (state = INITIAL_STATE) => {
 export default createReducer(INITIAL_STATE, {
     [Types.ADD_INTEREST]: newInterest,
     [Types.UPDATE_INTEREST]: updateInterest,
-    [Types.INTEREST_SUCCEEDED]: interestSucceeded,
     [Types.SET_INITIAL_STATE]: setInitialState,
 });
