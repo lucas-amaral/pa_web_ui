@@ -46,6 +46,9 @@ function Interest() {
     const classes = useStyles(theme);
     const dispatch = useDispatch();
     let interest = useSelector((state) => state.interest.interest);
+    let neighborhoods = useSelector(
+        (state) => state.neighborhood.neighborhoods
+    );
 
     const removeInterest = (interestID) => {
         dispatch({
@@ -56,6 +59,10 @@ function Interest() {
 
     if (interest.payload) {
         interest = interest.payload;
+    }
+
+    if (neighborhoods.payload) {
+        neighborhoods = neighborhoods.payload;
     }
 
     return interest.id ? (
@@ -125,14 +132,29 @@ function Interest() {
                                 <GridBox xs={11}>
                                     <InputLabel id="types">Bairros</InputLabel>
                                     <MultilineSelect
-                                        initialState={[
-                                            { id: 1, value: 'CENTRO' },
-                                        ]}
-                                        items={[
-                                            { id: 1, value: 'CENTRO' },
-                                            { id: 2, value: 'BOI MORTO' },
-                                            { id: 3, value: 'CAMOBI' },
-                                        ]}
+                                        initialState={
+                                            interest.neighborhoods
+                                                ? interest.neighborhoods
+                                                      .map((neighborhood) => ({
+                                                          id: neighborhood.id,
+                                                          value:
+                                                              neighborhood.name,
+                                                      }))
+                                                      .sort((a, b) =>
+                                                          a.value > b.value
+                                                              ? 1
+                                                              : -1
+                                                      )
+                                                : []
+                                        }
+                                        items={neighborhoods
+                                            .map((neighborhood) => ({
+                                                id: neighborhood.id,
+                                                value: neighborhood.name,
+                                            }))
+                                            .sort((a, b) =>
+                                                a.value > b.value ? 1 : -1
+                                            )}
                                     />
                                 </GridBox>
                                 <GridBox>

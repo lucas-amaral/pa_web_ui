@@ -1,11 +1,11 @@
-import URLS from "../constants/Urls";
-import axiosInstance from "./axiosInstance";
+import URLS from '../constants/Urls';
+import axiosInstance from './axiosInstance';
 
 export const load = (id) => {
-    return axiosInstance().get(URLS.NEIGHBORHOOD.GET.replace(":id", id));
+    return axiosInstance().get(URLS.NEIGHBORHOOD.GET.replace(':id', id));
 };
 
-export const loadByUserName = () => {
+export const loadByCity = () => {
     return axiosInstance().get(URLS.NEIGHBORHOOD.GET_BY_CITY, {
         params: {
             cityId: 1,

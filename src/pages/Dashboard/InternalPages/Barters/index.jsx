@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -7,8 +7,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import { useDispatch, useSelector } from 'react-redux';
-import { Types as InterestTypes } from '../../../../store/ducks/interest';
+import { useSelector } from 'react-redux';
 import { types } from '../../../../constants/BarterTypes';
 
 const useStyles = makeStyles({
@@ -19,17 +18,7 @@ const useStyles = makeStyles({
 
 export default function Barters() {
     const classes = useStyles();
-    const data = { username: localStorage.getItem('username') };
-    const dispatch = useDispatch();
     let interest = useSelector((state) => state.interest.interest);
-
-    useEffect(() => {
-        dispatch({
-            type: InterestTypes.LOAD_INTEREST,
-            data,
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
 
     if (interest.payload) {
         interest = interest.payload;

@@ -33,7 +33,11 @@ import Logo from '../../assets/marca.png';
 
 import SideMenu from './SideMenu';
 
-import { LOAD_INTEREST, LOAD_USER } from '../../constants/ActionTypes';
+import {
+    LOAD_INTEREST,
+    LOAD_NEIGHBORHOODS,
+    LOAD_USER,
+} from '../../constants/ActionTypes';
 
 import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
@@ -145,7 +149,6 @@ export default function Dashboard() {
 
     const data = { username: localStorage.getItem('username') };
 
-
     useEffect(() => {
         dispatch({
             type: LOAD_USER,
@@ -155,6 +158,7 @@ export default function Dashboard() {
             type: LOAD_INTEREST,
             data,
         });
+        dispatch({ type: LOAD_NEIGHBORHOODS });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
