@@ -19,15 +19,16 @@ const useStyles = makeStyles({
 
 export default function Barters() {
     const classes = useStyles();
-    const dataInterest = { username: localStorage.getItem('username') };
+    const data = { username: localStorage.getItem('username') };
     const dispatch = useDispatch();
     let interest = useSelector((state) => state.interest.interest);
 
     useEffect(() => {
         dispatch({
             type: InterestTypes.LOAD_INTEREST,
-            dataInterest,
+            data,
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     if (interest.payload) {
@@ -37,12 +38,11 @@ export default function Barters() {
     function getBarterType(apiType) {
         return types
             .filter((type) => apiType === type.id)
-            .map((type => type.value));
+            .map((type) => type.value);
     }
 
-
     return (
-        <TableContainer >
+        <TableContainer>
             <Table className={classes.table}>
                 <TableBody>
                     {interest.barters.map((barter) => (
@@ -51,14 +51,17 @@ export default function Barters() {
                                 {getBarterType(barter.type)}
                             </TableCell>
                             <TableCell align="right">
-                                {
-                                    Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
-                                    .format(barter.value)
-                                }
+                                {Intl.NumberFormat('pt-BR', {
+                                    style: 'currency',
+                                    currency: 'BRL',
+                                }).format(barter.value)}
                             </TableCell>
-                            <TableCell align="center" style={{width: '5px', whiteSpace: 'nowrap'}}>
-                                <PhotoLibraryIcon/>
-                                <DeleteIcon/>
+                            <TableCell
+                                align="center"
+                                style={{ width: '5px', whiteSpace: 'nowrap' }}
+                            >
+                                <PhotoLibraryIcon />
+                                <DeleteIcon />
                             </TableCell>
                         </TableRow>
                     ))}

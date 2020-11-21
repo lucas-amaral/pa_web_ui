@@ -33,7 +33,7 @@ import Logo from '../../assets/marca.png';
 
 import SideMenu from './SideMenu';
 
-import { LOAD_INTEREST } from '../../constants/ActionTypes';
+import { LOAD_INTEREST, LOAD_USER } from '../../constants/ActionTypes';
 
 import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
@@ -143,13 +143,19 @@ export default function Dashboard() {
     const [open, setOpen] = useState(true);
     const [titleOfAction] = useState('');
 
-    const dataInterest = { username: localStorage.getItem('username') };
+    const data = { username: localStorage.getItem('username') };
+
 
     useEffect(() => {
         dispatch({
-            type: LOAD_INTEREST,
-            dataInterest,
+            type: LOAD_USER,
+            data,
         });
+        dispatch({
+            type: LOAD_INTEREST,
+            data,
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const [contentBody, setContentBody] = useState('announcement');

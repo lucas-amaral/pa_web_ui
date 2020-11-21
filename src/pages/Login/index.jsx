@@ -3,7 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import LoginComponent from './components/login';
-import { LOGIN_REQUESTED, SET_INITIAL_STATE } from '../../constants/ActionTypes';
+import {
+    LOGIN_REQUESTED,
+    SET_INITIAL_STATE,
+} from '../../constants/ActionTypes';
 
 function Login() {
     const history = useHistory();
@@ -11,14 +14,13 @@ function Login() {
     const statusLogin = useSelector((state) => state.login);
 
     useEffect(() => {
-        console.log('status', statusLogin.state);
         if (statusLogin.state.logged) {
             dispatch({
                 type: SET_INITIAL_STATE,
             });
             history.push('/dashboard');
         }
-    }, [statusLogin.state]);
+    }, [dispatch, history, statusLogin.state]);
 
     const onSubmit = (data) =>
         dispatch({
@@ -29,7 +31,12 @@ function Login() {
             },
         });
 
-    return <LoginComponent onSubmit={onSubmit} loginInvalid={statusLogin.loginFailed}/>;
+    return (
+        <LoginComponent
+            onSubmit={onSubmit}
+            loginInvalid={statusLogin.loginFailed}
+        />
+    );
 }
 
 export default Login;

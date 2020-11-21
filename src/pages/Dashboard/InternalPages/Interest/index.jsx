@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -44,16 +44,8 @@ const useStyles = makeStyles((theme) => ({
 function Interest() {
     const theme = useTheme();
     const classes = useStyles(theme);
-    // const dataInterest = { username: localStorage.getItem('username') };
     const dispatch = useDispatch();
     let interest = useSelector((state) => state.interest.interest);
-
-    // useEffect(() => {
-    //     dispatch({
-    //         type: InterestTypes.LOAD_INTEREST,
-    //         dataInterest,
-    //     });
-    // }, []);
 
     const removeInterest = (interestID) => {
         dispatch({

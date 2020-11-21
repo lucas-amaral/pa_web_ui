@@ -22,7 +22,7 @@ function* sendInterest(action) {
 
 function* loadInterest(action) {
     try {
-        const payload = yield call(load, action.dataInterest.username);
+        const payload = yield call(load, action.data.username);
 
         if (payload) {
             yield put({ type: UPDATE_INTEREST, payload: payload.data });

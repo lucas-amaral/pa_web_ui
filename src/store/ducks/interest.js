@@ -14,10 +14,10 @@ export const { Types } = createActions({
     setInitialState: [],
 });
 
-const CURRENT_STATE = {
-    interests: [],
-    interest: {},
-};
+// const CURRENT_STATE = {
+//     interests: [],
+//     interest: {},
+// };
 
 /*
     Estado inicial
@@ -38,13 +38,14 @@ const newInterest = (state = INITIAL_STATE, action) => {
 
 const updateInterest = (state = INITIAL_STATE, payload) => {
     function getPropertyTypes(apiTypes) {
-        return types.filter((type) => apiTypes.name === type.id);
+        return types.filter((type) => apiTypes.includes(type.id));
     }
 
     return {
+        type: payload.type,
         interest: {
             ...payload.payload,
-            uiTypes: getPropertyTypes(payload.interest.properties),
+            uiTypes: getPropertyTypes(payload.payload.types),
         },
     };
 };

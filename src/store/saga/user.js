@@ -34,7 +34,7 @@ function* changeUser(action) {
 
 function* loadUser(action) {
     try {
-        const payload = yield call(load, action.dataUser.username);
+        const payload = yield call(load, action.data.username);
 
         if (payload) {
             yield put({ type: UPDATE_USER, payload: payload.data });
