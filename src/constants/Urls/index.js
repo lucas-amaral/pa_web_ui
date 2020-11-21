@@ -26,4 +26,7 @@ export default {
         GET_BY_CITY: "/neighborhoods",
         GET: "/neighborhoods/:id",
     },
+    STREET: {
+        GET: "/streets/:zipCode",
+    },
 }

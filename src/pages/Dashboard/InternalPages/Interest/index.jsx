@@ -57,6 +57,15 @@ function Interest() {
         });
     };
 
+    function getSelectNeighborhoods(neighborhoodsList) {
+        return neighborhoodsList
+            .map((neighborhood) => ({
+                id: neighborhood.id,
+                value: neighborhood.name,
+            }))
+            .sort((a, b) => (a.value > b.value ? 1 : -1));
+    }
+
     if (interest.payload) {
         interest = interest.payload;
     }
@@ -134,27 +143,14 @@ function Interest() {
                                     <MultilineSelect
                                         initialState={
                                             interest.neighborhoods
-                                                ? interest.neighborhoods
-                                                      .map((neighborhood) => ({
-                                                          id: neighborhood.id,
-                                                          value:
-                                                              neighborhood.name,
-                                                      }))
-                                                      .sort((a, b) =>
-                                                          a.value > b.value
-                                                              ? 1
-                                                              : -1
-                                                      )
+                                                ? getSelectNeighborhoods(
+                                                      interest.neighborhoods
+                                                  )
                                                 : []
                                         }
-                                        items={neighborhoods
-                                            .map((neighborhood) => ({
-                                                id: neighborhood.id,
-                                                value: neighborhood.name,
-                                            }))
-                                            .sort((a, b) =>
-                                                a.value > b.value ? 1 : -1
-                                            )}
+                                        items={getSelectNeighborhoods(
+                                            neighborhoods
+                                        )}
                                     />
                                 </GridBox>
                                 <GridBox>

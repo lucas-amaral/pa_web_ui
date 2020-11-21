@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,6 +9,7 @@ import { Box, Grid } from '@material-ui/core';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
+import { LOAD_STREET } from '../../../../constants/ActionTypes';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,10 +36,25 @@ const useStyles = makeStyles((theme) => ({
 
 function User() {
     const classes = useStyles();
+    const dispatch = useDispatch();
     let user = useSelector((state) => state.user.user);
+    let street = useSelector((state) => state.street.street);
 
     if (user.payload) {
         user = user.payload;
+        if (user.street) {
+            street = user.street;
+        }
+    }
+    if (street.payload) {
+        street = street.payload;
+    }
+
+    function findStreet(event) {
+        dispatch({
+            type: LOAD_STREET,
+            zipCode: event.target.value
+        });
     }
 
     return (
@@ -54,7 +70,7 @@ function User() {
                     </Grid>
                     <form>
                         <Grid container>
-                            <GridBox xs={11}>
+                            <GridBox xs={9}>
                                 <TextField
                                     fullWidth
                                     id="name"
@@ -63,7 +79,21 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            <GridBox xs={3}>
+                            <GridBox xs={2}>
+                                <TextField
+                                    fullWidth
+                                    id="dateOfBirth"
+                                    format="dd/MM/yyyy"
+                                    defaultValue={user.dateOfBirth}
+                                    type="date"
+                                    label="Data de nascimento"
+                                    variant="outlined"
+                                    InputLabelProps={{
+                                        shrink: true,
+                                    }}
+                                />
+                            </GridBox>
+                            <GridBox xs={4}>
                                 <TextField
                                     fullWidth
                                     id="login"
@@ -91,20 +121,6 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            <GridBox xs={2}>
-                                <TextField
-                                    fullWidth
-                                    id="dateOfBirth"
-                                    format="dd/MM/yyyy"
-                                    defaultValue={user.dateOfBirth}
-                                    type="date"
-                                    label="Data de nascimento"
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                />
-                            </GridBox>
                             <Grid container style={{ marginTop: '20px' }}>
                                 <Grid item md={12}>
                                     <Box pl={1} pb={2}>
@@ -118,20 +134,23 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="street"
-                                    // defaultValue={user.adress}
+                                    defaultValue={street.name}
                                     label="Rua"
+                                    aria-readonly
+                                    disabled
                                     variant="outlined"
                                 />
                             </GridBox>
                             <GridBox xs={3}>
                                 <TextField
                                     fullWidth
-                                    id="cep"
+                                    id="zipCode"
                                     defaultValue={
                                         user.address
                                             ? user.address.street
                                             : null
                                     }
+                                    onChange={findStreet}
                                     label="Cep"
                                     variant="outlined"
                                 />
