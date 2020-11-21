@@ -57,6 +57,10 @@ function User() {
         });
     }
 
+    function getType(type) {
+        return type !== 'FISICAL' ? 'Pessoa Jurídica' : 'Pessoa Física';
+    }
+
     return (
         <Grid container>
             <Grid item md={12}>
@@ -83,7 +87,7 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="dateOfBirth"
-                                    format="dd/MM/yyyy"
+                                    placeholder="dd/MM/yyyy"
                                     defaultValue={user.dateOfBirth}
                                     type="date"
                                     label="Data de nascimento"
@@ -115,7 +119,7 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="type"
-                                    value={user.type}
+                                    value={getType(user.type)}
                                     aria-readonly
                                     label="Tipo"
                                     variant="outlined"
@@ -130,17 +134,6 @@ function User() {
                                     </Box>
                                 </Grid>
                             </Grid>
-                            <GridBox xs={11}>
-                                <TextField
-                                    fullWidth
-                                    id="street"
-                                    defaultValue={street.name}
-                                    label="Rua"
-                                    aria-readonly
-                                    disabled
-                                    variant="outlined"
-                                />
-                            </GridBox>
                             <GridBox xs={3}>
                                 <TextField
                                     fullWidth
@@ -152,6 +145,17 @@ function User() {
                                     }
                                     onChange={findStreet}
                                     label="Cep"
+                                    variant="outlined"
+                                />
+                            </GridBox>
+                            <GridBox xs={8}>
+                                <TextField
+                                    fullWidth
+                                    id="street"
+                                    defaultValue={' '}
+                                    value={street.name}
+                                    label="Rua"
+                                    aria-readonly
                                     variant="outlined"
                                 />
                             </GridBox>
