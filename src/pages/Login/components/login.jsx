@@ -41,6 +41,7 @@ function LoginComponent({ onSubmit, loginInvalid }) {
                                                     variant="outlined"
                                                     label="E-Mail"
                                                     name="username"
+                                                    type="email"
                                                     inputRef={register({
                                                         required: 'Digite o seu e-mail',
                                                         pattern: {

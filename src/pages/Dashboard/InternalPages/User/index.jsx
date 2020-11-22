@@ -44,18 +44,8 @@ function User() {
             type: EDIT_USER,
             data: { ...data, type: getDbType(data.type) },
         });
-    let user = useSelector((state) => state.user.user);
-    let street = useSelector((state) => state.street.street);
-
-    if (user.payload) {
-        user = user.payload;
-        if (user.street) {
-            street = user.street;
-        }
-    }
-    if (street.payload) {
-        street = street.payload;
-    }
+    const user = useSelector((state) => state.user.user).payload;
+    const street = useSelector((state) => state.street.street);
 
     function findStreet(event) {
         dispatch({
@@ -119,6 +109,7 @@ function User() {
                                     fullWidth
                                     id="username"
                                     name="username"
+                                    type="email"
                                     value={user.username}
                                     inputRef={register()}
                                     label="Login"
@@ -157,6 +148,15 @@ function User() {
                                     </Box>
                                 </Grid>
                             </Grid>
+                            <TextField
+                                inputRef={register()}
+                                type="hidden"
+                                id="address.id"
+                                name="address.id"
+                                defaultValue={
+                                    user.address ? user.address.id : null
+                                }
+                            />
                             <GridBox xs={3}>
                                 <TextField
                                     fullWidth

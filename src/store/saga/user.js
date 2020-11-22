@@ -1,5 +1,5 @@
-import { call, put, takeEvery } from "redux-saga/effects";
-import { save, load, update } from "../../services/users";
+import { call, put, takeLatest } from 'redux-saga/effects';
+import { save, load, update } from '../../services/users';
 import {
     USER_SUCCEEDED,
     LOAD_USER,
@@ -25,7 +25,7 @@ function* editUser(action) {
         const payload = yield call(update, action.data);
 
         if (payload) {
-            yield put({ type: UPDATE_USER, payload });
+            yield put({ type: USER_SUCCEEDED, payload });
         }
     } catch (e) {
         // yield put({ type: USER_FAILED, message: e.message });
@@ -45,9 +45,9 @@ function* loadUser(action) {
 }
 
 function* mySaga() {
-    yield takeEvery(SEND_USER, sendUser);
-    yield takeEvery(EDIT_USER, editUser);
-    yield takeEvery(LOAD_USER, loadUser);
+    yield takeLatest(SEND_USER, sendUser);
+    yield takeLatest(EDIT_USER, editUser);
+    yield takeLatest(LOAD_USER, loadUser);
 }
 
 export default mySaga;

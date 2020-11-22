@@ -25,8 +25,10 @@ const updateUser = (state = INITIAL_STATE, payload) => {
     };
 };
 
-const userSucceeded = (state = INITIAL_STATE, action) => {
-    return state;
+const userSucceeded = (state = INITIAL_STATE, payload) => {
+    return {
+        user: payload,
+    };
 };
 
 const setInitialState = (state = INITIAL_STATE) => {
