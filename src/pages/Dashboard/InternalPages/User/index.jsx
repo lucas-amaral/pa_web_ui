@@ -6,10 +6,11 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { Box, Grid } from '@material-ui/core';
 
+import { useForm } from 'react-hook-form';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
-import { LOAD_STREET } from '../../../../constants/ActionTypes';
+import { EDIT_USER, LOAD_STREET } from '../../../../constants/ActionTypes';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -35,8 +36,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function User() {
+    const { register, handleSubmit, errors } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
+    const onSubmit = (data) =>
+        dispatch({
+            type: EDIT_USER,
+            data: { ...data, type: getDbType(data.type) },
+        });
     let user = useSelector((state) => state.user.user);
     let street = useSelector((state) => state.street.street);
 
@@ -53,12 +60,16 @@ function User() {
     function findStreet(event) {
         dispatch({
             type: LOAD_STREET,
-            zipCode: event.target.value
+            zipCode: event.target.value,
         });
     }
 
     function getType(type) {
-        return type !== 'FISICAL' ? 'Pessoa Jurídica' : 'Pessoa Física';
+        return type !== 'LEGAL' ? 'Pessoa Física' : 'Pessoa Jurídica';
+    }
+
+    function getDbType(type) {
+        return type === 'Pessoa Física' ? 'FISICAL' : 'LEGAL';
     }
 
     return (
@@ -72,13 +83,15 @@ function User() {
                             </Box>
                         </Grid>
                     </Grid>
-                    <form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
                         <Grid container>
                             <GridBox xs={9}>
                                 <TextField
                                     fullWidth
                                     id="name"
+                                    name="name"
                                     defaultValue={user.name}
+                                    inputRef={register()}
                                     label="Nome"
                                     variant="outlined"
                                 />
@@ -87,8 +100,12 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="dateOfBirth"
+                                    name="dateOfBirth"
                                     placeholder="dd/MM/yyyy"
+                                    format="dd/MM/yyyy"
+                                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
                                     defaultValue={user.dateOfBirth}
+                                    inputRef={register()}
                                     type="date"
                                     label="Data de nascimento"
                                     variant="outlined"
@@ -100,8 +117,10 @@ function User() {
                             <GridBox xs={4}>
                                 <TextField
                                     fullWidth
-                                    id="login"
-                                    defaultValue={user.username}
+                                    id="username"
+                                    name="username"
+                                    value={user.username}
+                                    inputRef={register()}
                                     label="Login"
                                     variant="outlined"
                                 />
@@ -109,8 +128,10 @@ function User() {
                             <GridBox xs={3}>
                                 <TextField
                                     fullWidth
-                                    id="cpf"
+                                    id="cpfCnpj"
+                                    name="cpfCnpj"
                                     defaultValue={user.cpfCnpj}
+                                    inputRef={register()}
                                     label="Cpf"
                                     variant="outlined"
                                 />
@@ -119,7 +140,9 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="type"
+                                    name="type"
                                     value={getType(user.type)}
+                                    inputRef={register()}
                                     aria-readonly
                                     label="Tipo"
                                     variant="outlined"
@@ -137,12 +160,14 @@ function User() {
                             <GridBox xs={3}>
                                 <TextField
                                     fullWidth
-                                    id="zipCode"
+                                    id="address.streetId"
+                                    name="address.streetId"
                                     defaultValue={
-                                        user.address
-                                            ? user.address.street
+                                        user.address && user.address.street
+                                            ? user.address.street.zipCode
                                             : null
                                     }
+                                    inputRef={register()}
                                     onChange={findStreet}
                                     label="Cep"
                                     variant="outlined"
@@ -152,7 +177,11 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="street"
-                                    defaultValue={' '}
+                                    defaultValue={
+                                        user.address && user.address.street
+                                            ? user.address.street.name
+                                            : ' '
+                                    }
                                     value={street.name}
                                     label="Rua"
                                     aria-readonly
@@ -163,11 +192,13 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="number"
+                                    name="address.number"
                                     defaultValue={
                                         user.address
                                             ? user.address.number
                                             : null
                                     }
+                                    inputRef={register()}
                                     label="Número"
                                     variant="outlined"
                                 />
@@ -176,11 +207,13 @@ function User() {
                                 <TextField
                                     fullWidth
                                     id="complement"
+                                    name="address.complement"
                                     defaultValue={
                                         user.address
                                             ? user.address.complement
                                             : null
                                     }
+                                    inputRef={register()}
                                     label="Complemento"
                                     variant="outlined"
                                 />
@@ -191,6 +224,7 @@ function User() {
                                         className={classes.bottomButton}
                                         variant="contained"
                                         size="medium"
+                                        type="submit"
                                         color="primary"
                                         fullWidth
                                     >

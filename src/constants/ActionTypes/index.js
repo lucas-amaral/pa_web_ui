@@ -14,7 +14,7 @@ export const USER_SUCCEEDED = 'USER_SUCCEEDED';
 export const LOAD_USER = 'LOAD_USER';
 export const SEND_USER = 'SEND_USER';
 export const UPDATE_USER = 'UPDATE_USER';
-export const CHANGE_USER = 'CHANGE_USER';
+export const EDIT_USER = 'CHANGE_USER';
 
 export const LOAD_NEIGHBORHOODS = 'LOAD_NEIGHBORHOODS';
 export const LOAD_NEIGHBORHOOD = 'LOAD_NEIGHBORHOOD';

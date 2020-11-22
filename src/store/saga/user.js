@@ -5,7 +5,7 @@ import {
     LOAD_USER,
     SEND_USER,
     UPDATE_USER,
-    CHANGE_USER,
+    EDIT_USER,
 } from '../../constants/ActionTypes';
 
 function* sendUser(action) {
@@ -20,12 +20,12 @@ function* sendUser(action) {
     }
 }
 
-function* changeUser(action) {
+function* editUser(action) {
     try {
-        const payload = yield call(update, action.dataUser);
+        const payload = yield call(update, action.data);
 
         if (payload) {
-            yield put({ type: USER_SUCCEEDED, payload });
+            yield put({ type: UPDATE_USER, payload });
         }
     } catch (e) {
         // yield put({ type: USER_FAILED, message: e.message });
@@ -46,7 +46,7 @@ function* loadUser(action) {
 
 function* mySaga() {
     yield takeEvery(SEND_USER, sendUser);
-    yield takeEvery(CHANGE_USER, changeUser);
+    yield takeEvery(EDIT_USER, editUser);
     yield takeEvery(LOAD_USER, loadUser);
 }
 
