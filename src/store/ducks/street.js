@@ -12,9 +12,10 @@ const INITIAL_STATE = {
     street: {},
 };
 
-const updateStreet = (state = INITIAL_STATE, payload) => {
+const updateStreet = (state = INITIAL_STATE, action) => {
     return {
-        street: payload,
+        type: action.type,
+        street: action.payload,
     };
 };
 

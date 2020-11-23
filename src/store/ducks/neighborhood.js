@@ -14,9 +14,10 @@ const INITIAL_STATE = {
     neighborhoods: [],
 };
 
-const updateNeighborhoods = (state = INITIAL_STATE, payload) => {
+const updateNeighborhoods = (state = INITIAL_STATE, action) => {
     return {
-        neighborhoods: payload,
+        type: action.types,
+        neighborhoods: action.payload,
     };
 };
 

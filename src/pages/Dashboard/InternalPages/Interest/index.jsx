@@ -66,14 +66,6 @@ function Interest() {
             .sort((a, b) => (a.value > b.value ? 1 : -1));
     }
 
-    if (interest.payload) {
-        interest = interest.payload;
-    }
-
-    if (neighborhoods.payload) {
-        neighborhoods = neighborhoods.payload;
-    }
-
     return interest.id ? (
         <Grid container>
             <Grid item md={12}>

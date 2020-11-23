@@ -39,13 +39,14 @@ function User() {
     const { register, handleSubmit, errors } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.user);
+    const street = useSelector((state) => state.street.street);
+
     const onSubmit = (data) =>
         dispatch({
             type: EDIT_USER,
             data: { ...data, type: getDbType(data.type) },
         });
-    const user = useSelector((state) => state.user.user).payload;
-    const street = useSelector((state) => state.street.street);
 
     function findStreet(event) {
         dispatch({

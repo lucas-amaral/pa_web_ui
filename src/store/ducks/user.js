@@ -21,13 +21,15 @@ const INITIAL_STATE = {
 
 const updateUser = (state = INITIAL_STATE, payload) => {
     return {
-        user: payload,
+        type: payload.type,
+        user: payload.payload,
     };
 };
 
-const userSucceeded = (state = INITIAL_STATE, payload) => {
+const userSucceeded = (state = INITIAL_STATE, action) => {
     return {
-        user: payload,
+        type: action.type,
+        user: action.payload,
     };
 };
 
