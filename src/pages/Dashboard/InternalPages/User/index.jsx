@@ -1,9 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import { makeStyles } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
 import { Box, Grid } from '@material-ui/core';
 
 import { useForm } from 'react-hook-form';
@@ -11,42 +9,37 @@ import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
 import { EDIT_USER, LOAD_STREET } from '../../../../constants/ActionTypes';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-    card: {
-        width: '100%',
-    },
-    fields: {
-        margin: 10,
-    },
-    bottomBoxButtons: {
-        display: 'flex',
-        width: 475,
-        justifyContent: 'space-between',
-    },
-    bottomButton: {
-        margin: 5,
-    },
-}));
+import LoadButton from '../../../../components/LoadButton';
 
 function User() {
     const { register, handleSubmit, errors } = useForm();
-    const classes = useStyles();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
     const street = useSelector((state) => state.street.street);
+    const [loading, setLoading] = React.useState(false);
+    const [success, setSuccess] = React.useState(false);
+    const timer = React.useRef();
 
-    const onSubmit = (data) =>
-        dispatch({
-            type: EDIT_USER,
-            data: { ...data, type: getDbType(data.type) },
-        });
+    React.useEffect(() => {
+        return () => {
+            clearTimeout(timer.current);
+        };
+    }, []);
+
+    const onSubmit = (data) => {
+        if (!loading) {
+            setSuccess(false);
+            setLoading(true);
+            dispatch({
+                type: EDIT_USER,
+                data: { ...data, type: getDbType(data.type) },
+            });
+            timer.current = window.setTimeout(() => {
+                setSuccess(true);
+                setLoading(false);
+            }, 2000);
+        }
+    }
 
     function findStreet(event) {
         dispatch({
@@ -220,18 +213,11 @@ function User() {
                                 />
                             </GridBox>
                             <CardActions style={{ marginTop: '10px' }}>
-                                <div className={classes.bottomBoxButtons}>
-                                    <Button
-                                        className={classes.bottomButton}
-                                        variant="contained"
-                                        size="medium"
-                                        type="submit"
-                                        color="primary"
-                                        fullWidth
-                                    >
-                                        Salvar
-                                    </Button>
-                                </div>
+                                <LoadButton
+                                    label="Salvar"
+                                    success={success}
+                                    loading={loading}
+                                />
                             </CardActions>
                         </Grid>
                     </form>
