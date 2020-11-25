@@ -6,7 +6,6 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { Box, Checkbox, Grid } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InputLabel from '@material-ui/core/InputLabel';
 import NewInterest from '../NewInterest/index';
 
 import { Types as InterestTypes } from '../../../../store/ducks/interest';
@@ -45,8 +44,8 @@ function Interest() {
     const theme = useTheme();
     const classes = useStyles(theme);
     const dispatch = useDispatch();
-    let interest = useSelector((state) => state.interest.interest);
-    let neighborhoods = useSelector(
+    const interest = useSelector((state) => state.interest.interest);
+    const neighborhoods = useSelector(
         (state) => state.neighborhood.neighborhoods
     );
 
@@ -124,14 +123,14 @@ function Interest() {
                                     />
                                 </GridBox>
                                 <GridBox xs={11}>
-                                    <InputLabel id="types">Tipos</InputLabel>
                                     <MultilineSelect
                                         initialState={interest.uiTypes}
                                         items={types}
+                                        label="Tipos"
+                                        id="types"
                                     />
                                 </GridBox>
                                 <GridBox xs={11}>
-                                    <InputLabel id="types">Bairros</InputLabel>
                                     <MultilineSelect
                                         initialState={
                                             interest.neighborhoods
@@ -143,6 +142,8 @@ function Interest() {
                                         items={getSelectNeighborhoods(
                                             neighborhoods
                                         )}
+                                        label="Bairros"
+                                        id="neighborhoods"
                                     />
                                 </GridBox>
                                 <GridBox>
