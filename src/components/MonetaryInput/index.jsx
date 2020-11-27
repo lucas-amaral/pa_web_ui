@@ -35,7 +35,7 @@ NumberFormatCustom.propTypes = {
     onChange: PropTypes.func.isRequired,
 };
 
-export default function MonetaryInput({label, value, labelWidth}) {
+export default function MonetaryInput({ id, label, value, inputRef }) {
     const [values, setValues] = React.useState({ label: value });
 
     const handleChange = (event) => {
@@ -49,8 +49,9 @@ export default function MonetaryInput({label, value, labelWidth}) {
         <TextField
             id={label}
             label={label}
-            name={label}
+            name={id}
             defaultValue={value}
+            inputRef={inputRef}
             variant="outlined"
             onChange={handleChange}
             InputProps={{

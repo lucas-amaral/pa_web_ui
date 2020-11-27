@@ -6,6 +6,7 @@ import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import { Box, Checkbox, Grid } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useForm } from 'react-hook-form';
 import NewInterest from '../NewInterest/index';
 
 import { Types as InterestTypes } from '../../../../store/ducks/interest';
@@ -16,6 +17,7 @@ import MultilineSelect from '../../../../components/MultilineSelect';
 import MonetaryInput from '../../../../components/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
 import Barters from '../Barters';
+import { EDIT_INTEREST } from '../../../../constants/ActionTypes';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -41,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Interest() {
+    const { register, handleSubmit, errors, control, setValue } = useForm();
     const theme = useTheme();
     const classes = useStyles(theme);
     const dispatch = useDispatch();
@@ -54,6 +57,14 @@ function Interest() {
             type: InterestTypes.REMOVE_INTEREST,
             interestID,
         });
+    };
+
+    const onSubmit = (data) => {
+        // dispatch({
+        //     type: EDIT_INTEREST,
+        //     data: { ...data },
+        // });
+        console.log(data);
     };
 
     function getSelectNeighborhoods(neighborhoodsList) {
@@ -76,20 +87,38 @@ function Interest() {
                             </Box>
                         </Grid>
                     </Grid>
+                    <TextField
+                        inputRef={register()}
+                        type="hidden"
+                        id="id"
+                        name="id"
+                        defaultValue={interest.id}
+                    />
+                    <TextField
+                        inputRef={register()}
+                        type="hidden"
+                        id="username"
+                        name="username"
+                        defaultValue={interest.user.username}
+                    />
                     {interest.value && (
-                        <form>
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <Grid container>
                                 <GridBox>
                                     <MonetaryInput
                                         label="Valor máximo"
+                                        id="value"
                                         labelWidth={100}
+                                        inputRef={register()}
                                         value={interest.value}
                                     />
                                 </GridBox>
                                 <GridBox>
                                     <TextField
                                         id="dorms"
+                                        name="dorms"
                                         defaultValue={interest.dorms}
+                                        inputRef={register()}
                                         type="number"
                                         label="Número de dormitórios"
                                         variant="outlined"
@@ -98,7 +127,9 @@ function Interest() {
                                 <GridBox>
                                     <TextField
                                         id="suites"
+                                        name="suites"
                                         defaultValue={interest.suites}
+                                        inputRef={register()}
                                         type="number"
                                         label="Número de Suites"
                                         variant="outlined"
@@ -107,7 +138,9 @@ function Interest() {
                                 <GridBox>
                                     <TextField
                                         id="bathrooms"
+                                        name="bathrooms"
                                         defaultValue={interest.bathrooms}
+                                        inputRef={register()}
                                         type="number"
                                         label="Número de banheiros"
                                         variant="outlined"
@@ -116,7 +149,9 @@ function Interest() {
                                 <GridBox>
                                     <TextField
                                         id="garages"
+                                        name="garages"
                                         defaultValue={interest.garages}
+                                        inputRef={register()}
                                         type="number"
                                         label="Número de garagens"
                                         variant="outlined"
@@ -126,6 +161,8 @@ function Interest() {
                                     <MultilineSelect
                                         initialState={interest.uiTypes}
                                         items={types}
+                                        control={control}
+                                        setValue={setValue}
                                         label="Tipos"
                                         id="types"
                                     />
@@ -142,6 +179,8 @@ function Interest() {
                                         items={getSelectNeighborhoods(
                                             neighborhoods
                                         )}
+                                        control={control}
+                                        setValue={setValue}
                                         label="Bairros"
                                         id="neighborhoods"
                                     />
@@ -151,8 +190,10 @@ function Interest() {
                                         control={
                                             <Checkbox
                                                 id="pool"
+                                                name="pool"
                                                 color="primary"
                                                 defaultValue={interest.pool}
+                                                inputRef={register()}
                                             />
                                         }
                                         label="Com piscina"
@@ -163,8 +204,10 @@ function Interest() {
                                         control={
                                             <Checkbox
                                                 id="balcony"
+                                                name="balcony"
                                                 color="primary"
                                                 defaultValue={interest.balcony}
+                                                inputRef={register()}
                                             />
                                         }
                                         label="Com sacada"
@@ -175,8 +218,10 @@ function Interest() {
                                         control={
                                             <Checkbox
                                                 id="elevator"
+                                                name="elevator"
                                                 color="primary"
                                                 defaultValue={interest.elevator}
+                                                inputRef={register()}
                                             />
                                         }
                                         label="Com elevador"
@@ -187,10 +232,12 @@ function Interest() {
                                         control={
                                             <Checkbox
                                                 id="barbecueGrill"
+                                                name="barbecueGrill"
                                                 color="primary"
                                                 defaultValue={
                                                     interest.barbecueGrill
                                                 }
+                                                inputRef={register()}
                                             />
                                         }
                                         label="Com churrasqueira"
@@ -210,10 +257,12 @@ function Interest() {
                                         control={
                                             <Checkbox
                                                 id="financing"
+                                                name="financing"
                                                 color="primary"
                                                 defaultChecked={
                                                     interest.financing
                                                 }
+                                                inputRef={register()}
                                             />
                                         }
                                         label="Financiável"
@@ -222,9 +271,11 @@ function Interest() {
                                 <GridBox xs={10}>
                                     {interest.financing && (
                                         <MonetaryInput
+                                            id="financingValue"
                                             label="Valor financiado"
                                             labelWidth={125}
                                             value={interest.financingValue}
+                                            inputRef={register()}
                                         />
                                     )}
                                 </GridBox>
@@ -246,6 +297,7 @@ function Interest() {
                                             size="medium"
                                             color="primary"
                                             fullWidth
+                                            type="submit"
                                         >
                                             Salvar
                                         </Button>
