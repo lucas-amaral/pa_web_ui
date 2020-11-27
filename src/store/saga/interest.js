@@ -1,6 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { save, load, remove } from '../../services/interests';
+import { save, load, remove, update } from '../../services/interests';
 import {
+    EDIT_INTEREST,
     INTEREST_SUCCEEDED,
     LOAD_INTEREST,
     REMOVE_INTEREST,
@@ -11,6 +12,18 @@ import {
 function* sendInterest(action) {
     try {
         const payload = yield call(save, action.dataInterest);
+
+        if (payload) {
+            yield put({ type: INTEREST_SUCCEEDED, payload });
+        }
+    } catch (e) {
+        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+    }
+}
+
+function* editInterest(action) {
+    try {
+        const payload = yield call(update, action.data);
 
         if (payload) {
             yield put({ type: INTEREST_SUCCEEDED, payload });
@@ -47,6 +60,7 @@ function* removeInterest(action) {
 function* mySaga() {
     yield takeEvery(SEND_INTEREST, sendInterest);
     yield takeEvery(LOAD_INTEREST, loadInterest);
+    yield takeEvery(EDIT_INTEREST, editInterest);
     yield takeEvery(REMOVE_INTEREST, removeInterest);
 }
 

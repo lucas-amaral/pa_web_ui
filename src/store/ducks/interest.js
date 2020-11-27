@@ -1,5 +1,5 @@
 import { createActions, createReducer } from 'reduxsauce';
-import { types } from '../../constants/PropertyTypes';
+import { getPropertyTypes } from '../../utils/interestUtils';
 
 /*
     Criando action types e creators
@@ -36,11 +36,17 @@ const newInterest = (state = INITIAL_STATE, action) => {
     };
 };
 
-const updateInterest = (state = INITIAL_STATE, payload) => {
-    function getPropertyTypes(apiTypes) {
-        return types.filter((type) => apiTypes.includes(type.id));
-    }
+const interestSucceeded = (state = INITIAL_STATE, action) => {
+    return {
+        type: action.type,
+        interest: {
+            ...action.payload,
+            uiTypes: getPropertyTypes(action.payload.types),
+        },
+    };
+};
 
+const updateInterest = (state = INITIAL_STATE, payload) => {
     return {
         type: payload.type,
         interest: {
@@ -59,6 +65,7 @@ const setInitialState = (state = INITIAL_STATE) => {
 */
 export default createReducer(INITIAL_STATE, {
     [Types.ADD_INTEREST]: newInterest,
+    [Types.INTEREST_SUCCEEDED]: interestSucceeded,
     [Types.UPDATE_INTEREST]: updateInterest,
     [Types.SET_INITIAL_STATE]: setInitialState,
 });

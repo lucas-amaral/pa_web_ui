@@ -1,15 +1,5 @@
-export const sumValues = ({
-    cashValue = '0',
-    creditCardValue = '0',
-    exchangeValue = '0',
-}) => {
-    cashValue.replace(',', '.');
-    creditCardValue.replace(',', '.');
-    exchangeValue.replace(',', '.');
+import { types } from '../constants/PropertyTypes';
 
-    const x = parseFloat(cashValue);
-    const y = parseFloat(creditCardValue);
-    const z = parseFloat(exchangeValue);
-
-    return x + y + z;
+export const getPropertyTypes = (apiTypes) => {
+    return types.filter((type) => apiTypes.includes(type.id));
 };

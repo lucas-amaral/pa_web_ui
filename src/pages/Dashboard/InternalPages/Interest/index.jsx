@@ -18,6 +18,7 @@ import MonetaryInput from '../../../../components/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
 import Barters from '../Barters';
 import { EDIT_INTEREST } from '../../../../constants/ActionTypes';
+import { convertMonetaryToInt } from '../../../../utils/numbersUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -60,11 +61,17 @@ function Interest() {
     };
 
     const onSubmit = (data) => {
-        // dispatch({
-        //     type: EDIT_INTEREST,
-        //     data: { ...data },
-        // });
-        console.log(data);
+        dispatch({
+            type: EDIT_INTEREST,
+            data: {
+                ...data,
+                barters: interest.barters,
+                value: convertMonetaryToInt(data.value),
+                financingValue: convertMonetaryToInt(data.financingValue),
+                neighborhoodIds: data.neighborhoodIds ? data.neighborhoodIds.map((neighborhood) => neighborhood.id) : [],
+                types: data.types ? data.types.map((type) => type.id) : [],
+            },
+        });
     };
 
     function getSelectNeighborhoods(neighborhoodsList) {
@@ -182,7 +189,7 @@ function Interest() {
                                         control={control}
                                         setValue={setValue}
                                         label="Bairros"
-                                        id="neighborhoods"
+                                        id="neighborhoodIds"
                                     />
                                 </GridBox>
                                 <GridBox>
