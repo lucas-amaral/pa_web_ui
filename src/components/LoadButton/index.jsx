@@ -51,7 +51,7 @@ export default function CircularIntegration({label, success, loading }) {
         <div className={classes.root}>
             <div className={classes.wrapper}>
                 <Button
-                    style={{width: '250px'}}
+                    style={{width: '250px', height: '38px'}}
                     variant="contained"
                     color="primary"
                     className={buttonClassname}

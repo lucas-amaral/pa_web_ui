@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
@@ -17,8 +17,13 @@ import MultilineSelect from '../../../../components/MultilineSelect';
 import MonetaryInput from '../../../../components/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
 import Barters from '../Barters';
-import { EDIT_INTEREST } from '../../../../constants/ActionTypes';
+import {
+    EDIT_INTEREST,
+    LOADING_INTEREST,
+    RESET_SUCCESS_INTEREST,
+} from '../../../../constants/ActionTypes';
 import { convertMonetaryToInt } from '../../../../utils/numbersUtils';
+import LoadButton from '../../../../components/LoadButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -49,9 +54,17 @@ function Interest() {
     const classes = useStyles(theme);
     const dispatch = useDispatch();
     const interest = useSelector((state) => state.interest.interest);
+    const loading = useSelector((state) => state.interest.loading);
+    const success = useSelector((state) => state.interest.success);
     const neighborhoods = useSelector(
         (state) => state.neighborhood.neighborhoods
     );
+
+    useEffect(() => {
+        dispatch({
+            type: RESET_SUCCESS_INTEREST,
+        });
+    }, []);
 
     const removeInterest = (interestID) => {
         dispatch({
@@ -62,13 +75,22 @@ function Interest() {
 
     const onSubmit = (data) => {
         dispatch({
+            type: LOADING_INTEREST,
+        });
+        dispatch({
             type: EDIT_INTEREST,
             data: {
                 ...data,
                 barters: interest.barters,
                 value: convertMonetaryToInt(data.value),
-                financingValue: convertMonetaryToInt(data.financingValue),
-                neighborhoodIds: data.neighborhoodIds ? data.neighborhoodIds.map((neighborhood) => neighborhood.id) : [],
+                financingValue: data.financingValue
+                    ? convertMonetaryToInt(data.financingValue)
+                    : null,
+                neighborhoodIds: data.neighborhoodIds
+                    ? data.neighborhoodIds.map(
+                          (neighborhood) => neighborhood.id
+                      )
+                    : [],
                 types: data.types ? data.types.map((type) => type.id) : [],
             },
         });
@@ -199,7 +221,7 @@ function Interest() {
                                                 id="pool"
                                                 name="pool"
                                                 color="primary"
-                                                defaultValue={interest.pool}
+                                                defaultChecked={interest.pool}
                                                 inputRef={register()}
                                             />
                                         }
@@ -213,7 +235,9 @@ function Interest() {
                                                 id="balcony"
                                                 name="balcony"
                                                 color="primary"
-                                                defaultValue={interest.balcony}
+                                                defaultChecked={
+                                                    interest.balcony
+                                                }
                                                 inputRef={register()}
                                             />
                                         }
@@ -227,7 +251,9 @@ function Interest() {
                                                 id="elevator"
                                                 name="elevator"
                                                 color="primary"
-                                                defaultValue={interest.elevator}
+                                                defaultChecked={
+                                                    interest.elevator
+                                                }
                                                 inputRef={register()}
                                             />
                                         }
@@ -241,7 +267,7 @@ function Interest() {
                                                 id="barbecueGrill"
                                                 name="barbecueGrill"
                                                 color="primary"
-                                                defaultValue={
+                                                defaultChecked={
                                                     interest.barbecueGrill
                                                 }
                                                 inputRef={register()}
@@ -298,28 +324,41 @@ function Interest() {
                                 <Barters />
                                 <CardActions style={{ marginTop: '10px' }}>
                                     <div className={classes.bottomBoxButtons}>
-                                        <Button
-                                            className={classes.bottomButton}
-                                            variant="contained"
-                                            size="medium"
-                                            color="primary"
-                                            fullWidth
+                                        <LoadButton
+                                            label="Salvar"
                                             type="submit"
+                                            success={success}
+                                            loading={loading}
+                                        />
+                                        <div
+                                            style={{
+                                                alignItems: 'center',
+                                                display: 'flex',
+                                            }}
                                         >
-                                            Salvar
-                                        </Button>
-                                        <Button
-                                            className={classes.bottomButton}
-                                            variant="contained"
-                                            size="medium"
-                                            color="primary"
-                                            onClick={() =>
-                                                removeInterest(interest.id)
-                                            }
-                                            fullWidth
-                                        >
-                                            Excluir
-                                        </Button>
+                                            <div>
+                                                <Button
+                                                    style={{
+                                                        width: '230px',
+                                                        height: '38px',
+                                                    }}
+                                                    className={
+                                                        classes.bottomButton
+                                                    }
+                                                    variant="contained"
+                                                    size="medium"
+                                                    color="primary"
+                                                    onClick={() =>
+                                                        removeInterest(
+                                                            interest.id
+                                                        )
+                                                    }
+                                                    fullWidth
+                                                >
+                                                    Excluir
+                                                </Button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </CardActions>
                             </Grid>

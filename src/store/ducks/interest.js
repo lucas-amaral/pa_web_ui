@@ -11,6 +11,8 @@ export const { Types } = createActions({
     interestSucceeded: ['payload'],
     loadInterest: ['username'],
     removeInterest: [],
+    loadingInterest: [],
+    resetSuccessInterest: [],
     setInitialState: [],
 });
 
@@ -25,6 +27,8 @@ export const { Types } = createActions({
 const INITIAL_STATE = {
     interests: [],
     interest: {},
+    loading: false,
+    success: false,
 };
 
 /*
@@ -43,6 +47,8 @@ const interestSucceeded = (state = INITIAL_STATE, action) => {
             ...action.payload,
             uiTypes: getPropertyTypes(action.payload.types),
         },
+        loading: false,
+        success: true,
     };
 };
 
@@ -56,6 +62,14 @@ const updateInterest = (state = INITIAL_STATE, payload) => {
     };
 };
 
+const loadingInterest = (state = INITIAL_STATE) => {
+    return { ...state, loading: true, success: false, };
+}
+
+const resetSuccessInterest = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false, };
+}
+
 const setInitialState = (state = INITIAL_STATE) => {
     return state;
 };
@@ -67,5 +81,7 @@ export default createReducer(INITIAL_STATE, {
     [Types.ADD_INTEREST]: newInterest,
     [Types.INTEREST_SUCCEEDED]: interestSucceeded,
     [Types.UPDATE_INTEREST]: updateInterest,
+    [Types.LOADING_INTEREST]: loadingInterest,
+    [Types.RESET_SUCCESS_INTEREST]: resetSuccessInterest,
     [Types.SET_INITIAL_STATE]: setInitialState,
 });
