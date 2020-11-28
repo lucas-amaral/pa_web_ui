@@ -9,7 +9,6 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useForm } from 'react-hook-form';
 import NewInterest from '../NewInterest/index';
 
-import { Types as InterestTypes } from '../../../../store/ducks/interest';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import { types } from '../../../../constants/PropertyTypes';
@@ -20,6 +19,7 @@ import Barters from '../Barters';
 import {
     EDIT_INTEREST,
     LOADING_INTEREST,
+    REMOVE_INTEREST,
     RESET_SUCCESS_INTEREST,
 } from '../../../../constants/ActionTypes';
 import { convertMonetaryToInt } from '../../../../utils/numbersUtils';
@@ -59,6 +59,9 @@ function Interest() {
     const neighborhoods = useSelector(
         (state) => state.neighborhood.neighborhoods
     );
+    const [showFinancing, setShowFinancing] = React.useState(
+        interest.financing
+    );
 
     useEffect(() => {
         dispatch({
@@ -68,7 +71,7 @@ function Interest() {
 
     const removeInterest = (interestID) => {
         dispatch({
-            type: InterestTypes.REMOVE_INTEREST,
+            type: REMOVE_INTEREST,
             interestID,
         });
     };
@@ -295,6 +298,11 @@ function Interest() {
                                                 defaultChecked={
                                                     interest.financing
                                                 }
+                                                onClick={() =>
+                                                    setShowFinancing(
+                                                        !showFinancing
+                                                    )
+                                                }
                                                 inputRef={register()}
                                             />
                                         }
@@ -302,7 +310,7 @@ function Interest() {
                                     />
                                 </GridBox>
                                 <GridBox xs={10}>
-                                    {interest.financing && (
+                                    {showFinancing && (
                                         <MonetaryInput
                                             id="financingValue"
                                             label="Valor financiado"

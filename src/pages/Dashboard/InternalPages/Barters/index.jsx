@@ -7,8 +7,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import IconButton from '@material-ui/core/IconButton';
 import { types } from '../../../../constants/BarterTypes';
+import { REMOVE_INTEREST_BARTER } from '../../../../constants/ActionTypes';
 
 const useStyles = makeStyles({
     table: {
@@ -18,17 +20,21 @@ const useStyles = makeStyles({
 
 export default function Barters() {
     const classes = useStyles();
-    let interest = useSelector((state) => state.interest.interest);
-
-    if (interest.payload) {
-        interest = interest.payload;
-    }
+    const dispatch = useDispatch();
+    const interest = useSelector((state) => state.interest.interest);
 
     function getBarterType(apiType) {
         return types
             .filter((type) => apiType === type.id)
             .map((type) => type.value);
     }
+
+    const removeBarters = (barterId) => {
+        dispatch({
+            type: REMOVE_INTEREST_BARTER,
+            barterId,
+        });
+    };
 
     return (
         <TableContainer>
@@ -49,8 +55,22 @@ export default function Barters() {
                                 align="center"
                                 style={{ width: '5px', whiteSpace: 'nowrap' }}
                             >
-                                <PhotoLibraryIcon />
-                                <DeleteIcon />
+                                <IconButton
+                                    aria-label="Ver fotos"
+                                    color="inherit"
+                                    data-tip="Ver fotos"
+                                >
+                                    <PhotoLibraryIcon />
+                                </IconButton>
+                                <IconButton
+                                    aria-label="Remover permuta"
+                                    color="inherit"
+                                    key="delete-barter"
+                                    data-tip="Remover permuta"
+                                    onClick={() => removeBarters(barter.id)}
+                                >
+                                    <DeleteIcon />
+                                </IconButton>
                             </TableCell>
                         </TableRow>
                     ))}
