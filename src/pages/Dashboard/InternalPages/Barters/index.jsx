@@ -7,10 +7,21 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
+import CheckIcon from '@material-ui/icons/Check';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
+import { MenuItem, Select } from '@material-ui/core';
+import { Controller, useForm } from 'react-hook-form';
 import { types } from '../../../../constants/BarterTypes';
-import { REMOVE_INTEREST_BARTER } from '../../../../constants/ActionTypes';
+import {
+    ADD_BARTER,
+    ADD_INTEREST_BARTER,
+    REMOVE_BARTER,
+    REMOVE_INTEREST_BARTER,
+} from '../../../../constants/ActionTypes';
+import MonetaryInput from '../../../../components/MonetaryInput';
+import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 
 const useStyles = makeStyles({
     table: {
@@ -22,6 +33,8 @@ export default function Barters() {
     const classes = useStyles();
     const dispatch = useDispatch();
     const interest = useSelector((state) => state.interest.interest);
+    const barters = useSelector((state) => state.barter.barters);
+    const { register, getValues, control } = useForm();
 
     function getBarterType(apiType) {
         return types
@@ -29,16 +42,107 @@ export default function Barters() {
             .map((type) => type.value);
     }
 
-    const removeBarters = (barterId) => {
+    const removeBarter = (barterId) => {
         dispatch({
             type: REMOVE_INTEREST_BARTER,
             barterId,
         });
     };
 
+    const addBarter = (newId) => {
+        const newValue = getValues(`${newId}.value`);
+        const newType = getValues(`${newId}.type`);
+
+        dispatch({
+            type: ADD_INTEREST_BARTER,
+            newBarter: {
+                newId,
+                value: convertMonetaryToNumber(newValue),
+                type: newType,
+            },
+        });
+
+        dispatch({
+            type: REMOVE_BARTER,
+            barterId: newId,
+        });
+    };
+
+    function generateRows() {
+        return barters.map((newBarter) => {
+            return (
+                <TableRow key={newBarter.newId}>
+                    <TableCell component="th" scope="row">
+                        <Controller
+                            name={`${newBarter.newId}.type`}
+                            control={control}
+                            as={
+                                <Select
+                                    variant="outlined"
+                                    defaultValue={newBarter.type}
+                                >
+                                    <MenuItem value="VEHICLE">Veículo</MenuItem>
+                                    <MenuItem value="PROPERTY">Imóvel</MenuItem>
+                                </Select>
+                            }
+                        />
+                    </TableCell>
+                    <TableCell align="right">
+                        <MonetaryInput
+                            id={`${newBarter.newId}.value`}
+                            label="Valor"
+                            inputRef={register()}
+                            value={newBarter.value}
+                        />
+                    </TableCell>
+                    <TableCell
+                        align="center"
+                        style={{ width: '5px', whiteSpace: 'nowrap' }}
+                    >
+                        <IconButton
+                            aria-label="Adicionar permuta"
+                            color="inherit"
+                            key="add-barter"
+                            data-tip="Adicionar permuta"
+                            onClick={() => addBarter(newBarter.newId)}
+                        >
+                            <CheckIcon />
+                        </IconButton>
+                        <IconButton
+                            aria-label="Remover permuta"
+                            color="inherit"
+                            key="delete-barter"
+                            data-tip="Remover permuta"
+                            onClick={() =>
+                                dispatch({
+                                    type: REMOVE_BARTER,
+                                    barterId: newBarter.newId,
+                                })
+                            }
+                        >
+                            <DeleteIcon />
+                        </IconButton>
+                    </TableCell>
+                </TableRow>
+            );
+        });
+    }
+
     return (
         <TableContainer>
             <Table className={classes.table}>
+                <caption style={{ textAlign: 'right' }}>
+                    Adicionar permuta
+                    <IconButton
+                        aria-label="Adicionar permuta"
+                        color="inherit"
+                        key="add-barter"
+                        data-tip="Adicionar permuta"
+                        onClick={() => dispatch({ type: ADD_BARTER })}
+                    >
+                        <AddCircleIcon />
+                    </IconButton>
+                </caption>
                 <TableBody>
                     {interest.barters.map((barter) => (
                         <TableRow key={barter.id}>
@@ -67,13 +171,14 @@ export default function Barters() {
                                     color="inherit"
                                     key="delete-barter"
                                     data-tip="Remover permuta"
-                                    onClick={() => removeBarters(barter.id)}
+                                    onClick={() => removeBarter(barter.id)}
                                 >
                                     <DeleteIcon />
                                 </IconButton>
                             </TableCell>
                         </TableRow>
                     ))}
+                    {generateRows()}
                 </TableBody>
             </Table>
         </TableContainer>

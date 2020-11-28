@@ -11,6 +11,7 @@ export const { Types } = createActions({
     interestSucceeded: ['payload'],
     loadInterest: ['username'],
     removeInterest: [],
+    addInterestBarter: [],
     removeInterestBarter: [],
     loadingInterest: [],
     resetSuccessInterest: [],
@@ -63,6 +64,17 @@ const updateInterest = (state = INITIAL_STATE, payload) => {
     };
 };
 
+const addInterestBarter = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        type: action.type,
+        interest: {
+            ...state.interest,
+            barters: [...state.interest.barters, action.newBarter],
+        },
+    };
+};
+
 const removeInterestBarter = (state = INITIAL_STATE, action) => {
     return {
         ...state,
@@ -97,6 +109,7 @@ export default createReducer(INITIAL_STATE, {
     [Types.UPDATE_INTEREST]: updateInterest,
     [Types.LOADING_INTEREST]: loadingInterest,
     [Types.RESET_SUCCESS_INTEREST]: resetSuccessInterest,
+    [Types.ADD_INTEREST_BARTER]: addInterestBarter,
     [Types.REMOVE_INTEREST_BARTER]: removeInterestBarter,
     [Types.SET_INITIAL_STATE]: setInitialState,
 });

@@ -22,7 +22,7 @@ import {
     REMOVE_INTEREST,
     RESET_SUCCESS_INTEREST,
 } from '../../../../constants/ActionTypes';
-import { convertMonetaryToInt } from '../../../../utils/numbersUtils';
+import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 import LoadButton from '../../../../components/LoadButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -67,6 +67,7 @@ function Interest() {
         dispatch({
             type: RESET_SUCCESS_INTEREST,
         });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const removeInterest = (interestID) => {
@@ -85,9 +86,9 @@ function Interest() {
             data: {
                 ...data,
                 barters: interest.barters,
-                value: convertMonetaryToInt(data.value),
+                value: convertMonetaryToNumber(data.value),
                 financingValue: data.financingValue
-                    ? convertMonetaryToInt(data.financingValue)
+                    ? convertMonetaryToNumber(data.financingValue)
                     : null,
                 neighborhoodIds: data.neighborhoodIds
                     ? data.neighborhoodIds.map(
