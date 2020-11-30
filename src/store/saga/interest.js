@@ -6,7 +6,7 @@ import {
 } from '../../services/barters';
 import {
     EDIT_INTEREST,
-    INTEREST_SUCCEEDED,
+    SUCCEEDED_INTEREST,
     LOAD_INTEREST,
     REMOVE_INTEREST,
     ADD_INTEREST,
@@ -34,7 +34,7 @@ function* addInterest(action) {
         const payload = yield call(create, action.dataInterest);
 
         if (payload) {
-            yield put({ type: INTEREST_SUCCEEDED, payload });
+            yield put({ type: SUCCEEDED_INTEREST, payload });
         }
     } catch (e) {
         // yield put({ type: 'INTEREST_FAILED', message: e.message });
@@ -46,7 +46,7 @@ function* editInterest(action) {
         const payload = yield call(update, action.data);
 
         if (payload) {
-            yield put({ type: INTEREST_SUCCEEDED, payload });
+            yield put({ type: SUCCEEDED_INTEREST, payload });
         }
     } catch (e) {
         // yield put({ type: 'INTEREST_FAILED', message: e.message });

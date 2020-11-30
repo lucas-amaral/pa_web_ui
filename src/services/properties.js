@@ -2,16 +2,16 @@ import URLS from '../constants/Urls';
 import axiosInstance from './axiosInstance';
 
 export const load = (username) => {
-    return axiosInstance().get(URLS.INTEREST.GET_BY_USERNAME, {
+    return axiosInstance().get(URLS.PROPERTY.GET, {
         params: { username },
     });
 };
 
-export const create = (data) => {
-    axiosInstance()
-        .post(URLS.INTEREST.ADD, data)
+export const create = async (data) => {
+    return axiosInstance()
+        .post(URLS.PROPERTY.ADD, data)
         .then((response) => {
-            console.log('response', response);
+            return response.data;
         })
         .catch((err) => {
             console.log('err', err);
@@ -20,7 +20,7 @@ export const create = (data) => {
 
 export const update = async (data) => {
     return axiosInstance()
-        .put(URLS.INTEREST.EDIT, data)
+        .put(URLS.PROPERTY.EDIT, data)
         .then((response) => {
             return response.data;
         })
@@ -31,6 +31,6 @@ export const update = async (data) => {
 
 export const remove = (interest) => {
     return axiosInstance().delete(
-        URLS.INTEREST.DELETE.replace(':id', interest)
+        URLS.PROPERTY.DELETE.replace(':id', interest)
     );
 };

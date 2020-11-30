@@ -4,15 +4,11 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import Collapse from '@material-ui/core/Collapse';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ForumIcon from '@material-ui/icons/Forum';
-import EmojiTransportationIcon from '@material-ui/icons/EmojiTransportation';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -27,11 +23,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 function SideMenu({ action }) {
     const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-
-    const handleClick = () => {
-        setOpen(!open);
-    };
 
     return (
         <List
@@ -51,7 +42,7 @@ function SideMenu({ action }) {
                 </ListItemIcon>
                 <ListItemText primary="Interesse" />
             </ListItem>
-            <ListItem button onClick={() => action('propouse')}>
+            <ListItem button onClick={() => action('sale')}>
                 <ListItemIcon>
                     <HomeWorkIcon />
                 </ListItemIcon>
@@ -63,27 +54,12 @@ function SideMenu({ action }) {
                 </ListItemIcon>
                 <ListItemText primary="Negociações" />
             </ListItem>
-            <ListItem button onClick={handleClick}>
+            <ListItem button onClick={() => action('property')}>
                 <ListItemIcon>
                     <HomeIcon />
                 </ListItemIcon>
-                <ListItemText primary="Imóveis" />
-                {open ? <ExpandLess /> : <ExpandMore />}
+                <ListItemText primary="Imóvel" />
             </ListItem>
-            <Collapse in={open} timeout="auto" unmountOnExit>
-                <List component="div" disablePadding>
-                    <ListItem
-                        button
-                        className={classes.nested}
-                        onClick={() => action('propertyList')}
-                    >
-                        <ListItemIcon>
-                            <EmojiTransportationIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Lista de Bens" />
-                    </ListItem>
-                </List>
-            </Collapse>
         </List>
     );
 }

@@ -7,15 +7,15 @@ import { Box, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
+import Address from '../Address';
 import GridBox from '../../../../components/GridBox';
-import { EDIT_USER, LOAD_STREET } from '../../../../constants/ActionTypes';
+import { EDIT_USER } from '../../../../constants/ActionTypes';
 import LoadButton from '../../../../components/LoadButton';
 
 function User() {
-    const { register, handleSubmit, errors } = useForm();
+    const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
-    const street = useSelector((state) => state.street.street);
     const [loading, setLoading] = React.useState(false);
     const [success, setSuccess] = React.useState(false);
     const timer = React.useRef();
@@ -25,6 +25,14 @@ function User() {
             clearTimeout(timer.current);
         };
     }, []);
+
+    function getType(type) {
+        return type !== 'LEGAL' ? 'Pessoa Física' : 'Pessoa Jurídica';
+    }
+
+    function getDbType(type) {
+        return type === 'Pessoa Física' ? 'FISICAL' : 'LEGAL';
+    }
 
     const onSubmit = (data) => {
         if (!loading) {
@@ -39,22 +47,7 @@ function User() {
                 setLoading(false);
             }, 2000);
         }
-    }
-
-    function findStreet(event) {
-        dispatch({
-            type: LOAD_STREET,
-            zipCode: event.target.value,
-        });
-    }
-
-    function getType(type) {
-        return type !== 'LEGAL' ? 'Pessoa Física' : 'Pessoa Jurídica';
-    }
-
-    function getDbType(type) {
-        return type === 'Pessoa Física' ? 'FISICAL' : 'LEGAL';
-    }
+    };
 
     return (
         <Grid container>
@@ -133,85 +126,10 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            <Grid container style={{ marginTop: '20px' }}>
-                                <Grid item md={12}>
-                                    <Box pl={1} pb={2}>
-                                        <Title style={{ fontSize: '15px' }}>
-                                            Endereço
-                                        </Title>
-                                    </Box>
-                                </Grid>
-                            </Grid>
-                            <TextField
-                                inputRef={register()}
-                                type="hidden"
-                                id="address.id"
-                                name="address.id"
-                                defaultValue={
-                                    user.address ? user.address.id : null
-                                }
+                            <Address
+                                address={user.address}
+                                register={register()}
                             />
-                            <GridBox xs={3}>
-                                <TextField
-                                    fullWidth
-                                    id="address.streetId"
-                                    name="address.streetId"
-                                    defaultValue={
-                                        user.address && user.address.street
-                                            ? user.address.street.zipCode
-                                            : null
-                                    }
-                                    inputRef={register()}
-                                    onChange={findStreet}
-                                    label="Cep"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={8}>
-                                <TextField
-                                    fullWidth
-                                    id="street"
-                                    defaultValue={
-                                        user.address && user.address.street
-                                            ? user.address.street.name
-                                            : ' '
-                                    }
-                                    value={street.name}
-                                    label="Rua"
-                                    aria-readonly
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={3}>
-                                <TextField
-                                    fullWidth
-                                    id="number"
-                                    name="address.number"
-                                    defaultValue={
-                                        user.address
-                                            ? user.address.number
-                                            : null
-                                    }
-                                    inputRef={register()}
-                                    label="Número"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={5}>
-                                <TextField
-                                    fullWidth
-                                    id="complement"
-                                    name="address.complement"
-                                    defaultValue={
-                                        user.address
-                                            ? user.address.complement
-                                            : null
-                                    }
-                                    inputRef={register()}
-                                    label="Complemento"
-                                    variant="outlined"
-                                />
-                            </GridBox>
                             <CardActions style={{ marginTop: '10px' }}>
                                 <LoadButton
                                     label="Salvar"

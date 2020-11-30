@@ -26,6 +26,12 @@ export default {
         ADD_IMAGE: '/interests/barters/images',
         DELETE_IMAGE: '/interests/barters/images/:id',
     },
+    PROPERTY: {
+        GET: '/properties',
+        ADD: '/properties',
+        EDIT: '/properties',
+        DELETE: '/properties/:id',
+    },
     NEIGHBORHOOD: {
         GET_BY_CITY: '/neighborhoods',
         GET: '/neighborhoods/:id',

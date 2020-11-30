@@ -23,16 +23,16 @@ const INITIAL_STATE = {
 /*
     Criando os reducer handlers
 */
-const succeededBarter = (state = INITIAL_STATE, action) => {
-    return {
-        type: action.type,
-        barter: {
-            ...action.payload,
-        },
-        loading: false,
-        success: true,
-    };
-};
+// const succeededBarter = (state = INITIAL_STATE, action) => {
+//     return {
+//         type: action.type,
+//         barter: {
+//             ...action.payload,
+//         },
+//         loading: false,
+//         success: true,
+//     };
+// };
 
 const updateBarter = (state = INITIAL_STATE, payload) => {
     return {

@@ -17,7 +17,13 @@ export const { Types } = createActions({
 */
 const INITIAL_STATE = {
     users: [],
-    user: {},
+    user: {
+        address: {
+            street: {
+                name: ' ',
+            },
+        },
+    },
     loading: false,
     success: false,
 };

@@ -7,8 +7,8 @@ import { getPropertyTypes } from '../../utils/interestUtils';
 export const { Types } = createActions({
     addInterest: ['interest'],
     updateInterest: ['payload'],
+    succeededInterest: ['payload'],
     sendInterest: [],
-    interestSucceeded: ['payload'],
     loadInterest: ['username'],
     removeInterest: [],
     addFormInterestBarter: [],
@@ -27,7 +27,6 @@ export const { Types } = createActions({
     Estado inicial
 */
 const INITIAL_STATE = {
-    interests: [],
     interest: {},
     loading: false,
     success: false,
@@ -36,13 +35,13 @@ const INITIAL_STATE = {
 /*
     Criando os reducer handlers
 */
-const newInterest = (state = INITIAL_STATE, action) => {
+const addInterest = (state = INITIAL_STATE, action) => {
     return {
         interests: [...state.interests, action.interest],
     };
 };
 
-const interestSucceeded = (state = INITIAL_STATE, action) => {
+const succeededInterest = (state = INITIAL_STATE, action) => {
     return {
         type: action.type,
         interest: {
@@ -104,8 +103,8 @@ const setInitialState = (state = INITIAL_STATE) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.ADD_INTEREST]: newInterest,
-    [Types.INTEREST_SUCCEEDED]: interestSucceeded,
+    [Types.ADD_INTEREST]: addInterest,
+    [Types.SUCCEEDED_INTEREST]: succeededInterest,
     [Types.UPDATE_INTEREST]: updateInterest,
     [Types.LOADING_INTEREST]: loadingInterest,
     [Types.RESET_SUCCESS_INTEREST]: resetSuccessInterest,

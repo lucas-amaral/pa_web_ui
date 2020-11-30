@@ -26,7 +26,7 @@ import ListItem from '@material-ui/core/ListItem';
 
 import { useHistory } from 'react-router-dom';
 import Interest from './InternalPages/Interest';
-import PropertyList from './InternalPages/PropertyList';
+import Property from './InternalPages/Property';
 import User from './InternalPages/User';
 
 import Logo from '../../assets/marca.png';
@@ -263,7 +263,7 @@ export default function Dashboard() {
                 <div className={classes.appBarSpacer} />
                 <Container maxWidth="lg" className={classes.container}>
                     {contentBody === 'interest' && <Interest />}
-                    {contentBody === 'propertyList' && <PropertyList />}
+                    {contentBody === 'property' && <Property />}
                     {contentBody === 'user' && <User />}
                 </Container>
                 <footer>

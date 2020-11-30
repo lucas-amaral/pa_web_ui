@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Interest() {
-    const { register, handleSubmit, errors, control, setValue } = useForm();
+    const { register, handleSubmit, control, setValue } = useForm();
     const theme = useTheme();
     const classes = useStyles(theme);
     const dispatch = useDispatch();
@@ -159,23 +159,23 @@ function Interest() {
                                 </GridBox>
                                 <GridBox>
                                     <TextField
-                                        id="suites"
-                                        name="suites"
-                                        defaultValue={interest.suites}
-                                        inputRef={register()}
-                                        type="number"
-                                        label="Número de Suites"
-                                        variant="outlined"
-                                    />
-                                </GridBox>
-                                <GridBox>
-                                    <TextField
                                         id="bathrooms"
                                         name="bathrooms"
                                         defaultValue={interest.bathrooms}
                                         inputRef={register()}
                                         type="number"
                                         label="Número de banheiros"
+                                        variant="outlined"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <TextField
+                                        id="suites"
+                                        name="suites"
+                                        defaultValue={interest.suites}
+                                        inputRef={register()}
+                                        type="number"
+                                        label="Número de suites"
                                         variant="outlined"
                                     />
                                 </GridBox>
@@ -222,14 +222,16 @@ function Interest() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                id="pool"
-                                                name="pool"
+                                                id="garages"
+                                                name="garages"
                                                 color="primary"
-                                                defaultChecked={interest.pool}
+                                                defaultChecked={
+                                                    interest.garages
+                                                }
                                                 inputRef={register()}
                                             />
                                         }
-                                        label="Com piscina"
+                                        label="Com garagem"
                                     />
                                 </GridBox>
                                 <GridBox>
@@ -264,7 +266,7 @@ function Interest() {
                                         label="Com elevador"
                                     />
                                 </GridBox>
-                                <GridBox xs={5}>
+                                <GridBox>
                                     <FormControlLabel
                                         control={
                                             <Checkbox
@@ -278,6 +280,20 @@ function Interest() {
                                             />
                                         }
                                         label="Com churrasqueira"
+                                    />
+                                </GridBox>
+                                <GridBox>
+                                    <FormControlLabel
+                                        control={
+                                            <Checkbox
+                                                id="pool"
+                                                name="pool"
+                                                color="primary"
+                                                defaultChecked={interest.pool}
+                                                inputRef={register()}
+                                            />
+                                        }
+                                        label="Com piscina"
                                     />
                                 </GridBox>
                                 <Grid container style={{ marginTop: '20px' }}>
