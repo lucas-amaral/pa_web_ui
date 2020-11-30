@@ -1,7 +1,7 @@
 import URLS from '../constants/Urls';
 import axiosInstance from './axiosInstance';
 
-export const save = (data) => {
+export const create = (data) => {
     axiosInstance()
         .post(URLS.INTEREST.ADD, data)
         .then((response) => {
@@ -13,7 +13,8 @@ export const save = (data) => {
 };
 
 export const update = async (data) => {
-    return await axiosInstance().put(URLS.INTEREST.EDIT, data)
+    return axiosInstance()
+        .put(URLS.INTEREST.EDIT, data)
         .then((response) => {
             return response.data;
         })

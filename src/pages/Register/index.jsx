@@ -1,14 +1,8 @@
 import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
-import {
-    Grid,
-    Box,
-    TextField,
-    Select,
-    MenuItem,
-} from '@material-ui/core';
-import { save } from '../../services/users';
+import { Grid, Box, TextField, Select, MenuItem } from '@material-ui/core';
+import { create } from '../../services/users';
 
 import {
     Title,
@@ -22,12 +16,12 @@ import Header from '../Home/Header';
 
 export default function Register() {
     const defaultValues = {
-        type: "FISICAL",
+        type: 'FISICAL',
     };
 
     const { register, handleSubmit, control } = useForm({ defaultValues });
 
-    const onSubmit = async (data) => save(data);
+    const onSubmit = async (data) => create(data);
 
     return (
         <BackGround>

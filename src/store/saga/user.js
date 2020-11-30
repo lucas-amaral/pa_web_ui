@@ -1,16 +1,29 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { save, load, update } from '../../services/users';
+import { create, load, update } from '../../services/users';
 import {
     USER_SUCCEEDED,
-    LOAD_USER,
-    SEND_USER,
     UPDATE_USER,
+    LOAD_USER,
+    ADD_USER,
     EDIT_USER,
 } from '../../constants/ActionTypes';
 
-function* sendUser(action) {
+
+function* loadUser(action) {
     try {
-        const payload = yield call(save, action.dataUser);
+        const payload = yield call(load, action.data.username);
+
+        if (payload) {
+            yield put({ type: UPDATE_USER, payload: payload.data });
+        }
+    } catch (e) {
+        // yield put({ type: USER_FAILED, message: e.message });
+    }
+}
+
+function* addUser(action) {
+    try {
+        const payload = yield call(create, action.dataUser);
 
         if (payload) {
             yield put({ type: USER_SUCCEEDED, payload });
@@ -32,20 +45,8 @@ function* editUser(action) {
     }
 }
 
-function* loadUser(action) {
-    try {
-        const payload = yield call(load, action.data.username);
-
-        if (payload) {
-            yield put({ type: UPDATE_USER, payload: payload.data });
-        }
-    } catch (e) {
-        // yield put({ type: USER_FAILED, message: e.message });
-    }
-}
-
 function* mySaga() {
-    yield takeLatest(SEND_USER, sendUser);
+    yield takeLatest(ADD_USER, addUser);
     yield takeLatest(EDIT_USER, editUser);
     yield takeLatest(LOAD_USER, loadUser);
 }

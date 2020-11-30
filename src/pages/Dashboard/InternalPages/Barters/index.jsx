@@ -15,10 +15,10 @@ import { MenuItem, Select } from '@material-ui/core';
 import { Controller, useForm } from 'react-hook-form';
 import { types } from '../../../../constants/BarterTypes';
 import {
-    ADD_BARTER,
     ADD_INTEREST_BARTER,
-    REMOVE_BARTER,
     REMOVE_INTEREST_BARTER,
+    CREATE_BARTER_INTEREST,
+    REMOVE_BARTER_INTEREST,
 } from '../../../../constants/ActionTypes';
 import MonetaryInput from '../../../../components/MonetaryInput';
 import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
@@ -55,15 +55,15 @@ export default function Barters() {
 
         dispatch({
             type: ADD_INTEREST_BARTER,
-            newBarter: {
-                newId,
+            data: {
+                interestId: interest.id,
                 value: convertMonetaryToNumber(newValue),
                 type: newType,
             },
         });
 
         dispatch({
-            type: REMOVE_BARTER,
+            type: REMOVE_BARTER_INTEREST,
             barterId: newId,
         });
     };
@@ -76,10 +76,11 @@ export default function Barters() {
                         <Controller
                             name={`${newBarter.newId}.type`}
                             control={control}
+                            defaultValue={newBarter.type}
                             as={
                                 <Select
                                     variant="outlined"
-                                    defaultValue={newBarter.type}
+                                    style={{ height: '40px' }}
                                 >
                                     <MenuItem value="VEHICLE">Veículo</MenuItem>
                                     <MenuItem value="PROPERTY">Imóvel</MenuItem>
@@ -93,6 +94,7 @@ export default function Barters() {
                             label="Valor"
                             inputRef={register()}
                             value={newBarter.value}
+                            size="small"
                         />
                     </TableCell>
                     <TableCell
@@ -115,7 +117,7 @@ export default function Barters() {
                             data-tip="Remover permuta"
                             onClick={() =>
                                 dispatch({
-                                    type: REMOVE_BARTER,
+                                    type: REMOVE_BARTER_INTEREST,
                                     barterId: newBarter.newId,
                                 })
                             }
@@ -138,7 +140,9 @@ export default function Barters() {
                         color="inherit"
                         key="add-barter"
                         data-tip="Adicionar permuta"
-                        onClick={() => dispatch({ type: ADD_BARTER })}
+                        onClick={() =>
+                            dispatch({ type: CREATE_BARTER_INTEREST })
+                        }
                     >
                         <AddCircleIcon />
                     </IconButton>

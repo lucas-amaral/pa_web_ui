@@ -9,6 +9,7 @@ export const { Types } = createActions({
     userSucceeded: ['payload'],
     loadUser: ['username'],
     setInitialState: [],
+    setLoading: [],
 });
 
 /*
@@ -17,6 +18,8 @@ export const { Types } = createActions({
 const INITIAL_STATE = {
     users: [],
     user: {},
+    loading: false,
+    success: false,
 };
 
 const updateUser = (state = INITIAL_STATE, payload) => {
@@ -30,11 +33,17 @@ const userSucceeded = (state = INITIAL_STATE, action) => {
     return {
         type: action.type,
         user: action.payload,
+        loading: false,
+        success: true,
     };
 };
 
 const setInitialState = (state = INITIAL_STATE) => {
     return state;
+};
+
+const setLoading = (state = INITIAL_STATE) => {
+    return { ...state, loading: true, success: false };
 };
 
 /*
@@ -44,4 +53,5 @@ export default createReducer(INITIAL_STATE, {
     [Types.UPDATE_USER]: updateUser,
     [Types.USER_SUCCEEDED]: userSucceeded,
     [Types.SET_INITIAL_STATE]: setInitialState,
+    [Types.SET_LOADING]: setLoading,
 });

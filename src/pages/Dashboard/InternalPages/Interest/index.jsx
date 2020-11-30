@@ -70,10 +70,10 @@ function Interest() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const removeInterest = (interestID) => {
+    const removeInterest = (interestId) => {
         dispatch({
             type: REMOVE_INTEREST,
-            interestID,
+            interestId,
         });
     };
 

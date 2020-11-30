@@ -1,12 +1,15 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { generateId } from '../../utils/numbersUtils';
+import { getPropertyTypes } from '../../utils/interestUtils';
 
 /*
     Criando action types e creators
 */
 export const { Types } = createActions({
-    addBarter: [],
-    removeBarter: [],
+    succeededBarter: ['payload'],
+    updateBarter: ['payload'],
+    createBarterInterest: [],
+    removeBarterInterest: [],
 });
 
 /*
@@ -14,12 +17,34 @@ export const { Types } = createActions({
 */
 const INITIAL_STATE = {
     barters: [],
+    barter: {},
 };
 
 /*
     Criando os reducer handlers
 */
-const addBarter = (state = INITIAL_STATE) => {
+const succeededBarter = (state = INITIAL_STATE, action) => {
+    return {
+        type: action.type,
+        barter: {
+            ...action.payload,
+        },
+        loading: false,
+        success: true,
+    };
+};
+
+const updateBarter = (state = INITIAL_STATE, payload) => {
+    return {
+        type: payload.type,
+        barter: {
+            ...payload.payload,
+            uiTypes: getPropertyTypes(payload.payload.types),
+        },
+    };
+};
+
+const createBarterInterest = (state = INITIAL_STATE) => {
     const newBarter = {
         newId: generateId(),
         type: 'VEHICLE',
@@ -30,7 +55,7 @@ const addBarter = (state = INITIAL_STATE) => {
     };
 };
 
-const removeBarter = (state = INITIAL_STATE, action) => {
+const removeBarterInterest = (state = INITIAL_STATE, action) => {
     return {
         barters: state.barters.filter(
             (barter) => barter.newId !== action.barterId
@@ -42,6 +67,7 @@ const removeBarter = (state = INITIAL_STATE, action) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.ADD_BARTER]: addBarter,
-    [Types.REMOVE_BARTER]: removeBarter,
+    [Types.UPDATE_BARTER]: updateBarter,
+    [Types.CREATE_BARTER_INTEREST]: createBarterInterest,
+    [Types.REMOVE_BARTER_INTEREST]: removeBarterInterest,
 });
