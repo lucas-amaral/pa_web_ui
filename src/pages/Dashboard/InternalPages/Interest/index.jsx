@@ -15,7 +15,7 @@ import { types } from '../../../../constants/PropertyTypes';
 import MultilineSelect from '../../../../components/MultilineSelect';
 import MonetaryInput from '../../../../components/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
-import Barters from '../Barters';
+import Barters from './Barters';
 import {
     EDIT_INTEREST,
     LOADING_INTEREST,
