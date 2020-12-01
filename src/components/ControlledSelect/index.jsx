@@ -23,7 +23,7 @@ export default function MultilineSelect({
                     <Select labelId="label" fullWidth label={label}>
                         {values.map((item) => {
                             return (
-                                <MenuItem value={item.id}>
+                                <MenuItem key={item.id} value={item.id}>
                                     {item.value}
                                 </MenuItem>
                             );

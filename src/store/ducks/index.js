@@ -8,6 +8,7 @@ import neighborhood from './neighborhood';
 import street from './street';
 import barter from './barter';
 import property from './property';
+import garage from './garage';
 
 export default combineReducers({
     announcement,
@@ -18,4 +19,5 @@ export default combineReducers({
     street,
     barter,
     property,
+    garage,
 });

@@ -31,14 +31,18 @@ export default function Address({ address, register }) {
                 type="hidden"
                 id="address.id"
                 name="address.id"
-                defaultValue={address.id}
+                defaultValue={address ? address.id : null}
             />
             <GridBox xs={3}>
                 <TextField
                     fullWidth
                     id="address.streetId"
                     name="address.streetId"
-                    defaultValue={address.street.zipCode}
+                    defaultValue={
+                        address && address.street
+                            ? address.street.zipCode
+                            : null
+                    }
                     inputRef={register}
                     onChange={findStreet}
                     label="Cep"
@@ -49,7 +53,9 @@ export default function Address({ address, register }) {
                 <TextField
                     fullWidth
                     id="street"
-                    defaultValue={address.street.name}
+                    defaultValue={
+                        address && address.street ? address.street.name : ' '
+                    }
                     value={street.name}
                     label="Rua"
                     aria-readonly
@@ -61,7 +67,7 @@ export default function Address({ address, register }) {
                     fullWidth
                     id="number"
                     name="address.number"
-                    defaultValue={address.number}
+                    defaultValue={address ? address.number : null}
                     inputRef={register}
                     label="Número"
                     variant="outlined"
@@ -72,7 +78,7 @@ export default function Address({ address, register }) {
                     fullWidth
                     id="complement"
                     name="address.complement"
-                    defaultValue={address.complement}
+                    defaultValue={address ? address.complement : null}
                     inputRef={register}
                     label="Complemento"
                     variant="outlined"

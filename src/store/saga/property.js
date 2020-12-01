@@ -14,7 +14,8 @@ function* loadProperty(action) {
         const payload = yield call(load, action.data.username);
 
         if (payload) {
-            yield put({ type: UPDATE_PROPERTY, payload: payload.data });
+            //Fix it and use list of properties
+            yield put({ type: UPDATE_PROPERTY, payload: payload.data[0] });
         }
     } catch (e) {
         // yield put({ type: 'PROPERTY_FAILED', message: e.message });

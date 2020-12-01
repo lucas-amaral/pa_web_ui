@@ -20,8 +20,8 @@ function LoginComponent({ onSubmit, loginInvalid }) {
     return (
         <BackGround>
             <form onSubmit={handleSubmit(onSubmit)}>
-                {/*{error && <Message content={error?.detail} negative />}*/}
-                <Header/>
+                {/* {error && <Message content={error?.detail} negative />} */}
+                <Header />
                 <Grid container justify="center" alignItems="center">
                     <Grid item md={12}>
                         <Container>
@@ -43,15 +43,21 @@ function LoginComponent({ onSubmit, loginInvalid }) {
                                                     name="username"
                                                     type="email"
                                                     inputRef={register({
-                                                        required: 'Digite o seu e-mail',
+                                                        required:
+                                                            'Digite o seu e-mail',
                                                         pattern: {
                                                             value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                                            message: 'Digite um e-mail válido',
+                                                            message:
+                                                                'Digite um e-mail válido',
                                                         },
                                                     })}
                                                     required
                                                 />
-                                                {errors.email && <p className="error">{errors.email.message}</p>}
+                                                {errors.email && (
+                                                    <p className="error">
+                                                        {errors.email.message}
+                                                    </p>
+                                                )}
                                             </Box>
                                         </Grid>
                                         <Grid item md={12}>
@@ -81,13 +87,17 @@ function LoginComponent({ onSubmit, loginInvalid }) {
                                         <Grid>
                                             <Box p={1}>
                                                 <StyledLink to="/register">
-                                                    Ainda não possuí cadastro? Clique aqui e faça já o seu
+                                                    Cadastrar-se
                                                 </StyledLink>
                                             </Box>
                                             {loginInvalid && (
                                                 <Box p={1}>
-                                                    <StyledLink to="/login" color="red">
-                                                        Login inválido, tente novamente
+                                                    <StyledLink
+                                                        to="/login"
+                                                        color="red"
+                                                    >
+                                                        Login inválido, tente
+                                                        novamente
                                                     </StyledLink>
                                                 </Box>
                                             )}
