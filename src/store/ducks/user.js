@@ -1,15 +1,20 @@
 import { createActions, createReducer } from 'reduxsauce';
+import {
+    LOADING_USER,
+    RESET_SUCCESS_USER,
+    UPDATE_USER,
+    USER_SUCCEEDED,
+} from '../../constants/ActionTypes';
 
 /*
     Criando action types e creators
 */
 export const { Types } = createActions({
     updateUser: ['payload'],
-    sendUser: [],
     userSucceeded: ['payload'],
     loadUser: ['username'],
-    setInitialState: [],
-    setLoading: [],
+    loadingUser: [],
+    resetSuccessUser: [],
 });
 
 /*
@@ -44,20 +49,20 @@ const userSucceeded = (state = INITIAL_STATE, action) => {
     };
 };
 
-const setInitialState = (state = INITIAL_STATE) => {
-    return state;
+const loadingUser = (state = INITIAL_STATE) => {
+    return { ...state, loading: true, success: false };
 };
 
-const setLoading = (state = INITIAL_STATE) => {
-    return { ...state, loading: true, success: false };
+const resetSuccessUser = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false };
 };
 
 /*
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.UPDATE_USER]: updateUser,
-    [Types.USER_SUCCEEDED]: userSucceeded,
-    [Types.SET_INITIAL_STATE]: setInitialState,
-    [Types.SET_LOADING]: setLoading,
+    [UPDATE_USER]: updateUser,
+    [USER_SUCCEEDED]: userSucceeded,
+    [LOADING_USER]: loadingUser,
+    [RESET_SUCCESS_USER]: resetSuccessUser,
 });

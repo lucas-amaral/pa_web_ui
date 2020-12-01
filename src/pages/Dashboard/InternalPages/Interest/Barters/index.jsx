@@ -10,12 +10,14 @@ import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
-import { types } from '../../../../../constants/BarterTypes';
 import {
     REMOVE_INTEREST_BARTER,
     CREATE_BARTER_INTEREST,
 } from '../../../../../constants/ActionTypes';
 import NewBarter from './newBarter';
+import { Box, Grid } from '@material-ui/core';
+import { Title } from '../../../../Register/styles';
+import { getBarterType } from '../../../../../utils/barterUtils';
 
 const useStyles = makeStyles({
     table: {
@@ -28,12 +30,6 @@ export default function Barters() {
     const dispatch = useDispatch();
     const interest = useSelector((state) => state.interest.interest);
 
-    function getBarterType(apiType) {
-        return types
-            .filter((type) => apiType === type.id)
-            .map((type) => type.value);
-    }
-
     const removeBarter = (barterId) => {
         dispatch({
             type: REMOVE_INTEREST_BARTER,
@@ -42,60 +38,71 @@ export default function Barters() {
     };
 
     return (
-        <TableContainer>
-            <Table className={classes.table}>
-                <caption style={{ textAlign: 'right' }}>
-                    Adicionar permuta
-                    <IconButton
-                        aria-label="Adicionar permuta"
-                        color="inherit"
-                        key="add-barter"
-                        data-tip="Adicionar permuta"
-                        onClick={() =>
-                            dispatch({ type: CREATE_BARTER_INTEREST })
-                        }
-                    >
-                        <AddCircleIcon />
-                    </IconButton>
-                </caption>
-                <TableBody>
-                    {interest.barters.map((barter) => (
-                        <TableRow key={barter.id}>
-                            <TableCell component="th" scope="row">
-                                {getBarterType(barter.type)}
-                            </TableCell>
-                            <TableCell align="right">
-                                {Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL',
-                                }).format(barter.value)}
-                            </TableCell>
-                            <TableCell
-                                align="center"
-                                style={{ width: '5px', whiteSpace: 'nowrap' }}
-                            >
-                                <IconButton
-                                    aria-label="Ver fotos"
-                                    color="inherit"
-                                    data-tip="Ver fotos"
+        <>
+            <Grid container style={{ marginTop: '20px' }}>
+                <Grid item md={12}>
+                    <Box pl={1} pb={2}>
+                        <Title style={{ fontSize: '15px' }}>
+                            Permutas
+                        </Title>
+                    </Box>
+                </Grid>
+            </Grid>
+            <TableContainer>
+                <Table className={classes.table}>
+                    <caption style={{ textAlign: 'right' }}>
+                        Adicionar permuta
+                        <IconButton
+                            aria-label="Adicionar permuta"
+                            color="inherit"
+                            key="add-barter"
+                            data-tip="Adicionar permuta"
+                            onClick={() =>
+                                dispatch({ type: CREATE_BARTER_INTEREST })
+                            }
+                        >
+                            <AddCircleIcon />
+                        </IconButton>
+                    </caption>
+                    <TableBody>
+                        {interest.barters.map((barter) => (
+                            <TableRow key={barter.id}>
+                                <TableCell component="th" scope="row">
+                                    {getBarterType(barter.type)}
+                                </TableCell>
+                                <TableCell align="right">
+                                    {Intl.NumberFormat('pt-BR', {
+                                        style: 'currency',
+                                        currency: 'BRL',
+                                    }).format(barter.value)}
+                                </TableCell>
+                                <TableCell
+                                    align="center"
+                                    style={{ width: '5px', whiteSpace: 'nowrap' }}
                                 >
-                                    <PhotoLibraryIcon />
-                                </IconButton>
-                                <IconButton
-                                    aria-label="Remover permuta"
-                                    color="inherit"
-                                    key="delete-barter"
-                                    data-tip="Remover permuta"
-                                    onClick={() => removeBarter(barter.id)}
-                                >
-                                    <DeleteIcon />
-                                </IconButton>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                    <NewBarter />
-                </TableBody>
-            </Table>
-        </TableContainer>
+                                    <IconButton
+                                        aria-label="Ver fotos"
+                                        color="inherit"
+                                        data-tip="Ver fotos"
+                                    >
+                                        <PhotoLibraryIcon />
+                                    </IconButton>
+                                    <IconButton
+                                        aria-label="Remover permuta"
+                                        color="inherit"
+                                        key="delete-barter"
+                                        data-tip="Remover permuta"
+                                        onClick={() => removeBarter(barter.id)}
+                                    >
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                        <NewBarter />
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
     );
 }

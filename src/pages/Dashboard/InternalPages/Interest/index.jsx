@@ -24,6 +24,7 @@ import {
 } from '../../../../constants/ActionTypes';
 import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 import LoadButton from '../../../../components/LoadButton';
+import { getSelectNeighborhoods } from '../../../../utils/neighborhoodUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -99,15 +100,6 @@ function Interest() {
             },
         });
     };
-
-    function getSelectNeighborhoods(neighborhoodsList) {
-        return neighborhoodsList
-            .map((neighborhood) => ({
-                id: neighborhood.id,
-                value: neighborhood.name,
-            }))
-            .sort((a, b) => (a.value > b.value ? 1 : -1));
-    }
 
     return interest.id ? (
         <Grid container>
@@ -222,22 +214,6 @@ function Interest() {
                                     <FormControlLabel
                                         control={
                                             <Checkbox
-                                                id="garages"
-                                                name="garages"
-                                                color="primary"
-                                                defaultChecked={
-                                                    interest.garages
-                                                }
-                                                inputRef={register()}
-                                            />
-                                        }
-                                        label="Com garagem"
-                                    />
-                                </GridBox>
-                                <GridBox>
-                                    <FormControlLabel
-                                        control={
-                                            <Checkbox
                                                 id="balcony"
                                                 name="balcony"
                                                 color="primary"
@@ -337,15 +313,6 @@ function Interest() {
                                         />
                                     )}
                                 </GridBox>
-                                <Grid container style={{ marginTop: '20px' }}>
-                                    <Grid item md={12}>
-                                        <Box pl={1} pb={2}>
-                                            <Title style={{ fontSize: '15px' }}>
-                                                Permutas
-                                            </Title>
-                                        </Box>
-                                    </Grid>
-                                </Grid>
                                 <Barters />
                                 <CardActions style={{ marginTop: '10px' }}>
                                     <div className={classes.bottomBoxButtons}>

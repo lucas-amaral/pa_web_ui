@@ -1,27 +1,27 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { getPropertyTypes } from '../../utils/interestUtils';
+import {
+    ADD_FORM_INTEREST_BARTER,
+    ADD_INTEREST,
+    LOADING_INTEREST,
+    REMOVE_FORM_INTEREST_BARTER,
+    RESET_SUCCESS_INTEREST,
+    SUCCEEDED_INTEREST,
+    UPDATE_INTEREST,
+} from '../../constants/ActionTypes';
 
 /*
     Criando action types e creators
 */
 export const { Types } = createActions({
     addInterest: ['interest'],
-    updateInterest: ['payload'],
     succeededInterest: ['payload'],
-    sendInterest: [],
-    loadInterest: ['username'],
-    removeInterest: [],
+    updateInterest: ['payload'],
     addFormInterestBarter: [],
     removeFormInterestBarter: [],
     loadingInterest: [],
     resetSuccessInterest: [],
-    setInitialState: [],
 });
-
-// const CURRENT_STATE = {
-//     interests: [],
-//     interest: {},
-// };
 
 /*
     Estado inicial
@@ -95,20 +95,15 @@ const resetSuccessInterest = (state = INITIAL_STATE) => {
     return { ...state, loading: false, success: false };
 };
 
-const setInitialState = (state = INITIAL_STATE) => {
-    return state;
-};
-
 /*
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.ADD_INTEREST]: addInterest,
-    [Types.SUCCEEDED_INTEREST]: succeededInterest,
-    [Types.UPDATE_INTEREST]: updateInterest,
-    [Types.LOADING_INTEREST]: loadingInterest,
-    [Types.RESET_SUCCESS_INTEREST]: resetSuccessInterest,
-    [Types.ADD_FORM_INTEREST_BARTER]: addFormInterestBarter,
-    [Types.REMOVE_FORM_INTEREST_BARTER]: removeFormInterestBarter,
-    [Types.SET_INITIAL_STATE]: setInitialState,
+    [ADD_INTEREST]: addInterest,
+    [SUCCEEDED_INTEREST]: succeededInterest,
+    [UPDATE_INTEREST]: updateInterest,
+    [LOADING_INTEREST]: loadingInterest,
+    [RESET_SUCCESS_INTEREST]: resetSuccessInterest,
+    [ADD_FORM_INTEREST_BARTER]: addFormInterestBarter,
+    [REMOVE_FORM_INTEREST_BARTER]: removeFormInterestBarter,
 });

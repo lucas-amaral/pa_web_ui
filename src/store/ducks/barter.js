@@ -1,6 +1,11 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { generateId } from '../../utils/numbersUtils';
 import { getPropertyTypes } from '../../utils/interestUtils';
+import {
+    CREATE_BARTER_INTEREST,
+    REMOVE_BARTER_INTEREST,
+    UPDATE_BARTER
+} from '../../constants/ActionTypes';
 
 /*
     Criando action types e creators
@@ -67,7 +72,7 @@ const removeBarterInterest = (state = INITIAL_STATE, action) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.UPDATE_BARTER]: updateBarter,
-    [Types.CREATE_BARTER_INTEREST]: createBarterInterest,
-    [Types.REMOVE_BARTER_INTEREST]: removeBarterInterest,
+    [UPDATE_BARTER]: updateBarter,
+    [CREATE_BARTER_INTEREST]: createBarterInterest,
+    [REMOVE_BARTER_INTEREST]: removeBarterInterest,
 });

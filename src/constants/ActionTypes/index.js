@@ -45,6 +45,8 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const LOAD_USER = 'LOAD_USER';
 export const ADD_USER = 'ADD_USER';
 export const EDIT_USER = 'EDIT_USER';
+export const LOADING_USER = 'LOADING_USER';
+export const RESET_SUCCESS_USER = 'RESET_SUCCESS_USER';
 
 export const LOAD_NEIGHBORHOODS = 'LOAD_NEIGHBORHOODS';
 export const LOAD_NEIGHBORHOOD = 'LOAD_NEIGHBORHOOD';

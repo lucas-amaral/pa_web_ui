@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
@@ -9,44 +9,36 @@ import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import Address from '../Address';
 import GridBox from '../../../../components/GridBox';
-import { EDIT_USER } from '../../../../constants/ActionTypes';
+import {
+    EDIT_USER,
+    LOADING_USER,
+    RESET_SUCCESS_USER
+} from '../../../../constants/ActionTypes';
 import LoadButton from '../../../../components/LoadButton';
+import { getDbType, getType } from '../../../../utils/userUtils';
 
 function User() {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.user);
-    const [loading, setLoading] = React.useState(false);
-    const [success, setSuccess] = React.useState(false);
-    const timer = React.useRef();
+    const loading = useSelector((state) => state.user.loading);
+    const success = useSelector((state) => state.user.success);
 
-    React.useEffect(() => {
-        return () => {
-            clearTimeout(timer.current);
-        };
+    useEffect(() => {
+        dispatch({
+            type: RESET_SUCCESS_USER,
+        });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    function getType(type) {
-        return type !== 'LEGAL' ? 'Pessoa Física' : 'Pessoa Jurídica';
-    }
-
-    function getDbType(type) {
-        return type === 'Pessoa Física' ? 'FISICAL' : 'LEGAL';
-    }
-
     const onSubmit = (data) => {
-        if (!loading) {
-            setSuccess(false);
-            setLoading(true);
-            dispatch({
-                type: EDIT_USER,
-                data: { ...data, type: getDbType(data.type) },
-            });
-            timer.current = window.setTimeout(() => {
-                setSuccess(true);
-                setLoading(false);
-            }, 2000);
-        }
+        dispatch({
+            type: LOADING_USER,
+        });
+        dispatch({
+            type: EDIT_USER,
+            data: { ...data, type: getDbType(data.type) },
+        });
     };
 
     return (

@@ -20,6 +20,13 @@ export default function NewBarter() {
     const interestId = useSelector((state) => state.interest.interest.id);
     const { register, getValues, control } = useForm();
 
+    function removeBarter(newId) {
+        dispatch({
+            type: REMOVE_BARTER_INTEREST,
+            barterId: newId,
+        });
+    }
+
     const addBarter = (newId) => {
         const newValue = getValues(`${newId}.value`);
         const newType = getValues(`${newId}.type`);
@@ -33,10 +40,7 @@ export default function NewBarter() {
             },
         });
 
-        dispatch({
-            type: REMOVE_BARTER_INTEREST,
-            barterId: newId,
-        });
+        removeBarter(newId);
     };
 
     return barters.map((newBarter) => {
@@ -85,12 +89,7 @@ export default function NewBarter() {
                         color="inherit"
                         key="delete-barter"
                         data-tip="Remover permuta"
-                        onClick={() =>
-                            dispatch({
-                                type: REMOVE_BARTER_INTEREST,
-                                barterId: newBarter.newId,
-                            })
-                        }
+                        onClick={() => removeBarter(newBarter.newId)}
                     >
                         <DeleteIcon />
                     </IconButton>

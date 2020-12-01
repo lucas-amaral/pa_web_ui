@@ -1,11 +1,11 @@
 import { createActions, createReducer } from 'reduxsauce';
+import { UPDATE_STREET } from '../../constants/ActionTypes';
 
 /*
     Criando action types e creators
 */
 export const { Types } = createActions({
     updateStreet: ['payload'],
-    loadStreet: [],
 });
 
 const INITIAL_STATE = {
@@ -23,5 +23,5 @@ const updateStreet = (state = INITIAL_STATE, action) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.UPDATE_STREET]: updateStreet,
+    [UPDATE_STREET]: updateStreet,
 });

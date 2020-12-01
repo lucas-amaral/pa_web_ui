@@ -1,5 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { generateId } from '../../utils/numbersUtils';
+import { CREATE_GARAGE, REMOVE_GARAGE } from '../../constants/ActionTypes';
 
 /*
     Criando action types e creators
@@ -43,6 +44,6 @@ const removeGarage = (state = INITIAL_STATE, action) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-    [Types.CREATE_GARAGE]: createGarage,
-    [Types.REMOVE_GARAGE]: removeGarage,
+    [CREATE_GARAGE]: createGarage,
+    [REMOVE_GARAGE]: removeGarage,
 });
