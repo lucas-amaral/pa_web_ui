@@ -4,7 +4,7 @@ import { getPropertyTypes } from '../../utils/interestUtils';
 import {
     CREATE_BARTER_INTEREST,
     REMOVE_BARTER_INTEREST,
-    UPDATE_BARTER
+    UPDATE_BARTER,
 } from '../../constants/ActionTypes';
 
 /*

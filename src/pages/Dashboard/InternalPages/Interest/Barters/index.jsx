@@ -10,14 +10,16 @@ import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
+import { Box, Grid } from '@material-ui/core';
+import TableHead from '@material-ui/core/TableHead';
 import {
     REMOVE_INTEREST_BARTER,
     CREATE_BARTER_INTEREST,
 } from '../../../../../constants/ActionTypes';
 import NewBarter from './newBarter';
-import { Box, Grid } from '@material-ui/core';
 import { Title } from '../../../../Register/styles';
 import { getBarterType } from '../../../../../utils/barterUtils';
+import { SKYBLUE } from '../../../../../constants/Colors';
 
 const useStyles = makeStyles({
     table: {
@@ -42,15 +44,13 @@ export default function Barters() {
             <Grid container style={{ marginTop: '20px' }}>
                 <Grid item md={12}>
                     <Box pl={1} pb={2}>
-                        <Title style={{ fontSize: '15px' }}>
-                            Permutas
-                        </Title>
+                        <Title style={{ fontSize: '15px' }}>Permutas</Title>
                     </Box>
                 </Grid>
             </Grid>
             <TableContainer>
                 <Table className={classes.table}>
-                    <caption style={{ textAlign: 'right' }}>
+                    <caption style={{ textAlign: 'right', color: SKYBLUE }}>
                         Adicionar permuta
                         <IconButton
                             aria-label="Adicionar permuta"
@@ -64,6 +64,13 @@ export default function Barters() {
                             <AddCircleIcon />
                         </IconButton>
                     </caption>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Tipo do bem</TableCell>
+                            <TableCell align="right">Valor</TableCell>
+                            <TableCell align="right">&nbsp;</TableCell>
+                        </TableRow>
+                    </TableHead>
                     <TableBody>
                         {interest.barters.map((barter) => (
                             <TableRow key={barter.id}>
@@ -78,7 +85,10 @@ export default function Barters() {
                                 </TableCell>
                                 <TableCell
                                     align="center"
-                                    style={{ width: '5px', whiteSpace: 'nowrap' }}
+                                    style={{
+                                        width: '5px',
+                                        whiteSpace: 'nowrap',
+                                    }}
                                 >
                                     <IconButton
                                         aria-label="Ver fotos"

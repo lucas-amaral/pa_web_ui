@@ -10,12 +10,14 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import TableContainer from '@material-ui/core/TableContainer';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
+import TableHead from '@material-ui/core/TableHead';
 import NewGarage from './newGarage';
 import {
     CREATE_GARAGE,
     REMOVE_PROPERTY_GARAGE,
 } from '../../../../../constants/ActionTypes';
 import { Title } from '../../../../Register/styles';
+import { SKYBLUE } from '../../../../../constants/Colors';
 
 const useStyles = makeStyles({
     table: {
@@ -45,8 +47,8 @@ export default function Garages({ garages = [] }) {
                 </Grid>
             </Grid>
             <TableContainer>
-                <Table className={classes.table}>
-                    <caption style={{ textAlign: 'right' }}>
+                <Table className={classes.table} aria-label="caption table">
+                    <caption style={{ textAlign: 'right', color: SKYBLUE }}>
                         Adicionar garagem
                         <IconButton
                             aria-label="Adicionar garagem"
@@ -58,15 +60,20 @@ export default function Garages({ garages = [] }) {
                             <AddCircleIcon />
                         </IconButton>
                     </caption>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Box</TableCell>
+                            <TableCell>Registro</TableCell>
+                            <TableCell align="right">&nbsp;</TableCell>
+                        </TableRow>
+                    </TableHead>
                     <TableBody>
                         {garages.map((garage) => (
                             <TableRow key={garage.id}>
                                 <TableCell component="th" scope="row">
                                     {garage.box}
                                 </TableCell>
-                                <TableCell align="right">
-                                    {garage.registration}
-                                </TableCell>
+                                <TableCell>{garage.registration}</TableCell>
                                 <TableCell
                                     align="center"
                                     style={{

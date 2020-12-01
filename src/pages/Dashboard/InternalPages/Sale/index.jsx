@@ -3,27 +3,27 @@ import { Box, Checkbox, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import { Container } from '../User/styles';
 import { Title } from '../../../Register/styles';
 import {
-    ADD_PROPERTY,
-    EDIT_PROPERTY,
-    LOAD_PROPERTY,
-    LOADING_PROPERTY,
-    REMOVE_PROPERTY,
-    RESET_SUCCESS_PROPERTY,
+    ADD_SALE,
+    EDIT_SALE,
+    LOAD_SALE,
+    LOADING_SALE,
+    REMOVE_SALE,
+    RESET_SUCCESS_SALE,
 } from '../../../../constants/ActionTypes';
-import { types } from '../../../../constants/PropertyTypes';
-import ControlledSelect from '../../../../components/ControlledSelect';
-import Address from '../Address';
 import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/LoadButton';
-import Garages from './Garages';
+import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
+import MonetaryInput from '../../../../components/MonetaryInput';
+import ControlledSelect from '../../../../components/ControlledSelect';
+import { types } from '../../../../constants/PropertyTypes';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,50 +48,63 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Property() {
+export default function Sale() {
     const { register, handleSubmit, control } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const username = useSelector((state) => state.user.user.username);
     const property = useSelector((state) => state.property.property);
-    const loading = useSelector((state) => state.property.loading);
-    const success = useSelector((state) => state.property.success);
+    const sale = useSelector((state) => state.sale.sale);
+    const loading = useSelector((state) => state.sale.loading);
+    const success = useSelector((state) => state.sale.success);
 
-    const data = { username };
+    const propertyId = property.id;
+
+    const [showFinancing, setShowFinancing] = React.useState(sale.financing);
+    const [showBarterVehicle, setShowBarterVehicle] = React.useState(
+        sale.barterVehicle
+    );
+    const [showBarterProperty, setShowBarterProperty] = React.useState(
+        sale.barterProperty
+    );
 
     useEffect(() => {
         dispatch({
-            type: RESET_SUCCESS_PROPERTY,
+            type: RESET_SUCCESS_SALE,
         });
         dispatch({
-            type: LOAD_PROPERTY,
-            data,
+            type: LOAD_SALE,
+            data: propertyId,
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const onSubmit = (formData) => {
+    const onSubmit = (data) => {
         dispatch({
-            type: LOADING_PROPERTY,
+            type: LOADING_SALE,
         });
         dispatch({
-            type: property.id ? EDIT_PROPERTY : ADD_PROPERTY,
+            type: sale.id ? EDIT_SALE : ADD_SALE,
             data: {
-                ...formData,
-                id: parseFloat(formData.id),
-                area: parseFloat(formData.area),
-                iptu: parseFloat(formData.iptu),
-                registration: parseFloat(formData.registration),
-                garages: property.garages,
+                ...data,
+                value: convertMonetaryToNumber(data.value),
+                financingValue: data.financingValue
+                    ? convertMonetaryToNumber(data.financingValue)
+                    : null,
+                barterVehicleValue: data.barterVehicleValue
+                    ? convertMonetaryToNumber(data.barterVehicleValue)
+                    : null,
+                barterPropertyValue: data.barterPropertyValue
+                    ? convertMonetaryToNumber(data.barterPropertyValue)
+                    : null,
             },
         });
     };
 
-    const removeProperty = (propertyId) => {
+    const removeSale = (saleId) => {
         dispatch({
-            type: REMOVE_PROPERTY,
-            propertyId,
+            type: REMOVE_SALE,
+            saleId,
         });
     };
 
@@ -102,23 +115,21 @@ export default function Property() {
                     <Grid container>
                         <Grid item md={12}>
                             <Box pl={1} pb={2}>
-                                <Title>Imóvel</Title>
+                                <Title>Anúncio</Title>
                             </Box>
                         </Grid>
                         <TextField
                             inputRef={register()}
                             type="hidden"
                             name="id"
-                            defaultValue={property.id}
+                            defaultValue={sale.id}
                         />
                         <TextField
                             inputRef={register()}
                             type="hidden"
-                            name="username"
+                            name="propertyId"
                             defaultValue={
-                                property.user && property.username
-                                    ? property.user.username
-                                    : username
+                                sale.propertyId ? sale.propertyId : propertyId
                             }
                         />
                     </Grid>
@@ -128,8 +139,7 @@ export default function Property() {
                                 <TextField
                                     fullWidth
                                     name="description"
-                                    defaultValue={property.description}
-                                    inputRef={register()}
+                                    value={property.description}
                                     label="Descrição"
                                     variant="outlined"
                                 />
@@ -138,24 +148,23 @@ export default function Property() {
                                 <ControlledSelect
                                     id="type"
                                     label="Tipo do imóvel"
-                                    defaultValue={
-                                        property.type ? property.type : 'HOUSE'
-                                    }
+                                    disabled
+                                    defaultValue={property.type}
                                     values={types}
                                     control={control}
                                 />
                             </GridBox>
-                            <GridBox xs={2}>
+                            <GridBox>
                                 <TextField
                                     fullWidth
                                     name="area"
+                                    aria-readonly
                                     defaultValue={property.area}
-                                    inputRef={register()}
                                     label="Area"
                                     variant="outlined"
                                     InputProps={{
                                         endAdornment: (
-                                            <InputAdornment position="start">
+                                            <InputAdornment position="end">
                                                 m²
                                             </InputAdornment>
                                         ),
@@ -166,8 +175,8 @@ export default function Property() {
                                 <TextField
                                     fullWidth
                                     name="registration"
+                                    aria-readonly
                                     defaultValue={property.registration}
-                                    inputRef={register()}
                                     label="Registro"
                                     variant="outlined"
                                 />
@@ -176,6 +185,7 @@ export default function Property() {
                                 <TextField
                                     fullWidth
                                     name="iptu"
+                                    aria-readonly
                                     defaultValue={property.iptu}
                                     inputRef={register()}
                                     label="Número do IPTU"
@@ -183,101 +193,133 @@ export default function Property() {
                                 />
                             </GridBox>
                             <GridBox xs={2}>
-                                <TextField
-                                    id="dorms"
-                                    name="dorms"
-                                    defaultValue={property.dorms}
+                                <MonetaryInput
+                                    label="Valor"
+                                    id="value"
+                                    labelWidth={100}
                                     inputRef={register()}
-                                    type="number"
-                                    label="Nº de dormitórios"
-                                    variant="outlined"
+                                    value={sale.value}
                                 />
                             </GridBox>
-                            <GridBox xs={2}>
-                                <TextField
-                                    id="bathrooms"
-                                    name="bathrooms"
-                                    defaultValue={property.bathrooms}
-                                    inputRef={register()}
-                                    type="number"
-                                    label="Nº de banheiros"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={7}>
-                                <TextField
-                                    id="suites"
-                                    name="suites"
-                                    defaultValue={property.suites}
-                                    inputRef={register()}
-                                    type="number"
-                                    label="Nº de suites"
-                                    variant="outlined"
-                                />
-                            </GridBox>
+                            {/* <GridBox xs={9}> */}
+                            {/*    <TextField */}
+                            {/*        name="agencying" */}
+                            {/*        placeholder="dd/MM/yyyy" */}
+                            {/*        format="dd/MM/yyyy" */}
+                            {/*        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" */}
+                            {/*        value={sale.agencying ? sale.agencying : Date.now()} */}
+                            {/*        inputRef={register()} */}
+                            {/*        type="date" */}
+                            {/*        label="Data de cadastro" */}
+                            {/*        variant="outlined" */}
+                            {/*        InputLabelProps={{ */}
+                            {/*            shrink: true, */}
+                            {/*        }} */}
+                            {/*    /> */}
+                            {/* </GridBox> */}
+                            <Grid container style={{ marginTop: '20px' }}>
+                                <Grid item md={12}>
+                                    <Box pl={1} pb={2}>
+                                        <Title style={{ fontSize: '15px' }}>
+                                            Financiamento
+                                        </Title>
+                                    </Box>
+                                </Grid>
+                            </Grid>
                             <GridBox>
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            id="balcony"
-                                            name="balcony"
+                                            name="financing"
                                             color="primary"
-                                            defaultChecked={property.balcony}
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Com sacada"
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            id="elevator"
-                                            name="elevator"
-                                            color="primary"
-                                            defaultChecked={property.elevator}
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Com elevador"
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            id="barbecueGrill"
-                                            name="barbecueGrill"
-                                            color="primary"
-                                            defaultChecked={
-                                                property.barbecueGrill
+                                            defaultChecked={sale.financing}
+                                            onClick={() =>
+                                                setShowFinancing(!showFinancing)
                                             }
                                             inputRef={register()}
                                         />
                                     }
-                                    label="Com churrasqueira"
+                                    label="Financiável"
                                 />
+                            </GridBox>
+                            <GridBox xs={9}>
+                                {showFinancing && (
+                                    <MonetaryInput
+                                        id="financingValue"
+                                        label="Valor financiado"
+                                        labelWidth={125}
+                                        value={sale.financingValue}
+                                        inputRef={register()}
+                                    />
+                                )}
+                            </GridBox>
+                            <Grid container style={{ marginTop: '20px' }}>
+                                <Grid item md={12}>
+                                    <Box pl={1} pb={2}>
+                                        <Title style={{ fontSize: '15px' }}>
+                                            Permutas
+                                        </Title>
+                                    </Box>
+                                </Grid>
+                            </Grid>
+                            <GridBox>
+                                <FormControlLabel
+                                    control={
+                                        <Checkbox
+                                            name="barterVehicle"
+                                            color="primary"
+                                            defaultChecked={sale.barterVehicle}
+                                            onClick={() =>
+                                                setShowBarterVehicle(
+                                                    !showBarterVehicle
+                                                )
+                                            }
+                                            inputRef={register()}
+                                        />
+                                    }
+                                    label="Veículo como permuta"
+                                />
+                            </GridBox>
+                            <GridBox xs={9}>
+                                {showBarterVehicle && (
+                                    <MonetaryInput
+                                        id="barterVehicleValue"
+                                        label="Valor máximo veículo"
+                                        labelWidth={125}
+                                        value={sale.barterVehicleValue}
+                                        inputRef={register()}
+                                    />
+                                )}
                             </GridBox>
                             <GridBox>
                                 <FormControlLabel
                                     control={
                                         <Checkbox
-                                            id="pool"
-                                            name="pool"
+                                            name="barterProperty"
                                             color="primary"
-                                            defaultChecked={property.pool}
+                                            defaultChecked={sale.barterProperty}
+                                            onClick={() =>
+                                                setShowBarterProperty(
+                                                    !showBarterProperty
+                                                )
+                                            }
                                             inputRef={register()}
                                         />
                                     }
-                                    label="Com piscina"
+                                    label="Imóvel como permuta"
                                 />
                             </GridBox>
-                            <Address
-                                address={property.address}
-                                register={register()}
-                            />
-                            <Garages garages={property.garages} />
+                            <GridBox xs={9}>
+                                {showBarterProperty && (
+                                    <MonetaryInput
+                                        id="barterPropertyValue"
+                                        label="Valor máximo imóvel"
+                                        labelWidth={125}
+                                        value={sale.barterPropertyValue}
+                                        inputRef={register()}
+                                    />
+                                )}
+                            </GridBox>
                             <CardActions style={{ marginTop: '10px' }}>
                                 <div className={classes.bottomBoxButtons}>
                                     <LoadButton
@@ -286,7 +328,7 @@ export default function Property() {
                                         success={success}
                                         loading={loading}
                                     />
-                                    {property.id && (
+                                    {sale.id && (
                                         <div
                                             style={{
                                                 alignItems: 'center',
@@ -306,9 +348,7 @@ export default function Property() {
                                                     size="medium"
                                                     color="primary"
                                                     onClick={() =>
-                                                        removeProperty(
-                                                            property.id
-                                                        )
+                                                        removeSale(sale.id)
                                                     }
                                                     fullWidth
                                                 >

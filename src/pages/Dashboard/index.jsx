@@ -28,6 +28,7 @@ import { useHistory } from 'react-router-dom';
 import Interest from './InternalPages/Interest';
 import Property from './InternalPages/Property';
 import User from './InternalPages/User';
+import Sale from './InternalPages/Sale';
 
 import Logo from '../../assets/marca.png';
 
@@ -36,6 +37,7 @@ import SideMenu from './SideMenu';
 import {
     LOAD_INTEREST,
     LOAD_NEIGHBORHOODS,
+    LOAD_PROPERTY,
     LOAD_USER,
 } from '../../constants/ActionTypes';
 
@@ -158,6 +160,10 @@ export default function Dashboard() {
             type: LOAD_INTEREST,
             data,
         });
+        dispatch({
+            type: LOAD_PROPERTY,
+            data,
+        });
         dispatch({ type: LOAD_NEIGHBORHOODS });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -265,6 +271,7 @@ export default function Dashboard() {
                     {contentBody === 'interest' && <Interest />}
                     {contentBody === 'property' && <Property />}
                     {contentBody === 'user' && <User />}
+                    {contentBody === 'sale' && <Sale />}
                 </Container>
                 <footer>
                     <Box pt={4}>

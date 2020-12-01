@@ -12,7 +12,7 @@ import GridBox from '../../../../components/GridBox';
 import {
     EDIT_USER,
     LOADING_USER,
-    RESET_SUCCESS_USER
+    RESET_SUCCESS_USER,
 } from '../../../../constants/ActionTypes';
 import LoadButton from '../../../../components/LoadButton';
 import { getDbType, getType } from '../../../../utils/userUtils';

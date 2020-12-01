@@ -1,15 +1,15 @@
-import axiosInstance from './axiosInstance';
 import URLS from '../constants/Urls';
+import axiosInstance from './axiosInstance';
 
-export const load = (barterId) => {
-    return axiosInstance().get(URLS.BARTER.GET, {
-        params: { id: barterId },
+export const load = (propertyId) => {
+    return axiosInstance().get(URLS.SALE.GET, {
+        params: { propertyId },
     });
 };
 
 export const create = async (data) => {
     return axiosInstance()
-        .post(URLS.BARTER.ADD, data)
+        .post(URLS.SALE.ADD, data)
         .then((response) => {
             return response.data;
         })
@@ -18,9 +18,9 @@ export const create = async (data) => {
         });
 };
 
-export const update = (data) => {
+export const update = async (data) => {
     return axiosInstance()
-        .put(URLS.BARTER.EDIT, data)
+        .put(URLS.SALE.EDIT, data)
         .then((response) => {
             return response.data;
         })
@@ -29,6 +29,6 @@ export const update = (data) => {
         });
 };
 
-export const remove = (barterId) => {
-    return axiosInstance().delete(URLS.BARTER.DELETE.replace(':id', barterId));
+export const remove = (saleId) => {
+    return axiosInstance().delete(URLS.SALE.DELETE.replace(':id', saleId));
 };

@@ -17,7 +17,7 @@ export default {
         EDIT: '/interests',
         DELETE: '/interests/:id',
     },
-    BARTERS: {
+    BARTER: {
         GET: '/barters/:id',
         ADD: '/barters/',
         EDIT: '/barters/',
@@ -31,6 +31,12 @@ export default {
         ADD: '/properties',
         EDIT: '/properties',
         DELETE: '/properties/:id',
+    },
+    SALE: {
+        GET: '/sales',
+        ADD: '/sales',
+        EDIT: '/sales',
+        DELETE: '/sales/:id',
     },
     NEIGHBORHOOD: {
         GET_BY_CITY: '/neighborhoods',

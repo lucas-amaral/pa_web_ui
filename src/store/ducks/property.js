@@ -42,9 +42,7 @@ const INITIAL_STATE = {
 const succeededProperty = (state = INITIAL_STATE, action) => {
     return {
         type: action.type,
-        property: {
-            ...action.payload,
-        },
+        property: action.payload,
         loading: false,
         success: true,
     };
@@ -53,9 +51,7 @@ const succeededProperty = (state = INITIAL_STATE, action) => {
 const updateProperty = (state = INITIAL_STATE, payload) => {
     return {
         type: payload.type,
-        property: {
-            ...payload.payload,
-        },
+        property: payload.payload,
     };
 };
 

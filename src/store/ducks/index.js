@@ -8,6 +8,7 @@ import street from './street';
 import barter from './barter';
 import property from './property';
 import garage from './garage';
+import sale from './sale';
 
 export default combineReducers({
     interest,
@@ -18,4 +19,5 @@ export default combineReducers({
     barter,
     property,
     garage,
+    sale,
 });
