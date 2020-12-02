@@ -44,6 +44,7 @@ import {
 import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
 import { StyledFooterMenuWrapper, StyledFooterExit } from './styles';
+import Negotiation from './InternalPages/Negotiation';
 
 function Copyright() {
     return (
@@ -272,6 +273,7 @@ export default function Dashboard() {
                     {contentBody === 'property' && <Property />}
                     {contentBody === 'user' && <User />}
                     {contentBody === 'sale' && <Sale />}
+                    {contentBody === 'negotiations' && <Negotiation />}
                 </Container>
                 <footer>
                     <Box pt={4}>

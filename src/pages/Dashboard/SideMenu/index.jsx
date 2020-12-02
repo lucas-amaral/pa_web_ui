@@ -9,6 +9,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ForumIcon from '@material-ui/icons/Forum';
+import { Divider } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -36,11 +37,18 @@ function SideMenu({ action }) {
                 </ListItemIcon>
                 <ListItemText primary="Perfil" />
             </ListItem>
-            <ListItem button onClick={() => action('interest')}>
+            <ListItem button onClick={() => action('negotiations')}>
                 <ListItemIcon>
-                    <AssignmentIcon />
+                    <ForumIcon />
                 </ListItemIcon>
-                <ListItemText primary="Interesse" />
+                <ListItemText primary="Negociações" />
+            </ListItem>
+            <Divider />
+            <ListItem button onClick={() => action('property')}>
+                <ListItemIcon>
+                    <HomeIcon />
+                </ListItemIcon>
+                <ListItemText primary="Imóvel" />
             </ListItem>
             <ListItem button onClick={() => action('sale')}>
                 <ListItemIcon>
@@ -48,17 +56,12 @@ function SideMenu({ action }) {
                 </ListItemIcon>
                 <ListItemText primary="Anúncio" />
             </ListItem>
-            <ListItem button onClick={() => action('negotiations')}>
+            <Divider />
+            <ListItem button onClick={() => action('interest')}>
                 <ListItemIcon>
-                    <ForumIcon />
+                    <AssignmentIcon />
                 </ListItemIcon>
-                <ListItemText primary="Negociações" />
-            </ListItem>
-            <ListItem button onClick={() => action('property')}>
-                <ListItemIcon>
-                    <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Imóvel" />
+                <ListItemText primary="Interesse" />
             </ListItem>
         </List>
     );

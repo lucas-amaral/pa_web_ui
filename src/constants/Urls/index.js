@@ -38,6 +38,15 @@ export default {
         EDIT: '/sales',
         DELETE: '/sales/:id',
     },
+    NEGOTIATION: {
+        GET_SALE: '/negotiations/sales/:saleId',
+        GET_INTEREST: '/negotiations/interest/:interestId',
+        APPROVED_BY_SELLER: '/negotiations/:id/approved-by-seller',
+        APPROVED_BY_BUYER: '/negotiations/:id/approved-by-buyer',
+        REPROVED_BY_SELLER: '/negotiations/:id/reproved-by-seller',
+        REPROVED_BY_BUYER: '/negotiations/:id/reproved-by-buyer',
+        DELETE: '/negotiations/:id',
+    },
     NEIGHBORHOOD: {
         GET_BY_CITY: '/neighborhoods',
         GET: '/neighborhoods/:id',

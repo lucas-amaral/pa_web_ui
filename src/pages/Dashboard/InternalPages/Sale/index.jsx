@@ -74,7 +74,7 @@ export default function Sale() {
         });
         dispatch({
             type: LOAD_SALE,
-            data: propertyId,
+            data: { propertyId },
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

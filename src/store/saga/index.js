@@ -8,6 +8,7 @@ import street from './street';
 import barter from './barter';
 import property from './property';
 import sale from './sale';
+import negotiation from './negotiation';
 
 export default function* sagas() {
     yield all([
@@ -19,5 +20,6 @@ export default function* sagas() {
         barter(),
         property(),
         sale(),
+        negotiation(),
     ]);
 }

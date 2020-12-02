@@ -20,6 +20,7 @@ import NewBarter from './newBarter';
 import { Title } from '../../../../Register/styles';
 import { getBarterType } from '../../../../../utils/barterUtils';
 import { SKYBLUE } from '../../../../../constants/Colors';
+import { formatToMonetary } from '../../../../../utils/numbersUtils';
 
 const useStyles = makeStyles({
     table: {
@@ -78,10 +79,7 @@ export default function Barters() {
                                     {getBarterType(barter.type)}
                                 </TableCell>
                                 <TableCell align="right">
-                                    {Intl.NumberFormat('pt-BR', {
-                                        style: 'currency',
-                                        currency: 'BRL',
-                                    }).format(barter.value)}
+                                    {formatToMonetary(barter.value)}
                                 </TableCell>
                                 <TableCell
                                     align="center"
