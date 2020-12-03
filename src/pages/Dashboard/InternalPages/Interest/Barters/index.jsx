@@ -6,6 +6,7 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
@@ -15,6 +16,8 @@ import TableHead from '@material-ui/core/TableHead';
 import {
     REMOVE_INTEREST_BARTER,
     CREATE_BARTER_INTEREST,
+    SET_BARTER,
+    SET_CONTENT_BODY,
 } from '../../../../../constants/ActionTypes';
 import NewBarter from './newBarter';
 import { Title } from '../../../../Register/styles';
@@ -39,6 +42,17 @@ export default function Barters() {
             barterId,
         });
     };
+
+    function openBarter(barter) {
+        dispatch({
+            type: SET_BARTER,
+            barter,
+        });
+        dispatch({
+            type: SET_CONTENT_BODY,
+            contentBody: 'barter',
+        });
+    }
 
     return (
         <>
@@ -94,6 +108,15 @@ export default function Barters() {
                                         data-tip="Ver fotos"
                                     >
                                         <PhotoLibraryIcon />
+                                    </IconButton>
+                                    <IconButton
+                                        aria-label="Editar permuta"
+                                        color="inherit"
+                                        key="edit-barter"
+                                        data-tip="Editar permuta"
+                                        onClick={() => openBarter(barter)}
+                                    >
+                                        <EditIcon />
                                     </IconButton>
                                     <IconButton
                                         aria-label="Remover permuta"

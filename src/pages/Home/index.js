@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Grid } from '@material-ui/core';
 
-import CardContainer from '../../components/CardContainer';
+import CardContainer from '../../components/Card/CardContainer';
 
 import {
     FirstBody,

@@ -14,7 +14,7 @@ import {
     LOADING_USER,
     RESET_SUCCESS_USER,
 } from '../../../../constants/ActionTypes';
-import LoadButton from '../../../../components/LoadButton';
+import LoadButton from '../../../../components/Button/LoadButton';
 import { getDbType, getType } from '../../../../utils/userUtils';
 
 function User() {

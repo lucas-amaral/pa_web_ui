@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import { Grid, Paper } from '@material-ui/core';
 import ChatBotPA from './ChatBotPA';
-import MirrorCard from '../../../../components/MirrorCard';
+import MirrorCard from '../../../../components/Card/MirrorCard';
 
 const useStyles = makeStyles((theme) => ({
     fixedHeight: {

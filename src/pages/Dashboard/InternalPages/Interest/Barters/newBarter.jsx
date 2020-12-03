@@ -11,7 +11,7 @@ import {
     ADD_INTEREST_BARTER,
     REMOVE_BARTER_INTEREST,
 } from '../../../../../constants/ActionTypes';
-import MonetaryInput from '../../../../../components/MonetaryInput';
+import MonetaryInput from '../../../../../components/Input/MonetaryInput';
 import { convertMonetaryToNumber } from '../../../../../utils/numbersUtils';
 
 export default function NewBarter() {

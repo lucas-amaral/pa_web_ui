@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import CardActions from '@material-ui/core/CardActions';
-import Button from '@material-ui/core/Button';
 import { Box, Checkbox, Grid } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useForm } from 'react-hook-form';
@@ -12,19 +11,20 @@ import NewInterest from '../NewInterest/index';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import { types } from '../../../../constants/PropertyTypes';
-import MultilineSelect from '../../../../components/MultilineSelect';
-import MonetaryInput from '../../../../components/MonetaryInput';
+import MultilineSelect from '../../../../components/Select/MultilineSelect';
+import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
 import Barters from './Barters';
 import {
-    EDIT_INTEREST,
+    EDIT_INTEREST, LOAD_INTEREST,
     LOADING_INTEREST,
     REMOVE_INTEREST,
     RESET_SUCCESS_INTEREST,
 } from '../../../../constants/ActionTypes';
 import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
-import LoadButton from '../../../../components/LoadButton';
+import LoadButton from '../../../../components/Button/LoadButton';
 import { getSelectNeighborhoods } from '../../../../utils/neighborhoodUtils';
+import FormButton from '../../../../components/Button/FormButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,9 +44,6 @@ const useStyles = makeStyles((theme) => ({
         width: 475,
         justifyContent: 'space-between',
     },
-    bottomButton: {
-        margin: 5,
-    },
 }));
 
 function Interest() {
@@ -65,8 +62,14 @@ function Interest() {
     );
 
     useEffect(() => {
+        let username = interest.user.username;
+
         dispatch({
             type: RESET_SUCCESS_INTEREST,
+        });
+        dispatch({
+            type: LOAD_INTEREST,
+            data: { username },
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -322,35 +325,10 @@ function Interest() {
                                             success={success}
                                             loading={loading}
                                         />
-                                        <div
-                                            style={{
-                                                alignItems: 'center',
-                                                display: 'flex',
-                                            }}
-                                        >
-                                            <div>
-                                                <Button
-                                                    style={{
-                                                        width: '230px',
-                                                        height: '38px',
-                                                    }}
-                                                    className={
-                                                        classes.bottomButton
-                                                    }
-                                                    variant="contained"
-                                                    size="medium"
-                                                    color="primary"
-                                                    onClick={() =>
-                                                        removeInterest(
-                                                            interest.id
-                                                        )
-                                                    }
-                                                    fullWidth
-                                                >
-                                                    Excluir
-                                                </Button>
-                                            </div>
-                                        </div>
+                                        <FormButton
+                                            label="Excluir"
+                                            onClick={() => removeInterest(interest.id)}
+                                        />
                                     </div>
                                 </CardActions>
                             </Grid>

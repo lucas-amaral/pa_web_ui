@@ -3,7 +3,6 @@ import { Box, Checkbox, Grid } from '@material-ui/core';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -19,11 +18,12 @@ import {
     RESET_SUCCESS_SALE,
 } from '../../../../constants/ActionTypes';
 import GridBox from '../../../../components/GridBox';
-import LoadButton from '../../../../components/LoadButton';
+import LoadButton from '../../../../components/Button/LoadButton';
 import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
-import MonetaryInput from '../../../../components/MonetaryInput';
-import ControlledSelect from '../../../../components/ControlledSelect';
+import MonetaryInput from '../../../../components/Input/MonetaryInput';
+import ControlledSelect from '../../../../components/Select/ControlledSelect';
 import { types } from '../../../../constants/PropertyTypes';
+import FormButton from '../../../../components/Button/FormButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         width: 475,
         justifyContent: 'space-between',
-    },
-    bottomButton: {
-        margin: 5,
     },
 }));
 
@@ -329,33 +326,10 @@ export default function Sale() {
                                         loading={loading}
                                     />
                                     {sale.id && (
-                                        <div
-                                            style={{
-                                                alignItems: 'center',
-                                                display: 'flex',
-                                            }}
-                                        >
-                                            <div>
-                                                <Button
-                                                    style={{
-                                                        width: '230px',
-                                                        height: '38px',
-                                                    }}
-                                                    className={
-                                                        classes.bottomButton
-                                                    }
-                                                    variant="contained"
-                                                    size="medium"
-                                                    color="primary"
-                                                    onClick={() =>
-                                                        removeSale(sale.id)
-                                                    }
-                                                    fullWidth
-                                                >
-                                                    Excluir
-                                                </Button>
-                                            </div>
-                                        </div>
+                                        <FormButton
+                                            label="Excluir"
+                                            onClick={() => removeSale(sale.id)}
+                                        />
                                     )}
                                 </div>
                             </CardActions>

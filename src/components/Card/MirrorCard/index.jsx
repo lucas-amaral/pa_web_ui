@@ -2,11 +2,11 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Typography } from '@material-ui/core';
-import { sumValues } from '../../utils/numbersUtils';
+import { sumValues } from '../../../utils/numbersUtils';
 
-import { OCEAN, PURPLE_0 } from '../../constants/Colors';
-import MirrorInfo from '../MirrorInfos';
-import { Types as InterestTypes } from '../../store/ducks/interest';
+import { OCEAN, PURPLE_0 } from '../../../constants/Colors';
+import MirrorInfo from '../../MirrorInfos';
+import { Types as InterestTypes } from '../../../store/ducks/interest';
 
 const useStyles = makeStyles((theme) => ({
     paperHeader: {

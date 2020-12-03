@@ -1,9 +1,12 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { generateId } from '../../utils/numbersUtils';
-import { getPropertyTypes } from '../../utils/interestUtils';
 import {
     CREATE_BARTER_INTEREST,
+    LOADING_BARTER,
     REMOVE_BARTER_INTEREST,
+    RESET_SUCCESS_BARTER,
+    SET_BARTER,
+    SUCCEEDED_BARTER,
     UPDATE_BARTER,
 } from '../../constants/ActionTypes';
 
@@ -13,6 +16,9 @@ import {
 export const { Types } = createActions({
     succeededBarter: ['payload'],
     updateBarter: ['payload'],
+    loadingInterest: [],
+    resetSuccessInterest: [],
+    setBarter: [],
     createBarterInterest: [],
     removeBarterInterest: [],
 });
@@ -28,25 +34,43 @@ const INITIAL_STATE = {
 /*
     Criando os reducer handlers
 */
-// const succeededBarter = (state = INITIAL_STATE, action) => {
-//     return {
-//         type: action.type,
-//         barter: {
-//             ...action.payload,
-//         },
-//         loading: false,
-//         success: true,
-//     };
-// };
+const succeededBarter = (state = INITIAL_STATE, action) => {
+    return {
+        type: action.type,
+        barter: action.payload,
+        barters: state.barters.map((barter) =>
+            barter.id === action.payload.id ? action.payload : barter
+        ),
+        loading: false,
+        success: true,
+    };
+};
 
 const updateBarter = (state = INITIAL_STATE, payload) => {
     return {
+        ...state,
         type: payload.type,
-        barter: {
-            ...payload.payload,
-            uiTypes: getPropertyTypes(payload.payload.types),
-        },
+        barter: payload.payload,
+        barters: state.barters.map((barter) =>
+            barter.id === payload.payload.id ? payload.payload : barter
+        ),
     };
+};
+
+const setBarter = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        type: action.type,
+        barter: action.barter,
+    };
+};
+
+const loadingBarter = (state = INITIAL_STATE) => {
+    return { ...state, loading: true, success: false };
+};
+
+const resetSuccessBarter = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false };
 };
 
 const createBarterInterest = (state = INITIAL_STATE) => {
@@ -72,7 +96,11 @@ const removeBarterInterest = (state = INITIAL_STATE, action) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
+    [SUCCEEDED_BARTER]: succeededBarter,
     [UPDATE_BARTER]: updateBarter,
+    [SET_BARTER]: setBarter,
+    [LOADING_BARTER]: loadingBarter,
+    [RESET_SUCCESS_BARTER]: resetSuccessBarter,
     [CREATE_BARTER_INTEREST]: createBarterInterest,
     [REMOVE_BARTER_INTEREST]: removeBarterInterest,
 });

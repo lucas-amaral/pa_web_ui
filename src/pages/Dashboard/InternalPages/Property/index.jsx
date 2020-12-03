@@ -4,7 +4,6 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Button from '@material-ui/core/Button';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -19,11 +18,12 @@ import {
     RESET_SUCCESS_PROPERTY,
 } from '../../../../constants/ActionTypes';
 import { types } from '../../../../constants/PropertyTypes';
-import ControlledSelect from '../../../../components/ControlledSelect';
+import ControlledSelect from '../../../../components/Select/ControlledSelect';
 import Address from '../Address';
 import GridBox from '../../../../components/GridBox';
-import LoadButton from '../../../../components/LoadButton';
+import LoadButton from '../../../../components/Button/LoadButton';
 import Garages from './Garages';
+import FormButton from '../../../../components/Button/FormButton';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,9 +42,6 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         width: 475,
         justifyContent: 'space-between',
-    },
-    bottomButton: {
-        margin: 5,
     },
 }));
 
@@ -287,35 +284,10 @@ export default function Property() {
                                         loading={loading}
                                     />
                                     {property.id && (
-                                        <div
-                                            style={{
-                                                alignItems: 'center',
-                                                display: 'flex',
-                                            }}
-                                        >
-                                            <div>
-                                                <Button
-                                                    style={{
-                                                        width: '230px',
-                                                        height: '38px',
-                                                    }}
-                                                    className={
-                                                        classes.bottomButton
-                                                    }
-                                                    variant="contained"
-                                                    size="medium"
-                                                    color="primary"
-                                                    onClick={() =>
-                                                        removeProperty(
-                                                            property.id
-                                                        )
-                                                    }
-                                                    fullWidth
-                                                >
-                                                    Excluir
-                                                </Button>
-                                            </div>
-                                        </div>
+                                        <FormButton
+                                            label="Excluir"
+                                            onClick={() => removeProperty(property.id)}
+                                        />
                                     )}
                                 </div>
                             </CardActions>

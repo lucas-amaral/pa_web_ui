@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,7 +18,6 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    Divider,
 } from '@material-ui/core';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -45,6 +44,7 @@ import { OCEAN, GRAY, PURPLE_0 } from '../../constants/Colors';
 
 import { StyledFooterMenuWrapper, StyledFooterExit } from './styles';
 import Negotiation from './InternalPages/Negotiation';
+import Barter from './InternalPages/Barter';
 
 function Copyright() {
     return (
@@ -149,6 +149,7 @@ export default function Dashboard() {
     const classes = useStyles();
     const [open, setOpen] = useState(true);
     const [titleOfAction] = useState('');
+    const contentBody = useSelector((state) => state.main.contentBody);
 
     const data = { username: localStorage.getItem('username') };
 
@@ -168,8 +169,6 @@ export default function Dashboard() {
         dispatch({ type: LOAD_NEIGHBORHOODS });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const [contentBody, setContentBody] = useState('announcement');
 
     const handleDrawerOpen = () => {
         setOpen(true);
@@ -248,8 +247,7 @@ export default function Dashboard() {
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
-                <Divider />
-                <SideMenu action={setContentBody} />
+                <SideMenu />
                 <StyledFooterMenuWrapper>
                     <StyledFooterExit>
                         <Box m="auto">
@@ -274,6 +272,7 @@ export default function Dashboard() {
                     {contentBody === 'user' && <User />}
                     {contentBody === 'sale' && <Sale />}
                     {contentBody === 'negotiations' && <Negotiation />}
+                    {contentBody === 'barter' && <Barter />}
                 </Container>
                 <footer>
                     <Box pt={4}>

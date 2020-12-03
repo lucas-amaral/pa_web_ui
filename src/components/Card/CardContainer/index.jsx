@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { Card, CardContent } from '@material-ui/core/';
 
-import { OCEAN, PURPLE_0, BLACK } from '../../constants/Colors';
+import { OCEAN, PURPLE_0, BLACK } from '../../../constants/Colors';
 
 export const StyledCard = styled(Card)`
     width: 90%;

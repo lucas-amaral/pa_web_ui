@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 
 import login from './login';
+import main from './main';
 import interest from './interest';
 import user from './user';
 import neighborhood from './neighborhood';
@@ -12,9 +13,10 @@ import sale from './sale';
 import negotiation from './negotiation';
 
 export default combineReducers({
+    main,
+    login,
     interest,
     user,
-    login,
     neighborhood,
     street,
     barter,

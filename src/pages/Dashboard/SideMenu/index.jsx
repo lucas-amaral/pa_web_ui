@@ -10,6 +10,8 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ForumIcon from '@material-ui/icons/Forum';
 import { Divider } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import { SET_CONTENT_BODY } from '../../../constants/ActionTypes';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,8 +24,16 @@ const useStyles = makeStyles((theme) => ({
         paddingLeft: theme.spacing(4),
     },
 }));
-function SideMenu({ action }) {
+function SideMenu() {
     const classes = useStyles();
+    const dispatch = useDispatch();
+
+    function setContentBody(contentBody) {
+        dispatch({
+            type: SET_CONTENT_BODY,
+            contentBody,
+        });
+    }
 
     return (
         <List
@@ -31,33 +41,33 @@ function SideMenu({ action }) {
             aria-labelledby="nested-list-subheader"
             className={classes.root}
         >
-            <ListItem button onClick={() => action('user')}>
+            <ListItem button onClick={() => setContentBody('user')}>
                 <ListItemIcon>
                     <AccountBoxIcon />
                 </ListItemIcon>
                 <ListItemText primary="Perfil" />
             </ListItem>
-            <ListItem button onClick={() => action('negotiations')}>
+            <ListItem button onClick={() => setContentBody('negotiations')}>
                 <ListItemIcon>
                     <ForumIcon />
                 </ListItemIcon>
                 <ListItemText primary="Negociações" />
             </ListItem>
             <Divider />
-            <ListItem button onClick={() => action('property')}>
+            <ListItem button onClick={() => setContentBody('property')}>
                 <ListItemIcon>
                     <HomeIcon />
                 </ListItemIcon>
                 <ListItemText primary="Imóvel" />
             </ListItem>
-            <ListItem button onClick={() => action('sale')}>
+            <ListItem button onClick={() => setContentBody('sale')}>
                 <ListItemIcon>
                     <HomeWorkIcon />
                 </ListItemIcon>
                 <ListItemText primary="Anúncio" />
             </ListItem>
             <Divider />
-            <ListItem button onClick={() => action('interest')}>
+            <ListItem button onClick={() => setContentBody('interest')}>
                 <ListItemIcon>
                     <AssignmentIcon />
                 </ListItemIcon>

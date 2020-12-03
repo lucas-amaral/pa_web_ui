@@ -38,7 +38,7 @@ function* editBarter(action) {
         const payload = yield call(update, action.data);
 
         if (payload) {
-            yield put({ type: UPDATE_BARTER, payload });
+            yield put({ type: SUCCEEDED_BARTER, payload });
         }
     } catch (e) {
         // yield put({ type: 'FAILED_BARTER', message: e.message });
@@ -50,7 +50,7 @@ function* removeBarter(action) {
         const payload = yield call(remove, action.barterId);
 
         if (payload) {
-            yield put({ type: UPDATE_BARTER, payload: payload.data });
+            yield put({ type: SUCCEEDED_BARTER, payload: payload.data });
         }
     } catch (e) {
         // yield put({ type: 'FAILED_BARTER', message: e.message });
