@@ -7,6 +7,8 @@ import {
     REMOVE_BARTER,
     SUCCEEDED_BARTER,
     UPDATE_BARTER,
+    REMOVE_FORM_INTEREST_BARTER,
+    ADD_FORM_INTEREST_BARTER,
 } from '../../constants/ActionTypes';
 
 function* loadBarter(action) {
@@ -38,6 +40,8 @@ function* editBarter(action) {
         const payload = yield call(update, action.data);
 
         if (payload) {
+            yield put({ type: REMOVE_FORM_INTEREST_BARTER, barterId: action.barterId });
+            yield put({ type: ADD_FORM_INTEREST_BARTER, payload });
             yield put({ type: SUCCEEDED_BARTER, payload });
         }
     } catch (e) {
@@ -50,6 +54,7 @@ function* removeBarter(action) {
         const payload = yield call(remove, action.barterId);
 
         if (payload) {
+            yield put({ type: REMOVE_FORM_INTEREST_BARTER, barterId: action.barterId });
             yield put({ type: SUCCEEDED_BARTER, payload: payload.data });
         }
     } catch (e) {

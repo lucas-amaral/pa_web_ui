@@ -50,6 +50,7 @@ export default function Barter() {
     const dispatch = useDispatch();
 
     const barter = useSelector((state) => state.barter.barter);
+    const interestId = useSelector((state) => state.interest.interest.id);
     const loading = useSelector((state) => state.barter.loading);
     const success = useSelector((state) => state.barter.success);
 
@@ -68,6 +69,7 @@ export default function Barter() {
             type: EDIT_BARTER,
             data: {
                 ...data,
+                interestId: interestId,
                 value: convertMonetaryToNumber(data.value),
             },
         });
@@ -80,13 +82,13 @@ export default function Barter() {
         });
     }
 
-    // const removeBarter = async (barterId) => {
-    //     await dispatch({
-    //         type: REMOVE_BARTER,
-    //         barterId,
-    //     });
-    //     goBackInterest();
-    // };
+    const removeBarter = async (barterId) => {
+        await dispatch({
+            type: REMOVE_BARTER,
+            barterId,
+        });
+        goBackInterest();
+    };
 
     return (
         <Grid container>
@@ -103,12 +105,6 @@ export default function Barter() {
                             type="hidden"
                             name="id"
                             defaultValue={barter.id}
-                        />
-                        <TextField
-                            inputRef={register()}
-                            type="hidden"
-                            name="interestId"
-                            defaultValue={barter.interestId}
                         />
                     </Grid>
                     <form onSubmit={handleSubmit(onSubmit)}>
@@ -140,10 +136,10 @@ export default function Barter() {
                                         success={success}
                                         loading={loading}
                                     />
-                                    {/*<FormButton*/}
-                                    {/*    label="Excluir"*/}
-                                    {/*    onClick={() => removeBarter(barter.id)}*/}
-                                    {/*/>*/}
+                                    <FormButton
+                                        label="Excluir"
+                                        onClick={() => removeBarter(barter.id)}
+                                    />
                                     <FormButton
                                         label="Voltar"
                                         onClick={() => goBackInterest()}
