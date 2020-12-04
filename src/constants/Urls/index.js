@@ -31,6 +31,9 @@ export default {
         ADD: '/properties',
         EDIT: '/properties',
         DELETE: '/properties/:id',
+        GET_IMAGES: '/properties/:id/images',
+        ADD_IMAGE: '/properties/images',
+        DELETE_IMAGE: '/properties/images/:id',
     },
     SALE: {
         GET: '/sales',

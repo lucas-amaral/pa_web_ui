@@ -53,9 +53,9 @@ function Interest() {
     const classes = useStyles(theme);
     const dispatch = useDispatch();
     const username = useSelector((state) => state.user.user.username);
-    const interest = useSelector((state) => state.interest.interest);
-    const loading = useSelector((state) => state.interest.loading);
-    const success = useSelector((state) => state.interest.success);
+    const { interest, loading, success } = useSelector(
+        (state) => state.interest
+    );
     const neighborhoods = useSelector(
         (state) => state.neighborhood.neighborhoods
     );

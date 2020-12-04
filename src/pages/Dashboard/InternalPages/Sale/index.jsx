@@ -51,9 +51,7 @@ export default function Sale() {
     const dispatch = useDispatch();
 
     const property = useSelector((state) => state.property.property);
-    const sale = useSelector((state) => state.sale.sale);
-    const loading = useSelector((state) => state.sale.loading);
-    const success = useSelector((state) => state.sale.success);
+    const { sale, loading, success } = useSelector((state) => state.sale);
 
     const propertyId = property.id;
 

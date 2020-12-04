@@ -34,3 +34,26 @@ export const remove = (interest) => {
         URLS.PROPERTY.DELETE.replace(':id', interest)
     );
 };
+
+export const loadImages = (propertyId) => {
+    return axiosInstance().get(
+        URLS.PROPERTY.GET_IMAGES.replace(':id', propertyId)
+    );
+};
+
+export const saveImage = async (data) => {
+    return axiosInstance()
+        .post(URLS.PROPERTY.ADD_IMAGE, data)
+        .then((response) => {
+            return response.data;
+        })
+        .catch((err) => {
+            console.log('err', err);
+        });
+};
+
+export const removeImage = (imageId) => {
+    return axiosInstance().delete(
+        URLS.PROPERTY.DELETE_IMAGE.replace(':id', imageId)
+    );
+};

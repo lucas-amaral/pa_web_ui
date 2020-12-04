@@ -51,9 +51,9 @@ export default function Property() {
     const dispatch = useDispatch();
 
     const username = useSelector((state) => state.user.user.username);
-    const property = useSelector((state) => state.property.property);
-    const loading = useSelector((state) => state.property.loading);
-    const success = useSelector((state) => state.property.success);
+    const { property, loading, success } = useSelector(
+        (state) => state.property
+    );
 
     const data = { username };
 
@@ -286,7 +286,9 @@ export default function Property() {
                                     {property.id && (
                                         <FormButton
                                             label="Excluir"
-                                            onClick={() => removeProperty(property.id)}
+                                            onClick={() =>
+                                                removeProperty(property.id)
+                                            }
                                         />
                                     )}
                                 </div>

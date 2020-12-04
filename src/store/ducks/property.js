@@ -4,7 +4,10 @@ import {
     LOADING_PROPERTY,
     REMOVE_PROPERTY_GARAGE,
     RESET_SUCCESS_PROPERTY,
+    SUCCEEDED_ADD_PROPERTY_IMAGE,
     SUCCEEDED_PROPERTY,
+    SUCCEEDED_REMOVE_PROPERTY_IMAGE,
+    UPDATE_PROPERTY_IMAGES,
     UPDATE_PROPERTY,
 } from '../../constants/ActionTypes';
 
@@ -32,6 +35,7 @@ const INITIAL_STATE = {
             street: {},
         },
     },
+    images: [],
     loading: false,
     success: false,
 };
@@ -41,6 +45,7 @@ const INITIAL_STATE = {
 */
 const succeededProperty = (state = INITIAL_STATE, action) => {
     return {
+        ...state,
         type: action.type,
         property: action.payload,
         loading: false,
@@ -50,8 +55,33 @@ const succeededProperty = (state = INITIAL_STATE, action) => {
 
 const updateProperty = (state = INITIAL_STATE, payload) => {
     return {
+        ...state,
         type: payload.type,
         property: payload.payload,
+    };
+};
+
+const updatePropertyImages = (state = INITIAL_STATE, payload) => {
+    return {
+        ...state,
+        type: payload.type,
+        images: payload.payload,
+    };
+};
+
+const succeededAddPropertyImage = (state = INITIAL_STATE, payload) => {
+    return {
+        ...state,
+        type: payload.type,
+        images: payload.payload,
+    };
+};
+
+const succeededRemovePropertyImage = (state = INITIAL_STATE, payload) => {
+    return {
+        ...state,
+        type: payload.type,
+        images: state.images.filter((image) => image.id !== payload.imageId),
     };
 };
 
@@ -97,6 +127,9 @@ const removePropertyGarage = (state = INITIAL_STATE, action) => {
 export default createReducer(INITIAL_STATE, {
     [SUCCEEDED_PROPERTY]: succeededProperty,
     [UPDATE_PROPERTY]: updateProperty,
+    [SUCCEEDED_ADD_PROPERTY_IMAGE]: succeededAddPropertyImage,
+    [SUCCEEDED_REMOVE_PROPERTY_IMAGE]: succeededRemovePropertyImage,
+    [UPDATE_PROPERTY_IMAGES]: updatePropertyImages,
     [LOADING_PROPERTY]: loadingProperty,
     [RESET_SUCCESS_PROPERTY]: resetSuccessProperty,
     [ADD_PROPERTY_GARAGE]: addPropertyGarage,

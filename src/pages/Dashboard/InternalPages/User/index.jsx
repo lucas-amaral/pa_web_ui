@@ -20,9 +20,7 @@ import { getDbType, getType } from '../../../../utils/userUtils';
 function User() {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user.user);
-    const loading = useSelector((state) => state.user.loading);
-    const success = useSelector((state) => state.user.success);
+    const { user, loading, success } = useSelector((state) => state.user);
 
     useEffect(() => {
         dispatch({

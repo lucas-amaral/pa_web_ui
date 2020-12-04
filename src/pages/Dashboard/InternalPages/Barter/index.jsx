@@ -8,10 +8,12 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Container } from '../User/styles';
 import { Title } from '../../../Register/styles';
 import {
+    ADD_BARTER_IMAGE,
     EDIT_BARTER,
     LOAD_BARTER_IMAGES,
     LOADING_BARTER,
     REMOVE_BARTER,
+    REMOVE_BARTER_IMAGE,
     RESET_SUCCESS_BARTER,
     SET_CONTENT_BODY,
 } from '../../../../constants/ActionTypes';
@@ -22,7 +24,7 @@ import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import ControlledSelect from '../../../../components/Select/ControlledSelect';
 import { types } from '../../../../constants/BarterTypes';
 import FormButton from '../../../../components/Button/FormButton';
-import Images from './Images';
+import Images from '../Images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,10 +54,10 @@ export default function Barter() {
     const classes = useStyles();
     const dispatch = useDispatch();
 
-    const barter = useSelector((state) => state.barter.barter);
     const interestId = useSelector((state) => state.interest.interest.id);
-    const loading = useSelector((state) => state.barter.loading);
-    const success = useSelector((state) => state.barter.success);
+    const { barter, images, loading, success } = useSelector(
+        (state) => state.barter
+    );
 
     useEffect(() => {
         dispatch({
@@ -135,7 +137,13 @@ export default function Barter() {
                                     value={barter.value}
                                 />
                             </GridBox>
-                            <Images barterId={barter.id} />
+                            <Images
+                                parentId={barter.id}
+                                parentLabelId="barterId"
+                                images={images}
+                                type_add={ADD_BARTER_IMAGE}
+                                type_remove={REMOVE_BARTER_IMAGE}
+                            />
                             <CardActions style={{ marginTop: '10px' }}>
                                 <div className={classes.bottomBoxButtons}>
                                     <LoadButton

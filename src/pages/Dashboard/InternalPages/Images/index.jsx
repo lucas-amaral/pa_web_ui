@@ -8,14 +8,10 @@ import GridListTileBar from '@material-ui/core/GridListTileBar';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-    ADD_BARTER_IMAGE,
-    REMOVE_BARTER_IMAGE,
-} from '../../../../../constants/ActionTypes';
-import { Title } from '../../../../Register/styles';
-import GridBox from '../../../../../components/GridBox';
+import { Title } from '../../../Register/styles';
+import GridBox from '../../../../components/GridBox';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -37,10 +33,15 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function BarterImages({ barterId }) {
+export default function Images({
+    images,
+    parentId,
+    parentLabelId,
+    type_add,
+    type_remove,
+}) {
     const classes = useStyles();
     const dispatch = useDispatch();
-    const images = useSelector((state) => state.barter.images);
 
     const [openDropZone, setOpenDropZone] = React.useState(false);
     const [newImages, setNewImages] = React.useState([]);
@@ -58,24 +59,24 @@ export default function BarterImages({ barterId }) {
 
     const saveImages = () => {
         dispatch({
-            type: ADD_BARTER_IMAGE,
+            type: type_add,
             data: newImages,
         });
     };
 
     function deleteImage(id) {
         dispatch({
-            type: REMOVE_BARTER_IMAGE,
+            type: type_remove,
             imageId: id,
         });
     }
 
-    const addImages = (files, barterId) => {
+    const addImages = (files) => {
         files.map((file) => {
             return getBase64(file, (imgBase64) => {
                 const newImg = {
                     name: file.name,
-                    barterId,
+                    [parentLabelId]: parentId,
                     contentType: file.type,
                     data: imgBase64,
                 };
@@ -111,10 +112,10 @@ export default function BarterImages({ barterId }) {
                         open={openDropZone}
                         onClose={() => setOpenDropZone(false)}
                         onDrop={(files) => {
-                            addImages(files, barterId);
+                            addImages(files, parentId);
                         }}
                         onDelete={(file) => removeImage(file.name)}
-                        onSave={(files) => {
+                        onSave={() => {
                             saveImages();
                             setOpenDropZone(false);
                         }}
@@ -123,46 +124,52 @@ export default function BarterImages({ barterId }) {
                     />
                 </div>
             </GridBox>
-            <Grid container style={{ marginTop: '20px' }}>
-                <Grid item md={12}>
-                    <Box pl={1} pb={2}>
-                        {images && (
-                            <Title style={{ fontSize: '15px' }}>Fotos</Title>
-                        )}
-                    </Box>
-                </Grid>
-            </Grid>
-            <GridBox xs={12}>
-                <div className={classes.root}>
-                    <GridList
-                        className={classes.gridList}
-                        cols={2.5}
-                        cellHeight={300}
-                    >
-                        {images.map((img) => (
-                            <GridListTile key={img.id}>
-                                <img src={img.data} alt={img.id} />
-                                <GridListTileBar
-                                    classes={{
-                                        root: classes.titleBar,
-                                        title: classes.title,
-                                    }}
-                                    actionIcon={
-                                        <IconButton>
-                                            <DeleteIcon
-                                                className={classes.title}
-                                                onClick={() =>
-                                                    deleteImage(img.id)
-                                                }
-                                            />
-                                        </IconButton>
-                                    }
-                                />
-                            </GridListTile>
-                        ))}
-                    </GridList>
-                </div>
-            </GridBox>
+            {images.length > 0 && (
+                <>
+                    <Grid container style={{ marginTop: '20px' }}>
+                        <Grid item md={12}>
+                            <Box pl={1} pb={2}>
+                                <Title style={{ fontSize: '15px' }}>
+                                    Fotos
+                                </Title>
+                            </Box>
+                        </Grid>
+                    </Grid>
+                    <GridBox xs={12}>
+                        <div className={classes.root}>
+                            <GridList
+                                className={classes.gridList}
+                                cols={2.5}
+                                cellHeight={300}
+                            >
+                                {images.map((img) => (
+                                    <GridListTile key={img.id}>
+                                        <img src={img.data} alt={img.id} />
+                                        <GridListTileBar
+                                            classes={{
+                                                root: classes.titleBar,
+                                                title: classes.title,
+                                            }}
+                                            actionIcon={
+                                                <IconButton>
+                                                    <DeleteIcon
+                                                        className={
+                                                            classes.title
+                                                        }
+                                                        onClick={() =>
+                                                            deleteImage(img.id)
+                                                        }
+                                                    />
+                                                </IconButton>
+                                            }
+                                        />
+                                    </GridListTile>
+                                ))}
+                            </GridList>
+                        </div>
+                    </GridBox>
+                </>
+            )}
         </>
     );
 }
