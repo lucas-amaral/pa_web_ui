@@ -2,12 +2,12 @@ import React from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,19 +51,21 @@ export default function ImageStepper({images, deleteImage}) {
                 alt={images[activeStep].id}
             />
             <Paper square elevation={0} className={classes.header}>
-                <IconButton
-                    aria-label="Deletar imagem"
-                    color="inherit"
-                    key="delete-image"
-                    onClick={() => {
-                        maxSteps = maxSteps - 1;
-                        setActiveStep(0);
-                        deleteImage(images[activeStep].id);
-                    }}
-                    data-tip="Deletar imagem"
-                >
-                    <DeleteIcon />
-                </IconButton>
+                <Tooltip title="Remover imagem">
+                    <IconButton
+                        aria-label="Remove imagem"
+                        color="inherit"
+                        key="delete-image"
+                        onClick={() => {
+                            maxSteps = maxSteps - 1;
+                            setActiveStep(0);
+                            deleteImage(images[activeStep].id);
+                        }}
+                        data-tip="Remover imagem"
+                    >
+                        <DeleteIcon />
+                    </IconButton>
+                </Tooltip>
             </Paper>
             <MobileStepper
                 steps={maxSteps}

@@ -11,6 +11,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import TableHead from '@material-ui/core/TableHead';
+import Tooltip from '@material-ui/core/Tooltip';
 import NewGarage from './newGarage';
 import {
     CREATE_GARAGE,
@@ -81,20 +82,22 @@ export default function Garages({ garages = [] }) {
                                         whiteSpace: 'nowrap',
                                     }}
                                 >
-                                    <IconButton
-                                        aria-label="Remover garagem"
-                                        color="inherit"
-                                        key="delete-garage"
-                                        data-tip="Remover garagem"
-                                        onClick={() =>
-                                            removeGarage(
-                                                garage.id,
-                                                garage.newId
-                                            )
-                                        }
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
+                                    <Tooltip title="Remover garagem">
+                                        <IconButton
+                                            aria-label="Remover garagem"
+                                            color="inherit"
+                                            key="delete-garage"
+                                            data-tip="Remover garagem"
+                                            onClick={() =>
+                                                removeGarage(
+                                                    garage.id,
+                                                    garage.newId
+                                                )
+                                            }
+                                        >
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         ))}

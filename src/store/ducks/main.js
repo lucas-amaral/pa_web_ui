@@ -12,7 +12,7 @@ export const { Types } = createActions({
     Estado inicial
 */
 const INITIAL_STATE = {
-    contentBody: 'negotiations',
+    contentBody: '',
 };
 
 /*

@@ -7,8 +7,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { SKYBLUE } from '../../../constants/Colors';
 import { formatToMonetary } from '../../../utils/numbersUtils';
+import Carousel from '../../Images/Carousel';
+import NoDataImg from '../../../assets/no_data.svg';
 
 const useStyles = makeStyles({
     root: {
@@ -16,8 +17,16 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SaleCard({ sale }) {
+export default function SaleCard({ sale, images }) {
     const classes = useStyles();
+
+    if (!images) {
+        images = [{
+            id: 0,
+            data: NoDataImg,
+            contentType: "image/svg",
+        }]
+    }
 
     function extraItems() {
         let extraItems = '';
@@ -54,19 +63,14 @@ export default function SaleCard({ sale }) {
     return (
         <Card className={classes.root}>
             <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="240"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    // title="Contemplative Reptile"
-                />
+                <CardMedia height="240">
+                    <Carousel images={images} />
+                </CardMedia>
                 <CardContent>
                     <Typography
                         gutterBottom
                         variant="h5"
                         component="h2"
-                        style={{ color: SKYBLUE }}
                     >
                         {sale.property.description}
                     </Typography>

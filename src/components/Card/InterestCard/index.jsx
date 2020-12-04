@@ -9,6 +9,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { formatToMonetary } from '../../../utils/numbersUtils';
 import { getBarterType } from '../../../utils/barterUtils';
+import Carousel from '../../Images/Carousel';
+import NoDataImg from '../../../assets/no_data.svg';
 
 const useStyles = makeStyles({
     root: {
@@ -16,8 +18,16 @@ const useStyles = makeStyles({
     },
 });
 
-export default function InterestCard({ interest }) {
+export default function InterestCard({ interest, images }) {
     const classes = useStyles();
+
+    if (!images) {
+        images = [{
+            id: 0,
+            data: NoDataImg,
+            contentType: "image/svg",
+        }]
+    }
 
     function financingInfo() {
         if (interest.financing) {
@@ -30,13 +40,9 @@ export default function InterestCard({ interest }) {
     return (
         <Card className={classes.root}>
             <CardActionArea>
-                <CardMedia
-                    component="img"
-                    alt="Contemplative Reptile"
-                    height="240"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    title="Contemplative Reptile"
-                />
+                <CardMedia height="240">
+                    <Carousel images={images} />
+                </CardMedia>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
                         Valor: {formatToMonetary(interest.value)}

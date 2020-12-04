@@ -7,12 +7,12 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableRow from '@material-ui/core/TableRow';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
-import PhotoLibraryIcon from '@material-ui/icons/PhotoLibrary';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 import { useDispatch, useSelector } from 'react-redux';
 import IconButton from '@material-ui/core/IconButton';
 import { Box, Grid } from '@material-ui/core';
 import TableHead from '@material-ui/core/TableHead';
+import Tooltip from '@material-ui/core/Tooltip';
 import {
     REMOVE_INTEREST_BARTER,
     CREATE_BARTER_INTEREST,
@@ -102,31 +102,39 @@ export default function Barters() {
                                         whiteSpace: 'nowrap',
                                     }}
                                 >
-                                    <IconButton
-                                        aria-label="Ver fotos"
-                                        color="inherit"
-                                        data-tip="Ver fotos"
-                                    >
-                                        <PhotoLibraryIcon />
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Editar permuta"
-                                        color="inherit"
-                                        key="edit-barter"
-                                        data-tip="Editar permuta"
-                                        onClick={() => openBarter(barter)}
-                                    >
-                                        <EditIcon />
-                                    </IconButton>
-                                    <IconButton
-                                        aria-label="Remover permuta"
-                                        color="inherit"
-                                        key="delete-barter"
-                                        data-tip="Remover permuta"
-                                        onClick={() => removeBarter(barter.id)}
-                                    >
-                                        <DeleteIcon />
-                                    </IconButton>
+                                    {/* <Tooltip title="Visualizar fotos"> */}
+                                    {/*    <IconButton */}
+                                    {/*        aria-label="Ver fotos" */}
+                                    {/*        color="inherit" */}
+                                    {/*        data-tip="Ver fotos" */}
+                                    {/*    > */}
+                                    {/*        <PhotoLibraryIcon /> */}
+                                    {/*    </IconButton> */}
+                                    {/* </Tooltip> */}
+                                    <Tooltip title="Editar permuta">
+                                        <IconButton
+                                            aria-label="Editar permuta"
+                                            color="inherit"
+                                            key="edit-barter"
+                                            data-tip="Editar permuta"
+                                            onClick={() => openBarter(barter)}
+                                        >
+                                            <EditIcon />
+                                        </IconButton>
+                                    </Tooltip>
+                                    <Tooltip title="Remover permuta">
+                                        <IconButton
+                                            aria-label="Remover permuta"
+                                            color="inherit"
+                                            key="delete-barter"
+                                            data-tip="Remover permuta"
+                                            onClick={() =>
+                                                removeBarter(barter.id)
+                                            }
+                                        >
+                                            <DeleteIcon />
+                                        </IconButton>
+                                    </Tooltip>
                                 </TableCell>
                             </TableRow>
                         ))}

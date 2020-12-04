@@ -4,6 +4,7 @@ import { DropzoneDialog } from 'material-ui-dropzone';
 import { Box, Grid } from '@material-ui/core';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import Tooltip from '@material-ui/core/Tooltip';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
 import ImageStepper from '../../../../components/Images/ImageStepper';
@@ -81,13 +82,15 @@ export default function Images({
             )}
             <GridBox xs={7}>
                 <div>
-                    <Fab
-                        aria-label="Adicionar Foto"
-                        color="primary"
-                        onClick={() => setOpenDropZone(true)}
-                    >
-                        <AddPhotoAlternateIcon />
-                    </Fab>
+                    <Tooltip title="Adicionar imagem">
+                        <Fab
+                            aria-label="Adicionar Foto"
+                            color="primary"
+                            onClick={() => setOpenDropZone(true)}
+                        >
+                            <AddPhotoAlternateIcon />
+                        </Fab>
+                    </Tooltip>
                     <DropzoneDialog
                         dropzoneText="Arraste e solte uma imagem aqui ou clique"
                         showAlerts={false}
