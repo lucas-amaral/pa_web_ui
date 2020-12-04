@@ -16,7 +16,8 @@ import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
 import Barters from './Barters';
 import {
-    EDIT_INTEREST, LOAD_INTEREST,
+    EDIT_INTEREST,
+    LOAD_INTEREST,
     LOADING_INTEREST,
     REMOVE_INTEREST,
     RESET_SUCCESS_INTEREST,
@@ -51,6 +52,7 @@ function Interest() {
     const theme = useTheme();
     const classes = useStyles(theme);
     const dispatch = useDispatch();
+    const username = useSelector((state) => state.user.user.username);
     const interest = useSelector((state) => state.interest.interest);
     const loading = useSelector((state) => state.interest.loading);
     const success = useSelector((state) => state.interest.success);
@@ -62,8 +64,6 @@ function Interest() {
     );
 
     useEffect(() => {
-        let username = interest.user.username;
-
         dispatch({
             type: RESET_SUCCESS_INTEREST,
         });
@@ -327,7 +327,9 @@ function Interest() {
                                         />
                                         <FormButton
                                             label="Excluir"
-                                            onClick={() => removeInterest(interest.id)}
+                                            onClick={() =>
+                                                removeInterest(interest.id)
+                                            }
                                         />
                                     </div>
                                 </CardActions>

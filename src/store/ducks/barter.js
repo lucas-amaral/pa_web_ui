@@ -6,8 +6,11 @@ import {
     REMOVE_BARTER_INTEREST,
     RESET_SUCCESS_BARTER,
     SET_BARTER,
+    SUCCEEDED_ADD_BARTER_IMAGE,
     SUCCEEDED_BARTER,
+    SUCCEEDED_REMOVE_BARTER_IMAGE,
     UPDATE_BARTER,
+    UPDATE_BARTER_IMAGES,
 } from '../../constants/ActionTypes';
 
 /*
@@ -29,6 +32,7 @@ export const { Types } = createActions({
 const INITIAL_STATE = {
     barters: [],
     barter: {},
+    images: [],
 };
 
 /*
@@ -54,6 +58,30 @@ const updateBarter = (state = INITIAL_STATE, payload) => {
         barters: state.barters.map((barter) =>
             barter.id === payload.payload.id ? payload.payload : barter
         ),
+    };
+};
+
+const updateBarterImages = (state = INITIAL_STATE, payload) => {
+    return {
+        ...state,
+        type: payload.type,
+        images: payload.payload,
+    };
+};
+
+const succeededAddBarterImage = (state = INITIAL_STATE, payload) => {
+    return {
+        ...state,
+        type: payload.type,
+        images: payload.payload,
+    };
+};
+
+const succeededRemoveBarterImage = (state = INITIAL_STATE, payload) => {
+    return {
+        ...state,
+        type: payload.type,
+        images: state.images.filter((image) => image.id !== payload.imageId),
     };
 };
 
@@ -98,6 +126,9 @@ const removeBarterInterest = (state = INITIAL_STATE, action) => {
 export default createReducer(INITIAL_STATE, {
     [SUCCEEDED_BARTER]: succeededBarter,
     [UPDATE_BARTER]: updateBarter,
+    [SUCCEEDED_ADD_BARTER_IMAGE]: succeededAddBarterImage,
+    [SUCCEEDED_REMOVE_BARTER_IMAGE]: succeededRemoveBarterImage,
+    [UPDATE_BARTER_IMAGES]: updateBarterImages,
     [SET_BARTER]: setBarter,
     [LOADING_BARTER]: loadingBarter,
     [RESET_SUCCESS_BARTER]: resetSuccessBarter,

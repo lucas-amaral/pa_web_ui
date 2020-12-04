@@ -9,9 +9,11 @@ import { Container } from '../User/styles';
 import { Title } from '../../../Register/styles';
 import {
     EDIT_BARTER,
+    LOAD_BARTER_IMAGES,
     LOADING_BARTER,
     REMOVE_BARTER,
-    RESET_SUCCESS_BARTER, SET_CONTENT_BODY,
+    RESET_SUCCESS_BARTER,
+    SET_CONTENT_BODY,
 } from '../../../../constants/ActionTypes';
 import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
@@ -20,6 +22,7 @@ import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import ControlledSelect from '../../../../components/Select/ControlledSelect';
 import { types } from '../../../../constants/BarterTypes';
 import FormButton from '../../../../components/Button/FormButton';
+import Images from './Images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -58,6 +61,10 @@ export default function Barter() {
         dispatch({
             type: RESET_SUCCESS_BARTER,
         });
+        dispatch({
+            type: LOAD_BARTER_IMAGES,
+            barterId: barter.id,
+        });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
@@ -69,7 +76,7 @@ export default function Barter() {
             type: EDIT_BARTER,
             data: {
                 ...data,
-                interestId: interestId,
+                interestId,
                 value: convertMonetaryToNumber(data.value),
             },
         });
@@ -120,7 +127,7 @@ export default function Barter() {
                                     control={control}
                                 />
                             </GridBox>
-                            <GridBox xs={8}>
+                            <GridBox xs={2}>
                                 <MonetaryInput
                                     id="value"
                                     label="Valor"
@@ -128,6 +135,7 @@ export default function Barter() {
                                     value={barter.value}
                                 />
                             </GridBox>
+                            <Images barterId={barter.id} />
                             <CardActions style={{ marginTop: '10px' }}>
                                 <div className={classes.bottomBoxButtons}>
                                     <LoadButton

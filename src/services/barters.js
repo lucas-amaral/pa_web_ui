@@ -32,3 +32,24 @@ export const update = (data) => {
 export const remove = (barterId) => {
     return axiosInstance().delete(URLS.BARTER.DELETE.replace(':id', barterId));
 };
+
+export const loadImages = (barterId) => {
+    return axiosInstance().get(URLS.BARTER.GET_IMAGES.replace(':id', barterId));
+};
+
+export const saveImage = async (data) => {
+    return axiosInstance()
+        .post(URLS.BARTER.ADD_IMAGE, data)
+        .then((response) => {
+            return response.data;
+        })
+        .catch((err) => {
+            console.log('err', err);
+        });
+};
+
+export const removeImage = (imageId) => {
+    return axiosInstance().delete(
+        URLS.BARTER.DELETE_IMAGE.replace(':id', imageId)
+    );
+};
