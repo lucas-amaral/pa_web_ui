@@ -29,6 +29,10 @@ function* loadProperty(action) {
 
         if (payload) {
             // Fix it and use list of properties
+            yield put({
+                type: LOAD_PROPERTY_IMAGES,
+                propertyId: payload.data[0].id,
+            });
             yield put({ type: UPDATE_PROPERTY, payload: payload.data[0] });
         }
     } catch (e) {
@@ -74,7 +78,7 @@ function* removeProperty(action) {
 
 function* loadPropertyImages(action) {
     try {
-        const payload = yield call(loadImages, action.barterId);
+        const payload = yield call(loadImages, action.propertyId);
 
         if (payload) {
             yield put({ type: UPDATE_PROPERTY_IMAGES, payload: payload.data });

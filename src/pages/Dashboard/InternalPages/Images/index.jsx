@@ -2,36 +2,11 @@ import Fab from '@material-ui/core/Fab';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { DropzoneDialog } from 'material-ui-dropzone';
 import { Box, Grid } from '@material-ui/core';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { makeStyles } from '@material-ui/core/styles';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        '& > *': {
-            margin: theme.spacing(1),
-            width: '25ch',
-        },
-    },
-    gridList: {
-        flexWrap: 'nowrap',
-        // Promote the list into his own layer on Chrome. This cost memory but helps keeping high FPS.
-        transform: 'translateZ(0)',
-        width: '100%',
-        height: 300,
-    },
-    titleBar: {
-        background:
-            'linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
-    },
-}));
+import ImageStepper from '../../../../components/Images/ImageStepper';
 
 export default function Images({
     images,
@@ -40,7 +15,6 @@ export default function Images({
     type_add,
     type_remove,
 }) {
-    const classes = useStyles();
     const dispatch = useDispatch();
 
     const [openDropZone, setOpenDropZone] = React.useState(false);
@@ -49,10 +23,10 @@ export default function Images({
     function getBase64(file, cb) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
-        reader.onload = function () {
+        reader.onload = () => {
             cb(reader.result);
         };
-        reader.onerror = function (error) {
+        reader.onerror = (error) => {
             console.log('Error: ', error);
         };
     }
@@ -93,7 +67,19 @@ export default function Images({
 
     return (
         <>
-            <GridBox xs={5}>
+            <Grid container style={{ marginTop: '20px' }}>
+                <Grid item md={12}>
+                    <Box pl={1} pb={2}>
+                        <Title style={{ fontSize: '15px' }}>Fotos</Title>
+                    </Box>
+                </Grid>
+            </Grid>
+            {images.length > 0 && (
+                <GridBox>
+                    <ImageStepper images={images} deleteImage={deleteImage} />
+                </GridBox>
+            )}
+            <GridBox xs={7}>
                 <div>
                     <Fab
                         aria-label="Adicionar Foto"
@@ -124,52 +110,6 @@ export default function Images({
                     />
                 </div>
             </GridBox>
-            {images.length > 0 && (
-                <>
-                    <Grid container style={{ marginTop: '20px' }}>
-                        <Grid item md={12}>
-                            <Box pl={1} pb={2}>
-                                <Title style={{ fontSize: '15px' }}>
-                                    Fotos
-                                </Title>
-                            </Box>
-                        </Grid>
-                    </Grid>
-                    <GridBox xs={12}>
-                        <div className={classes.root}>
-                            <GridList
-                                className={classes.gridList}
-                                cols={2.5}
-                                cellHeight={300}
-                            >
-                                {images.map((img) => (
-                                    <GridListTile key={img.id}>
-                                        <img src={img.data} alt={img.id} />
-                                        <GridListTileBar
-                                            classes={{
-                                                root: classes.titleBar,
-                                                title: classes.title,
-                                            }}
-                                            actionIcon={
-                                                <IconButton>
-                                                    <DeleteIcon
-                                                        className={
-                                                            classes.title
-                                                        }
-                                                        onClick={() =>
-                                                            deleteImage(img.id)
-                                                        }
-                                                    />
-                                                </IconButton>
-                                            }
-                                        />
-                                    </GridListTile>
-                                ))}
-                            </GridList>
-                        </div>
-                    </GridBox>
-                </>
-            )}
         </>
     );
 }

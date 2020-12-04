@@ -70,10 +70,11 @@ const updatePropertyImages = (state = INITIAL_STATE, payload) => {
 };
 
 const succeededAddPropertyImage = (state = INITIAL_STATE, payload) => {
+    payload.payload.map((addImg) => state.images.push(addImg))
+
     return {
         ...state,
         type: payload.type,
-        images: payload.payload,
     };
 };
 

@@ -11,10 +11,12 @@ import { Container } from '../User/styles';
 import { Title } from '../../../Register/styles';
 import {
     ADD_PROPERTY,
+    ADD_PROPERTY_IMAGE,
     EDIT_PROPERTY,
     LOAD_PROPERTY,
     LOADING_PROPERTY,
     REMOVE_PROPERTY,
+    REMOVE_PROPERTY_IMAGE,
     RESET_SUCCESS_PROPERTY,
 } from '../../../../constants/ActionTypes';
 import { types } from '../../../../constants/PropertyTypes';
@@ -24,6 +26,7 @@ import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
 import Garages from './Garages';
 import FormButton from '../../../../components/Button/FormButton';
+import Images from '../Images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,7 +54,7 @@ export default function Property() {
     const dispatch = useDispatch();
 
     const username = useSelector((state) => state.user.user.username);
-    const { property, loading, success } = useSelector(
+    const { property, images, loading, success } = useSelector(
         (state) => state.property
     );
 
@@ -273,6 +276,13 @@ export default function Property() {
                             <Address
                                 address={property.address}
                                 register={register()}
+                            />
+                            <Images
+                                parentId={property.id}
+                                parentLabelId="propertyId"
+                                images={images}
+                                type_add={ADD_PROPERTY_IMAGE}
+                                type_remove={REMOVE_PROPERTY_IMAGE}
                             />
                             <Garages garages={property.garages} />
                             <CardActions style={{ marginTop: '10px' }}>
