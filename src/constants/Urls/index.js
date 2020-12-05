@@ -42,8 +42,8 @@ export default {
         DELETE: '/sales/:id',
     },
     NEGOTIATION: {
-        GET_SALE: '/negotiations/sales/:saleId',
-        GET_INTEREST: '/negotiations/interest/:interestId',
+        GET_SALE: '/negotiations/sales',
+        GET_INTEREST: '/negotiations/interests',
         APPROVED_BY_SELLER: '/negotiations/:id/approved-by-seller',
         APPROVED_BY_BUYER: '/negotiations/:id/approved-by-buyer',
         REPROVED_BY_SELLER: '/negotiations/:id/reproved-by-seller',

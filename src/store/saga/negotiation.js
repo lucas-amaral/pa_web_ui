@@ -23,7 +23,7 @@ import {
 
 function* loadNegotiationBySale(action) {
     try {
-        const payload = yield call(loadBySale, action.data.saleId);
+        const payload = yield call(loadBySale, action.data.username);
 
         if (payload) {
             yield put({
@@ -38,7 +38,7 @@ function* loadNegotiationBySale(action) {
 
 function* loadNegotiationByInterest(action) {
     try {
-        const payload = yield call(loadByInterest, action.data.interestId);
+        const payload = yield call(loadByInterest, action.data.username);
 
         if (payload) {
             yield put({

@@ -17,15 +17,17 @@ const useStyles = makeStyles({
     },
 });
 
-export default function SaleCard({ sale, images }) {
+export default function SaleCard({ sale }) {
     const classes = useStyles();
 
-    if (!images) {
-        images = [{
-            id: 0,
-            data: NoDataImg,
-            contentType: "image/svg",
-        }]
+    if (!sale.images) {
+        sale.images = [
+            {
+                id: 0,
+                data: NoDataImg,
+                contentType: 'image/svg',
+            },
+        ];
     }
 
     function extraItems() {
@@ -64,14 +66,10 @@ export default function SaleCard({ sale, images }) {
         <Card className={classes.root}>
             <CardActionArea>
                 <CardMedia height="240">
-                    <Carousel images={images} />
+                    <Carousel images={sale.images} />
                 </CardMedia>
                 <CardContent>
-                    <Typography
-                        gutterBottom
-                        variant="h5"
-                        component="h2"
-                    >
+                    <Typography gutterBottom variant="h5" component="h2">
                         {sale.property.description}
                     </Typography>
                     <Typography

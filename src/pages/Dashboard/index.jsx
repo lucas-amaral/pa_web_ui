@@ -33,6 +33,8 @@ import SideMenu from './SideMenu';
 
 import {
     LOAD_INTEREST,
+    LOAD_NEGOTIATION_BY_INTEREST,
+    LOAD_NEGOTIATION_BY_SALE,
     LOAD_NEIGHBORHOODS,
     LOAD_PROPERTY,
     LOAD_USER,
@@ -164,6 +166,14 @@ export default function Dashboard() {
             type: LOAD_PROPERTY,
             data,
         });
+        dispatch({
+            type: LOAD_NEGOTIATION_BY_INTEREST,
+            data,
+        })
+        dispatch({
+            type: LOAD_NEGOTIATION_BY_SALE,
+            data,
+        })
         dispatch({ type: LOAD_NEIGHBORHOODS });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

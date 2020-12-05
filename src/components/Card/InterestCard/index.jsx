@@ -18,15 +18,17 @@ const useStyles = makeStyles({
     },
 });
 
-export default function InterestCard({ interest, images }) {
+export default function InterestCard({ interest }) {
     const classes = useStyles();
 
-    if (!images) {
-        images = [{
-            id: 0,
-            data: NoDataImg,
-            contentType: "image/svg",
-        }]
+    if (!interest.images) {
+        interest.images = [
+            {
+                id: 0,
+                data: NoDataImg,
+                contentType: 'image/svg',
+            },
+        ];
     }
 
     function financingInfo() {
@@ -35,13 +37,14 @@ export default function InterestCard({ interest, images }) {
                 interest.financingValue
             )}`;
         }
+        return null;
     }
 
     return (
         <Card className={classes.root}>
             <CardActionArea>
                 <CardMedia height="240">
-                    <Carousel images={images} />
+                    <Carousel images={interest.images} />
                 </CardMedia>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">

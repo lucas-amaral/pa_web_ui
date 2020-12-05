@@ -1,16 +1,16 @@
 import URLS from '../constants/Urls';
 import axiosInstance from './axiosInstance';
 
-export const loadBySale = (saleId) => {
-    return axiosInstance().get(
-        URLS.NEGOTIATION.GET_SALE.replace(':saleId', saleId)
-    );
+export const loadBySale = (username) => {
+    return axiosInstance().get(URLS.NEGOTIATION.GET_SALE, {
+        params: { username },
+    });
 };
 
-export const loadByInterest = (interestId) => {
-    return axiosInstance().get(
-        URLS.NEGOTIATION.GET_INTEREST.replace(':interestId', interestId)
-    );
+export const loadByInterest = (username) => {
+    return axiosInstance().get(URLS.NEGOTIATION.GET_INTEREST, {
+        params: { username },
+    });
 };
 
 export const putApprovedBySeller = async (id) => {
