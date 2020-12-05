@@ -23,9 +23,8 @@ import ListItem from '@material-ui/core/ListItem';
 
 import { useHistory } from 'react-router-dom';
 import Interest from './InternalPages/Interest';
-import Property from './InternalPages/Property';
+import Property from './InternalPages/Property/propertyTabs';
 import User from './InternalPages/User';
-import Sale from './InternalPages/Sale';
 
 import Logo from '../../assets/marca.png';
 
@@ -169,11 +168,11 @@ export default function Dashboard() {
         dispatch({
             type: LOAD_NEGOTIATION_BY_INTEREST,
             data,
-        })
+        });
         dispatch({
             type: LOAD_NEGOTIATION_BY_SALE,
             data,
-        })
+        });
         dispatch({ type: LOAD_NEIGHBORHOODS });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -278,7 +277,6 @@ export default function Dashboard() {
                     {contentBody === 'interest' && <Interest />}
                     {contentBody === 'property' && <Property />}
                     {contentBody === 'user' && <User />}
-                    {contentBody === 'sale' && <Sale />}
                     {contentBody === 'negotiations' && <Negotiation />}
                     {contentBody === 'barter' && <Barter />}
                 </Container>

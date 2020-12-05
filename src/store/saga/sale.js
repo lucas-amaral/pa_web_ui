@@ -1,13 +1,27 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import { create, load, remove, update } from '../../services/sales';
+import { create, load, loadByUser, remove, update } from '../../services/sales';
 import {
     EDIT_SALE,
     SUCCEEDED_SALE,
+    LOAD_SALES,
     LOAD_SALE,
     REMOVE_SALE,
     ADD_SALE,
     UPDATE_SALE,
+    UPDATE_SALES,
 } from '../../constants/ActionTypes';
+
+function* loadSales(action) {
+    try {
+        const payload = yield call(loadByUser, action.data.username);
+
+        if (payload) {
+            yield put({ type: UPDATE_SALES, payload: payload.data });
+        }
+    } catch (e) {
+        // yield put({ type: 'SALE_FAILED', message: e.message });
+    }
+}
 
 function* loadSale(action) {
     try {
@@ -58,8 +72,9 @@ function* removeSale(action) {
 }
 
 function* mySaga() {
-    yield takeLatest(ADD_SALE, addSale);
+    yield takeLatest(LOAD_SALES, loadSales);
     yield takeLatest(LOAD_SALE, loadSale);
+    yield takeLatest(ADD_SALE, addSale);
     yield takeLatest(EDIT_SALE, editSale);
     yield takeLatest(REMOVE_SALE, removeSale);
 }

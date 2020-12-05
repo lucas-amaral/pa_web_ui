@@ -7,16 +7,13 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
 import InputAdornment from '@material-ui/core/InputAdornment';
-import { Container } from '../User/styles';
 import { Title } from '../../../Register/styles';
 import {
     ADD_PROPERTY,
-    ADD_PROPERTY_IMAGE,
     EDIT_PROPERTY,
     LOAD_PROPERTY,
     LOADING_PROPERTY,
     REMOVE_PROPERTY,
-    REMOVE_PROPERTY_IMAGE,
     RESET_SUCCESS_PROPERTY,
 } from '../../../../constants/ActionTypes';
 import { types } from '../../../../constants/PropertyTypes';
@@ -26,7 +23,6 @@ import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
 import Garages from './Garages';
 import FormButton from '../../../../components/Button/FormButton';
-import Images from '../Images';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,13 +44,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Property() {
+export default function Index() {
     const { register, handleSubmit, control } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
 
     const username = useSelector((state) => state.user.user.username);
-    const { property, images, loading, success } = useSelector(
+    const { property, loading, success } = useSelector(
         (state) => state.property
     );
 
@@ -96,217 +92,199 @@ export default function Property() {
     };
 
     return (
-        <Grid container>
-            <Grid item md={12}>
-                <Container>
-                    <Grid container>
-                        <Grid item md={12}>
-                            <Box pl={1} pb={2}>
-                                <Title>Imóvel</Title>
-                            </Box>
-                        </Grid>
-                        <TextField
-                            inputRef={register()}
-                            type="hidden"
-                            name="id"
-                            defaultValue={property.id}
-                        />
-                        <TextField
-                            inputRef={register()}
-                            type="hidden"
-                            name="username"
-                            defaultValue={
-                                property.user && property.username
-                                    ? property.user.username
-                                    : username
-                            }
-                        />
-                    </Grid>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Grid container>
-                            <GridBox xs={11}>
-                                <TextField
-                                    fullWidth
-                                    name="description"
-                                    defaultValue={property.description}
-                                    inputRef={register()}
-                                    label="Descrição"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={2}>
-                                <ControlledSelect
-                                    id="type"
-                                    label="Tipo do imóvel"
-                                    defaultValue={
-                                        property.type ? property.type : 'HOUSE'
-                                    }
-                                    values={types}
-                                    control={control}
-                                />
-                            </GridBox>
-                            <GridBox xs={2}>
-                                <TextField
-                                    fullWidth
-                                    name="area"
-                                    defaultValue={property.area}
-                                    inputRef={register()}
-                                    label="Area"
-                                    variant="outlined"
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="start">
-                                                m²
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </GridBox>
-                            <GridBox xs={3}>
-                                <TextField
-                                    fullWidth
-                                    name="registration"
-                                    defaultValue={property.registration}
-                                    inputRef={register()}
-                                    label="Registro"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={3}>
-                                <TextField
-                                    fullWidth
-                                    name="iptu"
-                                    defaultValue={property.iptu}
-                                    inputRef={register()}
-                                    label="Número do IPTU"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={2}>
-                                <TextField
-                                    id="dorms"
-                                    name="dorms"
-                                    defaultValue={property.dorms}
-                                    inputRef={register()}
-                                    type="number"
-                                    label="Nº de dormitórios"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={2}>
-                                <TextField
-                                    id="bathrooms"
-                                    name="bathrooms"
-                                    defaultValue={property.bathrooms}
-                                    inputRef={register()}
-                                    type="number"
-                                    label="Nº de banheiros"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={7}>
-                                <TextField
-                                    id="suites"
-                                    name="suites"
-                                    defaultValue={property.suites}
-                                    inputRef={register()}
-                                    type="number"
-                                    label="Nº de suites"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            id="balcony"
-                                            name="balcony"
-                                            color="primary"
-                                            defaultChecked={property.balcony}
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Com sacada"
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            id="elevator"
-                                            name="elevator"
-                                            color="primary"
-                                            defaultChecked={property.elevator}
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Com elevador"
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            id="barbecueGrill"
-                                            name="barbecueGrill"
-                                            color="primary"
-                                            defaultChecked={
-                                                property.barbecueGrill
-                                            }
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Com churrasqueira"
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            id="pool"
-                                            name="pool"
-                                            color="primary"
-                                            defaultChecked={property.pool}
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Com piscina"
-                                />
-                            </GridBox>
-                            <Address
-                                address={property.address}
-                                register={register()}
-                            />
-                            <Images
-                                parentId={property.id}
-                                parentLabelId="propertyId"
-                                images={images}
-                                type_add={ADD_PROPERTY_IMAGE}
-                                type_remove={REMOVE_PROPERTY_IMAGE}
-                            />
-                            <Garages garages={property.garages} />
-                            <CardActions style={{ marginTop: '10px' }}>
-                                <div className={classes.bottomBoxButtons}>
-                                    <LoadButton
-                                        label="Salvar"
-                                        type="submit"
-                                        success={success}
-                                        loading={loading}
-                                    />
-                                    {property.id && (
-                                        <FormButton
-                                            label="Excluir"
-                                            onClick={() =>
-                                                removeProperty(property.id)
-                                            }
-                                        />
-                                    )}
-                                </div>
-                            </CardActions>
-                        </Grid>
-                    </form>
-                </Container>
+        <>
+            <Grid container>
+                <Grid item md={12}>
+                    <Box pl={1} pb={2}>
+                        <Title>Imóvel</Title>
+                    </Box>
+                </Grid>
+                <TextField
+                    inputRef={register()}
+                    type="hidden"
+                    name="id"
+                    defaultValue={property.id}
+                />
+                <TextField
+                    inputRef={register()}
+                    type="hidden"
+                    name="username"
+                    defaultValue={
+                        property.user && property.username
+                            ? property.user.username
+                            : username
+                    }
+                />
             </Grid>
-        </Grid>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Grid container>
+                    <GridBox xs={11}>
+                        <TextField
+                            fullWidth
+                            name="description"
+                            defaultValue={property.description}
+                            inputRef={register()}
+                            label="Descrição"
+                            variant="outlined"
+                        />
+                    </GridBox>
+                    <GridBox xs={2}>
+                        <ControlledSelect
+                            id="type"
+                            label="Tipo do imóvel"
+                            defaultValue={
+                                property.type ? property.type : 'HOUSE'
+                            }
+                            values={types}
+                            control={control}
+                        />
+                    </GridBox>
+                    <GridBox xs={2}>
+                        <TextField
+                            fullWidth
+                            name="area"
+                            defaultValue={property.area}
+                            inputRef={register()}
+                            label="Area"
+                            variant="outlined"
+                            InputProps={{
+                                endAdornment: (
+                                    <InputAdornment position="start">
+                                        m²
+                                    </InputAdornment>
+                                ),
+                            }}
+                        />
+                    </GridBox>
+                    <GridBox xs={3}>
+                        <TextField
+                            fullWidth
+                            name="registration"
+                            defaultValue={property.registration}
+                            inputRef={register()}
+                            label="Registro"
+                            variant="outlined"
+                        />
+                    </GridBox>
+                    <GridBox xs={3}>
+                        <TextField
+                            fullWidth
+                            name="iptu"
+                            defaultValue={property.iptu}
+                            inputRef={register()}
+                            label="Número do IPTU"
+                            variant="outlined"
+                        />
+                    </GridBox>
+                    <GridBox xs={2}>
+                        <TextField
+                            id="dorms"
+                            name="dorms"
+                            defaultValue={property.dorms}
+                            inputRef={register()}
+                            type="number"
+                            label="Nº de dormitórios"
+                            variant="outlined"
+                        />
+                    </GridBox>
+                    <GridBox xs={2}>
+                        <TextField
+                            id="bathrooms"
+                            name="bathrooms"
+                            defaultValue={property.bathrooms}
+                            inputRef={register()}
+                            type="number"
+                            label="Nº de banheiros"
+                            variant="outlined"
+                        />
+                    </GridBox>
+                    <GridBox xs={7}>
+                        <TextField
+                            id="suites"
+                            name="suites"
+                            defaultValue={property.suites}
+                            inputRef={register()}
+                            type="number"
+                            label="Nº de suites"
+                            variant="outlined"
+                        />
+                    </GridBox>
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    id="balcony"
+                                    name="balcony"
+                                    color="primary"
+                                    defaultChecked={property.balcony}
+                                    inputRef={register()}
+                                />
+                            }
+                            label="Possui sacada"
+                        />
+                    </GridBox>
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    id="elevator"
+                                    name="elevator"
+                                    color="primary"
+                                    defaultChecked={property.elevator}
+                                    inputRef={register()}
+                                />
+                            }
+                            label="Possui elevador"
+                        />
+                    </GridBox>
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    id="barbecueGrill"
+                                    name="barbecueGrill"
+                                    color="primary"
+                                    defaultChecked={property.barbecueGrill}
+                                    inputRef={register()}
+                                />
+                            }
+                            label="Possui churrasqueira"
+                        />
+                    </GridBox>
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    id="pool"
+                                    name="pool"
+                                    color="primary"
+                                    defaultChecked={property.pool}
+                                    inputRef={register()}
+                                />
+                            }
+                            label="Possui piscina"
+                        />
+                    </GridBox>
+                    <Address address={property.address} register={register()} />
+                    <Garages garages={property.garages} />
+                    <CardActions style={{ marginTop: '10px' }}>
+                        <div className={classes.bottomBoxButtons}>
+                            <LoadButton
+                                label="Salvar"
+                                type="submit"
+                                success={success}
+                                loading={loading}
+                            />
+                            {property.id && (
+                                <FormButton
+                                    label="Excluir"
+                                    onClick={() => removeProperty(property.id)}
+                                />
+                            )}
+                        </div>
+                    </CardActions>
+                </Grid>
+            </form>
+        </>
     );
 }

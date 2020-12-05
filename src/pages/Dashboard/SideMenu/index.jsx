@@ -5,7 +5,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import AccountBoxIcon from '@material-ui/icons/AccountBox';
-import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import ForumIcon from '@material-ui/icons/Forum';
@@ -56,17 +55,10 @@ function SideMenu() {
             <Divider />
             <ListItem button onClick={() => setContentBody('property')}>
                 <ListItemIcon>
-                    <HomeIcon />
+                    <HomeWorkIcon />
                 </ListItemIcon>
                 <ListItemText primary="Imóvel" />
             </ListItem>
-            <ListItem button onClick={() => setContentBody('sale')}>
-                <ListItemIcon>
-                    <HomeWorkIcon />
-                </ListItemIcon>
-                <ListItemText primary="Anúncio" />
-            </ListItem>
-            <Divider />
             <ListItem button onClick={() => setContentBody('interest')}>
                 <ListItemIcon>
                     <AssignmentIcon />

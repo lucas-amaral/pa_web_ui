@@ -15,6 +15,8 @@ export default function Images({
     parentLabelId,
     type_add,
     type_remove,
+    containerStyle = {},
+    smallTitle = true,
 }) {
     const dispatch = useDispatch();
 
@@ -68,10 +70,13 @@ export default function Images({
 
     return (
         <>
-            <Grid container style={{ marginTop: '20px' }}>
+            <Grid container style={containerStyle}>
                 <Grid item md={12}>
                     <Box pl={1} pb={2}>
-                        <Title style={{ fontSize: '15px' }}>Fotos</Title>
+                        {smallTitle ?
+                            <Title style={{ fontSize: '15px' }}>Fotos</Title> :
+                            <Title>Fotos</Title>
+                        }
                     </Box>
                 </Grid>
             </Grid>

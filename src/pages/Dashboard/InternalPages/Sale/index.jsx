@@ -6,8 +6,6 @@ import TextField from '@material-ui/core/TextField';
 import CardActions from '@material-ui/core/CardActions';
 import { makeStyles } from '@material-ui/core/styles';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import { Container } from '../User/styles';
 import { Title } from '../../../Register/styles';
 import {
     ADD_SALE,
@@ -21,8 +19,6 @@ import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
 import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 import MonetaryInput from '../../../../components/Input/MonetaryInput';
-import ControlledSelect from '../../../../components/Select/ControlledSelect';
-import { types } from '../../../../constants/PropertyTypes';
 import FormButton from '../../../../components/Button/FormButton';
 
 const useStyles = makeStyles((theme) => ({
@@ -46,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sale() {
-    const { register, handleSubmit, control } = useForm();
+    const { register, handleSubmit } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -104,237 +100,174 @@ export default function Sale() {
     };
 
     return (
-        <Grid container>
-            <Grid item md={12}>
-                <Container>
-                    <Grid container>
+        <>
+            <Grid container>
+                <Grid item md={12}>
+                    <Box pl={1} pb={2}>
+                        <Title>Anúncio</Title>
+                    </Box>
+                </Grid>
+                <TextField
+                    inputRef={register()}
+                    type="hidden"
+                    name="id"
+                    defaultValue={sale.id}
+                />
+                <TextField
+                    inputRef={register()}
+                    type="hidden"
+                    name="propertyId"
+                    defaultValue={
+                        sale.propertyId ? sale.propertyId : propertyId
+                    }
+                />
+            </Grid>
+            <form onSubmit={handleSubmit(onSubmit)}>
+                <Grid container>
+                    <GridBox xs={2}>
+                        <MonetaryInput
+                            label="Valor"
+                            id="value"
+                            labelWidth={100}
+                            inputRef={register()}
+                            value={sale.value}
+                        />
+                    </GridBox>
+                    {/* <GridBox xs={9}> */}
+                    {/*    <TextField */}
+                    {/*        name="agencying" */}
+                    {/*        placeholder="dd/MM/yyyy" */}
+                    {/*        format="dd/MM/yyyy" */}
+                    {/*        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" */}
+                    {/*        value={sale.agencying ? sale.agencying : Date.now()} */}
+                    {/*        inputRef={register()} */}
+                    {/*        type="date" */}
+                    {/*        label="Data de cadastro" */}
+                    {/*        variant="outlined" */}
+                    {/*        InputLabelProps={{ */}
+                    {/*            shrink: true, */}
+                    {/*        }} */}
+                    {/*    /> */}
+                    {/* </GridBox> */}
+                    <Grid container style={{ marginTop: '20px' }}>
                         <Grid item md={12}>
                             <Box pl={1} pb={2}>
-                                <Title>Anúncio</Title>
+                                <Title style={{ fontSize: '15px' }}>
+                                    Financiamento
+                                </Title>
                             </Box>
                         </Grid>
-                        <TextField
-                            inputRef={register()}
-                            type="hidden"
-                            name="id"
-                            defaultValue={sale.id}
-                        />
-                        <TextField
-                            inputRef={register()}
-                            type="hidden"
-                            name="propertyId"
-                            defaultValue={
-                                sale.propertyId ? sale.propertyId : propertyId
-                            }
-                        />
                     </Grid>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Grid container>
-                            <GridBox xs={11}>
-                                <TextField
-                                    fullWidth
-                                    name="description"
-                                    value={property.description}
-                                    label="Descrição"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={2}>
-                                <ControlledSelect
-                                    id="type"
-                                    label="Tipo do imóvel"
-                                    disabled
-                                    defaultValue={property.type}
-                                    values={types}
-                                    control={control}
-                                />
-                            </GridBox>
-                            <GridBox>
-                                <TextField
-                                    fullWidth
-                                    name="area"
-                                    aria-readonly
-                                    defaultValue={property.area}
-                                    label="Area"
-                                    variant="outlined"
-                                    InputProps={{
-                                        endAdornment: (
-                                            <InputAdornment position="end">
-                                                m²
-                                            </InputAdornment>
-                                        ),
-                                    }}
-                                />
-                            </GridBox>
-                            <GridBox xs={3}>
-                                <TextField
-                                    fullWidth
-                                    name="registration"
-                                    aria-readonly
-                                    defaultValue={property.registration}
-                                    label="Registro"
-                                    variant="outlined"
-                                />
-                            </GridBox>
-                            <GridBox xs={3}>
-                                <TextField
-                                    fullWidth
-                                    name="iptu"
-                                    aria-readonly
-                                    defaultValue={property.iptu}
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    name="financing"
+                                    color="primary"
+                                    defaultChecked={sale.financing}
+                                    onClick={() =>
+                                        setShowFinancing(!showFinancing)
+                                    }
                                     inputRef={register()}
-                                    label="Número do IPTU"
-                                    variant="outlined"
                                 />
-                            </GridBox>
-                            <GridBox xs={2}>
-                                <MonetaryInput
-                                    label="Valor"
-                                    id="value"
-                                    labelWidth={100}
-                                    inputRef={register()}
-                                    value={sale.value}
-                                />
-                            </GridBox>
-                            {/* <GridBox xs={9}> */}
-                            {/*    <TextField */}
-                            {/*        name="agencying" */}
-                            {/*        placeholder="dd/MM/yyyy" */}
-                            {/*        format="dd/MM/yyyy" */}
-                            {/*        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" */}
-                            {/*        value={sale.agencying ? sale.agencying : Date.now()} */}
-                            {/*        inputRef={register()} */}
-                            {/*        type="date" */}
-                            {/*        label="Data de cadastro" */}
-                            {/*        variant="outlined" */}
-                            {/*        InputLabelProps={{ */}
-                            {/*            shrink: true, */}
-                            {/*        }} */}
-                            {/*    /> */}
-                            {/* </GridBox> */}
-                            <Grid container style={{ marginTop: '20px' }}>
-                                <Grid item md={12}>
-                                    <Box pl={1} pb={2}>
-                                        <Title style={{ fontSize: '15px' }}>
-                                            Financiamento
-                                        </Title>
-                                    </Box>
-                                </Grid>
-                            </Grid>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            name="financing"
-                                            color="primary"
-                                            defaultChecked={sale.financing}
-                                            onClick={() =>
-                                                setShowFinancing(!showFinancing)
-                                            }
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Financiável"
-                                />
-                            </GridBox>
-                            <GridBox xs={9}>
-                                {showFinancing && (
-                                    <MonetaryInput
-                                        id="financingValue"
-                                        label="Valor financiado"
-                                        labelWidth={125}
-                                        value={sale.financingValue}
-                                        inputRef={register()}
-                                    />
-                                )}
-                            </GridBox>
-                            <Grid container style={{ marginTop: '20px' }}>
-                                <Grid item md={12}>
-                                    <Box pl={1} pb={2}>
-                                        <Title style={{ fontSize: '15px' }}>
-                                            Permutas
-                                        </Title>
-                                    </Box>
-                                </Grid>
-                            </Grid>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            name="barterVehicle"
-                                            color="primary"
-                                            defaultChecked={sale.barterVehicle}
-                                            onClick={() =>
-                                                setShowBarterVehicle(
-                                                    !showBarterVehicle
-                                                )
-                                            }
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Veículo como permuta"
-                                />
-                            </GridBox>
-                            <GridBox xs={9}>
-                                {showBarterVehicle && (
-                                    <MonetaryInput
-                                        id="barterVehicleValue"
-                                        label="Valor máximo veículo"
-                                        labelWidth={125}
-                                        value={sale.barterVehicleValue}
-                                        inputRef={register()}
-                                    />
-                                )}
-                            </GridBox>
-                            <GridBox>
-                                <FormControlLabel
-                                    control={
-                                        <Checkbox
-                                            name="barterProperty"
-                                            color="primary"
-                                            defaultChecked={sale.barterProperty}
-                                            onClick={() =>
-                                                setShowBarterProperty(
-                                                    !showBarterProperty
-                                                )
-                                            }
-                                            inputRef={register()}
-                                        />
-                                    }
-                                    label="Imóvel como permuta"
-                                />
-                            </GridBox>
-                            <GridBox xs={9}>
-                                {showBarterProperty && (
-                                    <MonetaryInput
-                                        id="barterPropertyValue"
-                                        label="Valor máximo imóvel"
-                                        labelWidth={125}
-                                        value={sale.barterPropertyValue}
-                                        inputRef={register()}
-                                    />
-                                )}
-                            </GridBox>
-                            <CardActions style={{ marginTop: '10px' }}>
-                                <div className={classes.bottomBoxButtons}>
-                                    <LoadButton
-                                        label="Salvar"
-                                        type="submit"
-                                        success={success}
-                                        loading={loading}
-                                    />
-                                    {sale.id && (
-                                        <FormButton
-                                            label="Excluir"
-                                            onClick={() => removeSale(sale.id)}
-                                        />
-                                    )}
-                                </div>
-                            </CardActions>
+                            }
+                            label="Financiável"
+                        />
+                    </GridBox>
+                    <GridBox xs={9}>
+                        {showFinancing && (
+                            <MonetaryInput
+                                id="financingValue"
+                                label="Valor financiado"
+                                labelWidth={125}
+                                value={sale.financingValue}
+                                inputRef={register()}
+                            />
+                        )}
+                    </GridBox>
+                    <Grid container style={{ marginTop: '20px' }}>
+                        <Grid item md={12}>
+                            <Box pl={1} pb={2}>
+                                <Title style={{ fontSize: '15px' }}>
+                                    Permutas
+                                </Title>
+                            </Box>
                         </Grid>
-                    </form>
-                </Container>
-            </Grid>
-        </Grid>
+                    </Grid>
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    name="barterVehicle"
+                                    color="primary"
+                                    defaultChecked={sale.barterVehicle}
+                                    onClick={() =>
+                                        setShowBarterVehicle(!showBarterVehicle)
+                                    }
+                                    inputRef={register()}
+                                />
+                            }
+                            label="Veículo como permuta"
+                        />
+                    </GridBox>
+                    <GridBox xs={9}>
+                        {showBarterVehicle && (
+                            <MonetaryInput
+                                id="barterVehicleValue"
+                                label="Valor máximo veículo"
+                                labelWidth={125}
+                                value={sale.barterVehicleValue}
+                                inputRef={register()}
+                            />
+                        )}
+                    </GridBox>
+                    <GridBox>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    name="barterProperty"
+                                    color="primary"
+                                    defaultChecked={sale.barterProperty}
+                                    onClick={() =>
+                                        setShowBarterProperty(
+                                            !showBarterProperty
+                                        )
+                                    }
+                                    inputRef={register()}
+                                />
+                            }
+                            label="Imóvel como permuta"
+                        />
+                    </GridBox>
+                    <GridBox xs={9}>
+                        {showBarterProperty && (
+                            <MonetaryInput
+                                id="barterPropertyValue"
+                                label="Valor máximo imóvel"
+                                labelWidth={125}
+                                value={sale.barterPropertyValue}
+                                inputRef={register()}
+                            />
+                        )}
+                    </GridBox>
+                    <CardActions style={{ marginTop: '10px' }}>
+                        <div className={classes.bottomBoxButtons}>
+                            <LoadButton
+                                label="Salvar"
+                                type="submit"
+                                success={success}
+                                loading={loading}
+                            />
+                            {sale.id && (
+                                <FormButton
+                                    label="Excluir"
+                                    onClick={() => removeSale(sale.id)}
+                                />
+                            )}
+                        </div>
+                    </CardActions>
+                </Grid>
+            </form>
+        </>
     );
 }

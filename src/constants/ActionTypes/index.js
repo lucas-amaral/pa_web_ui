@@ -57,11 +57,13 @@ export const RESET_SUCCESS_PROPERTY = 'RESET_SUCCESS_PROPERTY';
 export const CREATE_GARAGE = 'CREATE_GARAGE';
 export const REMOVE_GARAGE = 'REMOVE_GARAGE';
 
+export const LOAD_SALES = 'LOAD_SALES';
 export const LOAD_SALE = 'LOAD_SALE';
 export const ADD_SALE = 'ADD_SALE';
 export const EDIT_SALE = 'EDIT_SALE';
 export const REMOVE_SALE = 'REMOVE_SALE';
 export const SUCCEEDED_SALE = 'SUCCEEDED_SALE';
+export const UPDATE_SALES = 'UPDATE_SALES';
 export const UPDATE_SALE = 'UPDATE_SALE';
 export const LOADING_SALE = 'LOADING_SALE';
 export const RESET_SUCCESS_SALE = 'RESET_SUCCESS_SALE';

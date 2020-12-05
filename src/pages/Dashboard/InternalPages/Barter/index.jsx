@@ -143,6 +143,7 @@ export default function Barter() {
                                 images={images}
                                 type_add={ADD_BARTER_IMAGE}
                                 type_remove={REMOVE_BARTER_IMAGE}
+                                containerStyle={{ marginTop: '20px' }}
                             />
                             <CardActions style={{ marginTop: '10px' }}>
                                 <div className={classes.bottomBoxButtons}>

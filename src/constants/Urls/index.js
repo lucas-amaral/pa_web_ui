@@ -37,6 +37,7 @@ export default {
     },
     SALE: {
         GET: '/sales',
+        GET_BY_USER: '/sales/by-user',
         ADD: '/sales',
         EDIT: '/sales',
         DELETE: '/sales/:id',

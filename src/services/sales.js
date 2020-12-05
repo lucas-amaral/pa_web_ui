@@ -7,6 +7,12 @@ export const load = (propertyId) => {
     });
 };
 
+export const loadByUser = (username) => {
+    return axiosInstance().get(URLS.SALE.GET_BY_USER, {
+        params: { username },
+    });
+};
+
 export const create = async (data) => {
     return axiosInstance()
         .post(URLS.SALE.ADD, data)
