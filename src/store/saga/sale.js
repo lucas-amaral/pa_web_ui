@@ -10,6 +10,7 @@ import {
     UPDATE_SALE,
     UPDATE_SALES,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 function* loadSales(action) {
     try {
@@ -19,7 +20,7 @@ function* loadSales(action) {
             yield put({ type: UPDATE_SALES, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'SALE_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar anúncios'));
     }
 }
 
@@ -31,7 +32,7 @@ function* loadSale(action) {
             yield put({ type: UPDATE_SALE, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'SALE_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar anúncio'));
     }
 }
 
@@ -43,7 +44,7 @@ function* addSale(action) {
             yield put({ type: SUCCEEDED_SALE, payload });
         }
     } catch (e) {
-        // yield put({ type: 'SALE_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar anúncio'));
     }
 }
 
@@ -55,7 +56,7 @@ function* editSale(action) {
             yield put({ type: SUCCEEDED_SALE, payload });
         }
     } catch (e) {
-        // yield put({ type: 'SALE_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao editar anúncio'));
     }
 }
 
@@ -67,7 +68,7 @@ function* removeSale(action) {
             yield put({ type: UPDATE_SALE, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'SALE_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover anúncio'));
     }
 }
 

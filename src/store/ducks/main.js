@@ -2,10 +2,14 @@
     Criando action types e creators
 */
 import { createActions, createReducer } from 'reduxsauce';
-import { SET_CONTENT_BODY } from '../../constants/ActionTypes';
+import {
+    SET_CONTENT_BODY,
+    SET_NOTIFICATION,
+} from '../../constants/ActionTypes';
 
 export const { Types } = createActions({
     setContentBody: [],
+    notification: {},
 });
 
 /*
@@ -13,6 +17,7 @@ export const { Types } = createActions({
 */
 const INITIAL_STATE = {
     contentBody: '',
+    notification: {},
 };
 
 /*
@@ -20,8 +25,17 @@ const INITIAL_STATE = {
 */
 const setContentBody = (state = INITIAL_STATE, action) => {
     return {
+        ...state,
         type: action.type,
         contentBody: action.contentBody,
+    };
+};
+
+const setNotification = (state = INITIAL_STATE, action) => {
+    return {
+        ...state,
+        type: action.type,
+        notification: action.notification,
     };
 };
 
@@ -30,4 +44,5 @@ const setContentBody = (state = INITIAL_STATE, action) => {
 */
 export default createReducer(INITIAL_STATE, {
     [SET_CONTENT_BODY]: setContentBody,
+    [SET_NOTIFICATION]: setNotification,
 });

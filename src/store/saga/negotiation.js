@@ -20,6 +20,7 @@ import {
     REPROVE_BY_SELLER,
     REPROVE_BY_BUYER,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 function* loadNegotiationBySale(action) {
     try {
@@ -32,7 +33,7 @@ function* loadNegotiationBySale(action) {
             });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar as negociações'));
     }
 }
 
@@ -47,7 +48,7 @@ function* loadNegotiationByInterest(action) {
             });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar as negociações'));
     }
 }
 function* approvedBySeller(action) {
@@ -58,7 +59,7 @@ function* approvedBySeller(action) {
             yield put({ type: SUCCEEDED_NEGOTIATION, payload });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao salvar negociação'));
     }
 }
 
@@ -70,7 +71,7 @@ function* approvedByBuyer(action) {
             yield put({ type: SUCCEEDED_NEGOTIATION, payload });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao salvar negociação'));
     }
 }
 
@@ -82,7 +83,7 @@ function* reprovedBySeller(action) {
             yield put({ type: SUCCEEDED_NEGOTIATION, payload });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao salvar negociação'));
     }
 }
 
@@ -94,7 +95,7 @@ function* reprovedByBuyer(action) {
             yield put({ type: SUCCEEDED_NEGOTIATION, payload });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao salvar negociação'));
     }
 }
 
@@ -106,7 +107,7 @@ function* removeNegotiation(action) {
             yield put({ type: SUCCEEDED_NEGOTIATION, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'NEGOTIATION_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover negociação'));
     }
 }
 

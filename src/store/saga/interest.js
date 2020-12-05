@@ -16,6 +16,7 @@ import {
     REMOVE_FORM_INTEREST_BARTER,
     ADD_FORM_INTEREST_BARTER,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 function* loadInterest(action) {
     try {
@@ -25,7 +26,7 @@ function* loadInterest(action) {
             yield put({ type: UPDATE_INTEREST, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar interesse'));
     }
 }
 
@@ -37,7 +38,7 @@ function* addInterest(action) {
             yield put({ type: SUCCEEDED_INTEREST, payload });
         }
     } catch (e) {
-        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar interesse'));
     }
 }
 
@@ -49,7 +50,7 @@ function* editInterest(action) {
             yield put({ type: SUCCEEDED_INTEREST, payload });
         }
     } catch (e) {
-        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao editar interesse'));
     }
 }
 
@@ -61,7 +62,7 @@ function* removeInterest(action) {
             yield put({ type: UPDATE_INTEREST, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover interesse'));
     }
 }
 
@@ -73,7 +74,7 @@ function* addInterestBarter(action) {
             yield put({ type: ADD_FORM_INTEREST_BARTER, payload });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar permuta'));
     }
 }
 
@@ -86,7 +87,7 @@ function* removeInterestBarter(action) {
             barterId: action.barterId,
         });
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover permuta'));
     }
 }
 

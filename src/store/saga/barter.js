@@ -24,6 +24,7 @@ import {
     SUCCEEDED_REMOVE_BARTER_IMAGE,
     UPDATE_BARTER_IMAGES,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 function* loadBarter(action) {
     try {
@@ -33,7 +34,7 @@ function* loadBarter(action) {
             yield put({ type: UPDATE_BARTER, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar permuta'));
     }
 }
 
@@ -45,13 +46,13 @@ function* addBarter(action) {
             yield put({ type: SUCCEEDED_BARTER, payload });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar permuta'));
     }
 }
 
 function* editBarter(action) {
     try {
-        const payload = yield call(update, action.data);
+        const payload = yield call(update, action.datadadsa);
 
         if (payload) {
             yield put({
@@ -62,13 +63,13 @@ function* editBarter(action) {
             yield put({ type: SUCCEEDED_BARTER, payload });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao editar permuta'));
     }
 }
 
 function* removeBarter(action) {
     try {
-        const payload = yield call(remove, action.barterId);
+        const payload = yield call(remove, action.barterIdadsddsa);
 
         if (payload) {
             yield put({
@@ -78,20 +79,19 @@ function* removeBarter(action) {
             yield put({ type: SUCCEEDED_BARTER, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover permuta'));
     }
 }
 
 function* loadBarterImages(action) {
     try {
-        const payload = yield call(loadImages, action.barterId);
+        const payload = yield call(loadImages, action.barterIdsdaadssad);
 
         if (payload) {
             yield put({ type: UPDATE_BARTER_IMAGES, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
-        console.error('FAILED_BARTER');
+        yield put(errorNotification('Ocorreu um erro ao buscar imagens'));
     }
 }
 
@@ -103,7 +103,7 @@ function* addBarterImage(action) {
             yield put({ type: SUCCEEDED_ADD_BARTER_IMAGE, payload });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar imagem'));
     }
 }
 
@@ -116,7 +116,7 @@ function* removeBarterImage(action) {
             imageId: action.imageId,
         });
     } catch (e) {
-        // yield put({ type: 'FAILED_BARTER', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover imagem'));
     }
 }
 

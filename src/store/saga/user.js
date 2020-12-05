@@ -7,6 +7,7 @@ import {
     ADD_USER,
     EDIT_USER,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 
 function* loadUser(action) {
@@ -17,7 +18,7 @@ function* loadUser(action) {
             yield put({ type: UPDATE_USER, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: USER_FAILED, message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar usuário'));
     }
 }
 
@@ -29,7 +30,7 @@ function* addUser(action) {
             yield put({ type: USER_SUCCEEDED, payload });
         }
     } catch (e) {
-        // yield put({ type: USER_FAILED, message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar usuário'));
     }
 }
 
@@ -41,7 +42,7 @@ function* editUser(action) {
             yield put({ type: USER_SUCCEEDED, payload });
         }
     } catch (e) {
-        // yield put({ type: USER_FAILED, message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao editar usuário'));
     }
 }
 

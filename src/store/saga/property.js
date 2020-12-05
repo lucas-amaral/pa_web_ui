@@ -23,6 +23,7 @@ import {
     REMOVE_PROPERTY_IMAGE,
     RESET_LOADING_DATA_PROPERTY,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 function* loadProperty(action) {
     try {
@@ -41,7 +42,7 @@ function* loadProperty(action) {
             }
         }
     } catch (e) {
-        // yield put({ type: 'PROPERTY_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar imóvel'));
     }
 }
 
@@ -53,7 +54,7 @@ function* addProperty(action) {
             yield put({ type: SUCCEEDED_PROPERTY, payload });
         }
     } catch (e) {
-        // yield put({ type: 'PROPERTY_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar imóvel'));
     }
 }
 
@@ -65,7 +66,7 @@ function* editProperty(action) {
             yield put({ type: SUCCEEDED_PROPERTY, payload });
         }
     } catch (e) {
-        // yield put({ type: 'PROPERTY_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao editar imóvel'));
     }
 }
 
@@ -77,7 +78,7 @@ function* removeProperty(action) {
             yield put({ type: UPDATE_PROPERTY, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'PROPERTY_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover imóvel'));
     }
 }
 
@@ -89,8 +90,7 @@ function* loadPropertyImages(action) {
             yield put({ type: UPDATE_PROPERTY_IMAGES, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_PROPERTY', message: e.message });
-        console.error('FAILED_PROPERTY');
+        yield put(errorNotification('Ocorreu um erro ao buscar imagens do imóvel'));
     }
 }
 
@@ -102,7 +102,7 @@ function* addPropertyImage(action) {
             yield put({ type: SUCCEEDED_ADD_PROPERTY_IMAGE, payload });
         }
     } catch (e) {
-        // yield put({ type: 'FAILED_PROPERTY', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao adicionar imagen do imóvel'));
     }
 }
 
@@ -115,7 +115,7 @@ function* removePropertyImage(action) {
             imageId: action.imageId,
         });
     } catch (e) {
-        // yield put({ type: 'FAILED_PROPERTY', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao remover imagen do imóvel'));
     }
 }
 

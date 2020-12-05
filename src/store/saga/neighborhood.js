@@ -6,6 +6,7 @@ import {
     UPDATE_NEIGHBORHOODS,
 } from '../../constants/ActionTypes';
 import { loadByCity, load } from '../../services/neighborhoods';
+import { errorNotification } from '../../utils/notificationUtils';
 
 function* loadNeighborhood(action) {
     try {
@@ -15,7 +16,7 @@ function* loadNeighborhood(action) {
             yield put({ type: UPDATE_NEIGHBORHOOD, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar bairro'));
     }
 }
 
@@ -27,7 +28,7 @@ function* loadNeighborhoods(action) {
             yield put({ type: UPDATE_NEIGHBORHOODS, payload: payload.data });
         }
     } catch (e) {
-        // yield put({ type: 'INTEREST_FAILED', message: e.message });
+        yield put(errorNotification('Ocorreu um erro ao buscar bairros'));
     }
 }
 
