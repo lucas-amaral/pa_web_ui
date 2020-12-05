@@ -279,6 +279,7 @@ export default function Index() {
                                 <FormButton
                                     label="Excluir"
                                     onClick={() => removeProperty(property.id)}
+                                    loading={loading}
                                 />
                             )}
                         </div>

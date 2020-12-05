@@ -330,6 +330,7 @@ function Interest() {
                                             onClick={() =>
                                                 removeInterest(interest.id)
                                             }
+                                            loading={loading}
                                         />
                                     </div>
                                 </CardActions>

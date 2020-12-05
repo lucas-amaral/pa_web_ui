@@ -81,8 +81,8 @@ export default function FullWidthTabs() {
                     aria-label="full width tabs example"
                 >
                     <Tab label="Imóvel" {...a11yProps(0)} />
-                    {property && <Tab label="Fotos" {...a11yProps(1)} />}
-                    {property && <Tab label="Anúncio" {...a11yProps(2)} />}
+                    <Tab label="Fotos" {...a11yProps(1)} disabled={!property.id} />
+                    <Tab label="Anúncio" {...a11yProps(2)} disabled={!property.id} />
                 </Tabs>
             </AppBar>
             <SwipeableViews

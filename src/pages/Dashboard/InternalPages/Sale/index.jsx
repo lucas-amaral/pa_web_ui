@@ -262,6 +262,7 @@ export default function Sale() {
                                 <FormButton
                                     label="Excluir"
                                     onClick={() => removeSale(sale.id)}
+                                    loading={loading}
                                 />
                             )}
                         </div>

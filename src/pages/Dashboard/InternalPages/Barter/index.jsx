@@ -156,10 +156,12 @@ export default function Barter() {
                                     <FormButton
                                         label="Excluir"
                                         onClick={() => removeBarter(barter.id)}
+                                        loading={loading}
                                     />
                                     <FormButton
                                         label="Voltar"
                                         onClick={() => goBackInterest()}
+                                        loading={loading}
                                     />
                                 </div>
                             </CardActions>

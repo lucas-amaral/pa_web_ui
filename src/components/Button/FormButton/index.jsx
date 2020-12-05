@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FormButton({ label, onClick }) {
+export default function FormButton({ label, onClick, loading }) {
     const classes = useStyles();
 
     return (
@@ -29,6 +29,7 @@ export default function FormButton({ label, onClick }) {
                     className={classes.bottomButton}
                     variant="contained"
                     color="primary"
+                    disabled={loading}
                     onClick={onClick}
                     fullWidth
                 >
