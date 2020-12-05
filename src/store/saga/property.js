@@ -21,6 +21,7 @@ import {
     LOAD_PROPERTY_IMAGES,
     ADD_PROPERTY_IMAGE,
     REMOVE_PROPERTY_IMAGE,
+    RESET_LOADING_DATA_PROPERTY,
 } from '../../constants/ActionTypes';
 
 function* loadProperty(action) {
@@ -28,12 +29,16 @@ function* loadProperty(action) {
         const payload = yield call(load, action.data.username);
 
         if (payload) {
-            // Fix it and use list of properties
-            yield put({
-                type: LOAD_PROPERTY_IMAGES,
-                propertyId: payload.data[0].id,
-            });
-            yield put({ type: UPDATE_PROPERTY, payload: payload.data[0] });
+            if (payload.data[0]) {
+                // Fix it and use list of properties
+                yield put({
+                    type: LOAD_PROPERTY_IMAGES,
+                    propertyId: payload.data[0].id,
+                });
+                yield put({ type: UPDATE_PROPERTY, payload: payload.data[0] });
+            } else {
+                yield put({ type: RESET_LOADING_DATA_PROPERTY });
+            }
         }
     } catch (e) {
         // yield put({ type: 'PROPERTY_FAILED', message: e.message });

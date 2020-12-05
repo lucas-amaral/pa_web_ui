@@ -86,12 +86,12 @@ export default function FullWidthTabs() {
                     <Tab
                         label="Fotos"
                         {...a11yProps(1)}
-                        disabled={!property.id}
+                        disabled={property.id === undefined}
                     />
                     <Tab
                         label="Anúncio"
                         {...a11yProps(2)}
-                        disabled={!property.id}
+                        disabled={property.id === undefined}
                     />
                 </Tabs>
             </AppBar>

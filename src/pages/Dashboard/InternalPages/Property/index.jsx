@@ -223,7 +223,7 @@ export default function Index() {
                             label="Possui sacada"
                         />
                     </GridBox>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
