@@ -1,0 +1,149 @@
+Index: src/pages/Dashboard/InternalPages/User/index.jsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, { useEffect } from \"react\";\nimport { useDispatch, useSelector } from \"react-redux\";\nimport TextField from \"@material-ui/core/TextField\";\nimport { makeStyles } from \"@material-ui/core/styles\";\nimport CardActions from \"@material-ui/core/CardActions\";\nimport Button from \"@material-ui/core/Button\";\nimport { Box, Grid } from '@material-ui/core';\n\nimport { Types as UserTypes } from \"../../../../store/ducks/user\";\nimport { Container } from \"./styles\";\nimport { Title } from \"../../../Register/styles\";\nimport GridBox from \"../../../../components/GridBox\";\n\nconst useStyles = makeStyles((theme) => ({\n    root: {\n        \"& > *\": {\n            margin: theme.spacing(1),\n            width: \"25ch\",\n        },\n    },\n    card: {\n        width: \"100%\",\n    },\n    fields: {\n        margin: 10,\n    },\n    bottomBoxButtons: {\n        display: \"flex\",\n        width: 475,\n        justifyContent: \"space-between\",\n    },\n    bottomButton: {\n        margin: 5,\n    },\n}));\n\nfunction User() {\n    const classes = useStyles();\n    const dataUser = { username: localStorage.getItem(\"username\") };\n    const dispatch = useDispatch();\n    let user = useSelector((state) => state.user.user);\n\n    useEffect(() => {\n        dispatch({\n            type: UserTypes.LOAD_USER,\n            dataUser,\n        });\n    }, []);\n\n    if (user.payload) {\n        user = user.payload;\n    }\n\n    return (\n        <Grid container>\n            <Grid item md={12}>\n                <Container>\n                    <Grid container>\n                        <Grid item md={12}>\n                            <Box pl={1} pb={2}>\n                                <Title>Usuário</Title>\n                            </Box>\n                        </Grid>\n                    </Grid>\n                    <form>\n                        <Grid container>\n                            <GridBox xs={11}>\n                                <TextField style={{width: '100%'}}\n                                    id=\"name\"\n                                    defaultValue={user.name}\n                                    label=\"Nome\"\n                                    variant=\"outlined\"\n                                />\n                            </GridBox>\n                            <GridBox xs={11}>\n                                <TextField style={{width: '100%'}}\n                                    id=\"login\"\n                                    defaultValue={user.username}\n                                    label=\"Login\"\n                                    variant=\"outlined\"\n                                />\n                            </GridBox>\n                            <GridBox xs={3}>\n                                <TextField style={{width: '90%'}}\n                                    id=\"dateOfBirth\"\n                                    format=\"dd/MM/yyyy\"\n                                    defaultValue={user.dateOfBirth}\n                                    type=\"date\"\n                                    label=\"Data de nascimento\"\n                                    variant=\"outlined\"\n                                    InputLabelProps={{\n                                        shrink: true,\n                                    }}\n                                />\n                            </GridBox>\n                            <GridBox xs={3}>\n                                <TextField style={{width: '90%'}}\n                                    id=\"type\"\n                                    value={user.type}\n                                    aria-readonly={true}\n                                    label=\"Tipo\"\n                                    variant=\"outlined\"\n                                />\n                            </GridBox>\n                            <GridBox xs={3}>\n                                <TextField style={{width: '90%'}}\n                                    id=\"cpf\"\n                                    value={user.cpfCnpj}\n                                    label=\"Cpf\"\n                                    variant=\"outlined\"\n                                />\n                            </GridBox>\n                            <CardActions style={{marginTop: \"10px\"}}>\n                                <div className={classes.bottomBoxButtons}>\n                                    <Button\n                                        className={classes.bottomButton}\n                                        variant=\"contained\"\n                                        size=\"medium\"\n                                        color=\"primary\"\n                                        fullWidth\n                                    >\n                                        Salvar\n                                    </Button>\n                                </div>\n                            </CardActions>\n                        </Grid>\n                    </form>\n                </Container>\n            </Grid>\n        </Grid>\n    );\n}\n\nexport default User;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/pages/Dashboard/InternalPages/User/index.jsx	(revision f3e9c57b1a56f889c776e9f9be4235be623f2218)
++++ src/pages/Dashboard/InternalPages/User/index.jsx	(date 1605911078615)
+@@ -1,33 +1,33 @@
+-import React, { useEffect } from "react";
+-import { useDispatch, useSelector } from "react-redux";
+-import TextField from "@material-ui/core/TextField";
+-import { makeStyles } from "@material-ui/core/styles";
+-import CardActions from "@material-ui/core/CardActions";
+-import Button from "@material-ui/core/Button";
++import React, { useEffect } from 'react';
++import { useDispatch, useSelector } from 'react-redux';
++import TextField from '@material-ui/core/TextField';
++import { makeStyles } from '@material-ui/core/styles';
++import CardActions from '@material-ui/core/CardActions';
++import Button from '@material-ui/core/Button';
+ import { Box, Grid } from '@material-ui/core';
+ 
+-import { Types as UserTypes } from "../../../../store/ducks/user";
+-import { Container } from "./styles";
+-import { Title } from "../../../Register/styles";
+-import GridBox from "../../../../components/GridBox";
++import { Types as UserTypes } from '../../../../store/ducks/user';
++import { Container } from './styles';
++import { Title } from '../../../Register/styles';
++import GridBox from '../../../../components/GridBox';
+ 
+ const useStyles = makeStyles((theme) => ({
+     root: {
+-        "& > *": {
++        '& > *': {
+             margin: theme.spacing(1),
+-            width: "25ch",
++            width: '25ch',
+         },
+     },
+     card: {
+-        width: "100%",
++        width: '100%',
+     },
+     fields: {
+         margin: 10,
+     },
+     bottomBoxButtons: {
+-        display: "flex",
++        display: 'flex',
+         width: 475,
+-        justifyContent: "space-between",
++        justifyContent: 'space-between',
+     },
+     bottomButton: {
+         margin: 5,
+@@ -36,7 +36,7 @@
+ 
+ function User() {
+     const classes = useStyles();
+-    const dataUser = { username: localStorage.getItem("username") };
++    const dataUser = { username: localStorage.getItem('username') };
+     const dispatch = useDispatch();
+     let user = useSelector((state) => state.user.user);
+ 
+@@ -65,7 +65,8 @@
+                     <form>
+                         <Grid container>
+                             <GridBox xs={11}>
+-                                <TextField style={{width: '100%'}}
++                                <TextField
++                                    fullWidth
+                                     id="name"
+                                     defaultValue={user.name}
+                                     label="Nome"
+@@ -73,7 +74,8 @@
+                                 />
+                             </GridBox>
+                             <GridBox xs={11}>
+-                                <TextField style={{width: '100%'}}
++                                <TextField
++                                    fullWidth
+                                     id="login"
+                                     defaultValue={user.username}
+                                     label="Login"
+@@ -81,7 +83,8 @@
+                                 />
+                             </GridBox>
+                             <GridBox xs={3}>
+-                                <TextField style={{width: '90%'}}
++                                <TextField
++                                    fullWidth
+                                     id="dateOfBirth"
+                                     format="dd/MM/yyyy"
+                                     defaultValue={user.dateOfBirth}
+@@ -94,23 +97,25 @@
+                                 />
+                             </GridBox>
+                             <GridBox xs={3}>
+-                                <TextField style={{width: '90%'}}
++                                <TextField
++                                    fullWidth
+                                     id="type"
+                                     value={user.type}
+-                                    aria-readonly={true}
++                                    aria-readonly
+                                     label="Tipo"
+                                     variant="outlined"
+                                 />
+                             </GridBox>
+                             <GridBox xs={3}>
+-                                <TextField style={{width: '90%'}}
++                                <TextField
++                                    fullWidth
+                                     id="cpf"
+                                     value={user.cpfCnpj}
+                                     label="Cpf"
+                                     variant="outlined"
+                                 />
+                             </GridBox>
+-                            <CardActions style={{marginTop: "10px"}}>
++                            <CardActions style={{ marginTop: '10px' }}>
+                                 <div className={classes.bottomBoxButtons}>
+                                     <Button
+                                         className={classes.bottomButton}
+Index: src/services/login.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import axiosInstance from './axiosInstance';\nimport URLS from '../constants/Urls'\n\nexport const doLogin = (username, password) => {\n    return axiosInstance().post(URLS.AUTH.LOGIN, {}, { auth: { username, password } });\n};\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- src/services/login.js	(revision f3e9c57b1a56f889c776e9f9be4235be623f2218)
++++ src/services/login.js	(date 1605911078615)
+@@ -1,6 +1,10 @@
+ import axiosInstance from './axiosInstance';
+-import URLS from '../constants/Urls'
++import URLS from '../constants/Urls';
+ 
+ export const doLogin = (username, password) => {
+-    return axiosInstance().post(URLS.AUTH.LOGIN, {}, { auth: { username, password } });
++    return axiosInstance().post(
++        URLS.AUTH.LOGIN,
++        {},
++        { auth: { username, password } }
++    );
+ };

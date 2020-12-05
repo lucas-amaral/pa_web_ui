@@ -50,7 +50,7 @@ export default function Index() {
     const dispatch = useDispatch();
 
     const username = useSelector((state) => state.user.user.username);
-    const { property, loading, success } = useSelector(
+    const { property, loadingData, loading, success } = useSelector(
         (state) => state.property
     );
 
@@ -118,7 +118,7 @@ export default function Index() {
             </Grid>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container>
-                    <GridBox xs={11}>
+                    <GridBox xs={11} loadingData={loadingData}>
                         <TextField
                             fullWidth
                             name="description"
@@ -128,7 +128,7 @@ export default function Index() {
                             variant="outlined"
                         />
                     </GridBox>
-                    <GridBox xs={2}>
+                    <GridBox xs={2} loadingData={loadingData}>
                         <ControlledSelect
                             id="type"
                             label="Tipo do imóvel"
@@ -139,7 +139,7 @@ export default function Index() {
                             control={control}
                         />
                     </GridBox>
-                    <GridBox xs={2}>
+                    <GridBox xs={2} loadingData={loadingData}>
                         <TextField
                             fullWidth
                             name="area"
@@ -156,7 +156,7 @@ export default function Index() {
                             }}
                         />
                     </GridBox>
-                    <GridBox xs={3}>
+                    <GridBox xs={3} loadingData={loadingData}>
                         <TextField
                             fullWidth
                             name="registration"
@@ -166,7 +166,7 @@ export default function Index() {
                             variant="outlined"
                         />
                     </GridBox>
-                    <GridBox xs={3}>
+                    <GridBox xs={3} loadingData={loadingData}>
                         <TextField
                             fullWidth
                             name="iptu"
@@ -176,7 +176,7 @@ export default function Index() {
                             variant="outlined"
                         />
                     </GridBox>
-                    <GridBox xs={2}>
+                    <GridBox xs={2} loadingData={loadingData}>
                         <TextField
                             id="dorms"
                             name="dorms"
@@ -187,7 +187,7 @@ export default function Index() {
                             variant="outlined"
                         />
                     </GridBox>
-                    <GridBox xs={2}>
+                    <GridBox xs={2} loadingData={loadingData}>
                         <TextField
                             id="bathrooms"
                             name="bathrooms"
@@ -198,7 +198,7 @@ export default function Index() {
                             variant="outlined"
                         />
                     </GridBox>
-                    <GridBox xs={7}>
+                    <GridBox xs={7} loadingData={loadingData}>
                         <TextField
                             id="suites"
                             name="suites"
@@ -209,7 +209,7 @@ export default function Index() {
                             variant="outlined"
                         />
                     </GridBox>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -237,7 +237,7 @@ export default function Index() {
                             label="Possui elevador"
                         />
                     </GridBox>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -251,7 +251,7 @@ export default function Index() {
                             label="Possui churrasqueira"
                         />
                     </GridBox>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
@@ -265,7 +265,11 @@ export default function Index() {
                             label="Possui piscina"
                         />
                     </GridBox>
-                    <Address address={property.address} register={register()} />
+                    <Address
+                        address={property.address}
+                        register={register()}
+                        loadingData={loadingData}
+                    />
                     <Garages garages={property.garages} />
                     <CardActions style={{ marginTop: '10px' }}>
                         <div className={classes.bottomBoxButtons}>
@@ -274,12 +278,14 @@ export default function Index() {
                                 type="submit"
                                 success={success}
                                 loading={loading}
+                                loadingData={loadingData}
                             />
                             {property.id && (
                                 <FormButton
                                     label="Excluir"
                                     onClick={() => removeProperty(property.id)}
                                     loading={loading}
+                                    loadingData={loadingData}
                                 />
                             )}
                         </div>

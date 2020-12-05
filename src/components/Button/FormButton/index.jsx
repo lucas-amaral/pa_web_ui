@@ -1,8 +1,9 @@
 import Button from '@material-ui/core/Button';
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Skeleton } from '@material-ui/lab';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     mainDiv: {
         alignItems: 'center',
         display: 'flex',
@@ -19,22 +20,28 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FormButton({ label, onClick, loading }) {
+export default function FormButton({ label, onClick, loading, loadingData }) {
     const classes = useStyles();
 
     return (
         <div className={classes.mainDiv}>
             <div>
-                <Button
-                    className={classes.bottomButton}
-                    variant="contained"
-                    color="primary"
-                    disabled={loading}
-                    onClick={onClick}
-                    fullWidth
-                >
-                    {label}
-                </Button>
+                {loadingData ? (
+                    <Skeleton height={60} animation="wave">
+                        <Button fullWidth />
+                    </Skeleton>
+                ) : (
+                    <Button
+                        className={classes.bottomButton}
+                        variant="contained"
+                        color="primary"
+                        disabled={loading}
+                        onClick={onClick}
+                        fullWidth
+                    >
+                        {label}
+                    </Button>
+                )}
             </div>
         </div>
     );

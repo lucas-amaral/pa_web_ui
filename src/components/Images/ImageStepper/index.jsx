@@ -8,6 +8,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Skeleton } from '@material-ui/lab';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function ImageStepper({images, deleteImage}) {
+export default function ImageStepper({ images, deleteImage, loadingData }) {
     const classes = useStyles();
     const theme = useTheme();
     const [activeStep, setActiveStep] = React.useState(0);
@@ -43,7 +44,9 @@ export default function ImageStepper({images, deleteImage}) {
         setActiveStep((prevActiveStep) => prevActiveStep - 1);
     };
 
-    return (
+    return loadingData ? (
+        <Skeleton variant="rect" animation="wave" height={340} width={400} />
+    ) : (
         <div className={classes.root}>
             <img
                 className={classes.img}
@@ -57,7 +60,7 @@ export default function ImageStepper({images, deleteImage}) {
                         color="inherit"
                         key="delete-image"
                         onClick={() => {
-                            maxSteps = maxSteps - 1;
+                            maxSteps -= 1;
                             setActiveStep(0);
                             deleteImage(images[activeStep].id);
                         }}
@@ -73,14 +76,30 @@ export default function ImageStepper({images, deleteImage}) {
                 variant="text"
                 activeStep={activeStep}
                 nextButton={
-                    <Button size="small" onClick={handleNext} disabled={activeStep === maxSteps - 1}>
+                    <Button
+                        size="small"
+                        onClick={handleNext}
+                        disabled={activeStep === maxSteps - 1}
+                    >
                         Próxima
-                        {theme.direction === 'rtl' ? <KeyboardArrowLeft /> : <KeyboardArrowRight />}
+                        {theme.direction === 'rtl' ? (
+                            <KeyboardArrowLeft />
+                        ) : (
+                            <KeyboardArrowRight />
+                        )}
                     </Button>
                 }
                 backButton={
-                    <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-                        {theme.direction === 'rtl' ? <KeyboardArrowRight /> : <KeyboardArrowLeft />}
+                    <Button
+                        size="small"
+                        onClick={handleBack}
+                        disabled={activeStep === 0}
+                    >
+                        {theme.direction === 'rtl' ? (
+                            <KeyboardArrowRight />
+                        ) : (
+                            <KeyboardArrowLeft />
+                        )}
                         Voltar
                     </Button>
                 }

@@ -56,7 +56,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function FullWidthTabs() {
-    const { property, images } = useSelector((state) => state.property);
+    const { property, images, loadingData } = useSelector(
+        (state) => state.property
+    );
     const classes = useStyles();
     const theme = useTheme();
     const [value, setValue] = React.useState(0);
@@ -81,8 +83,16 @@ export default function FullWidthTabs() {
                     aria-label="full width tabs example"
                 >
                     <Tab label="Imóvel" {...a11yProps(0)} />
-                    <Tab label="Fotos" {...a11yProps(1)} disabled={!property.id} />
-                    <Tab label="Anúncio" {...a11yProps(2)} disabled={!property.id} />
+                    <Tab
+                        label="Fotos"
+                        {...a11yProps(1)}
+                        disabled={!property.id}
+                    />
+                    <Tab
+                        label="Anúncio"
+                        {...a11yProps(2)}
+                        disabled={!property.id}
+                    />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -101,6 +111,7 @@ export default function FullWidthTabs() {
                         type_add={ADD_PROPERTY_IMAGE}
                         type_remove={REMOVE_PROPERTY_IMAGE}
                         smallTitle={false}
+                        loadingData={loadingData}
                     />
                 </TabPanel>
                 <TabPanel value={value} index={2}>

@@ -5,6 +5,7 @@ import { Box, Grid } from '@material-ui/core';
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
+import { Skeleton } from '@material-ui/lab';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
 import ImageStepper from '../../../../components/Images/ImageStepper';
@@ -17,6 +18,7 @@ export default function Images({
     type_remove,
     containerStyle = {},
     smallTitle = true,
+    loadingData,
 }) {
     const dispatch = useDispatch();
 
@@ -73,29 +75,38 @@ export default function Images({
             <Grid container style={containerStyle}>
                 <Grid item md={12}>
                     <Box pl={1} pb={2}>
-                        {smallTitle ?
-                            <Title style={{ fontSize: '15px' }}>Fotos</Title> :
+                        {smallTitle ? (
+                            <Title style={{ fontSize: '15px' }}>Fotos</Title>
+                        ) : (
                             <Title>Fotos</Title>
-                        }
+                        )}
                     </Box>
                 </Grid>
             </Grid>
-            {images.length > 0 && (
-                <GridBox>
-                    <ImageStepper images={images} deleteImage={deleteImage} />
-                </GridBox>
-            )}
+            <GridBox>
+                <ImageStepper
+                    images={images}
+                    deleteImage={deleteImage}
+                    loadingData={loadingData}
+                />
+            </GridBox>
             <GridBox xs={7}>
                 <div>
-                    <Tooltip title="Adicionar imagem">
-                        <Fab
-                            aria-label="Adicionar Foto"
-                            color="primary"
-                            onClick={() => setOpenDropZone(true)}
-                        >
-                            <AddPhotoAlternateIcon />
-                        </Fab>
-                    </Tooltip>
+                    {loadingData ? (
+                        <Skeleton variant="circle" animation="wave">
+                            <Fab />
+                        </Skeleton>
+                    ) : (
+                        <Tooltip title="Adicionar imagem">
+                            <Fab
+                                aria-label="Adicionar Foto"
+                                color="primary"
+                                onClick={() => setOpenDropZone(true)}
+                            >
+                                <AddPhotoAlternateIcon />
+                            </Fab>
+                        </Tooltip>
+                    )}
                     <DropzoneDialog
                         dropzoneText="Arraste e solte uma imagem aqui ou clique"
                         showAlerts={false}

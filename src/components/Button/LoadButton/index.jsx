@@ -3,8 +3,9 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Button from '@material-ui/core/Button';
-import { SKYBLUE } from '../../../constants/Colors';
 import green from '@material-ui/core/colors/green';
+import { Skeleton } from '@material-ui/lab';
+import { SKYBLUE } from '../../../constants/Colors';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,7 +41,12 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function CircularIntegration({label, success, loading }) {
+export default function CircularIntegration({
+    label,
+    success,
+    loading,
+    loadingData,
+}) {
     const classes = useStyles();
 
     const buttonClassname = clsx({
@@ -50,20 +56,30 @@ export default function CircularIntegration({label, success, loading }) {
     return (
         <div className={classes.root}>
             <div className={classes.wrapper}>
-                <Button
-                    style={{width: '250px', height: '38px'}}
-                    variant="contained"
-                    color="primary"
-                    className={buttonClassname}
-                    disabled={loading}
-                    size="medium"
-                    type="submit"
-                >
-                    {label}
-                </Button>
-                {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+                {loadingData ? (
+                    <Skeleton height={60} animation="wave">
+                        <Button fullWidth />
+                    </Skeleton>
+                ) : (
+                    <Button
+                        style={{ width: '250px', height: '38px' }}
+                        variant="contained"
+                        color="primary"
+                        className={buttonClassname}
+                        disabled={loading}
+                        size="medium"
+                        type="submit"
+                    >
+                        {label}
+                    </Button>
+                )}
+                {loading && (
+                    <CircularProgress
+                        size={24}
+                        className={classes.buttonProgress}
+                    />
+                )}
             </div>
         </div>
     );
 }
-

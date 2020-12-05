@@ -14,6 +14,9 @@ import {
     LOADING_SALE,
     REMOVE_SALE,
     RESET_SUCCESS_SALE,
+    UPDATE_BARTER_PROPERTY_SALE,
+    UPDATE_BARTER_VEHICLE_SALE,
+    UPDATE_FINANCING_SALE,
 } from '../../../../constants/ActionTypes';
 import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
@@ -47,17 +50,15 @@ export default function Sale() {
     const dispatch = useDispatch();
 
     const property = useSelector((state) => state.property.property);
-    const { sale, loading, success } = useSelector((state) => state.sale);
-
-    const propertyId = property.id;
-
-    const [showFinancing, setShowFinancing] = React.useState(sale.financing);
-    const [showBarterVehicle, setShowBarterVehicle] = React.useState(
-        sale.barterVehicle
-    );
-    const [showBarterProperty, setShowBarterProperty] = React.useState(
-        sale.barterProperty
-    );
+    const {
+        sale,
+        loading,
+        loadingData,
+        success,
+        showFinancing,
+        showBarterProperty,
+        showBarterVehicle,
+    } = useSelector((state) => state.sale);
 
     useEffect(() => {
         dispatch({
@@ -65,7 +66,7 @@ export default function Sale() {
         });
         dispatch({
             type: LOAD_SALE,
-            data: { propertyId },
+            data: { propertyId: property.id },
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -99,6 +100,24 @@ export default function Sale() {
         });
     };
 
+    function setShowFinancing() {
+        dispatch({
+            type: UPDATE_FINANCING_SALE,
+        });
+    }
+
+    function setShowBarterProperty() {
+        dispatch({
+            type: UPDATE_BARTER_PROPERTY_SALE,
+        });
+    }
+
+    function setShowBarterVehicle() {
+        dispatch({
+            type: UPDATE_BARTER_VEHICLE_SALE,
+        });
+    }
+
     return (
         <>
             <Grid container>
@@ -118,13 +137,13 @@ export default function Sale() {
                     type="hidden"
                     name="propertyId"
                     defaultValue={
-                        sale.propertyId ? sale.propertyId : propertyId
+                        sale.propertyId ? sale.propertyId : property.id
                     }
                 />
             </Grid>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid container>
-                    <GridBox xs={2}>
+                    <GridBox xs={2} loadingData={loadingData}>
                         <MonetaryInput
                             label="Valor"
                             id="value"
@@ -158,23 +177,21 @@ export default function Sale() {
                             </Box>
                         </Grid>
                     </Grid>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
                                     name="financing"
                                     color="primary"
                                     defaultChecked={sale.financing}
-                                    onClick={() =>
-                                        setShowFinancing(!showFinancing)
-                                    }
+                                    onClick={() => setShowFinancing()}
                                     inputRef={register()}
                                 />
                             }
                             label="Financiável"
                         />
                     </GridBox>
-                    <GridBox xs={9}>
+                    <GridBox xs={9} loadingData={loadingData}>
                         {showFinancing && (
                             <MonetaryInput
                                 id="financingValue"
@@ -194,23 +211,21 @@ export default function Sale() {
                             </Box>
                         </Grid>
                     </Grid>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
                                     name="barterVehicle"
                                     color="primary"
                                     defaultChecked={sale.barterVehicle}
-                                    onClick={() =>
-                                        setShowBarterVehicle(!showBarterVehicle)
-                                    }
+                                    onClick={() => setShowBarterVehicle()}
                                     inputRef={register()}
                                 />
                             }
                             label="Veículo como permuta"
                         />
                     </GridBox>
-                    <GridBox xs={9}>
+                    <GridBox xs={9} loadingData={loadingData}>
                         {showBarterVehicle && (
                             <MonetaryInput
                                 id="barterVehicleValue"
@@ -221,25 +236,21 @@ export default function Sale() {
                             />
                         )}
                     </GridBox>
-                    <GridBox>
+                    <GridBox loadingData={loadingData}>
                         <FormControlLabel
                             control={
                                 <Checkbox
                                     name="barterProperty"
                                     color="primary"
                                     defaultChecked={sale.barterProperty}
-                                    onClick={() =>
-                                        setShowBarterProperty(
-                                            !showBarterProperty
-                                        )
-                                    }
+                                    onClick={() => setShowBarterProperty()}
                                     inputRef={register()}
                                 />
                             }
                             label="Imóvel como permuta"
                         />
                     </GridBox>
-                    <GridBox xs={9}>
+                    <GridBox xs={9} loadingData={loadingData}>
                         {showBarterProperty && (
                             <MonetaryInput
                                 id="barterPropertyValue"
@@ -257,12 +268,14 @@ export default function Sale() {
                                 type="submit"
                                 success={success}
                                 loading={loading}
+                                loadingData={loadingData}
                             />
                             {sale.id && (
                                 <FormButton
                                     label="Excluir"
                                     onClick={() => removeSale(sale.id)}
                                     loading={loading}
+                                    loadingData={loadingData}
                                 />
                             )}
                         </div>

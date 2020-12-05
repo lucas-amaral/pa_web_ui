@@ -20,7 +20,9 @@ import { getDbType, getType } from '../../../../utils/userUtils';
 function User() {
     const { register, handleSubmit } = useForm();
     const dispatch = useDispatch();
-    const { user, loading, success } = useSelector((state) => state.user);
+    const { user, loadingData, loading, success } = useSelector(
+        (state) => state.user
+    );
 
     useEffect(() => {
         dispatch({
@@ -52,7 +54,7 @@ function User() {
                     </Grid>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Grid container>
-                            <GridBox xs={9}>
+                            <GridBox xs={9} loadingData={loadingData}>
                                 <TextField
                                     fullWidth
                                     id="name"
@@ -63,7 +65,7 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            <GridBox xs={2}>
+                            <GridBox xs={2} loadingData={loadingData}>
                                 <TextField
                                     fullWidth
                                     id="dateOfBirth"
@@ -81,7 +83,7 @@ function User() {
                                     }}
                                 />
                             </GridBox>
-                            <GridBox xs={4}>
+                            <GridBox xs={4} loadingData={loadingData}>
                                 <TextField
                                     fullWidth
                                     id="username"
@@ -93,7 +95,7 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            <GridBox xs={3}>
+                            <GridBox xs={3} loadingData={loadingData}>
                                 <TextField
                                     fullWidth
                                     id="cpfCnpj"
@@ -104,7 +106,7 @@ function User() {
                                     variant="outlined"
                                 />
                             </GridBox>
-                            <GridBox xs={2}>
+                            <GridBox xs={2} loadingData={loadingData}>
                                 <TextField
                                     fullWidth
                                     id="type"
@@ -119,12 +121,14 @@ function User() {
                             <Address
                                 address={user.address}
                                 register={register()}
+                                loadingData={loadingData}
                             />
                             <CardActions style={{ marginTop: '10px' }}>
                                 <LoadButton
                                     label="Salvar"
                                     success={success}
                                     loading={loading}
+                                    loadingData={loadingData}
                                 />
                             </CardActions>
                         </Grid>

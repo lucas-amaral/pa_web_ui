@@ -36,6 +36,7 @@ const INITIAL_STATE = {
         },
     },
     images: [],
+    loadingData: true,
     loading: false,
     success: false,
 };
@@ -66,11 +67,12 @@ const updatePropertyImages = (state = INITIAL_STATE, payload) => {
         ...state,
         type: payload.type,
         images: payload.payload,
+        loadingData: false,
     };
 };
 
 const succeededAddPropertyImage = (state = INITIAL_STATE, payload) => {
-    payload.payload.map((addImg) => state.images.push(addImg))
+    payload.payload.map((addImg) => state.images.push(addImg));
 
     return {
         ...state,

@@ -3,6 +3,9 @@ import {
     LOADING_SALE,
     RESET_SUCCESS_SALE,
     SUCCEEDED_SALE,
+    UPDATE_BARTER_PROPERTY_SALE,
+    UPDATE_BARTER_VEHICLE_SALE,
+    UPDATE_FINANCING_SALE,
     UPDATE_SALE,
     UPDATE_SALES,
 } from '../../constants/ActionTypes';
@@ -25,8 +28,12 @@ export const { Types } = createActions({
 const INITIAL_STATE = {
     sales: [],
     sale: {},
+    loadingData: true,
     loading: false,
     success: false,
+    showFinancing: false,
+    showBarterProperty: false,
+    showBarterVehicle: false,
 };
 
 /*
@@ -37,6 +44,7 @@ const succeededSale = (state = INITIAL_STATE, action) => {
         ...state,
         type: action.type,
         sale: action.payload,
+        loadingData: false,
         loading: false,
         success: true,
     };
@@ -55,6 +63,10 @@ const updateSale = (state = INITIAL_STATE, payload) => {
         ...state,
         type: payload.type,
         sale: payload.payload,
+        loadingData: false,
+        showFinancing: payload.payload.financing,
+        showBarterProperty: payload.payload.barterProperty,
+        showBarterVehicle: payload.payload.barterVehicle,
     };
 };
 
@@ -66,6 +78,18 @@ const resetSuccessSale = (state = INITIAL_STATE) => {
     return { ...state, loading: false, success: false };
 };
 
+const updateFinancingSale = (state = INITIAL_STATE) => {
+    return { ...state, showFinancing: !state.showFinancing };
+};
+
+const updateBarterPropertySale = (state = INITIAL_STATE) => {
+    return { ...state, showBarterProperty: !state.showBarterProperty };
+};
+
+const updateBarterVehicleSale = (state = INITIAL_STATE) => {
+    return { ...state, showBarterVehicle: !state.showBarterVehicle };
+};
+
 /*
     Criando o reducer
 */
@@ -75,4 +99,7 @@ export default createReducer(INITIAL_STATE, {
     [UPDATE_SALE]: updateSale,
     [LOADING_SALE]: loadingSale,
     [RESET_SUCCESS_SALE]: resetSuccessSale,
+    [UPDATE_FINANCING_SALE]: updateFinancingSale,
+    [UPDATE_BARTER_PROPERTY_SALE]: updateBarterPropertySale,
+    [UPDATE_BARTER_VEHICLE_SALE]: updateBarterVehicleSale,
 });

@@ -29,6 +29,7 @@ const INITIAL_STATE = {
             },
         },
     },
+    loadingData: true,
     loading: false,
     success: false,
 };
@@ -37,6 +38,7 @@ const updateUser = (state = INITIAL_STATE, payload) => {
     return {
         type: payload.type,
         user: payload.payload,
+        loadingData: false,
     };
 };
 

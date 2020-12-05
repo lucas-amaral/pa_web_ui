@@ -6,7 +6,7 @@ import GridBox from '../../../../components/GridBox';
 import { Title } from '../../../Register/styles';
 import { LOAD_STREET } from '../../../../constants/ActionTypes';
 
-export default function Address({ address, register }) {
+export default function Address({ address, register, loadingData }) {
     const dispatch = useDispatch();
     const street = useSelector((state) => state.street.street);
 
@@ -33,7 +33,7 @@ export default function Address({ address, register }) {
                 name="address.id"
                 defaultValue={address ? address.id : null}
             />
-            <GridBox xs={3}>
+            <GridBox xs={3} loadingData={loadingData}>
                 <TextField
                     fullWidth
                     id="address.streetId"
@@ -49,7 +49,7 @@ export default function Address({ address, register }) {
                     variant="outlined"
                 />
             </GridBox>
-            <GridBox xs={8}>
+            <GridBox xs={8} loadingData={loadingData}>
                 <TextField
                     fullWidth
                     id="street"
@@ -62,7 +62,7 @@ export default function Address({ address, register }) {
                     variant="outlined"
                 />
             </GridBox>
-            <GridBox xs={3}>
+            <GridBox xs={3} loadingData={loadingData}>
                 <TextField
                     fullWidth
                     id="number"
@@ -73,7 +73,7 @@ export default function Address({ address, register }) {
                     variant="outlined"
                 />
             </GridBox>
-            <GridBox xs={5}>
+            <GridBox xs={5} loadingData={loadingData}>
                 <TextField
                     fullWidth
                     id="complement"

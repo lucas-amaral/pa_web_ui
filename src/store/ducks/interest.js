@@ -28,6 +28,7 @@ export const { Types } = createActions({
 */
 const INITIAL_STATE = {
     interest: {},
+    loadingData: true,
     loading: false,
     success: false,
 };
@@ -60,6 +61,7 @@ const updateInterest = (state = INITIAL_STATE, payload) => {
             ...payload.payload,
             uiTypes: getPropertyTypes(payload.payload.types),
         },
+        loadingData: false,
     };
 };
 

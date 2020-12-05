@@ -1,0 +1,818 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:feature" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="dc82922a-c7f6-42da-9af7-6205b08cbf49" name="Default Changelist" comment="Change sale feature to be inside on property">
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/FormButton/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/FormButton/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Button/LoadButton/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Button/LoadButton/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/GridBox/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/GridBox/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Images/ImageStepper/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Images/ImageStepper/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/constants/ActionTypes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/constants/ActionTypes/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Address/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Address/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Barter/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Barter/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Images/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Images/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Interest/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Interest/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Property/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Property/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Property/propertyTabs.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Property/propertyTabs.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Sale/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Sale/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/User/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/User/index.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/ducks/barter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/ducks/barter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/ducks/interest.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/ducks/interest.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/ducks/property.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/ducks/property.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/ducks/sale.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/ducks/sale.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/ducks/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/ducks/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="develop" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProblemsViewState">
+    <hideBySeverity>
+      <option value="15" />
+    </hideBySeverity>
+  </component>
+  <component name="ProjectId" id="1jtlM90UsWkasRLLfw4Qsb0EYeA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="js.last.introduce.type" value="CONST" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Barter" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.standard" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.standard" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.standard" value="" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="prettierjs.PrettierConfiguration.Package" value="$PROJECT_DIR$/node_modules/prettier" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/assets" />
+      <recent name="$PROJECT_DIR$/public" />
+      <recent name="$PROJECT_DIR$/src/components/Images" />
+      <recent name="$PROJECT_DIR$/src/pages/Dashboard/InternalPages" />
+      <recent name="$PROJECT_DIR$/src/components/Input" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/pages/Dashboard/InternalPages/Barter" />
+      <recent name="$PROJECT_DIR$/src/components/SaleCard" />
+      <recent name="$PROJECT_DIR$/src/store/ducks" />
+      <recent name="$PROJECT_DIR$/src/store/saga" />
+      <recent name="$PROJECT_DIR$/src/services" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.JavaScript Debug">
+    <configuration name="JavaScript Debug" type="JavascriptDebugType" uri="http://localhost:3000">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="JavaScript Debug.JavaScript Debug" />
+      <item itemvalue="npm.start" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="dc82922a-c7f6-42da-9af7-6205b08cbf49" name="Default Changelist" comment="" />
+      <created>1604631218002</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1604631218002</updated>
+      <workItem from="1604631219220" duration="458000" />
+      <workItem from="1604775362026" duration="684000" />
+      <workItem from="1604811485841" duration="5610000" />
+      <workItem from="1604974347718" duration="2952000" />
+      <workItem from="1605049681202" duration="10463000" />
+      <workItem from="1605133124471" duration="8418000" />
+      <workItem from="1605216731785" duration="14583000" />
+      <workItem from="1605269677831" duration="10640000" />
+      <workItem from="1605314330195" duration="6749000" />
+      <workItem from="1605366952373" duration="32061000" />
+      <workItem from="1605575748839" duration="5409000" />
+      <workItem from="1605637635412" duration="82000" />
+      <workItem from="1605661568510" duration="5595000" />
+      <workItem from="1605728129050" duration="58000" />
+      <workItem from="1605745049016" duration="3938000" />
+      <workItem from="1605788551564" duration="282000" />
+      <workItem from="1605802866420" duration="3673000" />
+      <workItem from="1605840872532" duration="1163000" />
+      <workItem from="1605842086530" duration="640000" />
+      <workItem from="1605908943488" duration="185000" />
+      <workItem from="1605909150241" duration="10969000" />
+      <workItem from="1605928193221" duration="29204000" />
+      <workItem from="1606268254280" duration="6483000" />
+      <workItem from="1606355452627" duration="6059000" />
+      <workItem from="1606442633826" duration="5973000" />
+      <workItem from="1606525724748" duration="14362000" />
+      <workItem from="1606577870822" duration="124000" />
+      <workItem from="1606686300476" duration="16463000" />
+      <workItem from="1606753216638" duration="2009000" />
+      <workItem from="1606770716192" duration="16796000" />
+      <workItem from="1606865266882" duration="11180000" />
+      <workItem from="1606926795114" duration="71000" />
+      <workItem from="1606953318571" duration="8524000" />
+      <workItem from="1606966345589" duration="1023000" />
+      <workItem from="1607032319205" duration="15767000" />
+      <workItem from="1607085942712" duration="28237000" />
+    </task>
+    <task id="LOCAL-00001" summary="Clean code">
+      <created>1605119986936</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1605119986936</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Centralize backend communication and add axios interceptor to manage token">
+      <created>1605234033032</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1605234033032</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add login error message">
+      <created>1605298863598</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1605298863598</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Unify new interest and edit interest">
+      <created>1605395363905</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1605395363905</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Change interest crud layout">
+      <created>1605417817076</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1605417817076</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Create GridBox, MonetaryInput and MultilineSelect components">
+      <created>1605467034168</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1605467034168</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Add barters on interest">
+      <created>1605471937782</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1605471937782</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add user page">
+      <created>1605582157895</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1605582157895</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Fix interest type select value">
+      <created>1605670171766</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1605670171766</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add address on user component">
+      <created>1605752945766</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1605752945766</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Add address on user component">
+      <created>1605916808121</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1605916808121</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Add neighborhoos on interest screen">
+      <created>1605925187671</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1605925187671</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Configure and add street on user feature">
+      <created>1605928868619</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1605928868619</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Ajust zipCode, type and birthDate fields on user">
+      <created>1605998722595</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1605998722595</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Add edit user feature">
+      <created>1606006097606</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1606006097607</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Adjust edit user feature to update user state">
+      <created>1606088048342</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1606088048342</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Clean code">
+      <created>1606100346502</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1606100346502</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add LoadButton">
+      <created>1606273772458</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1606273772458</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Refactor MultilineSelect component">
+      <created>1606275916661</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1606275916661</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Start to register fields on edit interest component">
+      <created>1606446416223</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1606446416223</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add edit interest feature">
+      <created>1606449197413</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1606449197413</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Add LoadButton and fix checkbox fields on interest component">
+      <created>1606530668629</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1606530668629</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Add remove barters and show/hide financing value functions">
+      <created>1606532861989</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1606532861989</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Insert add barters feature">
+      <created>1606541087708</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1606541087708</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Fix remove interest barter">
+      <created>1606703693177</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1606703693177</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Split bartersList and newBarter">
+      <created>1606704552228</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1606704552228</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Add address component and start property component">
+      <created>1606713335779</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1606713335779</updated>
+    </task>
+    <task id="LOCAL-00028" summary="Add garages on property feature">
+      <created>1606782961015</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1606782961015</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Clean code">
+      <created>1606786535093</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1606786535093</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Add sale structure">
+      <created>1606794234359</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1606794234359</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Create negotiation service, store and card component">
+      <created>1606882017818</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1606882017818</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Start barter edition feature">
+      <created>1606966302677</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1606966302677</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fix edit and remove barter">
+      <created>1606967396451</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1606967396451</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Clean code">
+      <created>1607055130791</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1607055130791</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Create images property routes and store">
+      <created>1607088831809</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1607088831809</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Add ImageStepper component to show barter and property images">
+      <created>1607111700169</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1607111700169</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Add Carousel on Interest and Sale Cards">
+      <created>1607115481118</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1607115481118</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Add negotiation screen">
+      <created>1607140514081</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1607140514081</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Change sale feature to be inside on property">
+      <created>1607144818452</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1607144818452</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Add loading on FormButton">
+      <created>1607148505094</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1607148505094</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add edit user feature" />
+    <MESSAGE value="Adjust edit user feature to update user state" />
+    <MESSAGE value="Add LoadButton" />
+    <MESSAGE value="Refactor MultilineSelect component" />
+    <MESSAGE value="Start to register fields on edit interest component" />
+    <MESSAGE value="Add edit interest feature" />
+    <MESSAGE value="Add LoadButton and fix checkbox fields on interest component" />
+    <MESSAGE value="Add remove barters and show/hide financing value functions" />
+    <MESSAGE value="Insert add barters feature" />
+    <MESSAGE value="Fix remove interest barter" />
+    <MESSAGE value="Split bartersList and newBarter" />
+    <MESSAGE value="Add address component and start property component" />
+    <MESSAGE value="Add garages on property feature" />
+    <MESSAGE value="Add sale structure" />
+    <MESSAGE value="Create notification service, store and card component" />
+    <MESSAGE value="Create negotiation service, store and card component" />
+    <MESSAGE value="Start barter edition feature" />
+    <MESSAGE value="Fix edit and remove barter" />
+    <MESSAGE value="Clean code" />
+    <MESSAGE value="Create images property routes and store" />
+    <MESSAGE value="Add ImageStepper component to show barter and property images" />
+    <MESSAGE value="Add Carousel on Interest and Sale Cards" />
+    <MESSAGE value="Add negotiation screen" />
+    <MESSAGE value="Change sale feature to be inside on property" />
+    <MESSAGE value="Add loading on FormButton" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add loading on FormButton" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="701" y="436" key="#ESLint" timestamp="1604844644758">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="701" y="436" key="#ESLint/0.23.1680.1027@0.23.1680.1027" timestamp="1604844644758" />
+    <state x="621" y="329" key="#Web_Browsers" timestamp="1605842827245">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="621" y="345" key="#Web_Browsers/0.23.1680.1027@0.23.1680.1027" timestamp="1605216923912" />
+    <state x="621" y="329" key="#Web_Browsers/0.23.1680.977@0.23.1680.977" timestamp="1605842827245" />
+    <state x="304" y="189" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1605842833377">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="304" y="198" width="1071" height="724" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605217027238" />
+    <state x="304" y="189" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.23.1680.977@0.23.1680.977" timestamp="1605842833377" />
+    <state x="2341" y="166" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606784192868">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state x="2341" y="166" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1606784192868" />
+    <state x="578" y="290" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605239196681" />
+    <state x="2552" y="-127" width="988" height="734" key="#xdebugger.evaluate" timestamp="1607091343538">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="763" y="23" width="917" height="1027" key="#xdebugger.evaluate/0.23.1680.1027@0.23.1680.1027" timestamp="1606362286453" />
+    <state x="2552" y="-127" key="#xdebugger.evaluate/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091343538" />
+    <state x="249" y="23" width="988" height="734" key="#xdebugger.evaluate/0.23.1680.977@0.23.1680.977" timestamp="1606965684480" />
+    <state x="1680" y="-127" width="1680" height="976" key="CommitChangelistDialog2" timestamp="1607148504762">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state x="-1652" y="-317" width="1558" height="1112" key="CommitChangelistDialog2/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605119986647" />
+    <state x="1680" y="-127" key="CommitChangelistDialog2/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607144561480" />
+    <state x="1680" y="-127" width="1920" height="1127" key="CommitChangelistDialog2/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607148504762" />
+    <state x="1680" y="-127" width="1897" height="1113" key="CommitChangelistDialog2/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449197260" />
+    <state x="0" y="23" width="1680" height="947" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1607055130095" />
+    <state x="1680" y="-127" width="1920" height="1127" key="CommitChangelistDialog2/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607115480808" />
+    <state x="0" y="24" width="1680" height="976" key="CommitChangelistDialog2/0.23.1680.977@0.23.1680.977" timestamp="1606967396031" />
+    <state x="100" y="118" width="1481" height="788" key="DiffContextDialog" timestamp="1605912664600">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="1794" y="-17" width="1692" height="908" key="DiffContextDialog/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1605807730916" />
+    <state x="100" y="123" width="1480" height="827" key="DiffContextDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605471714164" />
+    <state x="100" y="118" width="1481" height="788" key="DiffContextDialog/0.23.1680.977@0.23.1680.977" timestamp="1605912664600" />
+    <state width="1899" height="368" key="GridCell.Tab.0.bottom" timestamp="1607140023938">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1899" height="379" key="GridCell.Tab.0.bottom/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605121798683" />
+    <state width="1659" height="322" key="GridCell.Tab.0.bottom/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697937" />
+    <state width="1899" height="374" key="GridCell.Tab.0.bottom/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956390" />
+    <state width="1899" height="368" key="GridCell.Tab.0.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023938" />
+    <state width="1659" height="333" key="GridCell.Tab.0.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831892" />
+    <state width="1899" height="390" key="GridCell.Tab.0.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253275" />
+    <state width="1659" height="311" key="GridCell.Tab.0.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846627" />
+    <state width="1899" height="368" key="GridCell.Tab.0.bottom/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521633" />
+    <state width="1659" height="311" key="GridCell.Tab.0.bottom/0.23.1680.977@0.23.1680.977" timestamp="1606966327104" />
+    <state width="1899" height="368" key="GridCell.Tab.0.center" timestamp="1607140023936">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1899" height="379" key="GridCell.Tab.0.center/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605121798682" />
+    <state width="1659" height="322" key="GridCell.Tab.0.center/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697937" />
+    <state width="1899" height="374" key="GridCell.Tab.0.center/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956390" />
+    <state width="1899" height="368" key="GridCell.Tab.0.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023936" />
+    <state width="1659" height="333" key="GridCell.Tab.0.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831891" />
+    <state width="1899" height="390" key="GridCell.Tab.0.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253275" />
+    <state width="1659" height="311" key="GridCell.Tab.0.center/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846624" />
+    <state width="1899" height="368" key="GridCell.Tab.0.center/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521632" />
+    <state width="1659" height="311" key="GridCell.Tab.0.center/0.23.1680.977@0.23.1680.977" timestamp="1606966327103" />
+    <state width="1899" height="368" key="GridCell.Tab.0.left" timestamp="1607140023934">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1899" height="379" key="GridCell.Tab.0.left/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605121798682" />
+    <state width="1659" height="322" key="GridCell.Tab.0.left/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697936" />
+    <state width="1899" height="374" key="GridCell.Tab.0.left/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956389" />
+    <state width="1899" height="368" key="GridCell.Tab.0.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023934" />
+    <state width="1659" height="333" key="GridCell.Tab.0.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831890" />
+    <state width="1899" height="390" key="GridCell.Tab.0.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253274" />
+    <state width="1659" height="311" key="GridCell.Tab.0.left/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846622" />
+    <state width="1899" height="368" key="GridCell.Tab.0.left/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521631" />
+    <state width="1659" height="311" key="GridCell.Tab.0.left/0.23.1680.977@0.23.1680.977" timestamp="1606966327102" />
+    <state width="1899" height="368" key="GridCell.Tab.0.right" timestamp="1607140023937">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1899" height="379" key="GridCell.Tab.0.right/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605121798682" />
+    <state width="1659" height="322" key="GridCell.Tab.0.right/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697937" />
+    <state width="1899" height="374" key="GridCell.Tab.0.right/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956390" />
+    <state width="1899" height="368" key="GridCell.Tab.0.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023937" />
+    <state width="1659" height="333" key="GridCell.Tab.0.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831891" />
+    <state width="1899" height="390" key="GridCell.Tab.0.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253275" />
+    <state width="1659" height="311" key="GridCell.Tab.0.right/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846626" />
+    <state width="1899" height="368" key="GridCell.Tab.0.right/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521632" />
+    <state width="1659" height="311" key="GridCell.Tab.0.right/0.23.1680.977@0.23.1680.977" timestamp="1606966327103" />
+    <state width="1899" height="368" key="GridCell.Tab.1.bottom" timestamp="1607140023941">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.1.bottom/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697916" />
+    <state width="1899" height="374" key="GridCell.Tab.1.bottom/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956392" />
+    <state width="1899" height="368" key="GridCell.Tab.1.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023941" />
+    <state width="1659" height="333" key="GridCell.Tab.1.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831893" />
+    <state width="1899" height="390" key="GridCell.Tab.1.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253276" />
+    <state width="1659" height="311" key="GridCell.Tab.1.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846630" />
+    <state width="1899" height="368" key="GridCell.Tab.1.bottom/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521634" />
+    <state width="1659" height="311" key="GridCell.Tab.1.bottom/0.23.1680.977@0.23.1680.977" timestamp="1606966327105" />
+    <state width="1899" height="368" key="GridCell.Tab.1.center" timestamp="1607140023939">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.1.center/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697915" />
+    <state width="1899" height="374" key="GridCell.Tab.1.center/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956391" />
+    <state width="1899" height="368" key="GridCell.Tab.1.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023939" />
+    <state width="1659" height="333" key="GridCell.Tab.1.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831892" />
+    <state width="1899" height="390" key="GridCell.Tab.1.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253276" />
+    <state width="1659" height="311" key="GridCell.Tab.1.center/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846629" />
+    <state width="1899" height="368" key="GridCell.Tab.1.center/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521633" />
+    <state width="1659" height="311" key="GridCell.Tab.1.center/0.23.1680.977@0.23.1680.977" timestamp="1606966327104" />
+    <state width="1899" height="368" key="GridCell.Tab.1.left" timestamp="1607140023938">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.1.left/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697915" />
+    <state width="1899" height="374" key="GridCell.Tab.1.left/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956391" />
+    <state width="1899" height="368" key="GridCell.Tab.1.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023938" />
+    <state width="1659" height="333" key="GridCell.Tab.1.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831892" />
+    <state width="1899" height="390" key="GridCell.Tab.1.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253275" />
+    <state width="1659" height="311" key="GridCell.Tab.1.left/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846628" />
+    <state width="1899" height="368" key="GridCell.Tab.1.left/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521633" />
+    <state width="1659" height="311" key="GridCell.Tab.1.left/0.23.1680.977@0.23.1680.977" timestamp="1606966327104" />
+    <state width="1899" height="368" key="GridCell.Tab.1.right" timestamp="1607140023940">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.1.right/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697916" />
+    <state width="1899" height="374" key="GridCell.Tab.1.right/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956391" />
+    <state width="1899" height="368" key="GridCell.Tab.1.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023940" />
+    <state width="1659" height="333" key="GridCell.Tab.1.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831893" />
+    <state width="1899" height="390" key="GridCell.Tab.1.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253276" />
+    <state width="1659" height="311" key="GridCell.Tab.1.right/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846630" />
+    <state width="1899" height="368" key="GridCell.Tab.1.right/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521633" />
+    <state width="1659" height="311" key="GridCell.Tab.1.right/0.23.1680.977@0.23.1680.977" timestamp="1606966327105" />
+    <state width="1899" height="368" key="GridCell.Tab.2.bottom" timestamp="1607140023945">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.2.bottom/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697917" />
+    <state width="1899" height="374" key="GridCell.Tab.2.bottom/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956393" />
+    <state width="1899" height="368" key="GridCell.Tab.2.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023945" />
+    <state width="1659" height="333" key="GridCell.Tab.2.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831894" />
+    <state width="1899" height="390" key="GridCell.Tab.2.bottom/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253277" />
+    <state width="1659" height="311" key="GridCell.Tab.2.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846632" />
+    <state width="1899" height="368" key="GridCell.Tab.2.bottom/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521635" />
+    <state width="1659" height="311" key="GridCell.Tab.2.bottom/0.23.1680.977@0.23.1680.977" timestamp="1606966327106" />
+    <state width="1899" height="368" key="GridCell.Tab.2.center" timestamp="1607140023944">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.2.center/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697916" />
+    <state width="1899" height="374" key="GridCell.Tab.2.center/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956392" />
+    <state width="1899" height="368" key="GridCell.Tab.2.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023944" />
+    <state width="1659" height="333" key="GridCell.Tab.2.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831894" />
+    <state width="1899" height="390" key="GridCell.Tab.2.center/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253277" />
+    <state width="1659" height="311" key="GridCell.Tab.2.center/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846632" />
+    <state width="1899" height="368" key="GridCell.Tab.2.center/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521634" />
+    <state width="1659" height="311" key="GridCell.Tab.2.center/0.23.1680.977@0.23.1680.977" timestamp="1606966327105" />
+    <state width="1899" height="368" key="GridCell.Tab.2.left" timestamp="1607140023943">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.2.left/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697916" />
+    <state width="1899" height="374" key="GridCell.Tab.2.left/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956392" />
+    <state width="1899" height="368" key="GridCell.Tab.2.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023943" />
+    <state width="1659" height="333" key="GridCell.Tab.2.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831893" />
+    <state width="1899" height="390" key="GridCell.Tab.2.left/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253276" />
+    <state width="1659" height="311" key="GridCell.Tab.2.left/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846631" />
+    <state width="1899" height="368" key="GridCell.Tab.2.left/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521634" />
+    <state width="1659" height="311" key="GridCell.Tab.2.left/0.23.1680.977@0.23.1680.977" timestamp="1606966327105" />
+    <state width="1899" height="368" key="GridCell.Tab.2.right" timestamp="1607140023944">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.2.right/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697917" />
+    <state width="1899" height="374" key="GridCell.Tab.2.right/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606095956393" />
+    <state width="1899" height="368" key="GridCell.Tab.2.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607140023944" />
+    <state width="1659" height="333" key="GridCell.Tab.2.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@0.23.1680.1027" timestamp="1606303831894" />
+    <state width="1899" height="390" key="GridCell.Tab.2.right/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449253277" />
+    <state width="1659" height="311" key="GridCell.Tab.2.right/0.23.1680.1027@0.23.1680.1027" timestamp="1607056846632" />
+    <state width="1899" height="368" key="GridCell.Tab.2.right/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607091521634" />
+    <state width="1659" height="311" key="GridCell.Tab.2.right/0.23.1680.977@0.23.1680.977" timestamp="1606966327106" />
+    <state width="1659" height="346" key="GridCell.Tab.3.bottom" timestamp="1605184697919">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.3.bottom/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697919" />
+    <state width="1659" height="346" key="GridCell.Tab.3.bottom/0.23.1680.1027@0.23.1680.1027" timestamp="1605151956365" />
+    <state width="1659" height="346" key="GridCell.Tab.3.center" timestamp="1605184697918">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.3.center/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697918" />
+    <state width="1659" height="346" key="GridCell.Tab.3.center/0.23.1680.1027@0.23.1680.1027" timestamp="1605151956365" />
+    <state width="1659" height="346" key="GridCell.Tab.3.left" timestamp="1605184697918">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.3.left/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697918" />
+    <state width="1659" height="346" key="GridCell.Tab.3.left/0.23.1680.1027@0.23.1680.1027" timestamp="1605151956364" />
+    <state width="1659" height="346" key="GridCell.Tab.3.right" timestamp="1605184697918">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="1659" height="346" key="GridCell.Tab.3.right/0.23.1680.1027/-1920.-324.1920.1177@0.23.1680.1027" timestamp="1605184697918" />
+    <state width="1659" height="346" key="GridCell.Tab.3.right/0.23.1680.1027@0.23.1680.1027" timestamp="1605151956365" />
+    <state x="168" y="110" key="MergeDialog" timestamp="1605911163462">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="168" y="110" key="MergeDialog/0.23.1680.977@0.23.1680.977" timestamp="1605911163462" />
+    <state x="609" y="235" key="RollbackChangesDialog" timestamp="1605998569988">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="609" y="246" key="RollbackChangesDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605222719018" />
+    <state x="609" y="235" key="RollbackChangesDialog/0.23.1680.977@0.23.1680.977" timestamp="1605998569988" />
+    <state x="531" y="178" key="SettingsEditor" timestamp="1607032350139">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="531" y="178" key="SettingsEditor/0.23.1680.977@0.23.1680.977" timestamp="1607032350139" />
+    <state width="500" height="445" key="SwitcherDM" timestamp="1607194844732">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state width="500" height="445" key="SwitcherDM/0.23.1680.1027@0.23.1680.1027" timestamp="1607194844732" />
+    <state x="691" y="432" key="VCS.ChangelistChooser" timestamp="1607051097279">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="691" y="432" key="VCS.ChangelistChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1607051097279" />
+    <state x="2240" y="175" key="Vcs.Push.Dialog.v2" timestamp="1607148509061">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state x="-1360" y="-9" key="Vcs.Push.Dialog.v2/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605119993217" />
+    <state x="2240" y="175" key="Vcs.Push.Dialog.v2/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607148509061" />
+    <state x="2240" y="189" key="Vcs.Push.Dialog.v2/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606449199928" />
+    <state x="490" y="298" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1607055132637" />
+    <state x="2240" y="188" key="Vcs.Push.Dialog.v2/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607115483300" />
+    <state x="490" y="285" key="Vcs.Push.Dialog.v2/0.23.1680.977@0.23.1680.977" timestamp="1606967401342" />
+    <state x="1794" y="-12" width="1692" height="948" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1607105182276">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605452813549" />
+    <state x="1794" y="-12" width="1692" height="948" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607105182276" />
+    <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog" timestamp="1605452813549">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="100" y="123" width="1480" height="827" key="com.intellij.history.integration.ui.views.SelectionHistoryDialog/0.23.1680.1027@0.23.1680.1027" timestamp="1605452813549" />
+    <state x="467" y="159" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1607194339345">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="2214" y="29" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607144176574" />
+    <state x="2214" y="22" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607148114460" />
+    <state x="2214" y="28" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606097256081" />
+    <state x="467" y="159" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1607194339345" />
+    <state x="2214" y="29" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607114618236" />
+    <state x="467" y="152" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.23.1680.977@0.23.1680.977" timestamp="1607034725607" />
+    <state x="638" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1606710720999">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="638" y="432" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.23.1680.977@0.23.1680.977" timestamp="1606710720999" />
+    <state x="2114" y="158" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2" timestamp="1606448281441">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="2114" y="158" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606448281441" />
+    <state x="380" y="272" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.23.1680.1027@0.23.1680.1027" timestamp="1605314213172" />
+    <state x="2096" y="-127" width="774" height="706" key="dock-window-1" timestamp="1606091119436">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="2096" y="-127" width="774" height="706" key="dock-window-1/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606091119436" />
+    <state x="2298" y="167" width="687" height="602" key="find.popup" timestamp="1607145271218">
+      <screen x="1680" y="-127" width="1920" height="1127" />
+    </state>
+    <state x="-1302" y="-17" width="687" height="735" key="find.popup/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605119094096" />
+    <state x="2298" y="167" width="687" height="602" key="find.popup/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607145271218" />
+    <state x="541" y="291" width="601" height="548" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1607051566082" />
+    <state x="2298" y="180" width="687" height="629" key="find.popup/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607113983929" />
+    <state x="541" y="278" width="602" height="554" key="find.popup/0.23.1680.977@0.23.1680.977" timestamp="1606965371005" />
+    <state x="511" y="231" key="git4idea.branch.GitSmartOperationDialog" timestamp="1605911155346">
+      <screen x="0" y="23" width="1680" height="977" />
+    </state>
+    <state x="511" y="231" key="git4idea.branch.GitSmartOperationDialog/0.23.1680.977@0.23.1680.977" timestamp="1605911155346" />
+    <state x="2305" y="198" key="run.anything.popup" timestamp="1607088147448">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="2305" y="198" key="run.anything.popup/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607088147448" />
+    <state x="505" y="187" width="670" height="676" key="search.everywhere.popup" timestamp="1607195612831">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="-1343" y="-136" width="766" height="775" key="search.everywhere.popup/0.23.1680.1027/-1920.-324.1920.1177@-1920.-324.1920.1177" timestamp="1605121791324" />
+    <state x="2257" y="61" width="766" height="775" key="search.everywhere.popup/0.23.1680.1027/3600.-85.1920.1007/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607144236367" />
+    <state x="2257" y="53" width="766" height="742" key="search.everywhere.popup/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1127@1680.-127.1920.1127" timestamp="1607146977433" />
+    <state x="2257" y="61" width="766" height="775" key="search.everywhere.popup/0.23.1680.1027/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1606448710196" />
+    <state x="505" y="187" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1607195612831" />
+    <state x="2257" y="61" width="766" height="775" key="search.everywhere.popup/0.23.1680.977/3600.-85.1920.1057/1680.-127.1920.1177@1680.-127.1920.1177" timestamp="1607113957312" />
+    <state x="505" y="179" width="671" height="644" key="search.everywhere.popup/0.23.1680.977@0.23.1680.977" timestamp="1607035072326" />
+  </component>
+  <component name="XDebuggerManager">
+    <watches-manager>
+      <configuration name="JavascriptDebugType">
+        <watch expression="state.images" />
+        <watch expression="payload.payload" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

@@ -33,6 +33,9 @@ const INITIAL_STATE = {
     barters: [],
     barter: {},
     images: [],
+    loadingData: true,
+    loading: false,
+    success: false,
 };
 
 /*
@@ -66,11 +69,12 @@ const updateBarterImages = (state = INITIAL_STATE, payload) => {
         ...state,
         type: payload.type,
         images: payload.payload,
+        loadingData: false,
     };
 };
 
 const succeededAddBarterImage = (state = INITIAL_STATE, payload) => {
-    payload.payload.map((addImg) => state.images.push(addImg))
+    payload.payload.map((addImg) => state.images.push(addImg));
 
     return {
         ...state,

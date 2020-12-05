@@ -55,7 +55,7 @@ export default function Barter() {
     const dispatch = useDispatch();
 
     const interestId = useSelector((state) => state.interest.interest.id);
-    const { barter, images, loading, success } = useSelector(
+    const { barter, images, loadingData, loading, success } = useSelector(
         (state) => state.barter
     );
 
@@ -118,7 +118,7 @@ export default function Barter() {
                     </Grid>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Grid container>
-                            <GridBox xs={3}>
+                            <GridBox xs={3} loadingData={loadingData}>
                                 <ControlledSelect
                                     id="type"
                                     label="Tipo"
@@ -129,7 +129,7 @@ export default function Barter() {
                                     control={control}
                                 />
                             </GridBox>
-                            <GridBox xs={2}>
+                            <GridBox xs={2} loadingData={loadingData}>
                                 <MonetaryInput
                                     id="value"
                                     label="Valor"
@@ -144,6 +144,7 @@ export default function Barter() {
                                 type_add={ADD_BARTER_IMAGE}
                                 type_remove={REMOVE_BARTER_IMAGE}
                                 containerStyle={{ marginTop: '20px' }}
+                                loadingData={loadingData}
                             />
                             <CardActions style={{ marginTop: '10px' }}>
                                 <div className={classes.bottomBoxButtons}>
@@ -152,16 +153,19 @@ export default function Barter() {
                                         type="submit"
                                         success={success}
                                         loading={loading}
+                                        loadingData={loadingData}
                                     />
                                     <FormButton
                                         label="Excluir"
                                         onClick={() => removeBarter(barter.id)}
                                         loading={loading}
+                                        loadingData={loadingData}
                                     />
                                     <FormButton
                                         label="Voltar"
                                         onClick={() => goBackInterest()}
                                         loading={loading}
+                                        loadingData={loadingData}
                                     />
                                 </div>
                             </CardActions>
