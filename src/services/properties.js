@@ -14,7 +14,7 @@ export const create = async (data) => {
             return response.data;
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
 
@@ -25,7 +25,7 @@ export const update = async (data) => {
             return response.data;
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
 
@@ -48,7 +48,7 @@ export const saveImage = async (data) => {
             return response.data;
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
 

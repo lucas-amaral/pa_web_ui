@@ -9,7 +9,7 @@ import {
 
 export const { Types } = createActions({
     setContentBody: [],
-    notification: {},
+    notification: [],
 });
 
 /*
@@ -17,7 +17,7 @@ export const { Types } = createActions({
 */
 const INITIAL_STATE = {
     contentBody: '',
-    notification: {},
+    notification: null,
 };
 
 /*

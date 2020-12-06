@@ -6,9 +6,9 @@ import {
     LOAD_USER,
     ADD_USER,
     EDIT_USER,
+    FAILED_USER,
 } from '../../constants/ActionTypes';
-import { errorNotification } from '../../utils/notificationUtils';
-
+import { errorNotification, notification } from '../../utils/notificationUtils';
 
 function* loadUser(action) {
     try {
@@ -24,13 +24,15 @@ function* loadUser(action) {
 
 function* addUser(action) {
     try {
-        const payload = yield call(create, action.dataUser);
+        const payload = yield call(create, action.data);
 
         if (payload) {
             yield put({ type: USER_SUCCEEDED, payload });
+            yield put(notification('Cadastro realizado com sucesso'));
         }
     } catch (e) {
-        yield put(errorNotification('Ocorreu um erro ao adicionar usuário'));
+        yield put({ type: FAILED_USER });
+        yield put(errorNotification('Ocorreu um erro ao cadastrar o usuário'));
     }
 }
 
@@ -42,6 +44,7 @@ function* editUser(action) {
             yield put({ type: USER_SUCCEEDED, payload });
         }
     } catch (e) {
+        yield put({ type: FAILED_USER });
         yield put(errorNotification('Ocorreu um erro ao editar usuário'));
     }
 }

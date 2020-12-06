@@ -2,17 +2,14 @@ import React from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
 import { Grid, Box, TextField, Select, MenuItem } from '@material-ui/core';
+import { useDispatch, useSelector } from 'react-redux';
 import { create } from '../../services/users';
 
-import {
-    Title,
-    Container,
-    BackGround,
-    StyledButton,
-    StyledLink,
-} from './styles';
+import { Title, Container, BackGround, StyledLink } from './styles';
 
 import Header from '../Home/Header';
+import LoadButton from '../../components/Button/LoadButton';
+import { ADD_USER, LOADING_USER } from '../../constants/ActionTypes';
 
 export default function Register() {
     const defaultValues = {
@@ -20,8 +17,18 @@ export default function Register() {
     };
 
     const { register, handleSubmit, control } = useForm({ defaultValues });
+    const { loading, success } = useSelector((state) => state.user);
+    const dispatch = useDispatch();
 
-    const onSubmit = async (data) => create(data);
+    const onSubmit = async (data) => {
+        dispatch({
+            type: LOADING_USER,
+        });
+        dispatch({
+            type: ADD_USER,
+        });
+        create(data);
+    };
 
     return (
         <BackGround>
@@ -113,15 +120,20 @@ export default function Register() {
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Box p={1}>
-                                        <StyledButton
-                                            size="large"
-                                            variant="contained"
-                                            color="primary"
+                                    <Box
+                                        p={1}
+                                        style={{
+                                            marginLeft: '-8px',
+                                            marginTop: '-10px',
+                                        }}
+                                    >
+                                        <LoadButton
+                                            label="Cadastrar"
                                             type="submit"
-                                        >
-                                            Cadastrar
-                                        </StyledButton>
+                                            success={success}
+                                            loading={loading}
+                                            width="400px"
+                                        />
                                     </Box>
                                 </Grid>
                                 <Grid item xs={12}>

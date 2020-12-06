@@ -3,19 +3,21 @@ import { useForm } from 'react-hook-form';
 
 import { Grid, Box } from '@material-ui/core';
 
+import { useSelector } from 'react-redux';
 import {
     Title,
     Container,
     BackGround,
-    StyledButton,
     StyledLink,
     StyledTextField,
 } from './styles';
 
 import Header from '../../Home/Header';
+import LoadButton from '../../../components/Button/LoadButton';
 
-function LoginComponent({ onSubmit, loginInvalid }) {
+function LoginComponent({ onSubmit }) {
     const { register, handleSubmit, errors } = useForm();
+    const loading = useSelector((state) => state.login.loading);
 
     return (
         <BackGround>
@@ -73,14 +75,20 @@ function LoginComponent({ onSubmit, loginInvalid }) {
                                             </Box>
                                         </Grid>
                                         <Grid>
-                                            <Box p={1}>
-                                                <StyledButton
-                                                    variant="contained"
-                                                    color="primary"
+                                            <Box
+                                                p={1}
+                                                style={{
+                                                    marginLeft: '-8px',
+                                                    marginTop: '-10px',
+                                                }}
+                                            >
+                                                <LoadButton
+                                                    label="Logar"
                                                     type="submit"
-                                                >
-                                                    Logar
-                                                </StyledButton>
+                                                    success={false}
+                                                    loading={loading}
+                                                    width="322px"
+                                                />
                                             </Box>
                                         </Grid>
 
@@ -90,17 +98,6 @@ function LoginComponent({ onSubmit, loginInvalid }) {
                                                     Cadastrar-se
                                                 </StyledLink>
                                             </Box>
-                                            {loginInvalid && (
-                                                <Box p={1}>
-                                                    <StyledLink
-                                                        to="/login"
-                                                        color="red"
-                                                    >
-                                                        Login inválido, tente
-                                                        novamente
-                                                    </StyledLink>
-                                                </Box>
-                                            )}
                                         </Grid>
                                     </Grid>
                                 </Grid>

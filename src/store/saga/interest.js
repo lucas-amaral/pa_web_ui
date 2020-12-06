@@ -15,6 +15,7 @@ import {
     REMOVE_INTEREST_BARTER,
     REMOVE_FORM_INTEREST_BARTER,
     ADD_FORM_INTEREST_BARTER,
+    FAILED_INTEREST,
 } from '../../constants/ActionTypes';
 import { errorNotification } from '../../utils/notificationUtils';
 
@@ -38,6 +39,7 @@ function* addInterest(action) {
             yield put({ type: SUCCEEDED_INTEREST, payload });
         }
     } catch (e) {
+        yield put({ type: FAILED_INTEREST });
         yield put(errorNotification('Ocorreu um erro ao adicionar interesse'));
     }
 }
@@ -50,6 +52,7 @@ function* editInterest(action) {
             yield put({ type: SUCCEEDED_INTEREST, payload });
         }
     } catch (e) {
+        yield put({ type: FAILED_INTEREST });
         yield put(errorNotification('Ocorreu um erro ao editar interesse'));
     }
 }

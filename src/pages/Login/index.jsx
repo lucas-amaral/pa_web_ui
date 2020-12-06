@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 
 import LoginComponent from './components/login';
 import {
+    LOADING_LOGIN,
     LOGIN_REQUESTED,
     SET_INITIAL_STATE,
 } from '../../constants/ActionTypes';
@@ -22,7 +23,10 @@ function Login() {
         }
     }, [dispatch, history, statusLogin.state]);
 
-    const onSubmit = (data) =>
+    const onSubmit = (data) => {
+        dispatch({
+            type: LOADING_LOGIN,
+        });
         dispatch({
             type: LOGIN_REQUESTED,
             data: {
@@ -30,6 +34,7 @@ function Login() {
                 password: data.password,
             },
         });
+    };
 
     return (
         <LoginComponent

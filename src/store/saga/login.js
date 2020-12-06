@@ -5,6 +5,7 @@ import {
     LOGIN_REQUESTED,
     LOGIN_SUCCEEDED,
 } from '../../constants/ActionTypes';
+import { errorNotification } from '../../utils/notificationUtils';
 
 // worker Saga: will be fired on USER_FETCH_REQUESTED actions
 function* requestLogin(action) {
@@ -18,7 +19,8 @@ function* requestLogin(action) {
             yield put({ type: LOGIN_SUCCEEDED, payload });
         }
     } catch (e) {
-        yield put({ type: LOGIN_FAILED, message: e.message });
+        yield put(errorNotification('Usuário ou senha incorretos'));
+        yield put({ type: LOGIN_FAILED });
     }
 }
 

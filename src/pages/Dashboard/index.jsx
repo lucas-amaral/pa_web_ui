@@ -22,7 +22,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItem from '@material-ui/core/ListItem';
 
 import { useHistory } from 'react-router-dom';
-import { useSnackbar } from 'notistack';
 import Interest from './InternalPages/Interest';
 import Property from './InternalPages/Property/propertyTabs';
 import User from './InternalPages/User';
@@ -147,10 +146,9 @@ export default function Dashboard() {
     const dispatch = useDispatch();
     const history = useHistory();
     const classes = useStyles();
-    const { enqueueSnackbar } = useSnackbar();
     const [open, setOpen] = useState(true);
     const [titleOfAction] = useState('');
-    const { contentBody, notification } = useSelector((state) => state.main);
+    const contentBody = useSelector((state) => state.main.contentBody);
 
     const data = { username: localStorage.getItem('username') };
 
@@ -178,13 +176,6 @@ export default function Dashboard() {
         dispatch({ type: LOAD_NEIGHBORHOODS });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    React.useEffect(() => {
-        enqueueSnackbar(notification.message, {
-            variant: notification.variant,
-        });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [notification]);
 
     const handleDrawerOpen = () => {
         setOpen(true);

@@ -1,5 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { AUTH_TOKEN } from '../../constants/Headers';
+import { LOADING_LOGIN } from '../../constants/ActionTypes';
 
 /*
     Criando action types e creators
@@ -22,6 +23,8 @@ const INITIAL_STATE = {
         tokenExpired: false,
     },
     loginFailed: false,
+    loading: false,
+    success: false,
 };
 
 const LOGIN_SUCCESS = (token) => {
@@ -33,11 +36,12 @@ const LOGIN_SUCCESS = (token) => {
             tokenExpired: false,
         },
         loginFailed: false,
+        loading: false,
     };
 };
 
 const LOGIN_FAILED = (state = INITIAL_STATE) => {
-    return { ...state, loginFailed: true };
+    return { ...state, loginFailed: true, loading: false };
 };
 
 /*
@@ -55,8 +59,12 @@ const loginSucceeded = (state = INITIAL_STATE, payload) => {
     return LOGIN_FAILED(state);
 };
 
-const loginFailed = (state = INITIAL_STATE, message) => {
+const loginFailed = (state = INITIAL_STATE) => {
     return LOGIN_FAILED(state);
+};
+
+const loadingLogin = (state = INITIAL_STATE) => {
+    return { ...state, loading: true, success: false };
 };
 
 const doLogoff = () => {
@@ -70,4 +78,5 @@ export default createReducer(INITIAL_STATE, {
     [Types.LOGIN_SUCCEEDED]: loginSucceeded,
     [Types.LOGIN_FAILED]: loginFailed,
     [Types.LOGOFF]: doLogoff,
+    [LOADING_LOGIN]: loadingLogin,
 });

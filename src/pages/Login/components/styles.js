@@ -1,13 +1,10 @@
 import styled from 'styled-components';
 
-import { Button, TextField } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
 
 import { Link } from 'react-router-dom';
 
-import {
-    SKYBLUE,
-    GRAY,
-} from '../../../constants/Colors';
+import { SKYBLUE, GRAY } from '../../../constants/Colors';
 
 import BackgroundImage from '../../../assets/background_1.png';
 
@@ -34,15 +31,6 @@ export const Container = styled.div`
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin: 200px auto;
     padding: 20px;
-`;
-
-export const ContainerRoot = styled.div`
-    width: 100%;
-    background-image: url(${BackgroundImage});
-`;
-
-export const StyledButton = styled(Button)`
-    width: 322px;
 `;
 
 export const StyledLink = styled(Link)`

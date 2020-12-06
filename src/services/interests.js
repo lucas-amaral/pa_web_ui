@@ -14,7 +14,7 @@ export const create = (data) => {
             console.log('response', response);
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
 
@@ -25,7 +25,7 @@ export const update = async (data) => {
             return response.data;
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
 

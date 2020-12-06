@@ -1,7 +1,5 @@
 import styled from 'styled-components';
 
-import { Button } from '@material-ui/core';
-
 import { Link } from 'react-router-dom';
 
 import { SKYBLUE, GRAY } from '../../constants/Colors';
@@ -31,15 +29,6 @@ export const Container = styled.div`
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     margin: 150px auto;
     padding: 20px;
-`;
-
-export const ContainerRoot = styled.div`
-    width: 100%;
-    background-image: url(${BackgroundImage});
-`;
-
-export const StyledButton = styled(Button)`
-    width: 400px;
 `;
 
 export const StyledLink = styled(Link)`

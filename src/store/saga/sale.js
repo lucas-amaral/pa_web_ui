@@ -9,6 +9,7 @@ import {
     ADD_SALE,
     UPDATE_SALE,
     UPDATE_SALES,
+    FAILED_SALE,
 } from '../../constants/ActionTypes';
 import { errorNotification } from '../../utils/notificationUtils';
 
@@ -44,6 +45,7 @@ function* addSale(action) {
             yield put({ type: SUCCEEDED_SALE, payload });
         }
     } catch (e) {
+        yield put({ type: FAILED_SALE });
         yield put(errorNotification('Ocorreu um erro ao adicionar anúncio'));
     }
 }
@@ -56,6 +58,7 @@ function* editSale(action) {
             yield put({ type: SUCCEEDED_SALE, payload });
         }
     } catch (e) {
+        yield put({ type: FAILED_SALE });
         yield put(errorNotification('Ocorreu um erro ao editar anúncio'));
     }
 }

@@ -12,7 +12,7 @@ export const create = (data) => {
             return response.data;
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
 
@@ -23,6 +23,6 @@ export const update = async (data) => {
             return response.data;
         })
         .catch((err) => {
-            console.log('err', err);
+            throw err;
         });
 };
