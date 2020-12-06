@@ -10,6 +10,7 @@ import {
     UPDATE_PROPERTY_IMAGES,
     UPDATE_PROPERTY,
     RESET_LOADING_DATA_PROPERTY,
+    FAILED_PROPERTY,
 } from '../../constants/ActionTypes';
 
 /*
@@ -53,6 +54,10 @@ const succeededProperty = (state = INITIAL_STATE, action) => {
         loading: false,
         success: true,
     };
+};
+
+const failedProperty = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false };
 };
 
 const updateProperty = (state = INITIAL_STATE, payload) => {
@@ -134,6 +139,7 @@ const removePropertyGarage = (state = INITIAL_STATE, action) => {
 */
 export default createReducer(INITIAL_STATE, {
     [SUCCEEDED_PROPERTY]: succeededProperty,
+    [FAILED_PROPERTY]: failedProperty,
     [UPDATE_PROPERTY]: updateProperty,
     [SUCCEEDED_ADD_PROPERTY_IMAGE]: succeededAddPropertyImage,
     [SUCCEEDED_REMOVE_PROPERTY_IMAGE]: succeededRemovePropertyImage,

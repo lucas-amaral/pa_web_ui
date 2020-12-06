@@ -1,5 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 import {
+    FAILED_SALE,
     LOADING_SALE,
     RESET_SUCCESS_SALE,
     SUCCEEDED_SALE,
@@ -50,6 +51,10 @@ const succeededSale = (state = INITIAL_STATE, action) => {
     };
 };
 
+const failedSale = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false };
+};
+
 const updateSales = (state = INITIAL_STATE, payload) => {
     return {
         ...state,
@@ -95,6 +100,7 @@ const updateBarterVehicleSale = (state = INITIAL_STATE) => {
 */
 export default createReducer(INITIAL_STATE, {
     [SUCCEEDED_SALE]: succeededSale,
+    [FAILED_SALE]: failedSale,
     [UPDATE_SALES]: updateSales,
     [UPDATE_SALE]: updateSale,
     [LOADING_SALE]: loadingSale,

@@ -3,6 +3,7 @@ import { getPropertyTypes } from '../../utils/interestUtils';
 import {
     ADD_FORM_INTEREST_BARTER,
     ADD_INTEREST,
+    FAILED_INTEREST,
     LOADING_INTEREST,
     REMOVE_FORM_INTEREST_BARTER,
     RESET_SUCCESS_INTEREST,
@@ -54,6 +55,10 @@ const succeededInterest = (state = INITIAL_STATE, action) => {
     };
 };
 
+const failedInterest = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false };
+};
+
 const updateInterest = (state = INITIAL_STATE, payload) => {
     return {
         type: payload.type,
@@ -103,6 +108,7 @@ const resetSuccessInterest = (state = INITIAL_STATE) => {
 export default createReducer(INITIAL_STATE, {
     [ADD_INTEREST]: addInterest,
     [SUCCEEDED_INTEREST]: succeededInterest,
+    [FAILED_INTEREST]: failedInterest,
     [UPDATE_INTEREST]: updateInterest,
     [LOADING_INTEREST]: loadingInterest,
     [RESET_SUCCESS_INTEREST]: resetSuccessInterest,

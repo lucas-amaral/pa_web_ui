@@ -1,5 +1,6 @@
 import { createActions, createReducer } from 'reduxsauce';
 import {
+    FAILED_USER,
     LOADING_USER,
     RESET_SUCCESS_USER,
     UPDATE_USER,
@@ -51,6 +52,10 @@ const userSucceeded = (state = INITIAL_STATE, action) => {
     };
 };
 
+const failedUser = (state = INITIAL_STATE) => {
+    return { ...state, loading: false, success: false };
+};
+
 const loadingUser = (state = INITIAL_STATE) => {
     return { ...state, loading: true, success: false };
 };
@@ -65,6 +70,7 @@ const resetSuccessUser = (state = INITIAL_STATE) => {
 export default createReducer(INITIAL_STATE, {
     [UPDATE_USER]: updateUser,
     [USER_SUCCEEDED]: userSucceeded,
+    [FAILED_USER]: failedUser,
     [LOADING_USER]: loadingUser,
     [RESET_SUCCESS_USER]: resetSuccessUser,
 });

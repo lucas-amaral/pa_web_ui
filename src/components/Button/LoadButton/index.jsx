@@ -46,6 +46,7 @@ export default function CircularIntegration({
     success,
     loading,
     loadingData,
+    width = '250px',
 }) {
     const classes = useStyles();
 
@@ -62,7 +63,7 @@ export default function CircularIntegration({
                     </Skeleton>
                 ) : (
                     <Button
-                        style={{ width: '250px', height: '38px' }}
+                        style={{ width, height: '38px' }}
                         variant="contained"
                         color="primary"
                         className={buttonClassname}
