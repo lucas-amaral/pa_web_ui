@@ -9,11 +9,11 @@ import street from './street';
 import barter from './barter';
 
 export default combineReducers({
-    announcement,
-    interest,
-    user,
-    login,
-    neighborhood,
-    street,
-    barter,
+  announcement,
+  interest,
+  user,
+  login,
+  neighborhood,
+  street,
+  barter,
 });

@@ -6,10 +6,10 @@ import GlobalStyle from './styles/global';
 import Routes from './routes';
 
 const App = () => (
-    <Provider store={store}>
-        <Routes />
-        <GlobalStyle />
-    </Provider>
+  <Provider store={store}>
+    <Routes />
+    <GlobalStyle />
+  </Provider>
 );
 
 export default App;

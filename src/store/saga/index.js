@@ -7,5 +7,5 @@ import neighborhood from './neighborhood';
 import street from './street';
 
 export default function* sagas() {
-    yield all([interest(), user(), login(), neighborhood(), street()]);
+  yield all([interest(), user(), login(), neighborhood(), street()]);
 }

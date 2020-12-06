@@ -1,14 +1,28 @@
-import { createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 
 import ducks from './ducks';
 
 import mySaga from './saga';
 
-const sagaMiddleware = createSagaMiddleware();
+const configStore = () => {
+  const sagaMiddleware = createSagaMiddleware();
 
-const store = createStore(ducks, applyMiddleware(sagaMiddleware));
+  const composeEnhancers =
+    typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
+      ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
+          // Specify extension’s options like name, actionsBlacklist, actionsCreators, serialize...
+        })
+      : compose;
 
-sagaMiddleware.run(mySaga);
+  const store = createStore(
+    ducks,
+    composeEnhancers(applyMiddleware(sagaMiddleware))
+  );
 
-export default store;
+  sagaMiddleware.run(mySaga);
+
+  return store;
+};
+
+export default configStore();

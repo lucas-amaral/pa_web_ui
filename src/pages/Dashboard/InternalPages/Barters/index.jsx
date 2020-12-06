@@ -15,172 +15,169 @@ import { MenuItem, Select } from '@material-ui/core';
 import { Controller, useForm } from 'react-hook-form';
 import { types } from '../../../../constants/BarterTypes';
 import {
-    ADD_BARTER,
-    ADD_INTEREST_BARTER,
-    REMOVE_BARTER,
-    REMOVE_INTEREST_BARTER,
+  ADD_BARTER,
+  ADD_INTEREST_BARTER,
+  REMOVE_BARTER,
+  REMOVE_INTEREST_BARTER,
 } from '../../../../constants/ActionTypes';
 import MonetaryInput from '../../../../components/MonetaryInput';
 import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 
 const useStyles = makeStyles({
-    table: {
-        minWidth: 650,
-    },
+  table: {
+    minWidth: 650,
+  },
 });
 
 export default function Barters() {
-    const classes = useStyles();
-    const dispatch = useDispatch();
-    const interest = useSelector((state) => state.interest.interest);
-    const barters = useSelector((state) => state.barter.barters);
-    const { register, getValues, control } = useForm();
+  const classes = useStyles();
+  const dispatch = useDispatch();
+  const interest = useSelector((state) => state.interest.interest);
+  const barters = useSelector((state) => state.barter.barters);
+  const { register, getValues, control } = useForm();
 
-    function getBarterType(apiType) {
-        return types
-            .filter((type) => apiType === type.id)
-            .map((type) => type.value);
-    }
+  function getBarterType(apiType) {
+    return types
+      .filter((type) => apiType === type.id)
+      .map((type) => type.value);
+  }
 
-    const removeBarter = (barterId) => {
-        dispatch({
-            type: REMOVE_INTEREST_BARTER,
-            barterId,
-        });
-    };
+  const removeBarter = (barterId) => {
+    dispatch({
+      type: REMOVE_INTEREST_BARTER,
+      barterId,
+    });
+  };
 
-    const addBarter = (newId) => {
-        const newValue = getValues(`${newId}.value`);
-        const newType = getValues(`${newId}.type`);
+  const addBarter = (newId) => {
+    const newValue = getValues(`${newId}.value`);
+    const newType = getValues(`${newId}.type`);
 
-        dispatch({
-            type: ADD_INTEREST_BARTER,
-            newBarter: {
-                newId,
-                value: convertMonetaryToNumber(newValue),
-                type: newType,
-            },
-        });
+    dispatch({
+      type: ADD_INTEREST_BARTER,
+      newBarter: {
+        newId,
+        value: convertMonetaryToNumber(newValue),
+        type: newType,
+      },
+    });
 
-        dispatch({
-            type: REMOVE_BARTER,
-            barterId: newId,
-        });
-    };
+    dispatch({
+      type: REMOVE_BARTER,
+      barterId: newId,
+    });
+  };
 
-    function generateRows() {
-        return barters.map((newBarter) => {
-            return (
-                <TableRow key={newBarter.newId}>
-                    <TableCell component="th" scope="row">
-                        <Controller
-                            name={`${newBarter.newId}.type`}
-                            control={control}
-                            as={
-                                <Select
-                                    variant="outlined"
-                                    defaultValue={newBarter.type}
-                                >
-                                    <MenuItem value="VEHICLE">Veículo</MenuItem>
-                                    <MenuItem value="PROPERTY">Imóvel</MenuItem>
-                                </Select>
-                            }
-                        />
-                    </TableCell>
-                    <TableCell align="right">
-                        <MonetaryInput
-                            id={`${newBarter.newId}.value`}
-                            label="Valor"
-                            inputRef={register()}
-                            value={newBarter.value}
-                        />
-                    </TableCell>
-                    <TableCell
-                        align="center"
-                        style={{ width: '5px', whiteSpace: 'nowrap' }}
-                    >
-                        <IconButton
-                            aria-label="Adicionar permuta"
-                            color="inherit"
-                            key="add-barter"
-                            data-tip="Adicionar permuta"
-                            onClick={() => addBarter(newBarter.newId)}
-                        >
-                            <CheckIcon />
-                        </IconButton>
-                        <IconButton
-                            aria-label="Remover permuta"
-                            color="inherit"
-                            key="delete-barter"
-                            data-tip="Remover permuta"
-                            onClick={() =>
-                                dispatch({
-                                    type: REMOVE_BARTER,
-                                    barterId: newBarter.newId,
-                                })
-                            }
-                        >
-                            <DeleteIcon />
-                        </IconButton>
-                    </TableCell>
-                </TableRow>
-            );
-        });
-    }
+  function generateRows() {
+    return barters.map((newBarter) => {
+      return (
+        <TableRow key={newBarter.newId}>
+          <TableCell component="th" scope="row">
+            <Controller
+              name={`${newBarter.newId}.type`}
+              control={control}
+              as={
+                <Select variant="outlined" defaultValue={newBarter.type}>
+                  <MenuItem value="VEHICLE">Veículo</MenuItem>
+                  <MenuItem value="PROPERTY">Imóvel</MenuItem>
+                </Select>
+              }
+            />
+          </TableCell>
+          <TableCell align="right">
+            <MonetaryInput
+              id={`${newBarter.newId}.value`}
+              label="Valor"
+              inputRef={register()}
+              value={newBarter.value}
+            />
+          </TableCell>
+          <TableCell
+            align="center"
+            style={{ width: '5px', whiteSpace: 'nowrap' }}
+          >
+            <IconButton
+              aria-label="Adicionar permuta"
+              color="inherit"
+              key="add-barter"
+              data-tip="Adicionar permuta"
+              onClick={() => addBarter(newBarter.newId)}
+            >
+              <CheckIcon />
+            </IconButton>
+            <IconButton
+              aria-label="Remover permuta"
+              color="inherit"
+              key="delete-barter"
+              data-tip="Remover permuta"
+              onClick={() =>
+                dispatch({
+                  type: REMOVE_BARTER,
+                  barterId: newBarter.newId,
+                })
+              }
+            >
+              <DeleteIcon />
+            </IconButton>
+          </TableCell>
+        </TableRow>
+      );
+    });
+  }
 
-    return (
-        <TableContainer>
-            <Table className={classes.table}>
-                <caption style={{ textAlign: 'right' }}>
-                    Adicionar permuta
-                    <IconButton
-                        aria-label="Adicionar permuta"
-                        color="inherit"
-                        key="add-barter"
-                        data-tip="Adicionar permuta"
-                        onClick={() => dispatch({ type: ADD_BARTER })}
-                    >
-                        <AddCircleIcon />
-                    </IconButton>
-                </caption>
-                <TableBody>
-                    {interest.barters.map((barter) => (
-                        <TableRow key={barter.id}>
-                            <TableCell component="th" scope="row">
-                                {getBarterType(barter.type)}
-                            </TableCell>
-                            <TableCell align="right">
-                                {Intl.NumberFormat('pt-BR', {
-                                    style: 'currency',
-                                    currency: 'BRL',
-                                }).format(barter.value)}
-                            </TableCell>
-                            <TableCell
-                                align="center"
-                                style={{ width: '5px', whiteSpace: 'nowrap' }}
-                            >
-                                <IconButton
-                                    aria-label="Ver fotos"
-                                    color="inherit"
-                                    data-tip="Ver fotos"
-                                >
-                                    <PhotoLibraryIcon />
-                                </IconButton>
-                                <IconButton
-                                    aria-label="Remover permuta"
-                                    color="inherit"
-                                    key="delete-barter"
-                                    data-tip="Remover permuta"
-                                    onClick={() => removeBarter(barter.id)}
-                                >
-                                    <DeleteIcon />
-                                </IconButton>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                    {generateRows()}
-                </TableBody>
-            </Table>
-        </TableContainer>
-    );
+  return (
+    <TableContainer>
+      <Table className={classes.table}>
+        <caption style={{ textAlign: 'right' }}>
+          Adicionar permuta
+          <IconButton
+            aria-label="Adicionar permuta"
+            color="inherit"
+            key="add-barter"
+            data-tip="Adicionar permuta"
+            onClick={() => dispatch({ type: ADD_BARTER })}
+          >
+            <AddCircleIcon />
+          </IconButton>
+        </caption>
+        <TableBody>
+          {interest.barters.map((barter) => (
+            <TableRow key={barter.id}>
+              <TableCell component="th" scope="row">
+                {getBarterType(barter.type)}
+              </TableCell>
+              <TableCell align="right">
+                {Intl.NumberFormat('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                }).format(barter.value)}
+              </TableCell>
+              <TableCell
+                align="center"
+                style={{ width: '5px', whiteSpace: 'nowrap' }}
+              >
+                <IconButton
+                  aria-label="Ver fotos"
+                  color="inherit"
+                  data-tip="Ver fotos"
+                >
+                  <PhotoLibraryIcon />
+                </IconButton>
+                <IconButton
+                  aria-label="Remover permuta"
+                  color="inherit"
+                  key="delete-barter"
+                  data-tip="Remover permuta"
+                  onClick={() => removeBarter(barter.id)}
+                >
+                  <DeleteIcon />
+                </IconButton>
+              </TableCell>
+            </TableRow>
+          ))}
+          {generateRows()}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
