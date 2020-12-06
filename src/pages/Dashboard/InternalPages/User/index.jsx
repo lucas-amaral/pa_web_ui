@@ -16,6 +16,13 @@ import {
 } from '../../../../constants/ActionTypes';
 import LoadButton from '../../../../components/Button/LoadButton';
 import { getDbType, getType } from '../../../../utils/userUtils';
+import 'date-fns';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
+import { strToDate } from '../../../../utils/dateTimeUtils';
 
 function User() {
     const { register, handleSubmit } = useForm();
@@ -23,6 +30,7 @@ function User() {
     const { user, loadingData, loading, success } = useSelector(
         (state) => state.user
     );
+    const [dataOfBirth, setDateOfBirth] = React.useState(user.dateOfBirth);
 
     useEffect(() => {
         dispatch({
@@ -37,8 +45,16 @@ function User() {
         });
         dispatch({
             type: EDIT_USER,
-            data: { ...data, type: getDbType(data.type) },
+            data: {
+                ...data,
+                dateOfBirth: strToDate(data.dateOfBirth),
+                type: getDbType(data.type),
+            },
         });
+    };
+
+    const handleDateOfBirthChange = (date) => {
+        setDateOfBirth(date);
     };
 
     return (
@@ -66,22 +82,25 @@ function User() {
                                 />
                             </GridBox>
                             <GridBox xs={2} loadingData={loadingData}>
-                                <TextField
-                                    fullWidth
-                                    id="dateOfBirth"
-                                    name="dateOfBirth"
-                                    placeholder="dd/MM/yyyy"
-                                    format="dd/MM/yyyy"
-                                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                                    defaultValue={user.dateOfBirth}
-                                    inputRef={register()}
-                                    type="date"
-                                    label="Data de nascimento"
-                                    variant="outlined"
-                                    InputLabelProps={{
-                                        shrink: true,
-                                    }}
-                                />
+                                <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                                    <KeyboardDatePicker
+                                        style={{marginTop: 0}}
+                                        name="dateOfBirth"
+                                        disableFuture
+                                        disableToolbar
+                                        openTo="year"
+                                        inputVariant="outlined"
+                                        format="dd/MM/yyyy"
+                                        margin="normal"
+                                        label="Date de nascimento"
+                                        value={dataOfBirth}
+                                        onChange={handleDateOfBirthChange}
+                                        inputRef={register()}
+                                        KeyboardButtonProps={{
+                                            'aria-label': 'Alterar data',
+                                        }}
+                                    />
+                                </MuiPickersUtilsProvider>
                             </GridBox>
                             <GridBox xs={4} loadingData={loadingData}>
                                 <TextField
