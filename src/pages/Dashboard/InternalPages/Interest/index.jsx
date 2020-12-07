@@ -97,7 +97,7 @@ function Interest() {
         dispatch({
             type: LOADING_INTEREST,
         });
-        console.log({
+        dispatch({
             type: EDIT_INTEREST,
             data: {
                 ...data,
