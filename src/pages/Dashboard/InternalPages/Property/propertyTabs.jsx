@@ -55,7 +55,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function FullWidthTabs() {
+export default function PropertyTabs() {
     const { property, images, loadingData } = useSelector(
         (state) => state.property
     );

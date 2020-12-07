@@ -23,6 +23,11 @@ import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
 import Garages from './Garages';
 import FormButton from '../../../../components/Button/FormButton';
+import {
+    minAndMaxSize,
+    number,
+    setValueInt,
+} from '../../../../utils/registerUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,8 +49,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Index() {
-    const { register, handleSubmit, control } = useForm();
+export default function Property() {
+    const { register, handleSubmit, control, errors, watch } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -54,15 +59,15 @@ export default function Index() {
         (state) => state.property
     );
 
-    const data = { username };
-
     useEffect(() => {
         dispatch({
             type: RESET_SUCCESS_PROPERTY,
         });
         dispatch({
             type: LOAD_PROPERTY,
-            data,
+            data: {
+                username,
+            },
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -75,10 +80,6 @@ export default function Index() {
             type: property.id ? EDIT_PROPERTY : ADD_PROPERTY,
             data: {
                 ...formData,
-                id: parseFloat(formData.id),
-                area: parseFloat(formData.area),
-                iptu: parseFloat(formData.iptu),
-                registration: parseFloat(formData.registration),
                 garages: property.garages,
             },
         });
@@ -100,7 +101,7 @@ export default function Index() {
                     </Box>
                 </Grid>
                 <TextField
-                    inputRef={register()}
+                    inputRef={register(setValueInt())}
                     type="hidden"
                     name="id"
                     defaultValue={property.id}
@@ -123,7 +124,9 @@ export default function Index() {
                             fullWidth
                             name="description"
                             defaultValue={property.description}
-                            inputRef={register()}
+                            inputRef={register({ required: true })}
+                            helperText={errors?.description?.message}
+                            error={errors?.description}
                             label="Descrição"
                             variant="outlined"
                         />
@@ -144,7 +147,9 @@ export default function Index() {
                             fullWidth
                             name="area"
                             defaultValue={property.area}
-                            inputRef={register()}
+                            inputRef={register(number())}
+                            helperText={errors?.area && 'Insira apenas números'}
+                            error={errors?.area}
                             label="Area"
                             variant="outlined"
                             InputProps={{
@@ -161,7 +166,12 @@ export default function Index() {
                             fullWidth
                             name="registration"
                             defaultValue={property.registration}
-                            inputRef={register()}
+                            inputRef={register(number())}
+                            helperText={
+                                errors?.registration &&
+                                'Campo númerico. Insira apenas números'
+                            }
+                            error={errors?.registration}
                             label="Registro"
                             variant="outlined"
                         />
@@ -171,7 +181,12 @@ export default function Index() {
                             fullWidth
                             name="iptu"
                             defaultValue={property.iptu}
-                            inputRef={register()}
+                            inputRef={register(number())}
+                            helperText={
+                                errors?.iptu &&
+                                'Campo númerico. Insira apenas números'
+                            }
+                            error={errors?.iptu}
                             label="Número do IPTU"
                             variant="outlined"
                         />
@@ -181,7 +196,9 @@ export default function Index() {
                             id="dorms"
                             name="dorms"
                             defaultValue={property.dorms}
-                            inputRef={register()}
+                            inputRef={register(minAndMaxSize(1, 1))}
+                            helperText={errors?.dorms?.message}
+                            error={errors?.dorms}
                             type="number"
                             label="Nº de dormitórios"
                             variant="outlined"
@@ -192,7 +209,9 @@ export default function Index() {
                             id="bathrooms"
                             name="bathrooms"
                             defaultValue={property.bathrooms}
-                            inputRef={register()}
+                            inputRef={register(minAndMaxSize(1, 1))}
+                            helperText={errors?.bathrooms?.message}
+                            error={errors?.bathrooms}
                             type="number"
                             label="Nº de banheiros"
                             variant="outlined"
@@ -203,7 +222,9 @@ export default function Index() {
                             id="suites"
                             name="suites"
                             defaultValue={property.suites}
-                            inputRef={register()}
+                            inputRef={register(minAndMaxSize(1, 1))}
+                            helperText={errors?.suites?.message}
+                            error={errors?.suites}
                             type="number"
                             label="Nº de suites"
                             variant="outlined"
@@ -267,7 +288,10 @@ export default function Index() {
                     </GridBox>
                     <Address
                         address={property.address}
-                        register={register()}
+                        register={register}
+                        errors={errors}
+                        watch={watch}
+                        required
                         loadingData={loadingData}
                     />
                     <Garages garages={property.garages} />

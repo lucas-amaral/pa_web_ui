@@ -52,7 +52,7 @@ function* addBarter(action) {
 
 function* editBarter(action) {
     try {
-        const payload = yield call(update, action.datadadsa);
+        const payload = yield call(update, action.data);
 
         if (payload) {
             yield put({
@@ -69,7 +69,7 @@ function* editBarter(action) {
 
 function* removeBarter(action) {
     try {
-        const payload = yield call(remove, action.barterIdadsddsa);
+        const payload = yield call(remove, action.barterId);
 
         if (payload) {
             yield put({
@@ -85,7 +85,7 @@ function* removeBarter(action) {
 
 function* loadBarterImages(action) {
     try {
-        const payload = yield call(loadImages, action.barterIdsdaadssad);
+        const payload = yield call(loadImages, action.barterId);
 
         if (payload) {
             yield put({ type: UPDATE_BARTER_IMAGES, payload: payload.data });

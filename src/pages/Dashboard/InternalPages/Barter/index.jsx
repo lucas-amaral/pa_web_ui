@@ -19,12 +19,12 @@ import {
 } from '../../../../constants/ActionTypes';
 import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
-import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import ControlledSelect from '../../../../components/Select/ControlledSelect';
 import { types } from '../../../../constants/BarterTypes';
 import FormButton from '../../../../components/Button/FormButton';
 import Images from '../Images';
+import { setValueMonetary } from '../../../../utils/registerUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Barter() {
-    const { register, handleSubmit, control } = useForm();
+    const { register, handleSubmit, control, errors } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
 
@@ -79,7 +79,6 @@ export default function Barter() {
             data: {
                 ...data,
                 interestId,
-                value: convertMonetaryToNumber(data.value),
             },
         });
     };
@@ -133,7 +132,11 @@ export default function Barter() {
                                 <MonetaryInput
                                     id="value"
                                     label="Valor"
-                                    inputRef={register()}
+                                    inputRef={register(setValueMonetary())}
+                                    helperText={
+                                        errors?.value && 'Campo obrigatório'
+                                    }
+                                    error={errors?.value}
                                     value={barter.value}
                                 />
                             </GridBox>

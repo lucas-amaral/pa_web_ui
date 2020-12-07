@@ -22,10 +22,15 @@ import {
     REMOVE_INTEREST,
     RESET_SUCCESS_INTEREST,
 } from '../../../../constants/ActionTypes';
-import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 import LoadButton from '../../../../components/Button/LoadButton';
 import { getSelectNeighborhoods } from '../../../../utils/neighborhoodUtils';
 import FormButton from '../../../../components/Button/FormButton';
+import {
+    minAndMaxSize,
+    setValueInt,
+    setValueMonetary,
+    totalValue,
+} from '../../../../utils/registerUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,7 +53,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Interest() {
-    const { register, handleSubmit, control, setValue } = useForm();
+    const {
+        register,
+        handleSubmit,
+        control,
+        getValues,
+        setValue,
+        errors,
+    } = useForm();
     const theme = useTheme();
     const classes = useStyles(theme);
     const dispatch = useDispatch();
@@ -85,15 +97,11 @@ function Interest() {
         dispatch({
             type: LOADING_INTEREST,
         });
-        dispatch({
+        console.log({
             type: EDIT_INTEREST,
             data: {
                 ...data,
                 barters: interest.barters,
-                value: convertMonetaryToNumber(data.value),
-                financingValue: data.financingValue
-                    ? convertMonetaryToNumber(data.financingValue)
-                    : null,
                 neighborhoodIds: data.neighborhoodIds
                     ? data.neighborhoodIds.map(
                           (neighborhood) => neighborhood.id
@@ -116,7 +124,7 @@ function Interest() {
                         </Grid>
                     </Grid>
                     <TextField
-                        inputRef={register()}
+                        inputRef={register(setValueInt())}
                         type="hidden"
                         id="id"
                         name="id"
@@ -136,7 +144,11 @@ function Interest() {
                                     label="Valor máximo"
                                     id="value"
                                     labelWidth={100}
-                                    inputRef={register()}
+                                    inputRef={register(setValueMonetary())}
+                                    helperText={
+                                        errors?.value && 'Campo obrigatório'
+                                    }
+                                    error={errors?.value}
                                     value={interest.value}
                                 />
                             </GridBox>
@@ -145,7 +157,9 @@ function Interest() {
                                     id="dorms"
                                     name="dorms"
                                     defaultValue={interest.dorms}
-                                    inputRef={register()}
+                                    inputRef={register(minAndMaxSize(1, 1))}
+                                    helperText={errors?.dorms?.message}
+                                    error={errors?.dorms}
                                     type="number"
                                     label="Número de dormitórios"
                                     variant="outlined"
@@ -156,7 +170,9 @@ function Interest() {
                                     id="bathrooms"
                                     name="bathrooms"
                                     defaultValue={interest.bathrooms}
-                                    inputRef={register()}
+                                    inputRef={register(minAndMaxSize(1, 1))}
+                                    helperText={errors?.bathrooms?.message}
+                                    error={errors?.bathrooms}
                                     type="number"
                                     label="Número de banheiros"
                                     variant="outlined"
@@ -167,7 +183,9 @@ function Interest() {
                                     id="suites"
                                     name="suites"
                                     defaultValue={interest.suites}
-                                    inputRef={register()}
+                                    inputRef={register(minAndMaxSize(1, 1))}
+                                    helperText={errors?.suites?.message}
+                                    error={errors?.suites}
                                     type="number"
                                     label="Número de suites"
                                     variant="outlined"
@@ -178,7 +196,9 @@ function Interest() {
                                     id="garages"
                                     name="garages"
                                     defaultValue={interest.garages}
-                                    inputRef={register()}
+                                    inputRef={register(minAndMaxSize(1, 1))}
+                                    helperText={errors?.garages?.message}
+                                    error={errors?.garages}
                                     type="number"
                                     label="Número de garagens"
                                     variant="outlined"
@@ -303,7 +323,14 @@ function Interest() {
                                         label="Valor financiado"
                                         labelWidth={125}
                                         value={interest.financingValue}
-                                        inputRef={register()}
+                                        inputRef={register(
+                                            totalValue(getValues('value'))
+                                        )}
+                                        error={errors?.financingValue}
+                                        helperText={
+                                            errors?.financingValue &&
+                                            'Valor de financiamento superior ao valor total'
+                                        }
                                     />
                                 )}
                             </GridBox>

@@ -20,9 +20,9 @@ import {
 } from '../../../../constants/ActionTypes';
 import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
-import { convertMonetaryToNumber } from '../../../../utils/numbersUtils';
 import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import FormButton from '../../../../components/Button/FormButton';
+import { number, setValueMonetary, totalValue } from '../../../../utils/registerUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -45,9 +45,15 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Sale() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, errors, getValues } = useForm();
     const classes = useStyles();
     const dispatch = useDispatch();
+
+    const value = getValues('value');
+    const financingValue = getValues('financingValue');
+    const vehicleValue = getValues('barterVehicleValue');
+    const propertyValue = getValues('barterPropertyValue');
+    const totalValueMessage = 'Valor de financiamento e permutas superior ao valor total';
 
     const property = useSelector((state) => state.property.property);
     const {
@@ -77,19 +83,7 @@ export default function Sale() {
         });
         dispatch({
             type: sale.id ? EDIT_SALE : ADD_SALE,
-            data: {
-                ...data,
-                value: convertMonetaryToNumber(data.value),
-                financingValue: data.financingValue
-                    ? convertMonetaryToNumber(data.financingValue)
-                    : null,
-                barterVehicleValue: data.barterVehicleValue
-                    ? convertMonetaryToNumber(data.barterVehicleValue)
-                    : null,
-                barterPropertyValue: data.barterPropertyValue
-                    ? convertMonetaryToNumber(data.barterPropertyValue)
-                    : null,
-            },
+            data,
         });
     };
 
@@ -127,13 +121,13 @@ export default function Sale() {
                     </Box>
                 </Grid>
                 <TextField
-                    inputRef={register()}
+                    inputRef={register(number())}
                     type="hidden"
                     name="id"
                     defaultValue={sale.id}
                 />
                 <TextField
-                    inputRef={register()}
+                    inputRef={register(number())}
                     type="hidden"
                     name="propertyId"
                     defaultValue={
@@ -148,26 +142,12 @@ export default function Sale() {
                             label="Valor"
                             id="value"
                             labelWidth={100}
-                            inputRef={register()}
+                            inputRef={register(setValueMonetary())}
+                            helperText={errors?.value && 'Campo obrigatório'}
+                            error={errors?.value}
                             value={sale.value}
                         />
                     </GridBox>
-                    {/* <GridBox xs={9}> */}
-                    {/*    <TextField */}
-                    {/*        name="agencying" */}
-                    {/*        placeholder="dd/MM/yyyy" */}
-                    {/*        format="dd/MM/yyyy" */}
-                    {/*        pattern="[0-9]{4}-[0-9]{2}-[0-9]{2}" */}
-                    {/*        value={sale.agencying ? sale.agencying : Date.now()} */}
-                    {/*        inputRef={register()} */}
-                    {/*        type="date" */}
-                    {/*        label="Data de cadastro" */}
-                    {/*        variant="outlined" */}
-                    {/*        InputLabelProps={{ */}
-                    {/*            shrink: true, */}
-                    {/*        }} */}
-                    {/*    /> */}
-                    {/* </GridBox> */}
                     <Grid container style={{ marginTop: '20px' }}>
                         <Grid item md={12}>
                             <Box pl={1} pb={2}>
@@ -198,7 +178,9 @@ export default function Sale() {
                                 label="Valor financiado"
                                 labelWidth={125}
                                 value={sale.financingValue}
-                                inputRef={register()}
+                                inputRef={register(totalValue(value, propertyValue, vehicleValue))}
+                                error={errors?.financingValue}
+                                helperText={errors?.financingValue && totalValueMessage}
                             />
                         )}
                     </GridBox>
@@ -232,7 +214,9 @@ export default function Sale() {
                                 label="Valor máximo veículo"
                                 labelWidth={125}
                                 value={sale.barterVehicleValue}
-                                inputRef={register()}
+                                inputRef={register(totalValue(value, financingValue, propertyValue))}
+                                error={errors?.barterVehicleValue}
+                                helperText={errors?.barterVehicleValue && totalValueMessage}
                             />
                         )}
                     </GridBox>
@@ -257,7 +241,9 @@ export default function Sale() {
                                 label="Valor máximo imóvel"
                                 labelWidth={125}
                                 value={sale.barterPropertyValue}
-                                inputRef={register()}
+                                inputRef={register(totalValue(value, financingValue, vehicleValue))}
+                                error={errors?.barterPropertyValue}
+                                helperText={errors?.barterPropertyValue && totalValueMessage}
                             />
                         )}
                     </GridBox>

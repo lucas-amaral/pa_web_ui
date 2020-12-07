@@ -27,6 +27,15 @@ export const formatToMonetary = (value) => {
     }).format(value);
 };
 
+export const totalValueError = (
+    value = 0,
+    financingValue = 0,
+    vehicleValue = 0,
+    propertyValue = 0
+) => {
+    return value < financingValue + vehicleValue + propertyValue;
+};
+
 export const generateId = () => {
     // Math.random should be unique because of its seeding algorithm.
     // Convert it to base 36 (numbers + letters), and grab the first 9 characters

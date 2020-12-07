@@ -5,8 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import GridBox from '../../../../components/GridBox';
 import { Title } from '../../../Register/styles';
 import { LOAD_STREET } from '../../../../constants/ActionTypes';
+import { requiredAddress } from '../../../../utils/registerUtils';
 
-export default function Address({ address, register, loadingData }) {
+export default function Address({
+    required = false,
+    address,
+    register,
+    errors,
+    watch,
+    loadingData,
+}) {
     const dispatch = useDispatch();
     const street = useSelector((state) => state.street.street);
 
@@ -15,6 +23,10 @@ export default function Address({ address, register, loadingData }) {
             type: LOAD_STREET,
             zipCode: event.target.value,
         });
+    }
+
+    function cepRegister() {
+        return required ? register({ required: true }) : register;
     }
 
     return (
@@ -43,7 +55,11 @@ export default function Address({ address, register, loadingData }) {
                             ? address.street.zipCode
                             : null
                     }
-                    inputRef={register}
+                    inputRef={cepRegister()}
+                    helperText={
+                        errors?.address?.streetId && 'Campo obrigatório'
+                    }
+                    error={errors?.address?.streetId}
                     onChange={findStreet}
                     label="Cep"
                     variant="outlined"
@@ -68,7 +84,13 @@ export default function Address({ address, register, loadingData }) {
                     id="number"
                     name="address.number"
                     defaultValue={address ? address.number : null}
-                    inputRef={register}
+                    inputRef={register(
+                        requiredAddress(watch('address.streetId'))
+                    )}
+                    helperText={
+                        errors?.address?.number && 'Preencha o campo CEP'
+                    }
+                    error={errors?.address?.number}
                     label="Número"
                     variant="outlined"
                 />
@@ -79,7 +101,13 @@ export default function Address({ address, register, loadingData }) {
                     id="complement"
                     name="address.complement"
                     defaultValue={address ? address.complement : null}
-                    inputRef={register}
+                    inputRef={register(
+                        requiredAddress(watch('address.streetId'))
+                    )}
+                    helperText={
+                        errors?.address?.complement && 'Preencha o campo CEP'
+                    }
+                    error={errors?.address?.complement}
                     label="Complemento"
                     variant="outlined"
                 />

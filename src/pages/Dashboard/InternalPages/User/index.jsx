@@ -5,6 +5,11 @@ import CardActions from '@material-ui/core/CardActions';
 import { Box, Grid } from '@material-ui/core';
 
 import { useForm } from 'react-hook-form';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+    MuiPickersUtilsProvider,
+    KeyboardDatePicker,
+} from '@material-ui/pickers';
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
 import Address from '../Address';
@@ -17,15 +22,14 @@ import {
 import LoadButton from '../../../../components/Button/LoadButton';
 import { getDbType, getType } from '../../../../utils/userUtils';
 import 'date-fns';
-import DateFnsUtils from '@date-io/date-fns';
 import {
-    MuiPickersUtilsProvider,
-    KeyboardDatePicker,
-} from '@material-ui/pickers';
-import { strToDate } from '../../../../utils/dateTimeUtils';
+    setValueDate,
+    required,
+    setValueAs,
+} from '../../../../utils/registerUtils';
 
 function User() {
-    const { register, handleSubmit } = useForm();
+    const { register, handleSubmit, errors, watch } = useForm();
     const dispatch = useDispatch();
     const { user, loadingData, loading, success } = useSelector(
         (state) => state.user
@@ -45,11 +49,7 @@ function User() {
         });
         dispatch({
             type: EDIT_USER,
-            data: {
-                ...data,
-                dateOfBirth: strToDate(data.dateOfBirth),
-                type: getDbType(data.type),
-            },
+            data,
         });
     };
 
@@ -76,15 +76,17 @@ function User() {
                                     id="name"
                                     name="name"
                                     defaultValue={user.name}
-                                    inputRef={register()}
                                     label="Nome"
                                     variant="outlined"
+                                    inputRef={register(required())}
+                                    helperText={errors?.name?.message}
+                                    error={errors.name}
                                 />
                             </GridBox>
                             <GridBox xs={2} loadingData={loadingData}>
                                 <MuiPickersUtilsProvider utils={DateFnsUtils}>
                                     <KeyboardDatePicker
-                                        style={{marginTop: 0}}
+                                        style={{ marginTop: 0 }}
                                         name="dateOfBirth"
                                         disableFuture
                                         disableToolbar
@@ -95,10 +97,14 @@ function User() {
                                         label="Date de nascimento"
                                         value={dataOfBirth}
                                         onChange={handleDateOfBirthChange}
-                                        inputRef={register()}
+                                        inputRef={register(setValueDate())}
                                         KeyboardButtonProps={{
                                             'aria-label': 'Alterar data',
                                         }}
+                                        helperText={
+                                            errors?.dateOfBirth &&
+                                            'Data inválida'
+                                        }
                                     />
                                 </MuiPickersUtilsProvider>
                             </GridBox>
@@ -120,7 +126,9 @@ function User() {
                                     id="cpfCnpj"
                                     name="cpfCnpj"
                                     defaultValue={user.cpfCnpj}
-                                    inputRef={register()}
+                                    inputRef={register(required())}
+                                    helperText={errors?.cpfCnpj?.message}
+                                    error={errors.cpfCnpj}
                                     label="Cpf"
                                     variant="outlined"
                                 />
@@ -131,7 +139,7 @@ function User() {
                                     id="type"
                                     name="type"
                                     value={getType(user.type)}
-                                    inputRef={register()}
+                                    inputRef={register(setValueAs(getDbType))}
                                     aria-readonly
                                     label="Tipo"
                                     variant="outlined"
@@ -139,7 +147,9 @@ function User() {
                             </GridBox>
                             <Address
                                 address={user.address}
-                                register={register()}
+                                register={register}
+                                errors={errors}
+                                watch={watch}
                                 loadingData={loadingData}
                             />
                             <CardActions style={{ marginTop: '10px' }}>

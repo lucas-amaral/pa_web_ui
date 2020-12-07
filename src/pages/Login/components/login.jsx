@@ -14,6 +14,7 @@ import {
 
 import Header from '../../Home/Header';
 import LoadButton from '../../../components/Button/LoadButton';
+import { email, required } from '../../../utils/registerUtils';
 
 function LoginComponent({ onSubmit }) {
     const { register, handleSubmit, errors } = useForm();
@@ -43,23 +44,13 @@ function LoginComponent({ onSubmit }) {
                                                     variant="outlined"
                                                     label="E-Mail"
                                                     name="username"
-                                                    type="email"
-                                                    inputRef={register({
-                                                        required:
-                                                            'Digite o seu e-mail',
-                                                        pattern: {
-                                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                                            message:
-                                                                'Digite um e-mail válido',
-                                                        },
-                                                    })}
-                                                    required
+                                                    inputRef={register(email())}
+                                                    helperText={
+                                                        errors?.username
+                                                            ?.message
+                                                    }
+                                                    error={errors.username}
                                                 />
-                                                {errors.email && (
-                                                    <p className="error">
-                                                        {errors.email.message}
-                                                    </p>
-                                                )}
                                             </Box>
                                         </Grid>
                                         <Grid item md={12}>
@@ -68,9 +59,15 @@ function LoginComponent({ onSubmit }) {
                                                     variant="outlined"
                                                     label="Senha"
                                                     name="password"
-                                                    inputRef={register()}
+                                                    inputRef={register(
+                                                        required()
+                                                    )}
+                                                    helperText={
+                                                        errors?.password
+                                                            ?.message
+                                                    }
+                                                    error={errors.password}
                                                     type="password"
-                                                    required
                                                 />
                                             </Box>
                                         </Grid>

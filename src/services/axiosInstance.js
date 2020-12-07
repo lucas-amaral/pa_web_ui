@@ -33,7 +33,7 @@ export default (history = null) => {
                 } else {
                     window.location = URLS.AUTH.LOGIN;
                 }
-            } else {
+            } else if (error.response.status !== 404) {
                 return new Promise((resolve, reject) => {
                     reject(error);
                 });

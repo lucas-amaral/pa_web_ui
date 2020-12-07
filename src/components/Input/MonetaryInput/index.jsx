@@ -35,7 +35,15 @@ NumberFormatCustom.propTypes = {
     onChange: PropTypes.func.isRequired,
 };
 
-export default function MonetaryInput({ id, label, value, inputRef, size = 'medium' }) {
+export default function MonetaryInput({
+    id,
+    label,
+    value,
+    inputRef,
+    error,
+    helperText,
+    size = 'medium',
+}) {
     const [values, setValues] = React.useState({ label: value });
 
     const handleChange = (event) => {
@@ -53,6 +61,8 @@ export default function MonetaryInput({ id, label, value, inputRef, size = 'medi
             size={size}
             defaultValue={value}
             inputRef={inputRef}
+            error={error}
+            helperText={helperText}
             variant="outlined"
             onChange={handleChange}
             InputProps={{
