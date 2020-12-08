@@ -13,15 +13,15 @@ import sale from './sale';
 import negotiation from './negotiation';
 
 export default combineReducers({
-    main,
-    login,
-    interest,
-    user,
-    neighborhood,
-    street,
-    barter,
-    property,
-    garage,
-    sale,
-    negotiation,
+  main,
+  login,
+  interest,
+  user,
+  neighborhood,
+  street,
+  barter,
+  property,
+  garage,
+  sale,
+  negotiation,
 });

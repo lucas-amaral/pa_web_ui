@@ -57,8 +57,11 @@ function User() {
         setDateOfBirth(date);
     };
 
-    return (
-        <Grid container>
+  return (
+    <Grid container>
+      <Grid item md={12}>
+        <Container>
+          <Grid container>
             <Grid item md={12}>
                 <Container>
                     <Grid container>
@@ -164,8 +167,11 @@ function User() {
                     </form>
                 </Container>
             </Grid>
-        </Grid>
-    );
+          </Grid>
+        </Container>
+      </Grid>
+    </Grid>
+  );
 }
 
 export default User;

@@ -88,7 +88,6 @@ function LoginComponent({ onSubmit }) {
                                                 />
                                             </Box>
                                         </Grid>
-
                                         <Grid>
                                             <Box p={1}>
                                                 <StyledLink to="/register">
@@ -104,7 +103,7 @@ function LoginComponent({ onSubmit }) {
                 </Grid>
             </form>
         </BackGround>
-    );
-}
+  );
+};
 
 export default LoginComponent;

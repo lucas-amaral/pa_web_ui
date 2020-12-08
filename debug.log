@@ -253,3 +253,7 @@
 [0816/111656.866:ERROR:process_reader_win.cc(151)] SuspendThread: Acesso negado. (0x5)
 [0816/111656.866:ERROR:process_reader_win.cc(123)] NtOpenThread: {Acesso Negado} Um processo solicitou acesso a um objeto, mas o direito de acesso não lhe foi concedido. (0xc0000022)
 [0816/111656.867:ERROR:exception_snapshot_win.cc(98)] thread ID 5796 not found in process
+[1130/202336.375:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[1130/204541.792:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[1130/215324.903:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)
+[1206/113750.517:ERROR:directory_reader_win.cc(43)] FindFirstFile: O sistema não pode encontrar o caminho especificado. (0x3)

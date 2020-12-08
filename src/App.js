@@ -7,12 +7,12 @@ import GlobalStyle from './styles/global';
 import Routes from './routes';
 
 const App = () => (
-    <Provider store={store}>
-        <SnackbarProvider maxSnack={3}>
-            <Routes />
-            <GlobalStyle />
-        </SnackbarProvider>
-    </Provider>
+  <Provider store={store}>
+    <SnackbarProvider maxSnack={3}>
+      <Routes />
+      <GlobalStyle />
+    </SnackbarProvider>
+  </Provider>
 );
 
 export default App;

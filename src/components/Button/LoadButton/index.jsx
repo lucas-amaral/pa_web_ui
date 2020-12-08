@@ -8,37 +8,37 @@ import { Skeleton } from '@material-ui/lab';
 import { SKYBLUE } from '../../../constants/Colors';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        display: 'flex',
-        alignItems: 'center',
-        width: 475,
-        justifyContent: 'space-between',
+  root: {
+    display: 'flex',
+    alignItems: 'center',
+    width: 475,
+    justifyContent: 'space-between',
+  },
+  wrapper: {
+    margin: theme.spacing(1),
+    position: 'relative',
+  },
+  buttonSuccess: {
+    backgroundColor: green[500],
+    '&:hover': {
+      backgroundColor: green[700],
     },
-    wrapper: {
-        margin: theme.spacing(1),
-        position: 'relative',
-    },
-    buttonSuccess: {
-        backgroundColor: green[500],
-        '&:hover': {
-            backgroundColor: green[700],
-        },
-    },
-    fabProgress: {
-        color: SKYBLUE[500],
-        position: 'absolute',
-        top: -6,
-        left: -6,
-        zIndex: 1,
-    },
-    buttonProgress: {
-        color: SKYBLUE[500],
-        position: 'absolute',
-        top: '50%',
-        left: '50%',
-        marginTop: -12,
-        marginLeft: -12,
-    },
+  },
+  fabProgress: {
+    color: SKYBLUE[500],
+    position: 'absolute',
+    top: -6,
+    left: -6,
+    zIndex: 1,
+  },
+  buttonProgress: {
+    color: SKYBLUE[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
 }));
 
 export default function CircularIntegration({
@@ -50,9 +50,9 @@ export default function CircularIntegration({
 }) {
     const classes = useStyles();
 
-    const buttonClassname = clsx({
-        [classes.buttonSuccess]: success,
-    });
+  const buttonClassname = clsx({
+    [classes.buttonSuccess]: success,
+  });
 
     return (
         <div className={classes.root}>

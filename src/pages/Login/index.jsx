@@ -10,18 +10,18 @@ import {
 } from '../../constants/ActionTypes';
 
 function Login() {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const statusLogin = useSelector((state) => state.login);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const statusLogin = useSelector((state) => state.login);
 
-    useEffect(() => {
-        if (statusLogin.state.logged) {
-            dispatch({
-                type: SET_INITIAL_STATE,
-            });
-            history.push('/dashboard');
-        }
-    }, [dispatch, history, statusLogin.state]);
+  useEffect(() => {
+    if (statusLogin.state.logged) {
+      dispatch({
+        type: SET_INITIAL_STATE,
+      });
+      history.push('/dashboard');
+    }
+  }, [history, statusLogin.state]);
 
     const onSubmit = (data) => {
         dispatch({
@@ -36,12 +36,12 @@ function Login() {
         });
     };
 
-    return (
-        <LoginComponent
-            onSubmit={onSubmit}
-            loginInvalid={statusLogin.loginFailed}
-        />
-    );
+  return (
+    <LoginComponent
+      onSubmit={onSubmit}
+      loginInvalid={statusLogin.loginFailed}
+    />
+  );
 }
 
 export default Login;
