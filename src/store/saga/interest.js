@@ -14,7 +14,7 @@ function* sendInterest(action) {
     const payload = yield call(save, action.dataInterest);
 
     if (payload) {
-      yield put({ type: INTEREST_SUCCEEDED, payload });
+      yield put({ type: INTEREST_SUCCEEDED, payload: payload.data });
     }
   } catch (e) {
     // yield put({ type: 'INTEREST_FAILED', message: e.message });

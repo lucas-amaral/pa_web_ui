@@ -15,9 +15,9 @@ function Login() {
 
   useEffect(() => {
     if (statusLogin.state.logged) {
-      // dispatch({
-      //   type: SET_INITIAL_STATE,
-      // });
+      dispatch({
+        type: SET_INITIAL_STATE,
+      });
       history.push('/dashboard');
     }
   }, [history, statusLogin.state]);

@@ -59,14 +59,18 @@ function Interest() {
   const neighborhoods = useSelector(
     (state) => state.neighborhood.neighborhoods
   );
+
   const [showFinancing, setShowFinancing] = React.useState(interest.financing);
 
   useEffect(() => {
     dispatch({
       type: RESET_SUCCESS_INTEREST,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [dispatch]);
+
+  useEffect(() => {
+    console.log('UPDATED', interest);
+  }, [interest]);
 
   const removeInterest = (interestID) => {
     dispatch({

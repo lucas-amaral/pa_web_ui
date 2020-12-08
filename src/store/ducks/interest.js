@@ -36,13 +36,13 @@ const newInterest = (state = INITIAL_STATE, action) => {
   return [...state.interests, action.interest];
 };
 
-const interestSucceeded = (state = INITIAL_STATE, action) => {
+const interestSucceeded = (state = INITIAL_STATE, payload) => {
   return {
     ...state,
-    type: action.type,
+    type: payload.type,
     interest: {
-      ...action.payload,
-      uiTypes: getPropertyTypes(action.payload.types),
+      ...payload.payload,
+      uiTypes: getPropertyTypes(payload.payload.types),
     },
     loading: false,
     success: true,
