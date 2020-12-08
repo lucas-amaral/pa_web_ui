@@ -37,7 +37,7 @@ const failedNegotiation = (state = INITIAL_STATE) => {
 const updateSaleNegotiations = (state = INITIAL_STATE, payload) => {
     return {
         type: payload.type,
-        negotiationsBySale: payload.data,
+        negotiationsBySale: payload.payload,
         negotiationsByInterest: state.negotiationsByInterest,
     };
 };
@@ -46,7 +46,7 @@ const updateInterestNegotiations = (state = INITIAL_STATE, payload) => {
     return {
         type: payload.type,
         negotiationsBySale: state.negotiationsBySale,
-        negotiationsByInterest: payload.data,
+        negotiationsByInterest: payload.payload,
     };
 };
 

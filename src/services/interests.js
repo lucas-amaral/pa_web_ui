@@ -7,11 +7,11 @@ export const load = (username) => {
     });
 };
 
-export const create = (data) => {
-    axiosInstance()
+export const create = async (data) => {
+    return axiosInstance()
         .post(URLS.INTEREST.ADD, data)
         .then((response) => {
-            console.log('response', response);
+            return response.data;
         })
         .catch((err) => {
             throw err;

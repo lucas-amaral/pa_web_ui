@@ -3,6 +3,7 @@ import {
     FAILED_SALE,
     LOADING_SALE,
     RESET_SUCCESS_SALE,
+    RESET_LOADING_DATA_SALE,
     SUCCEEDED_SALE,
     UPDATE_BARTER_PROPERTY_SALE,
     UPDATE_BARTER_VEHICLE_SALE,
@@ -83,6 +84,10 @@ const resetSuccessSale = (state = INITIAL_STATE) => {
     return { ...state, loading: false, success: false };
 };
 
+const resetLoadingDataSale = (state = INITIAL_STATE) => {
+    return { ...state, loadingData: false };
+};
+
 const updateFinancingSale = (state = INITIAL_STATE) => {
     return { ...state, showFinancing: !state.showFinancing };
 };
@@ -105,6 +110,7 @@ export default createReducer(INITIAL_STATE, {
     [UPDATE_SALE]: updateSale,
     [LOADING_SALE]: loadingSale,
     [RESET_SUCCESS_SALE]: resetSuccessSale,
+    [RESET_LOADING_DATA_SALE]: resetLoadingDataSale,
     [UPDATE_FINANCING_SALE]: updateFinancingSale,
     [UPDATE_BARTER_PROPERTY_SALE]: updateBarterPropertySale,
     [UPDATE_BARTER_VEHICLE_SALE]: updateBarterVehicleSale,

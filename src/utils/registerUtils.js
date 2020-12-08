@@ -11,6 +11,7 @@ export const number = () => {
     return {
         validate: (value) =>
             typeof Number(value) === 'number' && isFinite(Number(value)),
+        setValueAs: (value) => (value ? parseFloat(value) : null),
     };
 };
 

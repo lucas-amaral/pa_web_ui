@@ -10,6 +10,7 @@ import {
     UPDATE_SALE,
     UPDATE_SALES,
     FAILED_SALE,
+    RESET_LOADING_DATA_SALE,
 } from '../../constants/ActionTypes';
 import { errorNotification } from '../../utils/notificationUtils';
 
@@ -31,6 +32,8 @@ function* loadSale(action) {
 
         if (payload) {
             yield put({ type: UPDATE_SALE, payload: payload.data });
+        } else {
+            yield put({ type: RESET_LOADING_DATA_SALE });
         }
     } catch (e) {
         yield put(errorNotification('Ocorreu um erro ao buscar anúncio'));

@@ -7,9 +7,14 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux';
 import { formatToMonetary } from '../../../utils/numbersUtils';
 import Carousel from '../../Images/Carousel';
 import NoDataImg from '../../../assets/no_data.svg';
+import {
+    APPROVE_BY_BUYER,
+    REPROVE_BY_BUYER,
+} from '../../../constants/ActionTypes';
 
 const useStyles = makeStyles({
     root: {
@@ -19,6 +24,7 @@ const useStyles = makeStyles({
 
 export default function SaleCard({ sale }) {
     const classes = useStyles();
+    const dispatch = useDispatch();
 
     if (!sale.images) {
         sale.images = [
@@ -62,6 +68,14 @@ export default function SaleCard({ sale }) {
         }
     }
 
+    function accept() {
+        return dispatch({ type: APPROVE_BY_BUYER });
+    }
+
+    function reprove() {
+        return dispatch({ type: REPROVE_BY_BUYER });
+    }
+
     return (
         <Card className={classes.root}>
             <CardActionArea>
@@ -89,10 +103,10 @@ export default function SaleCard({ sale }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={accept()}>
                     Aceitar
                 </Button>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={reprove()}>
                     Recusar
                 </Button>
             </CardActions>

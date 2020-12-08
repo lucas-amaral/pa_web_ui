@@ -84,7 +84,7 @@ export default function Images({
                 </Grid>
             </Grid>
             <GridBox>
-                {images.length > 0 && (
+                {images && images.length > 0 && (
                     <ImageStepper
                         images={images}
                         deleteImage={deleteImage}

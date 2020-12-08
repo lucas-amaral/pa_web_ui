@@ -16,6 +16,7 @@ import {
     REMOVE_FORM_INTEREST_BARTER,
     ADD_FORM_INTEREST_BARTER,
     FAILED_INTEREST,
+    RESET_LOADING_DATA_INTEREST,
 } from '../../constants/ActionTypes';
 import { errorNotification } from '../../utils/notificationUtils';
 
@@ -25,8 +26,11 @@ function* loadInterest(action) {
 
         if (payload) {
             yield put({ type: UPDATE_INTEREST, payload: payload.data });
+        } else {
+            yield put({ type: RESET_LOADING_DATA_INTEREST });
         }
     } catch (e) {
+        yield put({ type: RESET_LOADING_DATA_INTEREST });
         yield put(errorNotification('Ocorreu um erro ao buscar interesse'));
     }
 }

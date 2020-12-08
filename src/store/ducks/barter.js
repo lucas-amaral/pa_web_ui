@@ -43,6 +43,7 @@ const INITIAL_STATE = {
 */
 const succeededBarter = (state = INITIAL_STATE, action) => {
     return {
+        ...state,
         type: action.type,
         barter: action.payload,
         barters: state.barters.map((barter) =>

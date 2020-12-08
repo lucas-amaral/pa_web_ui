@@ -22,7 +22,11 @@ import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
 import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import FormButton from '../../../../components/Button/FormButton';
-import { number, setValueMonetary, totalValue } from '../../../../utils/registerUtils';
+import {
+    number,
+    setValueMonetary,
+    totalValue,
+} from '../../../../utils/registerUtils';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -53,7 +57,8 @@ export default function Sale() {
     const financingValue = getValues('financingValue');
     const vehicleValue = getValues('barterVehicleValue');
     const propertyValue = getValues('barterPropertyValue');
-    const totalValueMessage = 'Valor de financiamento e permutas superior ao valor total';
+    const totalValueMessage =
+        'Valor de financiamento e permutas superior ao valor total';
 
     const property = useSelector((state) => state.property.property);
     const {
@@ -178,9 +183,17 @@ export default function Sale() {
                                 label="Valor financiado"
                                 labelWidth={125}
                                 value={sale.financingValue}
-                                inputRef={register(totalValue(value, propertyValue, vehicleValue))}
+                                inputRef={register(
+                                    totalValue(
+                                        value,
+                                        propertyValue,
+                                        vehicleValue
+                                    )
+                                )}
                                 error={errors?.financingValue}
-                                helperText={errors?.financingValue && totalValueMessage}
+                                helperText={
+                                    errors?.financingValue && totalValueMessage
+                                }
                             />
                         )}
                     </GridBox>
@@ -214,9 +227,18 @@ export default function Sale() {
                                 label="Valor máximo veículo"
                                 labelWidth={125}
                                 value={sale.barterVehicleValue}
-                                inputRef={register(totalValue(value, financingValue, propertyValue))}
+                                inputRef={register(
+                                    totalValue(
+                                        value,
+                                        financingValue,
+                                        propertyValue
+                                    )
+                                )}
                                 error={errors?.barterVehicleValue}
-                                helperText={errors?.barterVehicleValue && totalValueMessage}
+                                helperText={
+                                    errors?.barterVehicleValue &&
+                                    totalValueMessage
+                                }
                             />
                         )}
                     </GridBox>
@@ -241,9 +263,18 @@ export default function Sale() {
                                 label="Valor máximo imóvel"
                                 labelWidth={125}
                                 value={sale.barterPropertyValue}
-                                inputRef={register(totalValue(value, financingValue, vehicleValue))}
+                                inputRef={register(
+                                    totalValue(
+                                        value,
+                                        financingValue,
+                                        vehicleValue
+                                    )
+                                )}
                                 error={errors?.barterPropertyValue}
-                                helperText={errors?.barterPropertyValue && totalValueMessage}
+                                helperText={
+                                    errors?.barterPropertyValue &&
+                                    totalValueMessage
+                                }
                             />
                         )}
                     </GridBox>

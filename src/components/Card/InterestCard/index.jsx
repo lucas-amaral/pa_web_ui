@@ -7,10 +7,15 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux';
 import { formatToMonetary } from '../../../utils/numbersUtils';
 import { getBarterType } from '../../../utils/barterUtils';
 import Carousel from '../../Images/Carousel';
 import NoDataImg from '../../../assets/no_data.svg';
+import {
+    APPROVE_BY_BUYER,
+    REPROVE_BY_BUYER,
+} from '../../../constants/ActionTypes';
 
 const useStyles = makeStyles({
     root: {
@@ -20,16 +25,7 @@ const useStyles = makeStyles({
 
 export default function InterestCard({ interest }) {
     const classes = useStyles();
-
-    if (!interest.images) {
-        interest.images = [
-            {
-                id: 0,
-                data: NoDataImg,
-                contentType: 'image/svg',
-            },
-        ];
-    }
+    const dispatch = useDispatch();
 
     function financingInfo() {
         if (interest.financing) {
@@ -40,11 +36,36 @@ export default function InterestCard({ interest }) {
         return null;
     }
 
+    function images() {
+        const bartersImages = interest?.barters?.flatMap(
+            (barter) => barter.images
+        );
+
+        if (!bartersImages) {
+            return [
+                {
+                    id: 0,
+                    data: NoDataImg,
+                    contentType: 'image/svg',
+                },
+            ];
+        }
+        return bartersImages;
+    }
+
+    function accept() {
+        return dispatch({ type: APPROVE_BY_BUYER });
+    }
+
+    function reprove() {
+        return dispatch({ type: REPROVE_BY_BUYER });
+    }
+
     return (
         <Card className={classes.root}>
             <CardActionArea>
                 <CardMedia height="240">
-                    <Carousel images={interest.images} />
+                    <Carousel images={images()} />
                 </CardMedia>
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
@@ -76,10 +97,10 @@ export default function InterestCard({ interest }) {
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={accept()}>
                     Aceitar
                 </Button>
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" onClick={reprove()}>
                     Recusar
                 </Button>
             </CardActions>
