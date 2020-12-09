@@ -19,19 +19,19 @@ export const convertMonetaryToNumber = (value) => {
 };
 
 export const formatToMonetary = (value) => {
-    return Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL',
-    }).format(value);
+  return Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  }).format(value);
 };
 
 export const totalValueError = (
-    value = 0,
-    financingValue = 0,
-    vehicleValue = 0,
-    propertyValue = 0
+  value = 0,
+  financingValue = 0,
+  vehicleValue = 0,
+  propertyValue = 0
 ) => {
-    return value < financingValue + vehicleValue + propertyValue;
+  return value < financingValue + vehicleValue + propertyValue;
 };
 
 export const generateId = () => {

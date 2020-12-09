@@ -6,31 +6,31 @@ import { MenuItem } from '@material-ui/core';
 import FormControl from '@material-ui/core/FormControl';
 
 export default function MultilineSelect({
-    id,
-    label,
-    defaultValue,
-    values,
-    control,
+  id,
+  label,
+  defaultValue,
+  values,
+  control,
 }) {
-    return (
-        <FormControl variant="outlined" fullWidth>
-            <InputLabel id="label">{label}</InputLabel>
-            <Controller
-                name={id}
-                control={control}
-                defaultValue={defaultValue}
-                as={
-                    <Select labelId="label" fullWidth label={label}>
-                        {values.map((item) => {
-                            return (
-                                <MenuItem key={item.id} value={item.id}>
-                                    {item.value}
-                                </MenuItem>
-                            );
-                        })}
-                    </Select>
-                }
-            />
-        </FormControl>
-    );
+  return (
+    <FormControl variant="outlined" fullWidth>
+      <InputLabel id="label">{label}</InputLabel>
+      <Controller
+        name={id}
+        control={control}
+        defaultValue={defaultValue}
+        as={
+          <Select labelId="label" fullWidth label={label}>
+            {values.map((item) => {
+              return (
+                <MenuItem key={item.id} value={item.id}>
+                  {item.value}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        }
+      />
+    </FormControl>
+  );
 }

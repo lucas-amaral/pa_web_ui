@@ -40,7 +40,7 @@ function* addInterest(action) {
     const payload = yield call(create, action.dataInterest);
 
     if (payload) {
-      yield put({ type: SUCCEEDED_INTEREST, payload });
+      yield put({ type: SUCCEEDED_INTEREST, payload: payload.data });
     }
   } catch (e) {
     yield put({ type: FAILED_INTEREST });

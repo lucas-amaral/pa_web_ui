@@ -8,6 +8,9 @@
   "editor.fontSize":14,
   "editor.lineHeight":24,
   "editor.fontLigatures":true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
 
   // Aplica linhas verticais para lembrar de quebrar linha em códigos muito grandes
   "editor.rulers": [

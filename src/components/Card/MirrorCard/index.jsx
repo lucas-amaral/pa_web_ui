@@ -6,7 +6,7 @@ import { sumValues } from '../../../utils/numbersUtils';
 
 import { OCEAN, PURPLE_0 } from '../../../constants/Colors';
 import MirrorInfo from '../../MirrorInfos';
-import { Types as InterestTypes } from '../../../store/ducks/interest';
+import { ADD_INTEREST } from '../../../constants/ActionTypes';
 
 const useStyles = makeStyles((theme) => ({
   paperHeader: {
@@ -63,9 +63,6 @@ const getConvenience = (conveniences = [], convenienceName) => {
 function MirrorCard({ headerTitle }) {
   const classes = useStyles();
   let interest = useSelector((state) => state.interest.interest);
-  const sts = useSelector((state) => state);
-  console.log('sts', sts);
-  console.log('interest', interest);
 
   const dispatch = useDispatch();
 
@@ -98,7 +95,7 @@ function MirrorCard({ headerTitle }) {
     };
 
     dispatch({
-      type: InterestTypes.SEND_INTEREST,
+      type: ADD_INTEREST,
       dataInterest,
     });
   };
@@ -106,8 +103,6 @@ function MirrorCard({ headerTitle }) {
   if (interest.interest) {
     interest = interest.interest;
   }
-
-  console.log('values sss', interest);
 
   return (
     <>

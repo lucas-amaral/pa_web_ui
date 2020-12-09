@@ -2,7 +2,6 @@ import { createActions, createReducer } from 'reduxsauce';
 import { getPropertyTypes } from '../../utils/interestUtils';
 import {
   ADD_FORM_INTEREST_BARTER,
-  ADD_INTEREST,
   FAILED_INTEREST,
   LOADING_INTEREST,
   REMOVE_FORM_INTEREST_BARTER,
@@ -38,21 +37,13 @@ const INITIAL_STATE = {
   success: false,
 };
 
-/*
-    Criando os reducer handlers
-*/
-const addInterest = (state = INITIAL_STATE, action) => {
+const succeededInterest = (state = INITIAL_STATE, payload) => {
   return {
-    interests: [...state.interests, action.interest],
-  };
-};
-
-const succeededInterest = (state = INITIAL_STATE, action) => {
-  return {
-    type: action.type,
+    ...state,
+    type: payload.type,
     interest: {
-      ...action.payload,
-      uiTypes: getPropertyTypes(action.payload.types),
+      ...payload.payload,
+      uiTypes: getPropertyTypes(payload.payload.types),
     },
     loading: false,
     success: true,
@@ -65,6 +56,7 @@ const failedInterest = (state = INITIAL_STATE) => {
 
 const updateInterest = (state = INITIAL_STATE, payload) => {
   return {
+    ...state,
     type: payload.type,
     interest: {
       ...payload.payload,
@@ -114,7 +106,6 @@ const resetLoadingDataInterest = (state = INITIAL_STATE) => {
     Criando o reducer
 */
 export default createReducer(INITIAL_STATE, {
-  [ADD_INTEREST]: addInterest,
   [SUCCEEDED_INTEREST]: succeededInterest,
   [FAILED_INTEREST]: failedInterest,
   [UPDATE_INTEREST]: updateInterest,

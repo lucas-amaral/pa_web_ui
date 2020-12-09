@@ -13,60 +13,60 @@ import { useDispatch } from 'react-redux';
 import { SET_CONTENT_BODY } from '../../../constants/ActionTypes';
 
 const useStyles = makeStyles((theme) => ({
-    root: {
-        width: '100%',
-        maxWidth: 360,
-        backgroundColor: theme.palette.background.paper,
-        opacity: 0.8,
-    },
-    nested: {
-        paddingLeft: theme.spacing(4),
-    },
+  root: {
+    width: '100%',
+    maxWidth: 360,
+    backgroundColor: theme.palette.background.paper,
+    opacity: 0.8,
+  },
+  nested: {
+    paddingLeft: theme.spacing(4),
+  },
 }));
 function SideMenu() {
-    const classes = useStyles();
-    const dispatch = useDispatch();
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
-    function setContentBody(contentBody) {
-        dispatch({
-            type: SET_CONTENT_BODY,
-            contentBody,
-        });
-    }
+  function setContentBody(contentBody) {
+    dispatch({
+      type: SET_CONTENT_BODY,
+      contentBody,
+    });
+  }
 
-    return (
-        <List
-            component="nav"
-            aria-labelledby="nested-list-subheader"
-            className={classes.root}
-        >
-            <ListItem button onClick={() => setContentBody('user')}>
-                <ListItemIcon>
-                    <AccountBoxIcon />
-                </ListItemIcon>
-                <ListItemText primary="Perfil" />
-            </ListItem>
-            <ListItem button onClick={() => setContentBody('negotiations')}>
-                <ListItemIcon>
-                    <ForumIcon />
-                </ListItemIcon>
-                <ListItemText primary="Negociações" />
-            </ListItem>
-            <Divider />
-            <ListItem button onClick={() => setContentBody('property')}>
-                <ListItemIcon>
-                    <HomeWorkIcon />
-                </ListItemIcon>
-                <ListItemText primary="Imóvel" />
-            </ListItem>
-            <ListItem button onClick={() => setContentBody('interest')}>
-                <ListItemIcon>
-                    <AssignmentIcon />
-                </ListItemIcon>
-                <ListItemText primary="Interesse" />
-            </ListItem>
-        </List>
-    );
+  return (
+    <List
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      className={classes.root}
+    >
+      <ListItem button onClick={() => setContentBody('user')}>
+        <ListItemIcon>
+          <AccountBoxIcon />
+        </ListItemIcon>
+        <ListItemText primary="Perfil" />
+      </ListItem>
+      <ListItem button onClick={() => setContentBody('negotiations')}>
+        <ListItemIcon>
+          <ForumIcon />
+        </ListItemIcon>
+        <ListItemText primary="Negociações" />
+      </ListItem>
+      <Divider />
+      <ListItem button onClick={() => setContentBody('property')}>
+        <ListItemIcon>
+          <HomeWorkIcon />
+        </ListItemIcon>
+        <ListItemText primary="Imóvel" />
+      </ListItem>
+      <ListItem button onClick={() => setContentBody('interest')}>
+        <ListItemIcon>
+          <AssignmentIcon />
+        </ListItemIcon>
+        <ListItemText primary="Interesse" />
+      </ListItem>
+    </List>
+  );
 }
 
 export default SideMenu;

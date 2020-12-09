@@ -21,14 +21,14 @@ export const StyledCard = styled(Card)`
 `;
 
 export const CardTitle = styled.h1`
-    font-size: 22px;
-    letter-spacing: -0.2px;
-    font-weight: 700;
-    color: ${PURPLE_0};
-    /* background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0}); */
-    text-align: justify;
-    text-justify: inter-word;
-    z-index: 1;
+  font-size: 22px;
+  letter-spacing: -0.2px;
+  font-weight: 700;
+  color: ${PURPLE_0};
+  /* background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0}); */
+  text-align: justify;
+  text-justify: inter-word;
+  z-index: 1;
 `;
 
 export const CardSubTitle = styled.h1`

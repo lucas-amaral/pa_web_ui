@@ -8,93 +8,90 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
-    ADD_INTEREST_BARTER,
-    REMOVE_BARTER_INTEREST,
+  ADD_INTEREST_BARTER,
+  REMOVE_BARTER_INTEREST,
 } from '../../../../../constants/ActionTypes';
 import MonetaryInput from '../../../../../components/Input/MonetaryInput';
 import { convertMonetaryToNumber } from '../../../../../utils/numbersUtils';
 
 export default function NewBarter() {
-    const dispatch = useDispatch();
-    const barters = useSelector((state) => state.barter.barters);
-    const interestId = useSelector((state) => state.interest.interest.id);
-    const { register, getValues, control } = useForm();
+  const dispatch = useDispatch();
+  const barters = useSelector((state) => state.barter.barters);
+  const interestId = useSelector((state) => state.interest.interest.id);
+  const { register, getValues, control } = useForm();
 
-    function removeBarter(newId) {
-        dispatch({
-            type: REMOVE_BARTER_INTEREST,
-            barterId: newId,
-        });
-    }
-
-    const addBarter = (newId) => {
-        const newValue = getValues(`${newId}.value`);
-        const newType = getValues(`${newId}.type`);
-
-        dispatch({
-            type: ADD_INTEREST_BARTER,
-            data: {
-                interestId,
-                value: convertMonetaryToNumber(newValue),
-                type: newType,
-            },
-        });
-
-        removeBarter(newId);
-    };
-
-    return barters.map((newBarter) => {
-        return (
-            <TableRow key={newBarter.newId}>
-                <TableCell component="th" scope="row">
-                    <Controller
-                        name={`${newBarter.newId}.type`}
-                        control={control}
-                        defaultValue={newBarter.type}
-                        as={
-                            <Select
-                                variant="outlined"
-                                style={{ height: '40px' }}
-                            >
-                                <MenuItem value="VEHICLE">Veículo</MenuItem>
-                                <MenuItem value="PROPERTY">Imóvel</MenuItem>
-                            </Select>
-                        }
-                    />
-                </TableCell>
-                <TableCell align="right">
-                    <MonetaryInput
-                        id={`${newBarter.newId}.value`}
-                        label="Valor"
-                        inputRef={register()}
-                        value={newBarter.value}
-                        size="small"
-                    />
-                </TableCell>
-                <TableCell
-                    align="center"
-                    style={{ width: '5px', whiteSpace: 'nowrap' }}
-                >
-                    <IconButton
-                        aria-label="Adicionar permuta"
-                        color="inherit"
-                        key="add-barter"
-                        data-tip="Adicionar permuta"
-                        onClick={() => addBarter(newBarter.newId)}
-                    >
-                        <CheckIcon />
-                    </IconButton>
-                    <IconButton
-                        aria-label="Remover permuta"
-                        color="inherit"
-                        key="delete-barter"
-                        data-tip="Remover permuta"
-                        onClick={() => removeBarter(newBarter.newId)}
-                    >
-                        <DeleteIcon />
-                    </IconButton>
-                </TableCell>
-            </TableRow>
-        );
+  function removeBarter(newId) {
+    dispatch({
+      type: REMOVE_BARTER_INTEREST,
+      barterId: newId,
     });
+  }
+
+  const addBarter = (newId) => {
+    const newValue = getValues(`${newId}.value`);
+    const newType = getValues(`${newId}.type`);
+
+    dispatch({
+      type: ADD_INTEREST_BARTER,
+      data: {
+        interestId,
+        value: convertMonetaryToNumber(newValue),
+        type: newType,
+      },
+    });
+
+    removeBarter(newId);
+  };
+
+  return barters.map((newBarter) => {
+    return (
+      <TableRow key={newBarter.newId}>
+        <TableCell component="th" scope="row">
+          <Controller
+            name={`${newBarter.newId}.type`}
+            control={control}
+            defaultValue={newBarter.type}
+            as={
+              <Select variant="outlined" style={{ height: '40px' }}>
+                <MenuItem value="VEHICLE">Veículo</MenuItem>
+                <MenuItem value="PROPERTY">Imóvel</MenuItem>
+              </Select>
+            }
+          />
+        </TableCell>
+        <TableCell align="right">
+          <MonetaryInput
+            id={`${newBarter.newId}.value`}
+            label="Valor"
+            inputRef={register()}
+            value={newBarter.value}
+            size="small"
+          />
+        </TableCell>
+        <TableCell
+          align="center"
+          style={{ width: '5px', whiteSpace: 'nowrap' }}
+        >
+          <IconButton
+            aria-label="Adicionar permuta"
+            color="inherit"
+            key="add-barter"
+            data-tip="Adicionar permuta"
+            onClick={() => addBarter(newBarter.newId)}
+          >
+            <CheckIcon />
+          </IconButton>
+          <IconButton
+            aria-label="Remover permuta"
+            color="inherit"
+            key="delete-barter"
+            data-tip="Remover permuta"
+            onClick={() => removeBarter(newBarter.newId)}
+          >
+            <DeleteIcon />
+          </IconButton>
+        </TableCell>
+      </TableRow>
+    );
+  });
 }

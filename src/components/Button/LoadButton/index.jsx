@@ -42,45 +42,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function CircularIntegration({
-    label,
-    success,
-    loading,
-    loadingData,
-    width = '250px',
+  label,
+  success,
+  loading,
+  loadingData,
+  width = '250px',
 }) {
-    const classes = useStyles();
+  const classes = useStyles();
 
   const buttonClassname = clsx({
     [classes.buttonSuccess]: success,
   });
 
-    return (
-        <div className={classes.root}>
-            <div className={classes.wrapper}>
-                {loadingData ? (
-                    <Skeleton height={60} animation="wave">
-                        <Button fullWidth />
-                    </Skeleton>
-                ) : (
-                    <Button
-                        style={{ width, height: '38px' }}
-                        variant="contained"
-                        color="primary"
-                        className={buttonClassname}
-                        disabled={loading}
-                        size="medium"
-                        type="submit"
-                    >
-                        {label}
-                    </Button>
-                )}
-                {loading && (
-                    <CircularProgress
-                        size={24}
-                        className={classes.buttonProgress}
-                    />
-                )}
-            </div>
-        </div>
-    );
+  return (
+    <div className={classes.root}>
+      <div className={classes.wrapper}>
+        {loadingData ? (
+          <Skeleton height={60} animation="wave">
+            <Button fullWidth />
+          </Skeleton>
+        ) : (
+          <Button
+            style={{ width, height: '38px' }}
+            variant="contained"
+            color="primary"
+            className={buttonClassname}
+            disabled={loading}
+            size="medium"
+            type="submit"
+          >
+            {label}
+          </Button>
+        )}
+        {loading && (
+          <CircularProgress size={24} className={classes.buttonProgress} />
+        )}
+      </div>
+    </div>
+  );
 }

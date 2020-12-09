@@ -67,37 +67,36 @@ export const FirstBody = styled.div`
 `;
 
 export const BackgroundBody = styled.div`
-    /* background: linear-gradient(-180deg, ${OCEAN}, ${GRAY}); */
-    background: url(${BackgroundImage2});
-    background-size: cover;
-    background-repeat: cover;
-    width: 100vw;
-    height: 110vh;
-    z-index: -1;
-    padding: 0px;
-    margin: 0px;
-    position: absolute;
+  /* background: linear-gradient(-180deg, ${OCEAN}, ${GRAY}); */
+  background: url(${BackgroundImage2});
+  background-size: cover;
+  background-repeat: cover;
+  width: 100vw;
+  height: 110vh;
+  z-index: -1;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
 `;
 
 export const SecondBody = styled.div`
-    width: 100vw;
-    height: 30px;
-    background: linear-gradient(-180deg, #fff, ${GRAY});
-    display: flex;
-    align-items: center;
-    /* background: ${OCEAN}; */
-    /* background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0}); */
+  width: 100vw;
+  height: 30px;
+  background: linear-gradient(-180deg, #fff, ${GRAY});
+  display: flex;
+  align-items: center;
+  /* background: ${OCEAN}; */
+  /* background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0}); */
 
-    /* background: linear-gradient(-180deg, ${OCEAN}, ${BLACK}); */
-
+  /* background: linear-gradient(-180deg, ${OCEAN}, ${BLACK}); */
 `;
 
 export const Footer = styled(Grid)`
-    width: 100vw;
-    height: 20vh;
+  width: 100vw;
+  height: 20vh;
 
-    /* background: ${BLACK}; */
-    background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0});
+  /* background: ${BLACK}; */
+  background: linear-gradient(90deg, ${OCEAN}, ${PURPLE_0});
 `;
 
 export const BodyPhraseOne = styled.h1`
@@ -109,13 +108,13 @@ export const BodyPhraseOne = styled.h1`
 `;
 
 export const BodyOnePhraseContent = styled.div`
-    width: 50vw;
-    height: 40vh;
-    padding-left: 10%;
-    padding-top: 7%;
-    z-index: 1;
+  width: 50vw;
+  height: 40vh;
+  padding-left: 10%;
+  padding-top: 7%;
+  z-index: 1;
 
-    /* display: ${(props) => (!props.visible ? 'none' : 'block')};
+  /* display: ${(props) => (!props.visible ? 'none' : 'block')};
     transition-property: display;
     transition-duration: 2s; */
 `;

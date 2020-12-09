@@ -36,15 +36,15 @@ NumberFormatCustom.propTypes = {
 };
 
 export default function MonetaryInput({
-    id,
-    label,
-    value,
-    inputRef,
-    error,
-    helperText,
-    size = 'medium',
+  id,
+  label,
+  value,
+  inputRef,
+  error,
+  helperText,
+  size = 'medium',
 }) {
-    const [values, setValues] = React.useState({ label: value });
+  const [values, setValues] = React.useState({ label: value });
 
   const handleChange = (event) => {
     setValues({
@@ -53,21 +53,21 @@ export default function MonetaryInput({
     });
   };
 
-    return (
-        <TextField
-            id={label}
-            label={label}
-            name={id}
-            size={size}
-            defaultValue={value}
-            inputRef={inputRef}
-            error={error}
-            helperText={helperText}
-            variant="outlined"
-            onChange={handleChange}
-            InputProps={{
-                inputComponent: NumberFormatCustom,
-            }}
-        />
-    );
+  return (
+    <TextField
+      id={label}
+      label={label}
+      name={id}
+      size={size}
+      defaultValue={value}
+      inputRef={inputRef}
+      error={error}
+      helperText={helperText}
+      variant="outlined"
+      onChange={handleChange}
+      InputProps={{
+        inputComponent: NumberFormatCustom,
+      }}
+    />
+  );
 }
