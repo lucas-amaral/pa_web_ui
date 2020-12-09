@@ -11,15 +11,15 @@ import sale from './sale';
 import negotiation from './negotiation';
 
 export default function* sagas() {
-    yield all([
-        interest(),
-        user(),
-        login(),
-        neighborhood(),
-        street(),
-        barter(),
-        property(),
-        sale(),
-        negotiation(),
-    ]);
+  yield all([
+    interest(),
+    user(),
+    login(),
+    neighborhood(),
+    street(),
+    barter(),
+    property(),
+    sale(),
+    negotiation(),
+  ]);
 }

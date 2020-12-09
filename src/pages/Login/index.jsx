@@ -4,44 +4,44 @@ import { useHistory } from 'react-router-dom';
 
 import LoginComponent from './components/login';
 import {
-    LOADING_LOGIN,
-    LOGIN_REQUESTED,
-    SET_INITIAL_STATE,
+  LOADING_LOGIN,
+  LOGIN_REQUESTED,
+  SET_INITIAL_STATE,
 } from '../../constants/ActionTypes';
 
 function Login() {
-    const history = useHistory();
-    const dispatch = useDispatch();
-    const statusLogin = useSelector((state) => state.login);
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const statusLogin = useSelector((state) => state.login);
 
-    useEffect(() => {
-        if (statusLogin.state.logged) {
-            dispatch({
-                type: SET_INITIAL_STATE,
-            });
-            history.push('/dashboard');
-        }
-    }, [dispatch, history, statusLogin.state]);
+  useEffect(() => {
+    if (statusLogin.state.logged) {
+      dispatch({
+        type: SET_INITIAL_STATE,
+      });
+      history.push('/dashboard');
+    }
+  }, [history, statusLogin.state]);
 
-    const onSubmit = (data) => {
-        dispatch({
-            type: LOADING_LOGIN,
-        });
-        dispatch({
-            type: LOGIN_REQUESTED,
-            data: {
-                username: data.username,
-                password: data.password,
-            },
-        });
-    };
+  const onSubmit = (data) => {
+    dispatch({
+      type: LOADING_LOGIN,
+    });
+    dispatch({
+      type: LOGIN_REQUESTED,
+      data: {
+        username: data.username,
+        password: data.password,
+      },
+    });
+  };
 
-    return (
-        <LoginComponent
-            onSubmit={onSubmit}
-            loginInvalid={statusLogin.loginFailed}
-        />
-    );
+  return (
+    <LoginComponent
+      onSubmit={onSubmit}
+      loginInvalid={statusLogin.loginFailed}
+    />
+  );
 }
 
 export default Login;
