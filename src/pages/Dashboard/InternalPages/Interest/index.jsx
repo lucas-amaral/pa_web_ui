@@ -68,7 +68,6 @@ function Interest() {
   const { interest, loadingData, loading, success } = useSelector(
     (state) => state.interest
   );
-
   const neighborhoods = useSelector(
     (state) => state.neighborhood.neighborhoods
   );

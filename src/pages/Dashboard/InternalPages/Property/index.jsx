@@ -162,7 +162,7 @@ export default function Property() {
               fullWidth
               name="registration"
               defaultValue={property.registration}
-              inputRef={register(number())}
+              inputRef={register()}
               helperText={
                 errors?.registration && 'Campo númerico. Insira apenas números'
               }
@@ -176,7 +176,7 @@ export default function Property() {
               fullWidth
               name="iptu"
               defaultValue={property.iptu}
-              inputRef={register(number())}
+              inputRef={register()}
               helperText={
                 errors?.iptu && 'Campo númerico. Insira apenas números'
               }

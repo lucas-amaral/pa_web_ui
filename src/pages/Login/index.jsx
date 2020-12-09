@@ -21,6 +21,7 @@ function Login() {
       });
       history.push('/dashboard');
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [history, statusLogin.state]);
 
   const onSubmit = (data) => {
