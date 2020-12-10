@@ -108,3 +108,7 @@ export const UPDATE_NEIGHBORHOODS = 'UPDATE_NEIGHBORHOODS';
 
 export const LOAD_STREET = 'LOAD_STREET';
 export const UPDATE_STREET = 'UPDATE_STREET';
+
+export const ADD_IMAGE = 'ADD_IMAGE';
+export const REMOVE_IMAGE = 'REMOVE_IMAGE';
+export const RESET_IMAGES = 'RESET_IMAGES';

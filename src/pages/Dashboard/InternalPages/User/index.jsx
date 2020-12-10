@@ -58,115 +58,107 @@ function User() {
   };
 
   return (
-    <Grid container>
-      <Grid item md={12}>
-        <Container>
-          <Grid container>
-            <Grid item md={12}>
-              <Container>
-                <Grid container>
-                  <Grid item md={12}>
-                    <Box pl={1} pb={2}>
-                      <Title>Usuário</Title>
-                    </Box>
-                  </Grid>
-                </Grid>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                  <Grid container>
-                    <GridBox xs={9} loadingData={loadingData}>
-                      <TextField
-                        fullWidth
-                        id="name"
-                        name="name"
-                        defaultValue={user.name}
-                        label="Nome"
-                        variant="outlined"
-                        inputRef={register(required())}
-                        helperText={errors?.name?.message}
-                        error={errors.name}
-                      />
-                    </GridBox>
-                    <GridBox xs={2} loadingData={loadingData}>
-                      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                          style={{ marginTop: 0 }}
-                          name="dateOfBirth"
-                          disableFuture
-                          disableToolbar
-                          openTo="year"
-                          inputVariant="outlined"
-                          format="dd/MM/yyyy"
-                          margin="normal"
-                          label="Date de nascimento"
-                          value={dataOfBirth}
-                          onChange={handleDateOfBirthChange}
-                          inputRef={register(setValueDate())}
-                          KeyboardButtonProps={{
-                            'aria-label': 'Alterar data',
-                          }}
-                          helperText={errors?.dateOfBirth && 'Data inválida'}
-                        />
-                      </MuiPickersUtilsProvider>
-                    </GridBox>
-                    <GridBox xs={4} loadingData={loadingData}>
-                      <TextField
-                        fullWidth
-                        id="username"
-                        name="username"
-                        type="email"
-                        value={user.username}
-                        inputRef={register()}
-                        label="Login"
-                        variant="outlined"
-                      />
-                    </GridBox>
-                    <GridBox xs={3} loadingData={loadingData}>
-                      <TextField
-                        fullWidth
-                        id="cpfCnpj"
-                        name="cpfCnpj"
-                        defaultValue={user.cpfCnpj}
-                        inputRef={register(required())}
-                        helperText={errors?.cpfCnpj?.message}
-                        error={errors.cpfCnpj}
-                        label="Cpf"
-                        variant="outlined"
-                      />
-                    </GridBox>
-                    <GridBox xs={2} loadingData={loadingData}>
-                      <TextField
-                        fullWidth
-                        id="type"
-                        name="type"
-                        value={getType(user.type)}
-                        inputRef={register(setValueAs(getDbType))}
-                        aria-readonly
-                        label="Tipo"
-                        variant="outlined"
-                      />
-                    </GridBox>
-                    <Address
-                      address={user.address}
-                      register={register}
-                      errors={errors}
-                      watch={watch}
-                      loadingData={loadingData}
-                    />
-                    <CardActions style={{ marginTop: '10px' }}>
-                      <LoadButton
-                        label="Salvar"
-                        success={success}
-                        loading={loading}
-                        loadingData={loadingData}
-                      />
-                    </CardActions>
-                  </Grid>
-                </form>
-              </Container>
-            </Grid>
+    <Grid item md={12}>
+      <Container>
+        <Grid container>
+          <Grid item md={12}>
+            <Box pl={1} pb={2}>
+              <Title>Usuário</Title>
+            </Box>
           </Grid>
-        </Container>
-      </Grid>
+        </Grid>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Grid container>
+            <GridBox xs={9} loadingData={loadingData}>
+              <TextField
+                fullWidth
+                id="name"
+                name="name"
+                defaultValue={user.name}
+                label="Nome"
+                variant="outlined"
+                inputRef={register(required())}
+                helperText={errors?.name?.message}
+                error={errors.name}
+              />
+            </GridBox>
+            <GridBox xs={2} loadingData={loadingData}>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  style={{ marginTop: 0 }}
+                  name="dateOfBirth"
+                  disableFuture
+                  disableToolbar
+                  openTo="year"
+                  inputVariant="outlined"
+                  format="dd/MM/yyyy"
+                  margin="normal"
+                  label="Date de nascimento"
+                  value={dataOfBirth}
+                  onChange={handleDateOfBirthChange}
+                  inputRef={register(setValueDate())}
+                  KeyboardButtonProps={{
+                    'aria-label': 'Alterar data',
+                  }}
+                  helperText={errors?.dateOfBirth && 'Data inválida'}
+                />
+              </MuiPickersUtilsProvider>
+            </GridBox>
+            <GridBox xs={4} loadingData={loadingData}>
+              <TextField
+                fullWidth
+                id="username"
+                name="username"
+                type="email"
+                value={user.username}
+                inputRef={register()}
+                label="Login"
+                variant="outlined"
+              />
+            </GridBox>
+            <GridBox xs={3} loadingData={loadingData}>
+              <TextField
+                fullWidth
+                id="cpfCnpj"
+                name="cpfCnpj"
+                defaultValue={user.cpfCnpj}
+                inputRef={register(required())}
+                helperText={errors?.cpfCnpj?.message}
+                error={errors.cpfCnpj}
+                label="Cpf"
+                variant="outlined"
+              />
+            </GridBox>
+            <GridBox xs={2} loadingData={loadingData}>
+              <TextField
+                fullWidth
+                id="type"
+                name="type"
+                value={getType(user.type)}
+                inputRef={register(setValueAs(getDbType))}
+                aria-readonly
+                label="Tipo"
+                variant="outlined"
+              />
+            </GridBox>
+            <Address
+              address={user.address}
+              register={register}
+              errors={errors}
+              watch={watch}
+              loadingData={loadingData}
+            />
+            <CardActions style={{ marginTop: '10px' }}>
+              <LoadButton
+                label="Salvar"
+                success={success}
+                loading={loading}
+                loadingData={loadingData}
+              />
+            </CardActions>
+          </Grid>
+        </form>
+      </Container>
     </Grid>
   );
 }

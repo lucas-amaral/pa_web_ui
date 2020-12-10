@@ -2,13 +2,14 @@ import Fab from '@material-ui/core/Fab';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { DropzoneDialog } from 'material-ui-dropzone';
 import { Box, Grid } from '@material-ui/core';
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Tooltip from '@material-ui/core/Tooltip';
 import { Skeleton } from '@material-ui/lab';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
 import ImageStepper from '../../../../components/Images/ImageStepper';
+import { ADD_IMAGE, RESET_IMAGES } from '../../../../constants/ActionTypes';
 
 export default function Images({
   images,
@@ -21,9 +22,13 @@ export default function Images({
   loadingData,
 }) {
   const dispatch = useDispatch();
-
+  const inMemoryImages = useSelector((state) => state.image.images);
   const [openDropZone, setOpenDropZone] = React.useState(false);
-  const [newImages, setNewImages] = React.useState([]);
+
+  useEffect(() => {
+    dispatch({ type: RESET_IMAGES });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function getBase64(file, cb) {
     const reader = new FileReader();
@@ -37,10 +42,9 @@ export default function Images({
   }
 
   const saveImages = () => {
-    dispatch({
-      type: type_add,
-      data: newImages,
-    });
+    console.log('save', inMemoryImages);
+    dispatch({ type: type_add, data: inMemoryImages });
+    dispatch({ type: RESET_IMAGES });
   };
 
   function deleteImage(id) {
@@ -53,21 +57,21 @@ export default function Images({
   const addImages = (files) => {
     files.map((file) => {
       return getBase64(file, (imgBase64) => {
-        const newImg = {
-          name: file.name,
-          [parentLabelId]: parentId,
-          contentType: file.type,
-          data: imgBase64,
-        };
-        setNewImages([...newImages, newImg]);
+        dispatch({
+          type: ADD_IMAGE,
+          image: {
+            name: file.name,
+            [parentLabelId]: parentId,
+            contentType: file.type,
+            data: imgBase64,
+          },
+        });
       });
     });
   };
 
   const removeImage = (filename) => {
-    setNewImages(
-      newImages.filter((currentImg) => currentImg.name !== filename)
-    );
+    dispatch({ type: RESET_IMAGES, filename });
   };
 
   return (
@@ -115,7 +119,9 @@ export default function Images({
             acceptedFiles={['image/*']}
             cancelButtonText="Cancelar"
             submitButtonText="Adicionar"
-            maxFileSize={5000000}
+            clearOnUnmount
+            filesLimit={20}
+            fullWidth
             open={openDropZone}
             onClose={() => setOpenDropZone(false)}
             onDrop={(files) => {

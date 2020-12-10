@@ -11,6 +11,7 @@ import property from './property';
 import garage from './garage';
 import sale from './sale';
 import negotiation from './negotiation';
+import image from './image';
 
 export default combineReducers({
   main,
@@ -24,4 +25,5 @@ export default combineReducers({
   garage,
   sale,
   negotiation,
+  image,
 });
