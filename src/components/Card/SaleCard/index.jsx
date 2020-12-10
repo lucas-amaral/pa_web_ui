@@ -10,7 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import { formatToMonetary } from '../../../utils/numbersUtils';
 import Carousel from '../../Images/Carousel';
-import NoDataImg from '../../../assets/no_data.svg';
 import {
   APPROVE_BY_BUYER,
   REPROVE_BY_BUYER,

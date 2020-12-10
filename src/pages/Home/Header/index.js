@@ -71,7 +71,7 @@ export default function Header() {
           <img src={Logo} alt="Logo" height="100" width="380" />
         </HeaderLogo>
         <HeaderLinksContainer>
-          <HeaderLinks to="/"> Fale Conosco </HeaderLinks>
+          {/*<HeaderLinks to="/"> Fale Conosco </HeaderLinks>*/}
           <HeaderLinks to="/"> Sobre Nós </HeaderLinks>
           <HeaderLinks to="/login">Acessar Sistema</HeaderLinks>
         </HeaderLinksContainer>

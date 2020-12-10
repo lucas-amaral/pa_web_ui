@@ -1,4 +1,4 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 import { create, load, remove, update } from '../../services/interests';
 import {
   create as createBarter,
@@ -37,7 +37,7 @@ function* loadInterest(action) {
 
 function* addInterest(action) {
   try {
-    const payload = yield call(create, action.dataInterest);
+    const payload = yield call(create, action.data);
 
     if (payload) {
       yield put({ type: SUCCEEDED_INTEREST, payload: payload.data });
@@ -99,7 +99,7 @@ function* removeInterestBarter(action) {
 }
 
 function* mySaga() {
-  yield takeEvery(ADD_INTEREST, addInterest);
+  yield takeLatest(ADD_INTEREST, addInterest);
   yield takeLatest(LOAD_INTEREST, loadInterest);
   yield takeLatest(EDIT_INTEREST, editInterest);
   yield takeLatest(REMOVE_INTEREST, removeInterest);

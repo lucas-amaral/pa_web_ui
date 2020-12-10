@@ -6,7 +6,6 @@ import CardActions from '@material-ui/core/CardActions';
 import { Box, Checkbox, Grid } from '@material-ui/core';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import { useForm } from 'react-hook-form';
-import NewInterest from '../NewInterest/index';
 
 import { Container } from './styles';
 import { Title } from '../../../Register/styles';
@@ -16,6 +15,7 @@ import MonetaryInput from '../../../../components/Input/MonetaryInput';
 import GridBox from '../../../../components/GridBox';
 import Barters from './Barters';
 import {
+  ADD_INTEREST,
   EDIT_INTEREST,
   LOAD_INTEREST,
   LOADING_INTEREST,
@@ -96,7 +96,7 @@ function Interest() {
       type: LOADING_INTEREST,
     });
     dispatch({
-      type: EDIT_INTEREST,
+      type: interest.id ? EDIT_INTEREST : ADD_INTEREST,
       data: {
         ...data,
         barters: interest.barters,
@@ -108,7 +108,7 @@ function Interest() {
     });
   };
 
-  return interest.id ? (
+  return (
     <Grid container>
       <Grid item md={12}>
         <Container>
@@ -131,7 +131,9 @@ function Interest() {
             type="hidden"
             id="username"
             name="username"
-            defaultValue={interest.user.username}
+            defaultValue={
+              interest?.user?.username ? interest.user.username : username
+            }
           />
           <form onSubmit={handleSubmit(onSubmit)}>
             <Grid container>
@@ -316,7 +318,7 @@ function Interest() {
                   />
                 )}
               </GridBox>
-              <Barters />
+              {interest.id && <Barters />}
               <CardActions style={{ marginTop: '10px' }}>
                 <div className={classes.bottomBoxButtons}>
                   <LoadButton
@@ -326,12 +328,14 @@ function Interest() {
                     loading={loading}
                     loadingData={loadingData}
                   />
-                  <FormButton
-                    label="Excluir"
-                    onClick={() => removeInterest(interest.id)}
-                    loading={loading}
-                    loadingData={loadingData}
-                  />
+                  {interest.id && (
+                    <FormButton
+                      label="Excluir"
+                      onClick={() => removeInterest(interest.id)}
+                      loading={loading}
+                      loadingData={loadingData}
+                    />
+                  )}
                 </div>
               </CardActions>
             </Grid>
@@ -339,8 +343,6 @@ function Interest() {
         </Container>
       </Grid>
     </Grid>
-  ) : (
-    <NewInterest />
   );
 }
 
