@@ -26,16 +26,6 @@ export default function SaleCard({ sale }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  if (!sale.images) {
-    sale.images = [
-      {
-        id: 0,
-        data: NoDataImg,
-        contentType: 'image/svg',
-      },
-    ];
-  }
-
   function extraItems() {
     let extraItems = '';
     let separator = '';
@@ -96,10 +86,10 @@ export default function SaleCard({ sale }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={accept()}>
+        <Button size="small" color="primary" onClick={() => accept()}>
           Aceitar
         </Button>
-        <Button size="small" color="primary" onClick={reprove()}>
+        <Button size="small" color="primary" onClick={() => reprove()}>
           Recusar
         </Button>
       </CardActions>

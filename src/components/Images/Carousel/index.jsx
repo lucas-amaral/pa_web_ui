@@ -6,6 +6,7 @@ import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import SwipeableViews from 'react-swipeable-views';
 import { autoPlay } from 'react-swipeable-views-utils';
+import NoDataImg from '../../../assets/no_data.svg';
 
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
@@ -30,7 +31,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Carousel({ images }) {
+const defaultImage = () => {
+  return [{ id: 0, data: NoDataImg, contentType: 'image/svg' }];
+};
+
+export default function Carousel({ images = defaultImage() }) {
   const classes = useStyles();
   const theme = useTheme();
   const [activeStep, setActiveStep] = React.useState(0);

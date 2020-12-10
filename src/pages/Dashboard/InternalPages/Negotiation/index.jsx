@@ -53,21 +53,20 @@ export default function Negotiation() {
           </Grid>
         </>
       )}
-
       {negotiationsBySale &&
         negotiationsBySale.map((negotiation) => (
-          <Grid container>
-            <Grid item md={12} key={negotiation.id}>
+          <Grid container key={negotiation.id}>
+            <Grid item md={12}>
               <Box pl={1} pb={2}>
                 <Title style={{ fontSize: '20px' }}>
                   Propostas ({negotiation.sale.description})
                 </Title>
-              </Box>
+                </Box>
             </Grid>
             <Grid container>
-              <GridBox>
-                <InterestCard interest={negotiation.interest} />
-              </GridBox>
+            <GridBox key={negotiation.interest.id}>
+              <InterestCard interest={negotiation.interest} />
+            </GridBox>
             </Grid>
           </Grid>
         ))}

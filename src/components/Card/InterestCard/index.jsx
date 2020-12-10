@@ -11,7 +11,6 @@ import { useDispatch } from 'react-redux';
 import { formatToMonetary } from '../../../utils/numbersUtils';
 import { getBarterType } from '../../../utils/barterUtils';
 import Carousel from '../../Images/Carousel';
-import NoDataImg from '../../../assets/no_data.svg';
 import {
   APPROVE_BY_BUYER,
   REPROVE_BY_BUYER,
@@ -35,18 +34,7 @@ export default function InterestCard({ interest }) {
   }
 
   function images() {
-    const bartersImages = interest?.barters?.flatMap((barter) => barter.images);
-
-    if (!bartersImages) {
-      return [
-        {
-          id: 0,
-          data: NoDataImg,
-          contentType: 'image/svg',
-        },
-      ];
-    }
-    return bartersImages;
+    return interest?.barters?.flatMap((barter) => barter.images);
   }
 
   function accept() {
@@ -85,10 +73,10 @@ export default function InterestCard({ interest }) {
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary" onClick={accept()}>
+        <Button size="small" color="primary" onClick={() => accept()}>
           Aceitar
         </Button>
-        <Button size="small" color="primary" onClick={reprove()}>
+        <Button size="small" color="primary" onClick={() => reprove()}>
           Recusar
         </Button>
       </CardActions>
