@@ -112,3 +112,5 @@ export const UPDATE_STREET = 'UPDATE_STREET';
 export const ADD_IMAGE = 'ADD_IMAGE';
 export const REMOVE_IMAGE = 'REMOVE_IMAGE';
 export const RESET_IMAGES = 'RESET_IMAGES';
+
+export const HANDLE_DIALOG = 'HANDLE_DIALOG';

@@ -21,6 +21,7 @@ import {
   LOADING_INTEREST,
   REMOVE_INTEREST,
   RESET_SUCCESS_INTEREST,
+  HANDLE_DIALOG,
 } from '../../../../constants/ActionTypes';
 import LoadButton from '../../../../components/Button/LoadButton';
 import { getSelectNeighborhoods } from '../../../../utils/neighborhoodUtils';
@@ -31,6 +32,8 @@ import {
   setValueMonetary,
   totalValue,
 } from '../../../../utils/registerUtils';
+
+import AlertDialog from '../../../../components/Dialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -95,6 +98,17 @@ function Interest() {
     dispatch({
       type: LOADING_INTEREST,
     });
+
+    if (interest.id) {
+      dispatch({
+        type: HANDLE_DIALOG,
+        data: {
+          status: true,
+          message:
+            'Importante! Se você editar o interesse os matches relacionados com o mesmo serão perdidos. Deseja continuar?',
+        },
+      });
+    }
     dispatch({
       type: interest.id ? EDIT_INTEREST : ADD_INTEREST,
       data: {
@@ -341,6 +355,7 @@ function Interest() {
             </Grid>
           </form>
         </Container>
+        <AlertDialog />
       </Grid>
     </Grid>
   );

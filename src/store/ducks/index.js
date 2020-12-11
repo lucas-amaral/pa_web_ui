@@ -12,6 +12,7 @@ import garage from './garage';
 import sale from './sale';
 import negotiation from './negotiation';
 import image from './image';
+import alertDialog from './alertDialog';
 
 export default combineReducers({
   main,
@@ -26,4 +27,5 @@ export default combineReducers({
   sale,
   negotiation,
   image,
+  alertDialog,
 });
