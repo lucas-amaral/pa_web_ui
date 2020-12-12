@@ -26,13 +26,13 @@ export const putApprovedByBuyer = async (id) => {
 };
 
 export const deleteReprovedBySeller = async (id) => {
-  return axiosInstance().put(
+  return axiosInstance().delete(
     URLS.NEGOTIATION.REPROVED_BY_SELLER.replace(':id', id)
   );
 };
 
 export const deleteReprovedByBuyer = async (id) => {
-  return axiosInstance().put(
+  return axiosInstance().delete(
     URLS.NEGOTIATION.REPROVED_BY_BUYER.replace(':id', id)
   );
 };

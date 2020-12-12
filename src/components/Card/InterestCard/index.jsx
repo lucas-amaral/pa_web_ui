@@ -12,8 +12,8 @@ import { formatToMonetary } from '../../../utils/numbersUtils';
 import { getBarterType } from '../../../utils/barterUtils';
 import Carousel from '../../Images/Carousel';
 import {
-  APPROVE_BY_BUYER,
-  REPROVE_BY_BUYER,
+  APPROVE_BY_SELLER,
+  REPROVE_BY_SELLER,
 } from '../../../constants/ActionTypes';
 
 const useStyles = makeStyles({
@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function InterestCard({ interest }) {
+export default function InterestCard({ id, interest }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -38,11 +38,11 @@ export default function InterestCard({ interest }) {
   }
 
   function accept() {
-    return dispatch({ type: APPROVE_BY_BUYER });
+    return dispatch({ type: APPROVE_BY_SELLER, id });
   }
 
   function reprove() {
-    return dispatch({ type: REPROVE_BY_BUYER });
+    return dispatch({ type: REPROVE_BY_SELLER, id });
   }
 
   return (

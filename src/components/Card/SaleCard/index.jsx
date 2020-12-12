@@ -21,7 +21,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function SaleCard({ sale }) {
+export default function SaleCard({ id, sale }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -29,19 +29,19 @@ export default function SaleCard({ sale }) {
     let extraItems = '';
     let separator = '';
 
-    if (sale.property.elevator) {
+    if (sale.elevator) {
       extraItems = 'Elevador';
       separator = ', ';
     }
-    if (sale.property.balcony) {
+    if (sale.balcony) {
       extraItems = `${extraItems + separator}Sacada`;
       separator = ', ';
     }
-    if (sale.property.barbecueGrill) {
+    if (sale.barbecueGrill) {
       extraItems = `${extraItems + separator}Churrasqueira`;
       separator = ', ';
     }
-    if (sale.property.pool) {
+    if (sale.pool) {
       extraItems = `${extraItems + separator}Piscina`;
     }
 
@@ -50,17 +50,17 @@ export default function SaleCard({ sale }) {
   }
 
   function garages() {
-    if (sale.property.garages.size > 0) {
-      return `Garagens:${sale.property.garages.size}<br/>`;
+    if (sale.garages.size > 0) {
+      return `Garagens:${sale.garages.size}<br/>`;
     }
   }
 
   function accept() {
-    return dispatch({ type: APPROVE_BY_BUYER });
+    return dispatch({ type: APPROVE_BY_BUYER, id });
   }
 
   function reprove() {
-    return dispatch({ type: REPROVE_BY_BUYER });
+    return dispatch({ type: REPROVE_BY_BUYER, id });
   }
 
   return (
@@ -71,16 +71,16 @@ export default function SaleCard({ sale }) {
         </CardMedia>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
-            {sale.property.description}
+            {sale.description}
           </Typography>
           <Typography variant="body2" color="textSecondary" component="p">
             Valor solicitado: {formatToMonetary(sale.value)} <br />
-            Area: {sale.property.area}m² <br />
-            Quartos: {sale.property.dorms}, Suítes: {sale.property.suites},
-            Banheiros: {sale.property.bathrooms} <br />
+            Area: {sale.area}m² <br />
+            Quartos: {sale.dorms}, Suítes: {sale.suites},
+            Banheiros: {sale.bathrooms} <br />
             {garages()}
             Possuí {extraItems()} <br />
-            Localizado no bairro {sale.property.address.street.name}
+            Localização: {sale.streetName}
           </Typography>
         </CardContent>
       </CardActionArea>

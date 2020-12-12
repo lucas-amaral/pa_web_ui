@@ -9,7 +9,6 @@ import {
   remove,
 } from '../../services/negotiations';
 import {
-  SUCCEEDED_NEGOTIATION,
   REMOVE_NEGOTIATION,
   UPDATE_SALE_NEGOTIATIONS,
   UPDATE_INTEREST_NEGOTIATIONS,
@@ -20,8 +19,10 @@ import {
   REPROVE_BY_SELLER,
   REPROVE_BY_BUYER,
   FAILED_NEGOTIATION,
+  SUCCEEDED_SELLER_NEGOTIATION,
+  SUCCEEDED_BUYER_NEGOTIATION, RESET_LOADING_DATA_PROPERTY,
 } from '../../constants/ActionTypes';
-import { errorNotification } from '../../utils/notificationUtils';
+import { errorNotification, notification } from '../../utils/notificationUtils';
 
 function* loadNegotiationBySale(action) {
   try {
@@ -34,6 +35,7 @@ function* loadNegotiationBySale(action) {
       });
     }
   } catch (e) {
+    yield put({ type: RESET_LOADING_DATA_PROPERTY });
     yield put(errorNotification('Ocorreu um erro ao buscar as negociações'));
   }
 }
@@ -49,15 +51,17 @@ function* loadNegotiationByInterest(action) {
       });
     }
   } catch (e) {
+    yield put({ type: RESET_LOADING_DATA_PROPERTY });
     yield put(errorNotification('Ocorreu um erro ao buscar as negociações'));
   }
 }
 function* approvedBySeller(action) {
   try {
-    const payload = yield call(putApprovedBySeller, action.data.id);
+    const payload = yield call(putApprovedBySeller, action.id);
 
     if (payload) {
-      yield put({ type: SUCCEEDED_NEGOTIATION });
+      yield put({ type: SUCCEEDED_SELLER_NEGOTIATION, id: action.id });
+      yield put(notification('Interesse aprovado!'));
     }
   } catch (e) {
     yield put({ type: FAILED_NEGOTIATION });
@@ -67,10 +71,11 @@ function* approvedBySeller(action) {
 
 function* approvedByBuyer(action) {
   try {
-    const payload = yield call(putApprovedByBuyer, action.data.id);
+    const payload = yield call(putApprovedByBuyer, action.id);
 
     if (payload) {
-      yield put({ type: SUCCEEDED_NEGOTIATION });
+      yield put({ type: SUCCEEDED_BUYER_NEGOTIATION, id: action.id });
+      yield put(notification('Imóvel aprovado!'));
     }
   } catch (e) {
     yield put({ type: FAILED_NEGOTIATION });
@@ -80,10 +85,11 @@ function* approvedByBuyer(action) {
 
 function* reprovedBySeller(action) {
   try {
-    const payload = yield call(deleteReprovedBySeller, action.data.id);
+    const payload = yield call(deleteReprovedBySeller, action.id);
 
     if (payload) {
-      yield put({ type: SUCCEEDED_NEGOTIATION });
+      yield put({ type: SUCCEEDED_SELLER_NEGOTIATION, id: action.id });
+      yield put(notification('Interesse reprovado'));
     }
   } catch (e) {
     yield put({ type: FAILED_NEGOTIATION });
@@ -93,10 +99,11 @@ function* reprovedBySeller(action) {
 
 function* reprovedByBuyer(action) {
   try {
-    const payload = yield call(deleteReprovedByBuyer, action.data.id);
+    const payload = yield call(deleteReprovedByBuyer, action.id);
 
     if (payload) {
-      yield put({ type: SUCCEEDED_NEGOTIATION });
+      yield put({ type: SUCCEEDED_BUYER_NEGOTIATION, id: action.id });
+      yield put(notification('Imóvel reprovado'));
     }
   } catch (e) {
     yield put({ type: FAILED_NEGOTIATION });
@@ -106,11 +113,8 @@ function* reprovedByBuyer(action) {
 
 function* removeNegotiation(action) {
   try {
-    const payload = yield call(remove, action.negotiationId);
+    yield call(remove, action.negotiationId);
 
-    if (payload) {
-      yield put({ type: SUCCEEDED_NEGOTIATION });
-    }
   } catch (e) {
     yield put({ type: FAILED_NEGOTIATION });
     yield put(errorNotification('Ocorreu um erro ao remover negociação'));
