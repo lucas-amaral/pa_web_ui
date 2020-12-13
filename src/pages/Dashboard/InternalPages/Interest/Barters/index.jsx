@@ -36,10 +36,11 @@ export default function Barters() {
   const dispatch = useDispatch();
   const interest = useSelector((state) => state.interest.interest);
 
-  const removeBarter = (barterId) => {
+  const removeBarter = (barterId, newId) => {
     dispatch({
       type: REMOVE_INTEREST_BARTER,
       barterId,
+      newId,
     });
   };
 
@@ -86,7 +87,7 @@ export default function Barters() {
           </TableHead>
           <TableBody>
             {interest.barters.map((barter) => (
-              <TableRow key={barter.id}>
+              <TableRow key={barter?.id ? barter.id : barter?.newId}>
                 <TableCell component="th" scope="row">
                   {getBarterType(barter.type)}
                 </TableCell>
@@ -94,7 +95,7 @@ export default function Barters() {
                   {formatToMonetary(barter.value)}
                 </TableCell>
                 <TableCell
-                  align="center"
+                  align="right"
                   style={{
                     width: '5px',
                     whiteSpace: 'nowrap',
@@ -109,24 +110,26 @@ export default function Barters() {
                   {/*        <PhotoLibraryIcon /> */}
                   {/*    </IconButton> */}
                   {/* </Tooltip> */}
-                  <Tooltip title="Editar permuta">
-                    <IconButton
-                      aria-label="Editar permuta"
-                      color="inherit"
-                      key="edit-barter"
-                      data-tip="Editar permuta"
-                      onClick={() => openBarter(barter)}
-                    >
-                      <EditIcon />
-                    </IconButton>
-                  </Tooltip>
+                  {barter.id && (
+                    <Tooltip title="Editar permuta">
+                      <IconButton
+                        aria-label="Editar permuta"
+                        color="inherit"
+                        key="edit-barter"
+                        data-tip="Editar permuta"
+                        onClick={() => openBarter(barter)}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </Tooltip>
+                  )}
                   <Tooltip title="Remover permuta">
                     <IconButton
                       aria-label="Remover permuta"
                       color="inherit"
                       key="delete-barter"
                       data-tip="Remover permuta"
-                      onClick={() => removeBarter(barter.id)}
+                      onClick={() => removeBarter(barter.id, barter.newId)}
                     >
                       <DeleteIcon />
                     </IconButton>

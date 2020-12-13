@@ -15,14 +15,14 @@ import {
   REMOVE_BARTER,
   SUCCEEDED_BARTER,
   UPDATE_BARTER,
-  REMOVE_FORM_INTEREST_BARTER,
-  ADD_FORM_INTEREST_BARTER,
   LOAD_BARTER_IMAGES,
   ADD_BARTER_IMAGE,
   REMOVE_BARTER_IMAGE,
   SUCCEEDED_ADD_BARTER_IMAGE,
   SUCCEEDED_REMOVE_BARTER_IMAGE,
   UPDATE_BARTER_IMAGES,
+  REMOVE_INTEREST_BARTER,
+  ADD_INTEREST_BARTER,
 } from '../../constants/ActionTypes';
 import { errorNotification } from '../../utils/notificationUtils';
 
@@ -56,10 +56,10 @@ function* editBarter(action) {
 
     if (payload) {
       yield put({
-        type: REMOVE_FORM_INTEREST_BARTER,
+        type: REMOVE_INTEREST_BARTER,
         barterId: action.barterId,
       });
-      yield put({ type: ADD_FORM_INTEREST_BARTER, payload });
+      yield put({ type: ADD_INTEREST_BARTER, payload });
       yield put({ type: SUCCEEDED_BARTER, payload });
     }
   } catch (e) {
@@ -73,7 +73,7 @@ function* removeBarter(action) {
 
     if (payload) {
       yield put({
-        type: REMOVE_FORM_INTEREST_BARTER,
+        type: REMOVE_INTEREST_BARTER,
         barterId: action.barterId,
       });
       yield put({ type: SUCCEEDED_BARTER, payload: payload.data });

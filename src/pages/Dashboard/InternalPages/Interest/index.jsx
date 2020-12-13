@@ -346,7 +346,7 @@ function Interest() {
                   />
                 )}
               </GridBox>
-              {interest.id && <Barters />}
+              <Barters />
               <CardActions style={{ marginTop: '10px' }}>
                 <div className={classes.bottomBoxButtons}>
                   <LoadButton

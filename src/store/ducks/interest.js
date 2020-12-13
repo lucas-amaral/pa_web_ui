@@ -1,15 +1,16 @@
 import { createActions, createReducer } from 'reduxsauce';
 import { getPropertyTypes } from '../../utils/interestUtils';
 import {
-  ADD_FORM_INTEREST_BARTER,
   FAILED_INTEREST,
   LOADING_INTEREST,
-  REMOVE_FORM_INTEREST_BARTER,
   RESET_SUCCESS_INTEREST,
   SUCCEEDED_INTEREST,
   UPDATE_INTEREST,
   RESET_LOADING_DATA_INTEREST,
   RESET_LOADING_INTEREST,
+  REMOVE_INTEREST_BARTER,
+  ADD_INTEREST_BARTER,
+  RESET_INTEREST,
 } from '../../constants/ActionTypes';
 
 /*
@@ -67,25 +68,38 @@ const updateInterest = (state = INITIAL_STATE, payload) => {
   };
 };
 
-const addFormInterestBarter = (state = INITIAL_STATE, action) => {
+const resetInterest = (state = INITIAL_STATE, payload) => {
+  return {
+    ...state,
+    type: payload.type,
+    interest: {
+      user: {},
+      barters: [],
+    },
+    loadingData: false,
+  };
+};
+
+const addInterestBarter = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     type: action.type,
     interest: {
       ...state.interest,
-      barters: [...state.interest.barters, action.payload],
+      barters: [...state.interest.barters, action.data],
     },
   };
 };
 
-const removeFormInterestBarter = (state = INITIAL_STATE, action) => {
+const removeInterestBarter = (state = INITIAL_STATE, action) => {
   return {
     ...state,
     type: action.type,
     interest: {
       ...state.interest,
       barters: state.interest.barters.filter(
-        (barter) => barter.id !== action.barterId
+        (barter) =>
+          barter.id !== action.barterId || barter.newId !== action.newId
       ),
     },
   };
@@ -114,10 +128,11 @@ export default createReducer(INITIAL_STATE, {
   [SUCCEEDED_INTEREST]: succeededInterest,
   [FAILED_INTEREST]: failedInterest,
   [UPDATE_INTEREST]: updateInterest,
+  [RESET_INTEREST]: resetInterest,
   [LOADING_INTEREST]: loadingInterest,
   [RESET_SUCCESS_INTEREST]: resetSuccessInterest,
   [RESET_LOADING_DATA_INTEREST]: resetLoadingDataInterest,
-  [ADD_FORM_INTEREST_BARTER]: addFormInterestBarter,
-  [REMOVE_FORM_INTEREST_BARTER]: removeFormInterestBarter,
+  [ADD_INTEREST_BARTER]: addInterestBarter,
+  [REMOVE_INTEREST_BARTER]: removeInterestBarter,
   [RESET_LOADING_INTEREST]: resetLoadingInterest,
 });

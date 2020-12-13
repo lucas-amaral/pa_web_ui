@@ -1,24 +1,17 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { create, load, remove, update } from '../../services/interests';
 import {
-  create as createBarter,
-  remove as removeBarter,
-} from '../../services/barters';
-import {
   EDIT_INTEREST,
   SUCCEEDED_INTEREST,
   LOAD_INTEREST,
   REMOVE_INTEREST,
   ADD_INTEREST,
   UPDATE_INTEREST,
-  ADD_INTEREST_BARTER,
-  REMOVE_INTEREST_BARTER,
-  REMOVE_FORM_INTEREST_BARTER,
-  ADD_FORM_INTEREST_BARTER,
   FAILED_INTEREST,
   RESET_LOADING_DATA_INTEREST,
+  RESET_INTEREST,
 } from '../../constants/ActionTypes';
-import { errorNotification } from '../../utils/notificationUtils';
+import { errorNotification, notification } from '../../utils/notificationUtils';
 
 function* loadInterest(action) {
   try {
@@ -66,35 +59,11 @@ function* removeInterest(action) {
     const payload = yield call(remove, action.interestId);
 
     if (payload) {
-      yield put({ type: UPDATE_INTEREST, payload: payload.data });
+      yield put({ type: RESET_INTEREST });
+      yield put(notification('Interesse removido com sucesso'));
     }
   } catch (e) {
     yield put(errorNotification('Ocorreu um erro ao remover interesse'));
-  }
-}
-
-function* addInterestBarter(action) {
-  try {
-    const payload = yield call(createBarter, action.data);
-
-    if (payload) {
-      yield put({ type: ADD_FORM_INTEREST_BARTER, payload });
-    }
-  } catch (e) {
-    yield put(errorNotification('Ocorreu um erro ao adicionar permuta'));
-  }
-}
-
-function* removeInterestBarter(action) {
-  try {
-    yield call(removeBarter, action.barterId);
-
-    yield put({
-      type: REMOVE_FORM_INTEREST_BARTER,
-      barterId: action.barterId,
-    });
-  } catch (e) {
-    yield put(errorNotification('Ocorreu um erro ao remover permuta'));
   }
 }
 
@@ -103,8 +72,6 @@ function* mySaga() {
   yield takeLatest(LOAD_INTEREST, loadInterest);
   yield takeLatest(EDIT_INTEREST, editInterest);
   yield takeLatest(REMOVE_INTEREST, removeInterest);
-  yield takeLatest(ADD_INTEREST_BARTER, addInterestBarter);
-  yield takeLatest(REMOVE_INTEREST_BARTER, removeInterestBarter);
 }
 
 export default mySaga;

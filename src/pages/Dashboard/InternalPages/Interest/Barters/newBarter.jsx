@@ -17,7 +17,6 @@ import { convertMonetaryToNumber } from '../../../../../utils/numbersUtils';
 export default function NewBarter() {
   const dispatch = useDispatch();
   const barters = useSelector((state) => state.barter.barters);
-  const interestId = useSelector((state) => state.interest.interest.id);
   const { register, getValues, control } = useForm();
 
   function removeBarter(newId) {
@@ -34,7 +33,7 @@ export default function NewBarter() {
     dispatch({
       type: ADD_INTEREST_BARTER,
       data: {
-        interestId,
+        newId,
         value: convertMonetaryToNumber(newValue),
         type: newType,
       },
