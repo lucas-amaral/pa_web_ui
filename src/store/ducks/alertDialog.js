@@ -9,6 +9,7 @@ const INITIAL_STATE = {
   open: false,
   action: () => {},
   message: '',
+  sysarea: '',
 };
 
 const handleDialog = (state = INITIAL_STATE, dataAction) => {
@@ -17,6 +18,7 @@ const handleDialog = (state = INITIAL_STATE, dataAction) => {
     open: dataAction.data.open,
     action: dataAction.data.action,
     message: dataAction.data.message,
+    sysarea: dataAction.data.sysarea,
   };
 };
 

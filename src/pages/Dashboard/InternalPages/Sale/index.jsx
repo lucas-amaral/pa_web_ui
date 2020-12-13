@@ -17,6 +17,7 @@ import {
   UPDATE_BARTER_PROPERTY_SALE,
   UPDATE_BARTER_VEHICLE_SALE,
   UPDATE_FINANCING_SALE,
+  HANDLE_DIALOG,
 } from '../../../../constants/ActionTypes';
 import GridBox from '../../../../components/GridBox';
 import LoadButton from '../../../../components/Button/LoadButton';
@@ -27,6 +28,8 @@ import {
   setValueMonetary,
   totalValue,
 } from '../../../../utils/registerUtils';
+
+import AlertDialog from '../../../../components/Dialog';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -86,10 +89,27 @@ export default function Sale() {
     dispatch({
       type: LOADING_SALE,
     });
-    dispatch({
-      type: sale.id ? EDIT_SALE : ADD_SALE,
-      data,
-    });
+    if (sale.id) {
+      dispatch({
+        type: HANDLE_DIALOG,
+        data: {
+          open: true,
+          sysarea: 'SALE',
+          message:
+            'Se editar informações dessa página os matches relacionados com esse anúncio serão perdidos. Deseja continuar?',
+          action: () =>
+            dispatch({
+              type: EDIT_SALE,
+              data,
+            }),
+        },
+      });
+    } else {
+      dispatch({
+        type: ADD_SALE,
+        data,
+      });
+    }
   };
 
   const removeSale = (saleId) => {
@@ -273,6 +293,7 @@ export default function Sale() {
           </CardActions>
         </Grid>
       </form>
+      <AlertDialog />
     </>
   );
 }

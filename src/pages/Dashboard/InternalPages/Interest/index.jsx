@@ -104,11 +104,12 @@ function Interest() {
         type: HANDLE_DIALOG,
         data: {
           open: true,
+          sysarea: 'INTEREST',
           message:
             'Se você editar o interesse os matches relacionados com o mesmo serão perdidos. Deseja continuar?',
           action: () =>
             dispatch({
-              type: interest.id ? EDIT_INTEREST : ADD_INTEREST,
+              type: EDIT_INTEREST,
               data: {
                 ...data,
                 barters: interest.barters,
@@ -118,6 +119,18 @@ function Interest() {
                 types: data.types ? data.types.map((type) => type.id) : [],
               },
             }),
+        },
+      });
+    } else {
+      dispatch({
+        type: ADD_INTEREST,
+        data: {
+          ...data,
+          barters: interest.barters,
+          neighborhoodIds: data.neighborhoodIds
+            ? data.neighborhoodIds.map((neighborhood) => neighborhood.id)
+            : [],
+          types: data.types ? data.types.map((type) => type.id) : [],
         },
       });
     }

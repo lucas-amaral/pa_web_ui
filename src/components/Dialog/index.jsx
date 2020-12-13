@@ -10,12 +10,15 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 import {
   HANDLE_DIALOG,
   RESET_LOADING_INTEREST,
+  RESET_LOADING_SALE,
 } from '../../constants/ActionTypes';
 
 export default function AlertDialog() {
   const dispatch = useDispatch();
 
-  const { open, action, message } = useSelector((state) => state.alertDialog);
+  const { open, action, message, sysarea } = useSelector(
+    (state) => state.alertDialog
+  );
 
   const handleClose = (agree) => {
     if (agree) {
@@ -27,9 +30,15 @@ export default function AlertDialog() {
         open: false,
       },
     });
-    dispatch({
-      type: RESET_LOADING_INTEREST,
-    });
+    if (sysarea === 'INTEREST') {
+      dispatch({
+        type: RESET_LOADING_INTEREST,
+      });
+    } else {
+      dispatch({
+        type: RESET_LOADING_SALE,
+      });
+    }
   };
 
   return (
@@ -48,10 +57,10 @@ export default function AlertDialog() {
         </DialogContent>
         <DialogActions>
           <Button onClick={() => handleClose(false)} color="primary">
-            Disagree
+            Cancelar
           </Button>
           <Button onClick={() => handleClose(true)} color="primary" autoFocus>
-            Agree
+            Continuar
           </Button>
         </DialogActions>
       </Dialog>

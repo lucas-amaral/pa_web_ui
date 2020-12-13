@@ -10,6 +10,7 @@ import {
   UPDATE_FINANCING_SALE,
   UPDATE_SALE,
   UPDATE_SALES,
+  RESET_LOADING_SALE,
 } from '../../constants/ActionTypes';
 
 /*
@@ -100,6 +101,10 @@ const updateBarterVehicleSale = (state = INITIAL_STATE) => {
   return { ...state, showBarterVehicle: !state.showBarterVehicle };
 };
 
+const resetLoadingSale = (state = INITIAL_STATE) => {
+  return { ...state, loading: false };
+};
+
 /*
     Criando o reducer
 */
@@ -114,4 +119,5 @@ export default createReducer(INITIAL_STATE, {
   [UPDATE_FINANCING_SALE]: updateFinancingSale,
   [UPDATE_BARTER_PROPERTY_SALE]: updateBarterPropertySale,
   [UPDATE_BARTER_VEHICLE_SALE]: updateBarterVehicleSale,
+  [RESET_LOADING_SALE]: resetLoadingSale,
 });
