@@ -103,23 +103,24 @@ function Interest() {
       dispatch({
         type: HANDLE_DIALOG,
         data: {
-          status: true,
+          open: true,
           message:
-            'Importante! Se você editar o interesse os matches relacionados com o mesmo serão perdidos. Deseja continuar?',
+            'Se você editar o interesse os matches relacionados com o mesmo serão perdidos. Deseja continuar?',
+          action: () =>
+            dispatch({
+              type: interest.id ? EDIT_INTEREST : ADD_INTEREST,
+              data: {
+                ...data,
+                barters: interest.barters,
+                neighborhoodIds: data.neighborhoodIds
+                  ? data.neighborhoodIds.map((neighborhood) => neighborhood.id)
+                  : [],
+                types: data.types ? data.types.map((type) => type.id) : [],
+              },
+            }),
         },
       });
     }
-    dispatch({
-      type: interest.id ? EDIT_INTEREST : ADD_INTEREST,
-      data: {
-        ...data,
-        barters: interest.barters,
-        neighborhoodIds: data.neighborhoodIds
-          ? data.neighborhoodIds.map((neighborhood) => neighborhood.id)
-          : [],
-        types: data.types ? data.types.map((type) => type.id) : [],
-      },
-    });
   };
 
   return (

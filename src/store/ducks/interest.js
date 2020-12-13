@@ -9,6 +9,7 @@ import {
   SUCCEEDED_INTEREST,
   UPDATE_INTEREST,
   RESET_LOADING_DATA_INTEREST,
+  RESET_LOADING_INTEREST,
 } from '../../constants/ActionTypes';
 
 /*
@@ -102,6 +103,10 @@ const resetLoadingDataInterest = (state = INITIAL_STATE) => {
   return { ...state, loadingData: false };
 };
 
+const resetLoadingInterest = (state = INITIAL_STATE) => {
+  return { ...state, loading: false };
+};
+
 /*
     Criando o reducer
 */
@@ -114,4 +119,5 @@ export default createReducer(INITIAL_STATE, {
   [RESET_LOADING_DATA_INTEREST]: resetLoadingDataInterest,
   [ADD_FORM_INTEREST_BARTER]: addFormInterestBarter,
   [REMOVE_FORM_INTEREST_BARTER]: removeFormInterestBarter,
+  [RESET_LOADING_INTEREST]: resetLoadingInterest,
 });

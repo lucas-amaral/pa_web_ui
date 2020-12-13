@@ -7,12 +7,16 @@ export const { Types } = createActions({
 
 const INITIAL_STATE = {
   open: false,
+  action: () => {},
+  message: '',
 };
 
 const handleDialog = (state = INITIAL_STATE, dataAction) => {
   return {
     ...state,
-    open: dataAction.data.status,
+    open: dataAction.data.open,
+    action: dataAction.data.action,
+    message: dataAction.data.message,
   };
 };
 
