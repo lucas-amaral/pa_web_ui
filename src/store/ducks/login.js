@@ -68,6 +68,8 @@ const loadingLogin = (state = INITIAL_STATE) => {
 };
 
 const doLogoff = () => {
+  localStorage.removeItem('token');
+  localStorage.removeItem('username');
   return INITIAL_STATE;
 };
 

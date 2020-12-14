@@ -65,7 +65,7 @@ export default function Negotiation() {
             </Grid>
           </Grid>
           <Grid container>
-            {negotiationsByInterest.map((negotiation) => {
+            {negotiationsByInterest?.map((negotiation) => {
               return (
                 <GridBox key={negotiation.id}>
                   <SaleCard id={negotiation.id} sale={negotiation.sale} />

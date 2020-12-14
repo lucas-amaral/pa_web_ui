@@ -152,14 +152,14 @@ function Interest() {
             type="hidden"
             id="id"
             name="id"
-            defaultValue={interest.id}
+            value={interest.id}
           />
           <TextField
             inputRef={register()}
             type="hidden"
             id="username"
             name="username"
-            defaultValue={
+            value={
               interest?.user?.username ? interest.user.username : username
             }
           />
