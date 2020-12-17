@@ -1,14 +1,11 @@
-import Fab from '@material-ui/core/Fab';
-import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import { DropzoneDialog } from 'material-ui-dropzone';
 import { Box, Grid } from '@material-ui/core';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Tooltip from '@material-ui/core/Tooltip';
-import { Skeleton } from '@material-ui/lab';
 import { Title } from '../../../Register/styles';
 import GridBox from '../../../../components/GridBox';
 import ImageStepper from '../../../../components/Images/ImageStepper';
+import CircularButton from '../../../../components/Button/CircularButton';
 import { ADD_IMAGE, RESET_IMAGES } from '../../../../constants/ActionTypes';
 
 export default function Images({
@@ -17,8 +14,12 @@ export default function Images({
   parentLabelId,
   type_add,
   type_remove,
+  reset_success,
+  load,
   containerStyle = {},
   smallTitle = true,
+  success,
+  loading,
   loadingData,
 }) {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ export default function Images({
   const [openDropZone, setOpenDropZone] = React.useState(false);
 
   useEffect(() => {
+    dispatch({ type: reset_success });
     dispatch({ type: RESET_IMAGES });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -42,7 +44,7 @@ export default function Images({
   }
 
   const saveImages = () => {
-    console.log('save', inMemoryImages);
+    dispatch({ type: load });
     dispatch({ type: type_add, data: inMemoryImages });
     dispatch({ type: RESET_IMAGES });
   };
@@ -96,21 +98,12 @@ export default function Images({
       </GridBox>
       <GridBox xs={7}>
         <div>
-          {loadingData ? (
-            <Skeleton variant="circle" animation="wave">
-              <Fab />
-            </Skeleton>
-          ) : (
-            <Tooltip title="Adicionar imagem">
-              <Fab
-                aria-label="Adicionar Foto"
-                color="primary"
-                onClick={() => setOpenDropZone(true)}
-              >
-                <AddPhotoAlternateIcon />
-              </Fab>
-            </Tooltip>
-          )}
+          <CircularButton
+            success={success}
+            loading={loading}
+            loadingData={loadingData}
+            onClick={() => setOpenDropZone(true)}
+          />
           <DropzoneDialog
             dropzoneText="Arraste e solte uma imagem aqui ou clique"
             showAlerts={false}

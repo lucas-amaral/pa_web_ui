@@ -11,6 +11,7 @@ import {
   UPDATE_PROPERTY,
   RESET_LOADING_DATA_PROPERTY,
   FAILED_PROPERTY,
+  FAILED_ADD_PROPERTY_IMAGE,
 } from '../../constants/ActionTypes';
 
 /*
@@ -83,7 +84,13 @@ const succeededAddPropertyImage = (state = INITIAL_STATE, payload) => {
   return {
     ...state,
     type: payload.type,
+    loading: false,
+    success: true,
   };
+};
+
+const failedAddPropertyImage = (state = INITIAL_STATE) => {
+  return { ...state, loading: false, success: false };
 };
 
 const succeededRemovePropertyImage = (state = INITIAL_STATE, payload) => {
@@ -141,6 +148,7 @@ export default createReducer(INITIAL_STATE, {
   [FAILED_PROPERTY]: failedProperty,
   [UPDATE_PROPERTY]: updateProperty,
   [SUCCEEDED_ADD_PROPERTY_IMAGE]: succeededAddPropertyImage,
+  [FAILED_ADD_PROPERTY_IMAGE]: failedAddPropertyImage,
   [SUCCEEDED_REMOVE_PROPERTY_IMAGE]: succeededRemovePropertyImage,
   [UPDATE_PROPERTY_IMAGES]: updatePropertyImages,
   [LOADING_PROPERTY]: loadingProperty,

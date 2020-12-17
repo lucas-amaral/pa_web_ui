@@ -53,6 +53,10 @@ export default function Carousel({ images = defaultImage() }) {
     setActiveStep(step);
   };
 
+  const carouselImages = () => {
+    return images?.length > 0 ? images : defaultImage();
+  };
+
   return (
     <div className={classes.root}>
       <AutoPlaySwipeableViews
@@ -61,7 +65,7 @@ export default function Carousel({ images = defaultImage() }) {
         onChangeIndex={handleStepChange}
         enableMouseEvents
       >
-        {images.map((image, index) => (
+        {carouselImages().map((image, index) => (
           <div key={image.id}>
             {Math.abs(activeStep - index) <= 2 ? (
               <img

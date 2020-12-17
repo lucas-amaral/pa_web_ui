@@ -12,7 +12,9 @@ import Index from './index';
 import Images from '../Images';
 import {
   ADD_PROPERTY_IMAGE,
+  LOADING_PROPERTY,
   REMOVE_PROPERTY_IMAGE,
+  RESET_SUCCESS_PROPERTY,
 } from '../../../../constants/ActionTypes';
 import Sale from '../Sale';
 
@@ -56,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function PropertyTabs() {
-  const { property, images, loadingData } = useSelector(
+  const { property, images, loadingData, loading, success } = useSelector(
     (state) => state.property
   );
   const classes = useStyles();
@@ -110,7 +112,11 @@ export default function PropertyTabs() {
             images={images}
             type_add={ADD_PROPERTY_IMAGE}
             type_remove={REMOVE_PROPERTY_IMAGE}
+            reset_success={RESET_SUCCESS_PROPERTY}
+            load={LOADING_PROPERTY}
             smallTitle={false}
+            success={success}
+            loading={loading}
             loadingData={loadingData}
           />
         </TabPanel>

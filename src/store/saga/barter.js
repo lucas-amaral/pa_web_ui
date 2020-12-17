@@ -23,6 +23,7 @@ import {
   UPDATE_BARTER_IMAGES,
   REMOVE_INTEREST_BARTER,
   EDIT_INTEREST_BARTER,
+  FAILED_ADD_BARTER_IMAGE,
 } from '../../constants/ActionTypes';
 import { errorNotification, notification } from '../../utils/notificationUtils';
 
@@ -104,6 +105,7 @@ function* addBarterImage(action) {
       yield put(notification('Imagens adicionadas com sucesso'));
     }
   } catch (e) {
+    yield put({ type: FAILED_ADD_BARTER_IMAGE });
     yield put(errorNotification('Ocorreu um erro ao adicionar imagem'));
   }
 }

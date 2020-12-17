@@ -23,6 +23,7 @@ import {
   REMOVE_PROPERTY_IMAGE,
   RESET_LOADING_DATA_PROPERTY,
   FAILED_PROPERTY,
+  FAILED_ADD_PROPERTY_IMAGE,
 } from '../../constants/ActionTypes';
 import { errorNotification, notification } from '../../utils/notificationUtils';
 
@@ -106,6 +107,7 @@ function* addPropertyImage(action) {
       yield put(notification('Imagens adicionadas com sucesso'));
     }
   } catch (e) {
+    yield put({ type: FAILED_ADD_PROPERTY_IMAGE });
     yield put(
       errorNotification('Ocorreu um erro ao adicionar imagen do imóvel')
     );

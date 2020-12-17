@@ -55,9 +55,14 @@ export default function Barter() {
   const dispatch = useDispatch();
 
   const interestId = useSelector((state) => state.interest.interest.id);
-  const { barter, images, loadingData, loading, success } = useSelector(
-    (state) => state.barter
-  );
+  const {
+    barter,
+    images,
+    imagesSuccess,
+    loadingData,
+    loading,
+    success,
+  } = useSelector((state) => state.barter);
 
   useEffect(() => {
     dispatch({
@@ -143,6 +148,10 @@ export default function Barter() {
                 type_add={ADD_BARTER_IMAGE}
                 type_remove={REMOVE_BARTER_IMAGE}
                 containerStyle={{ marginTop: '20px' }}
+                success={imagesSuccess}
+                loading={loading}
+                load={LOADING_BARTER}
+                reset_success={RESET_SUCCESS_BARTER}
                 loadingData={loadingData}
               />
               <CardActions style={{ marginTop: '10px' }}>

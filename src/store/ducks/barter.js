@@ -2,6 +2,7 @@ import { createActions, createReducer } from 'reduxsauce';
 import { generateId } from '../../utils/numbersUtils';
 import {
   CREATE_BARTER_INTEREST,
+  FAILED_ADD_BARTER_IMAGE,
   LOADING_BARTER,
   REMOVE_BARTER_INTEREST,
   RESET_SUCCESS_BARTER,
@@ -36,6 +37,7 @@ const INITIAL_STATE = {
   loadingData: true,
   loading: false,
   success: false,
+  imagesSuccess: false,
 };
 
 /*
@@ -80,7 +82,13 @@ const succeededAddBarterImage = (state = INITIAL_STATE, payload) => {
   return {
     ...state,
     type: payload.type,
+    loading: false,
+    imagesSuccess: true,
   };
+};
+
+const failedAddBarterImage = (state = INITIAL_STATE) => {
+  return { ...state, loading: false, imagesSuccess: false };
 };
 
 const succeededRemoveBarterImage = (state = INITIAL_STATE, payload) => {
@@ -104,7 +112,7 @@ const loadingBarter = (state = INITIAL_STATE) => {
 };
 
 const resetSuccessBarter = (state = INITIAL_STATE) => {
-  return { ...state, loading: false, success: false };
+  return { ...state, loading: false, success: false, imagesSuccess: false };
 };
 
 const createBarterInterest = (state = INITIAL_STATE) => {
@@ -131,6 +139,7 @@ export default createReducer(INITIAL_STATE, {
   [SUCCEEDED_BARTER]: succeededBarter,
   [UPDATE_BARTER]: updateBarter,
   [SUCCEEDED_ADD_BARTER_IMAGE]: succeededAddBarterImage,
+  [FAILED_ADD_BARTER_IMAGE]: failedAddBarterImage,
   [SUCCEEDED_REMOVE_BARTER_IMAGE]: succeededRemoveBarterImage,
   [UPDATE_BARTER_IMAGES]: updateBarterImages,
   [SET_BARTER]: setBarter,
