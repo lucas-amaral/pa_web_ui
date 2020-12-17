@@ -97,8 +97,8 @@ export default function Negotiation() {
         ))}
 
       {loadingData && (
-        <Skeleton variant="rect" animation="wave">
-          <SaleCard />
+        <Skeleton variant="rect" animation="wave" height={400} width={300}>
+          <InterestCard/>
         </Skeleton>
       )}
     </Container>

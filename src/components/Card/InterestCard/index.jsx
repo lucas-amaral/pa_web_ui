@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function InterestCard({ id, interest }) {
+export default function InterestCard({ id = 0, interest = { barters: [] } }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
