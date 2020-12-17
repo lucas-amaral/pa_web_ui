@@ -55,7 +55,7 @@ export default function Negotiation() {
 
   return (
     <Container style={{ minHeight: 600 }}>
-      {interest && (
+      {interest.id && (
         <>
           <Grid container>
             <Grid item md={12}>

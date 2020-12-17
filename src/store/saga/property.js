@@ -24,7 +24,7 @@ import {
   RESET_LOADING_DATA_PROPERTY,
   FAILED_PROPERTY,
 } from '../../constants/ActionTypes';
-import { errorNotification } from '../../utils/notificationUtils';
+import { errorNotification, notification } from '../../utils/notificationUtils';
 
 function* loadProperty(action) {
   try {
@@ -103,6 +103,7 @@ function* addPropertyImage(action) {
 
     if (payload) {
       yield put({ type: SUCCEEDED_ADD_PROPERTY_IMAGE, payload });
+      yield put(notification('Imagens adicionadas com sucesso'));
     }
   } catch (e) {
     yield put(

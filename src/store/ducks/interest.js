@@ -11,6 +11,7 @@ import {
   REMOVE_INTEREST_BARTER,
   ADD_INTEREST_BARTER,
   RESET_INTEREST,
+  EDIT_INTEREST_BARTER,
 } from '../../constants/ActionTypes';
 
 /*
@@ -91,6 +92,19 @@ const addInterestBarter = (state = INITIAL_STATE, action) => {
   };
 };
 
+const editInterestBarter = (state = INITIAL_STATE, action) => {
+  return {
+    ...state,
+    type: action.type,
+    interest: {
+      ...state.interest,
+      barters: state.interest.barters.map(
+        (barter) => (barter.id = action.id ? action : barter)
+      ),
+    },
+  };
+};
+
 const removeInterestBarter = (state = INITIAL_STATE, action) => {
   return {
     ...state,
@@ -133,6 +147,7 @@ export default createReducer(INITIAL_STATE, {
   [RESET_SUCCESS_INTEREST]: resetSuccessInterest,
   [RESET_LOADING_DATA_INTEREST]: resetLoadingDataInterest,
   [ADD_INTEREST_BARTER]: addInterestBarter,
+  [EDIT_INTEREST_BARTER]: editInterestBarter,
   [REMOVE_INTEREST_BARTER]: removeInterestBarter,
   [RESET_LOADING_INTEREST]: resetLoadingInterest,
 });

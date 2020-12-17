@@ -22,9 +22,9 @@ import {
   SUCCEEDED_REMOVE_BARTER_IMAGE,
   UPDATE_BARTER_IMAGES,
   REMOVE_INTEREST_BARTER,
-  ADD_INTEREST_BARTER,
+  EDIT_INTEREST_BARTER,
 } from '../../constants/ActionTypes';
-import { errorNotification } from '../../utils/notificationUtils';
+import { errorNotification, notification } from '../../utils/notificationUtils';
 
 function* loadBarter(action) {
   try {
@@ -59,7 +59,7 @@ function* editBarter(action) {
         type: REMOVE_INTEREST_BARTER,
         barterId: action.barterId,
       });
-      yield put({ type: ADD_INTEREST_BARTER, payload });
+      yield put({ type: EDIT_INTEREST_BARTER, payload });
       yield put({ type: SUCCEEDED_BARTER, payload });
     }
   } catch (e) {
@@ -101,6 +101,7 @@ function* addBarterImage(action) {
 
     if (payload) {
       yield put({ type: SUCCEEDED_ADD_BARTER_IMAGE, payload });
+      yield put(notification('Imagens adicionadas com sucesso'));
     }
   } catch (e) {
     yield put(errorNotification('Ocorreu um erro ao adicionar imagem'));

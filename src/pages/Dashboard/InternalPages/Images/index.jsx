@@ -88,13 +88,11 @@ export default function Images({
         </Grid>
       </Grid>
       <GridBox>
-        {images && images.length > 0 && (
-          <ImageStepper
-            images={images}
-            deleteImage={deleteImage}
-            loadingData={loadingData}
-          />
-        )}
+        <ImageStepper
+          images={images}
+          deleteImage={deleteImage}
+          loadingData={loadingData}
+        />
       </GridBox>
       <GridBox xs={7}>
         <div>
